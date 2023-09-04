@@ -1,9 +1,9 @@
-import AdSummary from "./AdSummary";
+import Summary from "./Summary";
 
 const AdCardDetails = () => {
   return (
     <div>
-      <AdSummary />
+      <Summary />
     </div>
   );
 };

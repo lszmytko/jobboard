@@ -5,7 +5,7 @@ import { FaRegHandshake, FaBuilding } from "react-icons/fa";
 
 import Detail from "./Detail";
 
-const AdSummary = () => {
+const Summary = () => {
   return (
     <div className="max-w-3xl border-orange-300 border-2 text-sky-900 bg-gray-100 shadow-xl overflow-hidden">
       <div className="p-2">
@@ -39,4 +39,4 @@ const AdSummary = () => {
   );
 };
 
-export default AdSummary;
+export default Summary;
