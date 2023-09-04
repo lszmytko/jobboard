@@ -1,5 +1,11 @@
+import AdSummary from "./AdSummary";
+
 const AdCardDetails = () => {
-  return <div>AdCardDetails</div>;
+  return (
+    <div>
+      <AdSummary />
+    </div>
+  );
 };
 
 export default AdCardDetails;
