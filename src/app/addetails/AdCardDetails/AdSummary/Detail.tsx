@@ -6,9 +6,9 @@ const Detail = ({
   info: string;
 }) => {
   return (
-    <div className="border-2 px-3 grow">
+    <div className="border-2 px-3 py-1 grow">
       <div className="flex justify-center">{children}</div>
-      <p>{info}</p>
+      <p className="text-center">{info}</p>
     </div>
   );
 };
