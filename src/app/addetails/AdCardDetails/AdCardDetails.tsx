@@ -1,3 +1,4 @@
+import ApplyButton from "./ApplyButton";
 import Presentation from "./Presentation";
 import Summary from "./Summary";
 
@@ -7,6 +8,7 @@ const AdCardDetails = () => {
       <div>
         <Summary />
         <Presentation />
+        <ApplyButton />
       </div>
     </div>
   );
