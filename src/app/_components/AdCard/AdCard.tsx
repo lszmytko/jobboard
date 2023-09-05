@@ -18,7 +18,7 @@ const AdCard = () => {
             <p className="mb-1 md:mb-0">pełny etat</p>
           </div>
         </div>
-        <div className="h-px bg-orange-300"></div>
+        <div className="h-px bg-primary-lighter"></div>
         <div className="flex justify-between text-xs px-4 py-2">
           <p>1 godz.</p>
           <p>szczegóły</p>

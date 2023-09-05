@@ -1,5 +1,31 @@
+import { Montserrat } from "next/font/google";
+import Link from "next/link";
+
+import Logo from "./Logo";
+
+const montserrat = Montserrat({ subsets: ["latin"] });
+
 const Header = () => {
-  return <div>Header</div>;
+  return (
+    <div className="w-screen flex justify-center">
+      <div
+        className={`flex max-sm:justify-center max-w-2xl w-screen justify-between bg-header-background text-white font-semibold leading-10 ${montserrat.className} mb-4 p-4 sm:rounded-lg`}
+      >
+        <div>
+          <Logo />
+        </div>
+        <div className="max-sm:hidden flex gap-2">
+          <a href="www.vettech.pl" className="trainings hidden sm:block">
+            Szkolenia
+          </a>
+          <Link href="/" className="bg-primary rounded px-2">
+            Praca
+          </Link>
+          <Link href="/login/employee">Dla pracodawcy</Link>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Header;
