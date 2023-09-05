@@ -1,6 +1,6 @@
 const List = ({ data, title }: { data: string[]; title: string }) => {
   return (
-    <div className="tasks">
+    <div className="tasks mb-2">
       <h4 className="text-base font-semibold">{title}:</h4>
       <ul className="list-disc list-inside">
         {data.map((item, key) => {

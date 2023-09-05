@@ -5,12 +5,18 @@ import Summary from "./Summary";
 
 const AdCardDetails = () => {
   return (
-    <div className="flex justify-center max-w-5xl bg-red-200">
+    <div className="flex justify-center max-w-5xl border-orange-300 border-2">
       <div>
         <Summary />
-        <Presentation />
-        <ApplyButton />
-        <RevealPhone />
+        <div className="p-2 text-sky-900 bg-gray-100">
+          <Presentation />
+          <div className="mb-2 mt-4 flex justify-center">
+            <ApplyButton />
+          </div>
+          <div className="mb-2 flex justify-center">
+            <RevealPhone />
+          </div>
+        </div>
       </div>
     </div>
   );

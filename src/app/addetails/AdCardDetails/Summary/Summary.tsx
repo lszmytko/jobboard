@@ -7,7 +7,7 @@ import Detail from "./Detail";
 
 const Summary = () => {
   return (
-    <div className=" border-orange-300 border-2 text-sky-900 bg-gray-100 shadow-xl overflow-hidden">
+    <div className="text-sky-900 shadow-xl overflow-hidden">
       <div className="p-2">
         <p className="font-semibold mb-4">Technik weterynarii</p>
         <div className="flex gap-2 text-sm mb-4">
@@ -24,14 +24,14 @@ const Summary = () => {
           <p>ul. Szlenkierów 6</p>
         </div>
       </div>
-      <div className="sm:flex text-sm">
+      <div className="sm:flex text-sm border-y-2">
         <Detail info="1/3 lat doświadczenia">
           <GrUserWorker />
         </Detail>
         <Detail info="pełny etat">
           <PiSuitcaseSimpleFill />
         </Detail>
-        <Detail info="umowa o pracę">
+        <Detail info="umowa o pracę" isLast={true}>
           <FaRegHandshake />
         </Detail>
       </div>

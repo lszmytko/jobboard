@@ -9,7 +9,7 @@ const RevealPhone = () => {
   const [isRevealed, setIsRevealed] = useState(false);
   return (
     <button
-      className="block bg-sky-900 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-3xl text-3xl"
+      className="block w-80 bg-sky-900 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-3xl text-3xl"
       onClick={() => setIsRevealed((prev) => !prev)}
     >
       {isRevealed ? phoneNumberText : revealPhoneText}
