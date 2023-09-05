@@ -2,14 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-  }
-}
-
 body {
   padding: 1rem;
+}
+
+.tasks li::marker {
+  color: #fdba74;
 }

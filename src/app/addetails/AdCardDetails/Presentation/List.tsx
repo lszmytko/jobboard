@@ -1,0 +1,14 @@
+const List = ({ data, title }: { data: string[]; title: string }) => {
+  return (
+    <div className="tasks">
+      <h4 className="text-base font-semibold">{title}:</h4>
+      <ul className="list-disc list-inside">
+        {data.map((item, key) => {
+          return <li key={key}>{item}</li>;
+        })}
+      </ul>
+    </div>
+  );
+};
+
+export default List;
