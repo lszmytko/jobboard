@@ -1,5 +1,6 @@
 import ApplyButton from "./ApplyButton";
 import Presentation from "./Presentation";
+import RevealPhone from "./RevealPhone";
 import Summary from "./Summary";
 
 const AdCardDetails = () => {
@@ -9,6 +10,7 @@ const AdCardDetails = () => {
         <Summary />
         <Presentation />
         <ApplyButton />
+        <RevealPhone />
       </div>
     </div>
   );

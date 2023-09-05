@@ -7,7 +7,7 @@ import Detail from "./Detail";
 
 const Summary = () => {
   return (
-    <div className="max-w-3xl border-orange-300 border-2 text-sky-900 bg-gray-100 shadow-xl overflow-hidden">
+    <div className=" border-orange-300 border-2 text-sky-900 bg-gray-100 shadow-xl overflow-hidden">
       <div className="p-2">
         <p className="font-semibold mb-4">Technik weterynarii</p>
         <div className="flex gap-2 text-sm mb-4">

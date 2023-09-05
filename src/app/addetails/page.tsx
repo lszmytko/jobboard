@@ -1,7 +1,11 @@
 import AdCardDetails from "./AdCardDetails";
 
 const Page = () => {
-  return <AdCardDetails />;
+  return (
+    <div className="w-screen flex justify-center">
+      <AdCardDetails />
+    </div>
+  );
 };
 
 export default Page;
