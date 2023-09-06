@@ -14,7 +14,7 @@ const Presentation = () => {
     <div className="text-sm">
       <CompanyDetails />
       <Job />
-      <List data={data} title="Zadania" />
+      <List data={data} title="Zakres obowiązków" />
       <List data={data} title="Wymagania" />
       <List data={data} title="Nasza oferta" />
     </div>

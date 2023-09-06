@@ -1,30 +1,52 @@
 import Link from "next/link";
 
-const AdCard = () => {
+type AdCardProps = {
+  post: string;
+  company: string;
+  city: string;
+  address: string;
+  postLevel: string;
+  experience: string;
+  agreementType: string;
+  workingTime: string;
+  timeOfPosting: string;
+};
+
+const AdCard = ({
+  post,
+  company,
+  city,
+  address,
+  postLevel,
+  experience,
+  agreementType,
+  workingTime,
+  timeOfPosting,
+}: AdCardProps) => {
   return (
-    <Link href="/">
-      <div className="max-w-lg w-75 border-orange-300 border-2 rounded-lg bg-gray-100 shadow-xl overflow-hidden">
+    <div className="max-w-2xl w-full  border-orange-300 border-2 rounded-lg bg-gray-100 shadow-xl overflow-hidden">
+      <Link href="/">
         <div className="p-4">
-          <p className="text-xl font-bold mb-4">Technik weterynarii</p>
+          <p className="text-xl font-bold mb-4">{post}</p>
           <div className="text-xs flex gap-2 mb-4 flex-wrap">
-            <p>VetTech sp. z. o.o.</p>
-            <p className="font-semibold">Warszawa</p>
-            <p>u. Szlenkierów 6/1</p>
+            <p>{company}</p>
+            <p className="font-semibold">{city}</p>
+            <p>{address}</p>
           </div>
           <div className="md:flex flex-wrap text-xs gap-2 md:gap-4">
-            <p className="mb-1 md:mb-0">Kierownik</p>
-            <p className="mb-1 md:mb-0 font-bold">1/3 lat doświadczenia</p>
-            <p className="mb-1 md:mb-0">UoP</p>
-            <p className="mb-1 md:mb-0">pełny etat</p>
+            <p className="mb-1 md:mb-0">{postLevel}</p>
+            <p className="mb-1 md:mb-0 font-bold">{experience}</p>
+            <p className="mb-1 md:mb-0">{agreementType}</p>
+            <p className="mb-1 md:mb-0">{workingTime}</p>
           </div>
         </div>
         <div className="h-px bg-primary-light"></div>
         <div className="flex justify-between text-xs px-4 py-2">
-          <p>1 godz.</p>
+          <p>{timeOfPosting}</p>
           <p>szczegóły</p>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

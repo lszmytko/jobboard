@@ -28,7 +28,7 @@ const Search = () => {
           <input
             placeholder="Nazwa stanowiska/firmy"
             {...register("postOrCompany")}
-            className="w-full text-center border-b-2 p-2 border-primary-extra-light focus:outline-none md:border-r-2"
+            className="w-full text-center max-sm:border-b-2 p-2 border-primary-extra-light focus:outline-none md:border-r-2"
           />
         </div>
         {/* include validation with required or other standard HTML validation rules */}
@@ -36,7 +36,7 @@ const Search = () => {
           <input
             placeholder="Miasto"
             {...register("city", { required: true })}
-            className="w-full text-center border-b-2 p-2 border-primary-extra-light mb-2 focus:outline-none"
+            className="w-full text-center max-sm:border-b-2 p-2 border-primary-extra-light mb-2 focus:outline-none"
           />
         </div>
         {/* errors will return when field validation fails  */}

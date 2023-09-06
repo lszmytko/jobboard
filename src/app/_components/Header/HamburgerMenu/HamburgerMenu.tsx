@@ -17,7 +17,7 @@ const HamburgerMenu = () => {
       <div className="absolute left-2 top-5">
         <GiHamburgerMenu
           size={30}
-          className={`${extended ? "hidden" : ""} cursor-pointer tet-white`}
+          className={`${extended ? "hidden" : ""} cursor-pointer text-white`}
           onClick={handleClick}
         />
       </div>

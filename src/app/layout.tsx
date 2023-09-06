@@ -21,11 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
-        <div className="sm:mt-4">
-          <Header />
+      <body className={`${poppins.className} bg-slate-100 text-sky-900`}>
+        <div className="">
+          <div className="sm:mt-4">
+            <Header />
+          </div>
+          {children}
         </div>
-        {children}
       </body>
     </html>
   );
