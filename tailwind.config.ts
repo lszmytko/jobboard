@@ -16,8 +16,8 @@ const config: Config = {
       colors: {
         "header-background": "#537D8D",
         primary: "#f97316",
-        "primary-lighter": "#fdba74",
-        "primary-darker": "#c2410c",
+        "primary-light": "#fdba74",
+        "primary-dark": "#c2410c",
       },
     },
   },

@@ -3,7 +3,7 @@ import Link from "next/link";
 const AdCard = () => {
   return (
     <Link href="/">
-      <div className="max-w-lg w-75 border-orange-300 border-2 rounded-lg text-sky-900 bg-gray-100 shadow-xl overflow-hidden">
+      <div className="max-w-lg w-75 border-orange-300 border-2 rounded-lg bg-gray-100 shadow-xl overflow-hidden">
         <div className="p-4">
           <p className="text-xl font-bold mb-4">Technik weterynarii</p>
           <div className="text-xs flex gap-2 mb-4 flex-wrap">
@@ -18,7 +18,7 @@ const AdCard = () => {
             <p className="mb-1 md:mb-0">pełny etat</p>
           </div>
         </div>
-        <div className="h-px bg-primary-lighter"></div>
+        <div className="h-px bg-primary-light"></div>
         <div className="flex justify-between text-xs px-4 py-2">
           <p>1 godz.</p>
           <p>szczegóły</p>

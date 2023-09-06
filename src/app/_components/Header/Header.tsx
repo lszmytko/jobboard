@@ -2,12 +2,14 @@ import { Montserrat } from "next/font/google";
 import Link from "next/link";
 
 import Logo from "./Logo";
+import HamburgerMenu from "./HamburgerMenu";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 const Header = () => {
   return (
     <div className="w-screen flex justify-center">
+      <HamburgerMenu />
       <div
         className={`flex max-sm:justify-center max-w-2xl w-screen justify-between bg-header-background text-white font-semibold leading-10 ${montserrat.className} mb-4 p-4 sm:rounded-lg`}
       >
