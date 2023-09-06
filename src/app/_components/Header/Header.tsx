@@ -17,12 +17,12 @@ const Header = () => {
           <Logo />
         </div>
         <div className="max-sm:hidden flex gap-2">
-          <a href="www.vettech.pl" className="trainings hidden sm:block">
-            Szkolenia
-          </a>
           <Link href="/" className="bg-primary rounded px-2">
             Praca
           </Link>
+          <a href="www.vettech.pl" className="trainings hidden sm:block">
+            Szkolenia
+          </a>
           <Link href="/login/employee">Dla pracodawcy</Link>
         </div>
       </div>

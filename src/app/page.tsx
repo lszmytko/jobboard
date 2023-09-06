@@ -1,6 +1,11 @@
-import Image from "next/image";
-import AdCard from "./_components/AdCard/AdCard";
+import AdCard from "./_components/AdCard";
+import Search from "./_components/Search";
 
 export default function Home() {
-  return <AdCard />;
+  return (
+    <>
+      <Search />
+      <AdCard />;
+    </>
+  );
 }
