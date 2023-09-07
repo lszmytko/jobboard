@@ -5,8 +5,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Offer } from "@/common/types";
 
 import InputFields from "./InputFields";
-import CheckboxField from "./CheckBoxGroup/CheckboxField";
-import Experience from "./Experience";
+import Experience from "./Elements/Experience";
+import AgreementType from "./Elements/AgreementType";
+import WorkingTime from "./Elements/WorkingTime";
 
 export type Inputs = Omit<Offer, "offerText" | "timeOfPosting">;
 
@@ -49,55 +50,15 @@ const AddOffer = () => {
         placeholder="stopień stanowiska"
         className="block"
       />
-
       <Experience register={register} />
-      {/* agreement Type */}
-      <div className="mb-2">
-        <h1 className="mb-1">Rodzaj umowy</h1>
-        <CheckboxField
-          fieldGroup="agreementType"
-          polishName="UoP"
-          register={register}
-        />
-        <CheckboxField
-          fieldGroup="agreementType"
-          polishName="Umowa o dzieło"
-          register={register}
-        />
-        <CheckboxField
-          fieldGroup="agreementType"
-          polishName="Umowa zlecenie"
-          register={register}
-        />
-        <CheckboxField
-          fieldGroup="agreementType"
-          polishName="B2B"
-          register={register}
-        />
-      </div>
-
-      {/* working Time */}
-      <div className="mb-2">
-        <h1 className="mb-1">Wymiar Pracy</h1>
-        <CheckboxField
-          fieldGroup="workingTime"
-          polishName="Pełen etat"
-          register={register}
-        />
-        <CheckboxField
-          fieldGroup="workingTime"
-          polishName="Część etatu"
-          register={register}
-        />
-      </div>
-
+      <AgreementType register={register} />
+      <WorkingTime register={register} />
       <InputFields register={register} fieldID="zadania" fieldName="tasks" />
       <InputFields
         register={register}
         fieldID="wymagania"
         fieldName="requirements"
       />
-
       <div className="flex justify-center">
         <input type="submit" className="p-2 bg-primary-light rounded text-xl" />
       </div>

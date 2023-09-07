@@ -1,8 +1,11 @@
-import CheckBoxGroup from "./CheckBoxGroup/CheckBoxGroup";
-import CheckboxField from "./CheckBoxGroup/CheckboxField/CheckboxField";
-import { experienceData } from "./consts";
+import { UseFormRegister } from "react-hook-form";
 
-const Experience = ({ register }: { register: any }) => {
+import CheckBoxGroup from "../CheckBoxGroup/CheckBoxGroup";
+import CheckboxField from "../CheckBoxGroup/CheckboxField/CheckboxField";
+import { experienceData } from "../consts";
+import { Inputs } from "../AddOffer";
+
+const Experience = ({ register }: { register: UseFormRegister<Inputs> }) => {
   return (
     <CheckBoxGroup title="Doświadczenie">
       {experienceData.values.map((value, index) => {
