@@ -2,9 +2,9 @@ import Link from "next/link";
 
 import { Offer } from "@/common/types";
 
-type AdCardProps = Omit<Offer, "offerText">;
+type AdvCardProps = Omit<Offer, "offerText">;
 
-const AdCard = ({
+const AdvCard = ({
   post,
   company,
   city,
@@ -14,7 +14,7 @@ const AdCard = ({
   agreementType,
   workingTime,
   timeOfPosting,
-}: AdCardProps) => {
+}: AdvCardProps) => {
   return (
     <div className="max-w-2xl w-full  border-orange-300 border-2 rounded-lg bg-gray-100 shadow-xl overflow-hidden">
       <Link href="/">
@@ -42,4 +42,4 @@ const AdCard = ({
   );
 };
 
-export default AdCard;
+export default AdvCard;

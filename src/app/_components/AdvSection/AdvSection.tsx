@@ -1,4 +1,4 @@
-import AdCard from "../AdCard";
+import AdvCard from "../AdvCard";
 
 //TODO: remove mock data
 const mockData = {
@@ -17,7 +17,7 @@ const mockData = {
 //TODO: remove mock data
 const mockArray = [mockData, mockData, mockData, mockData, mockData, mockData];
 
-const AdSection = () => {
+const AdvSection = () => {
   return (
     <section className="flex justify-center p-2">
       <div className="w-full">
@@ -39,7 +39,7 @@ const AdSection = () => {
               key={id}
               className="card-wrapper mb-4 md:flex md:justify-center"
             >
-              <AdCard
+              <AdvCard
                 post={post}
                 company={company}
                 city={city}
@@ -58,4 +58,4 @@ const AdSection = () => {
   );
 };
 
-export default AdSection;
+export default AdvSection;

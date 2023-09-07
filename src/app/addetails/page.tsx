@@ -1,9 +1,9 @@
-import AdCardDetails from "./AdCardDetails";
+import AdvCardDetails from "./AdvCardDetails";
 
 const Page = () => {
   return (
     <div className="w-screen flex justify-center">
-      <AdCardDetails />
+      <AdvCardDetails />
     </div>
   );
 };

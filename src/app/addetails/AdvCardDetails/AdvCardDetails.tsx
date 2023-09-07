@@ -3,7 +3,7 @@ import Presentation from "./Presentation";
 import RevealPhone from "./RevealPhone";
 import Summary from "./Summary";
 
-const AdCardDetails = () => {
+const AdvCardDetails = () => {
   return (
     <div className="flex justify-center max-w-5xl border-orange-300 border-2">
       <div>
@@ -22,4 +22,4 @@ const AdCardDetails = () => {
   );
 };
 
-export default AdCardDetails;
+export default AdvCardDetails;
