@@ -1,16 +1,8 @@
 import Link from "next/link";
 
-type AdCardProps = {
-  post: string;
-  company: string;
-  city: string;
-  address: string;
-  postLevel: string;
-  experience: string;
-  agreementType: string;
-  workingTime: string;
-  timeOfPosting: string;
-};
+import { Offer } from "@/common/types";
+
+type AdCardProps = Omit<Offer, "offerText">;
 
 const AdCard = ({
   post,
