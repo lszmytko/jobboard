@@ -4,7 +4,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 import { Offer } from "@/common/types";
 
-import Tasks from "./Tasks";
+import InputFields from "./InputFields";
+import CheckboxField from "./CheckBoxGroup/CheckboxField";
+import Experience from "./Experience";
 
 export type Inputs = Omit<Offer, "offerText" | "timeOfPosting">;
 
@@ -19,6 +21,7 @@ const AddOffer = () => {
 
   console.log(watch("workingTime")); // watch input value by passing the name of it
   console.log(watch("agreementType")); // watch input value by passing the name of it
+  console.log(watch("experience"));
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
@@ -47,122 +50,53 @@ const AddOffer = () => {
         className="block"
       />
 
-      {/* Experience */}
-      <div className="mb-2">
-        <h1 className="mb-1">Doświadczenie</h1>
-        <label className="inline-block mr-1">
-          <span className="inline-block mr-1">&lt;1 rok</span>
-          <input
-            type="checkbox"
-            value="<1 rok"
-            id="<1 rok"
-            {...register("experience", { required: true })}
-          />
-        </label>
-        <label className="inline-block mr-1">
-          <span className="inline-block mr-1">1-3 lata</span>
-          <input
-            type="checkbox"
-            value="1-3 lata"
-            id="1-3 lata"
-            {...register("experience", { required: true })}
-          />
-        </label>
-        <label className="inline-block mr-1 mb-2">
-          <span className="inline-block mr-1">3-5 lat</span>
-          <input
-            type="checkbox"
-            value="3-5 lat"
-            id="3-5 lat"
-            {...register("experience", { required: true })}
-          />
-        </label>
-        <label className="inline-block mr-1">
-          <span className="inline-block mr-1">5-10 lat</span>
-          <input
-            type="checkbox"
-            value="5-10 lat"
-            id="5-10 lat"
-            {...register("experience", { required: true })}
-          />
-        </label>
-        <label className="inline-block mr-1">
-          <span className="inline-block mr-1">&gt;10 lat</span>
-          <input
-            type="checkbox"
-            value=">10 lat"
-            id=">10 lat"
-            {...register("experience", { required: true })}
-          />
-        </label>
-      </div>
-
+      <Experience register={register} />
       {/* agreement Type */}
       <div className="mb-2">
         <h1 className="mb-1">Rodzaj umowy</h1>
-        <label className="inline-block mr-1">
-          <span className="inline-block mr-1">UoP</span>
-          <input
-            type="checkbox"
-            value="UoP"
-            id="UoP"
-            {...register("agreementType", { required: true })}
-          />
-        </label>
-        <label className="inline-block mr-1">
-          <span className="inline-block mr-1">Umowa o dzieło</span>
-          <input
-            type="checkbox"
-            value="Umowa o dzieło"
-            id="Umowa o dzieło"
-            {...register("agreementType", { required: true })}
-          />
-        </label>
-        <label className="inline-block mr-4">
-          <span className="inline-block mr-1">Umowa zlecenie</span>
-          <input
-            type="checkbox"
-            value="Umowa zlecenie"
-            id="Umowa zlecenie"
-            {...register("agreementType", { required: true })}
-          />
-        </label>
-        <label className="inline-block mr-4">
-          <span className="inline-block mr-1">B2B</span>
-          <input
-            type="checkbox"
-            value="B2B"
-            id="B2B"
-            {...register("agreementType", { required: true })}
-          />
-        </label>
+        <CheckboxField
+          fieldGroup="agreementType"
+          polishName="UoP"
+          register={register}
+        />
+        <CheckboxField
+          fieldGroup="agreementType"
+          polishName="Umowa o dzieło"
+          register={register}
+        />
+        <CheckboxField
+          fieldGroup="agreementType"
+          polishName="Umowa zlecenie"
+          register={register}
+        />
+        <CheckboxField
+          fieldGroup="agreementType"
+          polishName="B2B"
+          register={register}
+        />
       </div>
 
       {/* working Time */}
       <div className="mb-2">
         <h1 className="mb-1">Wymiar Pracy</h1>
-        <label className="inline-block mr-4">
-          <span className="inline-block mr-1">Pełen etat</span>
-          <input
-            type="checkbox"
-            value="Pełen etat"
-            id="Pełen etat"
-            {...register("workingTime", { required: true })}
-          />
-        </label>
-        <label className="inline-block">
-          <span className="inline-block mr-1"> Część etatu</span>
-          <input
-            type="checkbox"
-            value="Część etatu"
-            id="Część etatu"
-            {...register("workingTime", { required: true })}
-            className="text-2xl"
-          />
-        </label>
+        <CheckboxField
+          fieldGroup="workingTime"
+          polishName="Pełen etat"
+          register={register}
+        />
+        <CheckboxField
+          fieldGroup="workingTime"
+          polishName="Część etatu"
+          register={register}
+        />
       </div>
 
-      <Tasks register={register} />
+      <InputFields register={register} fieldID="zadania" fieldName="tasks" />
+      <InputFields
+        register={register}
+        fieldID="wymagania"
+        fieldName="requirements"
+      />
 
       <div className="flex justify-center">
         <input type="submit" className="p-2 bg-primary-light rounded text-xl" />
