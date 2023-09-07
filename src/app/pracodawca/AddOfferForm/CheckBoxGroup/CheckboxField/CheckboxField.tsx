@@ -1,6 +1,6 @@
 import { UseFormRegister } from "react-hook-form";
 
-import { Inputs } from "../../AddOffer";
+import { Inputs } from "../../AddOfferForm";
 
 const CheckboxField = ({
   register,

@@ -1,18 +1,18 @@
 import { UseFormRegister } from "react-hook-form";
 
-import { experienceData } from "./consts";
+import { agreementData } from "./consts";
 import CheckBoxGroup from "../CheckBoxGroup/CheckBoxGroup";
 import CheckboxField from "../CheckBoxGroup/CheckboxField/CheckboxField";
-import { Inputs } from "../AddOffer";
+import { Inputs } from "../AddOfferForm";
 
-const Experience = ({ register }: { register: UseFormRegister<Inputs> }) => {
+const AgreementType = ({ register }: { register: UseFormRegister<Inputs> }) => {
   return (
-    <CheckBoxGroup title="Doświadczenie">
-      {experienceData.values.map((value, index) => {
+    <CheckBoxGroup title="Rodzaj umowy">
+      {agreementData.values.map((value, index) => {
         return (
           <CheckboxField
             key={index}
-            fieldGroup={experienceData.groupName}
+            fieldGroup={agreementData.groupName}
             polishName={value}
             register={register}
           />
@@ -22,4 +22,4 @@ const Experience = ({ register }: { register: UseFormRegister<Inputs> }) => {
   );
 };
 
-export default Experience;
+export default AgreementType;

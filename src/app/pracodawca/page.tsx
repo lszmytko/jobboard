@@ -1,10 +1,10 @@
-import AddOffer from "./AddOffer";
+import AddOfferForm from "./AddOfferForm";
 
 const EmployeePanel = () => {
   return (
     <div>
       <div className="">Panel pracodawcy</div>
-      <AddOffer />
+      <AddOfferForm />
     </div>
   );
 };

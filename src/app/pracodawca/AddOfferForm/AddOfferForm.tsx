@@ -11,7 +11,7 @@ import WorkingTime from "./Elements/WorkingTime";
 
 export type Inputs = Omit<Offer, "offerText" | "timeOfPosting">;
 
-const AddOffer = () => {
+const AddOfferForm = () => {
   const {
     register,
     handleSubmit,
@@ -66,4 +66,4 @@ const AddOffer = () => {
   );
 };
 
-export default AddOffer;
+export default AddOfferForm;

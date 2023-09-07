@@ -4,7 +4,7 @@ import { useState } from "react";
 import { UseFormRegister } from "react-hook-form";
 import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
 
-import { Inputs } from "../AddOffer";
+import { Inputs } from "../AddOfferForm";
 
 type InputFieldsProps = {
   register: UseFormRegister<Inputs>;
