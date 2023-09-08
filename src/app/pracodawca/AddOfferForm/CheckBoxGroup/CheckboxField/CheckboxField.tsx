@@ -12,7 +12,7 @@ const CheckboxField = ({
   fieldGroup: keyof Inputs;
 }) => {
   return (
-    <label className="inline-block mr-4">
+    <label className="inline-block mr-4 text-sm sm:text-base">
       <span className="inline-block mr-1">{polishName}</span>
       <input
         type="checkbox"

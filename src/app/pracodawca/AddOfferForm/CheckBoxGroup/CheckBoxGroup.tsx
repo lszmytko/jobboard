@@ -6,9 +6,9 @@ const CheckBoxGroup = ({
   title: string;
 }) => {
   return (
-    <div className="mb-2">
-      <h1 className="mb-1">{title}</h1>
-      {children}
+    <div className="mb-4 bg-white pt-2">
+      <h1 className="mb-4 text-primary font-semibold text-center">{title}</h1>
+      <div className="flex justify-center">{children}</div>
     </div>
   );
 };

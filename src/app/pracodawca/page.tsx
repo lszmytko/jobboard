@@ -2,8 +2,7 @@ import AddOfferForm from "./AddOfferForm";
 
 const EmployeePanel = () => {
   return (
-    <div>
-      <div className="">Panel pracodawcy</div>
+    <div className="mt-4 flex justify-center">
       <AddOfferForm />
     </div>
   );
