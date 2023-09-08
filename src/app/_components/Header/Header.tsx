@@ -11,7 +11,7 @@ const Header = () => {
     <div className="w-screen flex justify-center">
       <HamburgerMenu />
       <div
-        className={`flex max-sm:justify-center max-w-2xl w-screen justify-between bg-header-background text-white font-semibold leading-10 ${montserrat.className} mb-4 p-4 sm:rounded-lg`}
+        className={`flex max-sm:justify-center max-w-2xl w-screen justify-between bg-dark-blue text-white font-semibold leading-10 ${montserrat.className} mb-4 p-4 sm:rounded-lg`}
       >
         <div>
           <Logo />

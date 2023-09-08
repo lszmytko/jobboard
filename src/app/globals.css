@@ -5,3 +5,7 @@
 .tasks li::marker {
   color: #fdba74;
 }
+
+input:focus {
+  outline: none;
+}
