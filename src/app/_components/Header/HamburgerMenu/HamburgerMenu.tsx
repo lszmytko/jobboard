@@ -42,7 +42,7 @@ const HamburgerMenu = () => {
           </Link>
         </div>
         <div className="border-y-2 p-1">
-          <Link href="/login/employee">Dla pracodawcy</Link>
+          <Link href="/login/pracodawca">Dla pracodawcy</Link>
         </div>
       </aside>
     </div>

@@ -23,7 +23,7 @@ const Header = () => {
           <a href="www.vettech.pl" className="trainings hidden sm:block">
             Szkolenia
           </a>
-          <Link href="/login/employee">Dla pracodawcy</Link>
+          <Link href="/login/pracodawca">Dla pracodawcy</Link>
         </div>
       </div>
     </div>
