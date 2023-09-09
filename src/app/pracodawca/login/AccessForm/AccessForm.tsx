@@ -8,10 +8,10 @@ import RegisterForm from "./RegisterForm";
 const AccessForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   return (
-    <div className="w-80 bg-dark-blue rounded-xl p-6">
+    <div className="w-80 rounded-xl px-6 py-10 bg-dark-blue">
       <div className="mb-4">
         <h1 className="text-2xl text-white font-semibold text-center">
-          Zaloguj się
+          {isLogin ? "Zaloguj się" : "Załóż konto"}
         </h1>
         <h2 className="text-xl text-white font-semibold text-center">
           lub{" "}
@@ -19,7 +19,7 @@ const AccessForm = () => {
             className="text-primary-light cursor-pointer"
             onClick={() => setIsLogin((prev) => !prev)}
           >
-            Załóż darmowe konto
+            {isLogin ? "Załóż darmowe konto" : "Zaloguj się"}
           </span>
         </h2>
       </div>
