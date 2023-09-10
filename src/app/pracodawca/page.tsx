@@ -1,11 +1,7 @@
-import AddOfferForm from "./AddOfferForm";
+import EmployerPanel from "./EmployerPanel";
 
-const EmployeePanel = () => {
-  return (
-    <div className="mt-4 flex justify-center">
-      <AddOfferForm />
-    </div>
-  );
+const EmployerPage = () => {
+  return <EmployerPanel />;
 };
 
-export default EmployeePanel;
+export default EmployerPage;
