@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} bg-slate-100 text-sky-900`}>
+      <body className={`${poppins.className} bg-slate-100 text-dark-blue`}>
         <div className="">
           <div className="sm:mt-4">
             <Header />
