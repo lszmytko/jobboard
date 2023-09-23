@@ -37,9 +37,11 @@ export async function POST(req: Request) {
   if (isPasswordCorrect) {
     const token = await existingUser.createJWT();
     return NextResponse.json({
-      error: "you are logged in",
+      error: "login successful",
       status: StatusCodes.OK,
       token: token,
+      user: existingUser._id,
     });
-  } else return NextResponse.json({ error: "Invalid password", status: 403 });
+  } else
+    return NextResponse.json({ error: "Invalid password" }, { status: 403 });
 }

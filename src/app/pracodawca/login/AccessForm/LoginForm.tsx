@@ -2,14 +2,30 @@
 
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { ThreeDots } from "react-loader-spinner";
+import { useMutation } from "react-query";
+import { useRouter } from "next/navigation";
+
+import { paths } from "@/common/paths";
+
+import { loginUser } from "./loginUser";
 
 type LoginFormInputs = {
   email: string;
   password: string;
 };
 
-const LoginForm = ({ mutateAsync }: { mutateAsync: (data: any) => void }) => {
-  const [isPasswordForgotten, setIsPasswordForgotten] = useState(false);
+const LoginForm = () => {
+  const [_, setIsPasswordForgotten] = useState(false);
+
+  const router = useRouter();
+  const { isLoading, isError, mutateAsync } = useMutation({
+    mutationFn: loginUser,
+    onSuccess: () => {
+      console.log("success");
+      router.push(paths.pracodawca);
+    },
+  });
 
   const {
     register,
@@ -43,12 +59,28 @@ const LoginForm = ({ mutateAsync }: { mutateAsync: (data: any) => void }) => {
           </label>
         </div>
         {errors.password && <span>Puste pole</span>}
-        <input
-          type="submit"
-          className="w-full py-2 px-1 mt-2 rounded-lg bg-primary-light font-semibold cursor-pointer"
-          value="Zaloguj"
-        />
+        {isLoading ? (
+          <div className="flex justify-center">
+            <ThreeDots
+              height="40"
+              width="40"
+              radius="9"
+              color={"#4fa94d"}
+              ariaLabel="three-dots-loading"
+              visible={true}
+            />
+          </div>
+        ) : (
+          <input
+            type="submit"
+            className="w-full py-2 px-1 mt-2 rounded-lg bg-primary-light font-semibold cursor-pointer"
+            value="Zaloguj"
+          />
+        )}
       </form>
+      {isError && (
+        <div className="text-red-300 mt-4 text-center">Wystąpił błąd</div>
+      )}
       <div className="flex justify-center">
         <button
           className="mt-4 text-center text-white cursor-pointer"

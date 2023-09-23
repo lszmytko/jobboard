@@ -1,9 +1,8 @@
-import { User } from "../models/User";
+import { AxiosRequestHeaders } from "axios";
 import jwt from "jsonwebtoken";
-import { NextApiRequest } from "next";
 
-const auth = (req: NextApiRequest) => {
-  const authHeader = req.headers.authorization;
+export const auth = (req: AxiosRequestHeaders) => {
+  const authHeader = req.headers.get("authorization");  
   if (!authHeader || !authHeader.startsWith("Bearer")) {
     return false; //TODO: improve it in the future
   }

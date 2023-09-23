@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useMutation } from "react-query";
 
 import { Offer } from "@/common/types";
 
@@ -8,26 +9,41 @@ import InputFields from "./InputFields";
 import Experience from "./Elements/Experience";
 import AgreementType from "./Elements/AgreementType";
 import WorkingTime from "./Elements/WorkingTime";
+import { addOffer } from "./addOffer";
 
 export type Inputs = Omit<Offer, "timeOfPosting">;
 
 const AddOfferForm = () => {
+  const { isLoading, isError, mutateAsync } = useMutation({
+    mutationFn: addOffer,
+    onSuccess: () => {
+      console.log("success");
+    },
+  });
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors, isValid },
   } = useForm<Inputs>({ mode: "onSubmit" });
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const timeOfPosting = new Date().toISOString();
+    const payload = { ...data, timeOfPosting };
+    console.log({ payload });
+    mutateAsync(payload);
+  };
+
+  if (isLoading) return <div>Loading...</div>;
 
   console.log({ isValid });
 
   console.log(watch("workingTime")); // watch input value by passing the name of it
 
   return (
-    <div className="max-w-3xl w-full p-2">
-      <h1 className="mb-4 text-center text-primary font-semibold text-lg">
-        Dodaj ogłoszenie
+    <div className="max-w-3xl w-full p-2 pt-0">
+      <h1 className="mb-4 text-center text-primary font-semibold text-2xl">
+        Nowe ogłoszenie
       </h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input

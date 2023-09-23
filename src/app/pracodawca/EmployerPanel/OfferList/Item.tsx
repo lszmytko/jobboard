@@ -10,7 +10,7 @@ const Item = ({
   isActive: boolean;
 }) => {
   return (
-    <div className="border-primary-light border-solid border-2 mb-2 p-2 rounded w-96">
+    <div className="border-primary-light border-solid border-2 mb-2 p-2 rounded w-96 max-w-screen-md md:w-full ">
       <h1 className="text-sm">12.01.2023</h1>
       <p className="font-bold">Technik weterynarii</p>
       {isActive ? (

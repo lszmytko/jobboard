@@ -1,29 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useMutation } from "react-query";
-import { useRouter } from "next/navigation";
 
-import { paths } from "@/common/paths";
-import FullPageLoader from "@/app/_components/FullPageLoader";
-
-import { loginUser } from "./loginUser";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 
 const AccessForm = () => {
-  const router = useRouter();
-  const { isLoading, isError, mutateAsync } = useMutation({
-    mutationFn: loginUser,
-    onSuccess: () => {
-      console.log("success");
-      router.push(paths.pracodawca);
-    },
-  });
-
   const [isLogin, setIsLogin] = useState(true);
-
-  if (isLoading) return <FullPageLoader />;
 
   return (
     <div>
@@ -42,11 +25,8 @@ const AccessForm = () => {
             </span>
           </h2>
         </div>
-        {isLogin ? <LoginForm mutateAsync={mutateAsync} /> : <RegisterForm />}
+        {isLogin ? <LoginForm /> : <RegisterForm />}
       </div>
-      {isError && (
-        <div className="text-red-500 mt-4 text-center">Wystąpił błąd</div>
-      )}
     </div>
   );
 };
