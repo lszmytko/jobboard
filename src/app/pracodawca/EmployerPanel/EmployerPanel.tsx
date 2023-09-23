@@ -5,8 +5,13 @@ import { useState } from "react";
 import AddOfferForm from "../AddOfferForm";
 import Menu from "./Menu";
 import OfferList from "./OfferList";
+import { checkIfUserIsLoggedIn } from "@/utils/utils";
+import { redirect } from "next/navigation";
 
 const EmployerPanel = () => {
+  const isUserLoggedIn = checkIfUserIsLoggedIn();
+  if (!isUserLoggedIn) redirect("/pracodawca/login");
+
   const [showNewOffer, setShowNewOffer] = useState(true);
 
   return (

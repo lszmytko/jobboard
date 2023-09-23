@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useMutation } from "react-query";
+import { loginUser } from "./loginUser";
 
 type LoginFormInputs = {
   email: string;
@@ -9,6 +11,9 @@ type LoginFormInputs = {
 };
 
 const LoginForm = () => {
+  const mutation = useMutation({
+    mutationFn: loginUser,
+  });
   const [isPasswordForgotten, setIsPasswordForgotten] = useState(false);
 
   const {
@@ -17,7 +22,11 @@ const LoginForm = () => {
     watch,
     formState: { errors },
   } = useForm<LoginFormInputs>();
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<LoginFormInputs> = (data) =>
+    mutation.mutate(data);
+
+  mutation.isLoading && <div>loading...</div>;
+  mutation.isError && <div>Something went wrong</div>;
 
   console.log(watch("email")); // watch input value by passing the
   return (
@@ -37,6 +46,7 @@ const LoginForm = () => {
             <h1 className="mb-1 text-white">Hasło</h1>
             <input
               {...register("password", { required: true })}
+              type="password"
               className="w-full py-2 px-1 rounded-lg"
             />
           </label>
@@ -44,7 +54,7 @@ const LoginForm = () => {
         {errors.password && <span>Puste pole</span>}
         <input
           type="submit"
-          className="w-full py-2 px-1 mt-2 rounded-lg bg-primary-light font-semibold"
+          className="w-full py-2 px-1 mt-2 rounded-lg bg-primary-light font-semibold cursor-pointer"
           value="Zaloguj"
         />
       </form>

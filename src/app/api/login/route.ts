@@ -28,10 +28,8 @@ export async function POST(req: Request) {
 
   const existingUser = await User.findOne({ email });
 
-  console.log(existingUser.comparePasswords);
-
   if (!existingUser) {
-    return NextResponse.json({ error: "No such user", status: 403 });
+    return NextResponse.json({ error: "No such user" }, { status: 403 });
   }
 
   const isPasswordCorrect = await existingUser.comparePasswords(password);
