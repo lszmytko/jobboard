@@ -1,7 +1,7 @@
 import { Montserrat } from "next/font/google";
 import Link from "next/link";
 
-import { PATHS } from "@/common/paths";
+import { paths } from "@/common/paths";
 
 import Logo from "./Logo";
 import HamburgerMenu from "./HamburgerMenu";
@@ -25,7 +25,7 @@ const Header = () => {
           <a href="www.vettech.pl" className="trainings hidden sm:block">
             Szkolenia
           </a>
-          <Link href={PATHS.pracodawca}>Dla pracodawcy</Link>
+          <Link href={paths.pracodawca}>Dla pracodawcy</Link>
         </div>
       </div>
     </div>

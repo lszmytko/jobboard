@@ -1,4 +1,4 @@
-export const PATHS = {
+export const paths = {
   home: "/",
   pracodawca: "/pracodawca",
 };

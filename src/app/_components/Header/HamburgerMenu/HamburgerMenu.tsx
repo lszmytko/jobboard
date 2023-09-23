@@ -5,7 +5,7 @@ import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GrClose } from "react-icons/gr";
 
-import { PATHS } from "@/common/paths";
+import { paths } from "@/common/paths";
 
 const HamburgerMenu = () => {
   const [extended, setExtended] = useState(false);
@@ -44,7 +44,7 @@ const HamburgerMenu = () => {
           </Link>
         </div>
         <div className="border-y-2 p-1">
-          <Link href={PATHS.pracodawca}>Dla pracodawcy</Link>
+          <Link href={paths.pracodawca}>Dla pracodawcy</Link>
         </div>
       </aside>
     </div>

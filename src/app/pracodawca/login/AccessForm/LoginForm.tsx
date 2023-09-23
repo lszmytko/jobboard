@@ -2,18 +2,13 @@
 
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useMutation } from "react-query";
-import { loginUser } from "./loginUser";
 
 type LoginFormInputs = {
   email: string;
   password: string;
 };
 
-const LoginForm = () => {
-  const mutation = useMutation({
-    mutationFn: loginUser,
-  });
+const LoginForm = ({ mutateAsync }: { mutateAsync: (data: any) => void }) => {
   const [isPasswordForgotten, setIsPasswordForgotten] = useState(false);
 
   const {
@@ -22,11 +17,7 @@ const LoginForm = () => {
     watch,
     formState: { errors },
   } = useForm<LoginFormInputs>();
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) =>
-    mutation.mutate(data);
-
-  mutation.isLoading && <div>loading...</div>;
-  mutation.isError && <div>Something went wrong</div>;
+  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => mutateAsync(data);
 
   console.log(watch("email")); // watch input value by passing the
   return (
