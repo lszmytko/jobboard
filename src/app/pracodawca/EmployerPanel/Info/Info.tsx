@@ -3,7 +3,8 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import "react-phone-number-input/style.css";
 import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
+import { fetchUserData } from "./utils";
 
 export type InfoInputs = {
   companyName: string;
@@ -16,15 +17,25 @@ export type InfoInputs = {
 };
 
 const Info = () => {
-  const info = useQuery({ queryKey: ["todos"], queryFn: fetchUserData });
+  const userID = localStorage.getItem("user");
+
+  console.log({ userID });
+
+  const { isLoading, isError, data, error } = useQuery({
+    queryKey: ["todos", userID],
+    queryFn: () => fetchUserData(userID || ""),
+  });
+
+  console.log({ data });
+
   const {
     register,
     handleSubmit,
     watch,
     control,
     formState: { errors, isValid },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  } = useForm<InfoInputs>();
+  const onSubmit: SubmitHandler<InfoInputs> = (data) => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
