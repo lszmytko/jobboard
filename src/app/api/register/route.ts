@@ -30,15 +30,15 @@ export async function POST(req: Request) {
   const isUserExisting = await User.findOne({ email });
 
   if (isUserExisting) {
-    return NextResponse.json({
-      error: { message: "User already exists" },
-      status: 403,
-    });
+    return NextResponse.json(
+      {
+        error: { message: "User already exists" },
+      },
+      { status: 405 }
+    );
   }
 
   const user = await User.create({ email, password });
 
-  const token = await user.createJWT();
-
-  return NextResponse.json({ msg: "User created", status: 200, token });
+  return NextResponse.json({ msg: "User created" }, { status: 200 });
 }

@@ -25,7 +25,7 @@ const AccessForm = () => {
             </span>
           </h2>
         </div>
-        {isLogin ? <LoginForm /> : <RegisterForm />}
+        {isLogin ? <LoginForm /> : <RegisterForm setIsLogin={setIsLogin} />}
       </div>
     </div>
   );
