@@ -10,6 +10,7 @@
     "type:check": "tsc --noEmit --incremental"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.2",
     "@tanstack/react-query": "^4.35.3",
     "@types/bcryptjs": "^2.4.3",
     "@types/node": "20.5.9",

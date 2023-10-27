@@ -1,10 +1,11 @@
 "use client";
 
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { registerUser } from "./registerUser";
 
@@ -13,6 +14,17 @@ type FormFields = {
   emailConfirmation: string;
   password: string;
 };
+
+const schema = z
+  .object({
+    email: z.string().email(),
+    emailConfirmation: z.string().email(),
+    password: z.string().min(5),
+  })
+  .refine((data) => data.email === data.emailConfirmation, {
+    message: "Emaile muszą być takie same",
+    path: ["emailConfirmation"],
+  });
 
 const RegisterForm = ({
   setIsLogin,
@@ -24,11 +36,9 @@ const RegisterForm = ({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormFields>();
+  } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
   const notify = () => toast("Rejestracja powiodła się!");
-
-  const router = useRouter();
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     console.log(data);
@@ -36,7 +46,7 @@ const RegisterForm = ({
     try {
       await registerUser(data);
       notify();
-      // setIsLogin(false);
+      setIsLogin(false);
     } catch (error) {
       setError(true);
     }
@@ -61,6 +71,11 @@ const RegisterForm = ({
               className="w-full py-2 px-1 rounded-lg"
               {...register("emailConfirmation")}
             />
+            {errors.emailConfirmation && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.emailConfirmation.message}
+              </p>
+            )}
           </label>
         </div>
         <div className="mb-4">
