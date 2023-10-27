@@ -3,6 +3,8 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { registerUser } from "./registerUser";
 
@@ -24,6 +26,8 @@ const RegisterForm = ({
     formState: { errors },
   } = useForm<FormFields>();
 
+  const notify = () => toast("Rejestracja powiodła się!");
+
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
@@ -31,7 +35,8 @@ const RegisterForm = ({
 
     try {
       await registerUser(data);
-      setIsLogin(true);
+      notify();
+      // setIsLogin(false);
     } catch (error) {
       setError(true);
     }
@@ -78,6 +83,7 @@ const RegisterForm = ({
           Rejestracja nie powiodła się
         </div>
       )}
+      <ToastContainer progressClassName="bg-black" />
     </>
   );
 };
