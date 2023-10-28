@@ -7,12 +7,22 @@ const { Schema } = mongoose;
 interface User {
   email: string;
   password: string;
+  companyName: string;
+  city: string;
+  street: string;
+  localNumber: string;
+  phoneNumber: string;
   comparePasswords: (password: string) => boolean;
 }
 
 const UserSchema = new Schema<User>({
   email: { type: String, unique: true },
   password: { type: String, required: true },
+  companyName: { type: String },
+  city: { type: String },
+  street: { type: String },
+  localNumber: { type: String },
+  phoneNumber: { type: String },
 });
 
 UserSchema.pre("save", async function () {

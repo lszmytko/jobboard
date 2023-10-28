@@ -38,7 +38,15 @@ export async function POST(req: Request) {
     );
   }
 
-  const user = await User.create({ email, password });
+  const user = await User.create({
+    email,
+    password,
+    companyName: "",
+    city: "",
+    street: "",
+    localNumber: "",
+    phoneNumber: "",
+  });
 
-  return NextResponse.json({ msg: "User created" }, { status: 200 });
+  return NextResponse.json({ msg: "User created", user }, { status: 200 });
 }

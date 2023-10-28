@@ -3,8 +3,6 @@ import { z } from "zod";
 
 import { User } from "../models/User";
 import connectToDatabase from "../db/connectToDatabase";
-import { UserData } from "../models/UserData";
-import { NextApiRequest } from "next";
 
 const schema = z.object({
   companyName: z.string().nonempty(),

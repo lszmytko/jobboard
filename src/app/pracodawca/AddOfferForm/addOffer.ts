@@ -1,9 +1,10 @@
 import axios from "axios";
 
 import { Offer } from "@/common/types";
+import { getUserToken } from "@/utils/utils";
 
 export const addOffer = async (data: Offer) => {
-  const token = localStorage.getItem("userToken");
+  const token = getUserToken();
   const response = await axios.post("http://localhost:3000/api/addoffer", {
     ...data,
     headers: {

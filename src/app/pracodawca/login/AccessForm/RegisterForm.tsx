@@ -44,7 +44,7 @@ const RegisterForm = ({
     try {
       await registerUser(data);
       notify();
-      setIsLogin(false);
+      setIsLogin(true);
     } catch (error) {
       setError(true);
     }

@@ -4,12 +4,13 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import "react-phone-number-input/style.css";
 import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 import { useQuery } from "@tanstack/react-query";
+import { getUserFromLocalStorage } from "@/utils/utils";
 
 import { fetchUserData, updateUserData } from "./utils";
 import { UserInfo } from "./UserInfo.types";
 
 const UserInfo = () => {
-  const userID = localStorage.getItem("user");
+  const userID = getUserFromLocalStorage();
 
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["todos", userID],
@@ -84,6 +85,7 @@ const UserInfo = () => {
       <div>
         <input type="submit" disabled={isValid} className="cursor-pointer" />
       </div>
+      {Object.keys(errors).length > 0 && <p>Wypełnij wszystkie pola</p>}
     </form>
   );
 };
