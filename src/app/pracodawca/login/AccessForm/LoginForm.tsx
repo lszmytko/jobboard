@@ -22,7 +22,6 @@ const LoginForm = () => {
   const { isLoading, isError, mutateAsync } = useMutation({
     mutationFn: loginUser,
     onSuccess: () => {
-      console.log("success");
       router.push(paths.pracodawca);
     },
   });
@@ -35,7 +34,6 @@ const LoginForm = () => {
   } = useForm<LoginFormInputs>();
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => mutateAsync(data);
 
-  console.log(watch("email")); // watch input value by passing the
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="">

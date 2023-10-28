@@ -25,7 +25,6 @@ export async function POST(req: Request) {
   const response = schema.safeParse(body);
 
   if (!response.success) {
-    console.log("przeszło");
     const { errors } = response.error;
 
     return NextResponse.json(

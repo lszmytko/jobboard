@@ -14,12 +14,10 @@ const schema = z.object({
 });
 
 export async function POST(req: AxiosRequestHeaders) {
-  console.log("przeszło tutaj");
   await connectToDatabase();
 
   const { post, user, headers } = await req.json();
 
-  console.log({ post, user });
   const response = schema.safeParse({ post, user });
 
   if (!response.success) {
@@ -35,8 +33,6 @@ export async function POST(req: AxiosRequestHeaders) {
   if (!existingUser) {
     return NextResponse.json({ message: "No such user" }, { status: 400 });
   }
-
-  console.log("headers", headers);
 
   const isAuthorized = auth(req);
 

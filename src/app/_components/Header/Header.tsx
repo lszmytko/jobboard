@@ -36,10 +36,10 @@ const Header = () => {
           <Link href="/" className="bg-primary rounded px-2">
             Praca
           </Link>
+          <Link href={paths.pracodawca}>Panel pracodawcy</Link>
           <a href="www.vettech.pl" className="trainings hidden sm:block">
             Szkolenia
           </a>
-          <Link href={paths.pracodawca}>Dla pracodawcy</Link>
           {isUser && (
             <button
               className="text-white ml-4 cursor-pointer"

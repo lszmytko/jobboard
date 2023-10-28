@@ -34,17 +34,17 @@ const HamburgerMenu = () => {
           />
         </div>
         <div className="border-t-2 p-1">
-          <a href="https://www.vettech.pl" className="trainings">
-            Szkolenia
-          </a>
-        </div>
-        <div className="border-t-2 p-1">
           <Link href="/" className="">
             Praca
           </Link>
         </div>
+        <div className="border-t-2 p-1">
+          <a href="https://www.vettech.pl" className="trainings">
+            Szkolenia
+          </a>
+        </div>
         <div className="border-y-2 p-1">
-          <Link href={paths.pracodawca}>Dla pracodawcy</Link>
+          <Link href={paths.pracodawca}>Panel pracodawcy</Link>
         </div>
       </aside>
     </div>

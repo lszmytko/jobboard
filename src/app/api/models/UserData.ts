@@ -1,7 +1,7 @@
 import mongoose, { SchemaDefinitionProperty } from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { InfoInputs } from "@/app/pracodawca/EmployerPanel/Info/Info";
+import { InfoInputs } from "@/app/pracodawca/EmployerPanel/UserInfo/UserInfo";
 
 const { Schema } = mongoose;
 

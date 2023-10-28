@@ -11,11 +11,6 @@ export const registerUser = async (data: {
   email: string;
   password: string;
 }) => {
-  console.log(
-    "*** registerUser",
-    process.env.NEXT_PUBLIC_API_ENDPOINT + "/register"
-  );
-
   try {
     const response = await axios.post<RegisterResponse>(
       process.env.NEXT_PUBLIC_API_ENDPOINT + "/register",

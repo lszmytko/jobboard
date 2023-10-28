@@ -41,8 +41,6 @@ const RegisterForm = ({
   const notify = () => toast("Rejestracja powiodła się!");
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    console.log(data);
-
     try {
       await registerUser(data);
       notify();

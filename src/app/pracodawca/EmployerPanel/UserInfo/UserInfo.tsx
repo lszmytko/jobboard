@@ -4,29 +4,17 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import "react-phone-number-input/style.css";
 import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 import { useQuery } from "@tanstack/react-query";
-import { fetchUserData } from "./utils";
 
-export type InfoInputs = {
-  companyName: string;
-  city: string;
-  street: string;
-  flatNumber: string;
-  phoneNumber: string;
-  currentPassword: string;
-  newPassword: string;
-};
+import { fetchUserData, updateUserData } from "./utils";
+import { UserInfo } from "./UserInfo.types";
 
-const Info = () => {
+const UserInfo = () => {
   const userID = localStorage.getItem("user");
-
-  console.log({ userID });
 
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["todos", userID],
     queryFn: () => fetchUserData(userID || ""),
   });
-
-  console.log({ data });
 
   const {
     register,
@@ -34,8 +22,8 @@ const Info = () => {
     watch,
     control,
     formState: { errors, isValid },
-  } = useForm<InfoInputs>();
-  const onSubmit: SubmitHandler<InfoInputs> = (data) => console.log(data);
+  } = useForm<UserInfo>();
+  const onSubmit: SubmitHandler<UserInfo> = (data) => updateUserData(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -93,31 +81,6 @@ const Info = () => {
         </label>
       </div>
 
-      <div className="mb-4">
-        <label>
-          <h1 className="mb-1 text-primary">Aktualne hasło</h1>
-          <input
-            {...register("currentPassword", { required: true })}
-            className="w-full py-2 px-1 rounded-lg"
-            type="password"
-          />
-        </label>
-      </div>
-
-      <div className="mb-4">
-        <label>
-          <h1 className="mb-1 text-primary">Nowe hasło</h1>
-          <input
-            {...register("newPassword", {
-              required: "Za krótkie hasło",
-              minLength: 8,
-            })}
-            className="w-full py-2 px-1 rounded-lg"
-            type="password"
-          />
-        </label>
-      </div>
-
       <div>
         <input type="submit" disabled={isValid} className="cursor-pointer" />
       </div>
@@ -125,4 +88,4 @@ const Info = () => {
   );
 };
 
-export default Info;
+export default UserInfo;

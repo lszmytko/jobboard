@@ -16,9 +16,7 @@ export type Inputs = Omit<Offer, "timeOfPosting">;
 const AddOfferForm = () => {
   const { isLoading, isError, mutateAsync } = useMutation({
     mutationFn: addOffer,
-    onSuccess: () => {
-      console.log("success");
-    },
+    onSuccess: () => {},
   });
 
   const {
@@ -30,15 +28,10 @@ const AddOfferForm = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const timeOfPosting = new Date().toISOString();
     const payload = { ...data, timeOfPosting };
-    console.log({ payload });
     mutateAsync(payload);
   };
 
   if (isLoading) return <div>Loading...</div>;
-
-  console.log({ isValid });
-
-  console.log(watch("workingTime")); // watch input value by passing the name of it
 
   return (
     <div className="max-w-3xl w-full p-2 pt-0">

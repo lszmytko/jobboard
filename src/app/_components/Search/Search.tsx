@@ -15,7 +15,6 @@ const Search = () => {
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
-  console.log(watch("company")); // watch input value by passing the name of it
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <div className="mt-4 flex justify-center">

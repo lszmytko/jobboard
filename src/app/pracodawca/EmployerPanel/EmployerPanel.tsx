@@ -8,7 +8,7 @@ import { checkIfUserIsLoggedIn } from "@/utils/utils";
 import AddOfferForm from "../AddOfferForm";
 import Menu from "./Menu";
 import OfferList from "./OfferList";
-import Info from "./Info";
+import Info from "./UserInfo";
 
 export type EmployerPanelOptions = "offerForm" | "userData" | "userOffers";
 
