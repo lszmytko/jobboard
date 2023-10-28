@@ -10,9 +10,7 @@ const schema = z.object({
   street: z.string().nonempty(),
   flatNumber: z.string().nonempty(),
   phoneNumber: z.string().nonempty(),
-  currentPassword: z.string().min(6, { message: "Password is too short" }),
-  newPassword: z.string().min(6, { message: "Password is too short" }),
-  user: z.string().min(6, { message: "User name is wrong" }),
+  user: z.string().nonempty(),
 });
 
 export async function POST(req: Request) {
@@ -30,20 +28,12 @@ export async function POST(req: Request) {
         msg: "Podałeś niepełne dane",
         error: errors,
       },
-      { status: 402 }
+      { status: 400 }
     );
   }
 
-  const {
-    currentPassword,
-    newPassword,
-    user,
-    companyName,
-    city,
-    street,
-    flatNumber,
-    phoneNumber,
-  } = response.data;
+  const { user, companyName, city, street, flatNumber, phoneNumber } =
+    response.data;
 
   const existingUser = await User.findOne({ _id: user });
 
@@ -53,33 +43,33 @@ export async function POST(req: Request) {
     });
   }
 
-  const isPasswordCorrect = await existingUser.comparePasswords(
-    currentPassword
-  );
+  existingUser.companyName = companyName;
+  existingUser.city = city;
+  existingUser.street = street;
+  existingUser.flatNumber = flatNumber;
+  existingUser.phoneNumber = phoneNumber;
 
-  if (!isPasswordCorrect) {
-    return NextResponse.json({ msg: "Podałeś złe hasło" }, { status: 403 });
+  console.log(existingUser);
+
+  try {
+    const user = await existingUser.save();
+  } catch (error) {
+    throw error;
   }
 
-  const userData = await UserData.create({
-    companyName,
-    city,
-    street,
-    flatNumber,
-    phoneNumber,
-    newPassword,
-    user,
-  });
-
-  return NextResponse.json({ msg: "success", user: userData }, { status: 200 });
+  return NextResponse.json(
+    { msg: "success", user: existingUser },
+    { status: 200 }
+  );
 }
 
 export async function GET(req: NextRequest) {
+  console.log("get przezzło");
   await connectToDatabase();
 
   const userID = req.nextUrl.searchParams.get("userID");
 
-  const userData = UserData.findOne({ user: userID }).exec();
+  const userData = await User.findOne({ _id: userID }).exec();
 
   return NextResponse.json({ msg: "success", user: userData }, { status: 200 });
 }

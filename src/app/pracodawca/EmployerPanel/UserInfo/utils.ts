@@ -10,13 +10,23 @@ export const updateUserData = async (data: UserInfo) => {
   const userToken = getUserToken();
   const user = getUserFromLocalStorage();
 
-  const response = await axios.post(userDataEndpoint, {
-    user,
-    ...data,
-    headers: {
-      Authorization: `Bearer ${userToken}`,
-    },
-  });
+  let response;
+  try {
+    response = await axios.post(
+      userDataEndpoint,
+      {
+        user,
+        ...data,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
 
   return response;
 };

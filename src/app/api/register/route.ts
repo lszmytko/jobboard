@@ -44,7 +44,7 @@ export async function POST(req: Request) {
     companyName: "",
     city: "",
     street: "",
-    localNumber: "",
+    flatNumber: "",
     phoneNumber: "",
   });
 

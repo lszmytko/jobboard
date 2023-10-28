@@ -10,7 +10,7 @@ interface User {
   companyName: string;
   city: string;
   street: string;
-  localNumber: string;
+  flatNumber: string;
   phoneNumber: string;
   comparePasswords: (password: string) => boolean;
 }
@@ -21,7 +21,7 @@ const UserSchema = new Schema<User>({
   companyName: { type: String },
   city: { type: String },
   street: { type: String },
-  localNumber: { type: String },
+  flatNumber: { type: String },
   phoneNumber: { type: String },
 });
 
