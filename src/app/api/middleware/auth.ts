@@ -9,6 +9,8 @@ export const auth = (req: AxiosRequestHeaders) => {
 
   const token = authHeader.split(" ")[1];
 
+  console.log("token", token);
+
   try {
     const payload = jwt.verify(
       token,

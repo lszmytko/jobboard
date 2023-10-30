@@ -5,6 +5,8 @@ import { getUserToken } from "@/utils/utils";
 
 export const addOffer = async (data: Offer) => {
   const token = getUserToken();
+
+  console.log("*** data", data);
   const response = await axios.post("http://localhost:3000/api/addoffer", {
     ...data,
     headers: {
