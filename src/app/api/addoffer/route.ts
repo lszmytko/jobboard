@@ -20,6 +20,7 @@ const schema = z.object({
   timeOfPosting: z.string(),
   workingTime: z.array(z.string()),
   offerText: z.string(),
+  isActive: z.boolean(),
 });
 
 export async function POST(req: AxiosRequestHeaders) {

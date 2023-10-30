@@ -1,4 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
+
+import { getUserFromLocalStorage } from "@/utils/utils";
+
 import Item from "./Item";
+import { fetchUserOffers } from "./utils";
 
 //TODO: remove when there is real data
 const mockData = [
@@ -13,16 +18,29 @@ const mockData = [
 ];
 
 const OfferList = () => {
+  const user = getUserFromLocalStorage();
+
+  const { isLoading, isError, data, error } = useQuery({
+    queryKey: ["userOffers"],
+    queryFn: () => fetchUserOffers(user || ""),
+  });
+
+  console.log("*** data", data);
+
+  if (isLoading) return <div>Ładowanie...</div>;
+  if (isError) return <div>Coś poszło nie tak...</div>;
+  if (!data) return <div>Brak ogłoszeń.</div>;
+
   return (
     <div>
       <h1 className="text-center font-bold mb-6 text-2xl text-primary">
         Twoje ogłoszenia
       </h1>
       <div>
-        {mockData.map((item) => {
+        {data.data.userOffers.map((item) => {
           return (
             <Item
-              date={item.date}
+              date={item.timeOfPosting}
               post={item.post}
               isActive={item.isActive}
               key={Math.random()}

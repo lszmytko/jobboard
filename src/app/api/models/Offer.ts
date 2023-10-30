@@ -18,6 +18,7 @@ const OfferSchema = new Schema<OfferSchemaType>({
   offerText: { type: String, required: true },
   tasks: { type: [String], required: true },
   requirements: { type: [String], required: true },
+  isActive: { type: Boolean },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 
 import { Offer } from "@/common/types";
@@ -10,6 +10,7 @@ import Experience from "./Elements/Experience";
 import AgreementType from "./Elements/AgreementType";
 import WorkingTime from "./Elements/WorkingTime";
 import { addOffer } from "./addOffer";
+import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
 
 export type Inputs = Omit<Offer, "timeOfPosting">;
 
@@ -22,16 +23,31 @@ const AddOfferForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors, isValid },
-  } = useForm<Inputs>({ mode: "onSubmit" });
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    control,
+  } = useForm<Inputs>({
+    mode: "onSubmit",
+    defaultValues: {
+      tasks: [{ task: "" }], // initialize with one empty task
+    },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "tasks",
+  });
+
+  const onSubmit: SubmitHandler<Inputs> = (data, event) => {
+    event?.preventDefault();
+
     const timeOfPosting = new Date().toISOString();
     const payload = { ...data, timeOfPosting };
     mutateAsync(payload);
   };
 
   if (isLoading) return <div>Loading...</div>;
+
+  console.log(fields);
 
   return (
     <div className="max-w-3xl w-full p-2 pt-0">
@@ -67,12 +83,36 @@ const AddOfferForm = () => {
         <Experience register={register} />
         <AgreementType register={register} />
         <WorkingTime register={register} />
-        <InputFields register={register} fieldID="zadania" fieldName="tasks" />
-        <InputFields
-          register={register}
-          fieldID="wymagania"
-          fieldName="requirements"
-        />
+
+        <div className="mb-4">
+          <h1 className="mb-1 font-semibold capitalize text-primary text-center">
+            Zadania
+          </h1>
+          {fields.map((field, index) => (
+            <div className="flex gap-2 mb-4" key={field.id}>
+              <input
+                type="text"
+                {...register(`tasks.${index}.task` as const)}
+                className="text-xl grow px-2"
+              />
+              <IoIosAddCircle
+                className="cursor-pointer"
+                size={38}
+                onClick={() => {
+                  append({ task: "" });
+                }}
+              />
+              <IoIosRemoveCircle
+                className="cursor-pointer"
+                size={38}
+                onClick={() => {
+                  remove(index);
+                }}
+              />
+            </div>
+          ))}
+        </div>
+
         <div>
           <h1 className="text-primary text-center font-semibold mb-2">
             Dodatkowa treść ogłoszenia

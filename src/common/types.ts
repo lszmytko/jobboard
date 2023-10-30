@@ -9,6 +9,7 @@ export type Offer = {
   workingTime: "pełen etat" | "część etatu"[];
   timeOfPosting: string;
   offerText: string;
-  tasks: string[];
+  tasks: { task: string }[];
   requirements: string[];
+  isActive: boolean;
 };

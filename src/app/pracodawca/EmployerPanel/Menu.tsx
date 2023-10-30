@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
 import { EmployerPanelOptions } from "./EmployerPanel";
 
+const activeOptionStyles = "font-extrabold text-lg";
+
 const Menu = ({
   handleToggle,
   option,
@@ -13,8 +15,8 @@ const Menu = ({
       <div className="flex justify-center grow">
         <button
           className={`p-4 text-primary ${
-            option === "offerForm" && "font-bold"
-          } hover:scale-110`}
+            option === "offerForm" && activeOptionStyles
+          } hover:scale-125`}
           onClick={() => handleToggle("offerForm")}
         >
           Dodaj
@@ -25,8 +27,8 @@ const Menu = ({
       <div className="flex justify-center grow">
         <button
           className={`p-4 text-primary ${
-            option === "userOffers" && "font-bold"
-          } hover:scale-110`}
+            option === "userOffers" && activeOptionStyles
+          } hover:scale-125`}
           onClick={() => handleToggle("userOffers")}
         >
           Przeglądaj
@@ -37,8 +39,8 @@ const Menu = ({
       <div className="flex justify-center grow">
         <button
           className={`p-4 text-primary ${
-            option === "userData" && "font-bold"
-          } hover:scale-110`}
+            option === "userData" && activeOptionStyles
+          } hover:scale-125`}
           onClick={() => handleToggle("userData")}
         >
           Twoje
