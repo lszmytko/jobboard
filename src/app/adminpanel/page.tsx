@@ -1,7 +1,7 @@
-import AdminLogin from "./AdminLogin";
+import React from "react";
 
-const EmployerPage = () => {
-  return <AdminLogin />;
+const AdminPanelPage = () => {
+  return <div>page</div>;
 };
 
-export default EmployerPage;
+export default AdminPanelPage;

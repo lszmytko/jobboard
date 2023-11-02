@@ -2,19 +2,34 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { paths } from "@/common/paths";
+
+import { loginAdmin } from "./loginadmin";
+
 type FormInputs = {
   name: string;
   password: string;
 };
 
-const AdminLogin = () => {
+const AdminLoginForm = () => {
+  const router = useRouter();
+
+  const { isLoading, isError, mutateAsync } = useMutation({
+    mutationFn: loginAdmin,
+    onSuccess: () => {
+      router.push(paths.adminpanel);
+    },
+  });
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm<FormInputs>();
-  const onSubmit: SubmitHandler<FormInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormInputs> = (data) => mutateAsync(data);
   return (
     <div className="mt-4">
       <h1 className="text-center mb-4">Zaloguj się jako Admin</h1>
@@ -33,6 +48,7 @@ const AdminLogin = () => {
           <div className="md:grow">
             <input
               placeholder="Hasło"
+              type="password"
               {...register("password", { required: true })}
               className="w-full text-center max-sm:border-b-2 p-2 border-primary-extra-light mb-2 focus:outline-none"
             />
@@ -48,8 +64,10 @@ const AdminLogin = () => {
           </div>
         </form>
       </div>
+      {isLoading ? <p>Ładowanie...</p> : null}
+      {isError ? <p>Wystąpił błąd...</p> : null}
     </div>
   );
 };
 
-export default AdminLogin;
+export default AdminLoginForm;
