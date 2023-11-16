@@ -39,24 +39,32 @@ const AdminSearchOffer = ({
   return (
     <div className="mt-4">
       <h1 className="text-center mb-4">Wyszukaj ofertę</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-1/2">
-        <input
-          placeholder="Nazwa firmy"
-          {...register("company")}
-          className=""
-        />
-        <input placeholder="ID oferty" {...register("offerID")} className="" />
-        <div>
-          <input
-            type="submit"
-            value="Zaloguj"
-            className="w-full text-center rounded py-2 px-4 bg-primary-light cursor-pointer"
-          />
-        </div>
-        {Object.keys(errors).length > 0 && (
-          <span>Wpisz jakieś kryterium wyszukiwania</span>
-        )}
-      </form>
+      <div className="flex justify-center">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-1/2">
+          <div className="flex gap-1 mb-2">
+            <input
+              placeholder="Nazwa firmy"
+              {...register("company")}
+              className="w-1/2 p-1"
+            />
+            <input
+              placeholder="ID oferty"
+              {...register("offerID")}
+              className="w-1/2 p-1"
+            />
+          </div>
+          <div>
+            <input
+              type="submit"
+              value="Zaloguj"
+              className="w-full text-center rounded py-2 px-4 bg-primary-light cursor-pointer"
+            />
+          </div>
+          {Object.keys(errors).length > 0 && (
+            <span>Wpisz jakieś kryterium wyszukiwania</span>
+          )}
+        </form>
+      </div>
       {isLoading ? <p>Ładowanie...</p> : null}
       {isError ? <p>Wystąpił błąd...</p> : null}
     </div>

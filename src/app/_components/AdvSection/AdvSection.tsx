@@ -49,6 +49,7 @@ const AdvSection = () => {
                 agreementType={agreementType}
                 workingTime={workingTime}
                 timeOfPosting={timeOfPosting}
+                id={id}
               />
             </div>
           );

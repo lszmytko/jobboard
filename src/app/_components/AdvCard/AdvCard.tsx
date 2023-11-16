@@ -17,7 +17,7 @@ const AdvCard = ({
 }: AdvCardProps) => {
   return (
     <div className="max-w-2xl w-full  border-orange-300 border-2 rounded-lg bg-gray-100 shadow-xl overflow-hidden">
-      <Link href="/">
+      <Link href="/addetails">
         <div className="p-4">
           <p className="text-xl font-bold mb-4">{post}</p>
           <div className="text-xs flex gap-2 mb-4 flex-wrap">

@@ -8,6 +8,7 @@ import AdvCard from "@/app/_components/AdvCard";
 import { Offer } from "@/common/types";
 
 import DeleteOffer from "./DeleteOffer";
+import OfferDetails from "./OfferDetails";
 
 const mockData = {
   id: Math.floor(Math.random() * 1000),
@@ -17,24 +18,31 @@ const mockData = {
   address: "ul. Szlenkierów 6/1",
   postLevel: "Kierownik",
   experience: "1-3 lata",
-  agreementType: "UoP",
-  workingTime: "pełen etat",
+  agreementType: ["UoP"],
+  workingTime: ["pełen etat"],
   timeOfPosting: "1 godz.",
+  isActive: true,
 } as const;
 
 const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
+  content: {},
+  overlay: {
+    position: "fixed",
+    display: "flex",
+    justifyContent: "center",
+    top: "0",
+    left: "0",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0,0,0, .8)",
+    zIndex: "1000",
+    overflowY: "auto",
   },
 };
 
 const AdminOffers = ({ data }: { data: Offer[] }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [offerID, setOfferID] = useState("");
 
   const openDeleteModal = (offerID: string) => {
@@ -44,6 +52,15 @@ const AdminOffers = ({ data }: { data: Offer[] }) => {
   const closeDeleteModal = () => {
     setOfferID("");
     setIsDeleteModalOpen(false);
+  };
+
+  const openDetailsModal = (offerID: string) => {
+    setOfferID(offerID);
+    setIsDetailsModalOpen(true);
+  };
+  const closeDetailsModal = () => {
+    setOfferID("");
+    setIsDetailsModalOpen(false);
   };
 
   return (
@@ -65,43 +82,33 @@ const AdminOffers = ({ data }: { data: Offer[] }) => {
           isActive,
         } = item;
         return (
-          <div className="flex" key={Math.random()}>
-            <AdvCard
-              post={post}
-              company={company}
-              city={city}
-              address={address}
-              postLevel={postLevel}
-              experience={experience}
-              agreementType={agreementType}
-              workingTime={workingTime}
-              timeOfPosting={timeOfPosting}
-              tasks={tasks}
-              requirements={requirements}
-              isActive={isActive}
-            />
+          <div className="">
+            <p>Stanowisko: {post}</p>
+            <p>Firma: {post}</p>
+            <p>ID oferty: {id}</p>
+            <p>Czy aktywne: {isActive ? "tak" : "nie"}</p>
           </div>
         );
       })} */}
 
-        <div className="flex" key={Math.random()}>
-          <AdvCard
-            post={mockData.post}
-            company={mockData.company}
-            city={mockData.city}
-            address={mockData.address}
-            postLevel={mockData.postLevel}
-            experience={mockData.experience}
-            agreementType={mockData.agreementType}
-            workingTime={mockData.workingTime}
-            timeOfPosting={mockData.timeOfPosting}
-            // tasks={mockData.tasks}
-            // requirements={mockData.requirements}
-            // isActive={mockData.isActive}
-          />
+        <div
+          className="flex border-2 border-solid p-2 border-primary"
+          key={Math.random()}
+        >
+          <div className="">
+            <p>Stanowisko: {mockData.post}</p>
+            <p>Firma: {mockData.post}</p>
+            <p>ID oferty: {mockData.id}</p>
+            <p>Czy aktywne: {mockData.isActive ? "tak" : "nie"}</p>
+          </div>
           <div className="options flex flex-col p-1">
             <div className="option basis-2/4 flex justify-center align-center">
-              <button className=" cursor-pointer">Edytuj</button>
+              <button
+                className=" cursor-pointer"
+                onClick={() => openDetailsModal(offerID)}
+              >
+                Edytuj
+              </button>
             </div>
             <div
               className="option basis-2/4 flex justify-center align-center"
@@ -116,9 +123,17 @@ const AdminOffers = ({ data }: { data: Offer[] }) => {
         isOpen={isDeleteModalOpen}
         onRequestClose={closeDeleteModal}
         style={customStyles}
-        contentLabel="Example Modal"
+        contentLabel="Delete Modal"
       >
         <DeleteOffer closeDeleteModal={closeDeleteModal} offerID={offerID} />
+      </Modal>
+      <Modal
+        isOpen={isDetailsModalOpen}
+        onRequestClose={closeDetailsModal}
+        style={customStyles}
+        contentLabel="Details Modal"
+      >
+        <OfferDetails offerID={offerID} />
       </Modal>
     </>
   );
