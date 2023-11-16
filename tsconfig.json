@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/addetails/AdvCardDetails",
+    "src/app/advdetails/[id]/AdvCardDetails",
     "src/app/_components/FullPageLoader"
   ],
   "exclude": ["node_modules"]

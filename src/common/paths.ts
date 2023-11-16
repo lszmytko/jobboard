@@ -4,4 +4,5 @@ export const paths = {
   admin: "/admin",
   adminpanel: "/adminpanel",
   adminlogin: "/adminpanel",
+  advdetails: "/advdetails",
 };

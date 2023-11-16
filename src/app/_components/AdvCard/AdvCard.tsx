@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Offer } from "@/common/types";
+import { paths } from "@/common/paths";
 
 type AdvCardProps = Omit<Offer, "offerText">;
 
@@ -14,10 +15,11 @@ const AdvCard = ({
   agreementType,
   workingTime,
   timeOfPosting,
+  id,
 }: AdvCardProps) => {
   return (
     <div className="max-w-2xl w-full  border-orange-300 border-2 rounded-lg bg-gray-100 shadow-xl overflow-hidden">
-      <Link href="/addetails">
+      <Link href={`${paths.advdetails}/${id}`}>
         <div className="p-4">
           <p className="text-xl font-bold mb-4">{post}</p>
           <div className="text-xs flex gap-2 mb-4 flex-wrap">
