@@ -6,3 +6,7 @@ export const paths = {
   adminlogin: "/adminpanel",
   advdetails: "/advdetails",
 };
+
+export const apiRoutes = {
+  getSingleOffer: "/getsingleoffer",
+};

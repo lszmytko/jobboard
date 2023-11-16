@@ -1,6 +1,7 @@
 import Job from "./Job";
 import CompanyDetails from "./CompanyDetails";
 import List from "./List";
+import { Offer } from "@/common/types";
 
 const data = [
   "Przygotowywanie zwierząt do zabiegów",
@@ -9,14 +10,16 @@ const data = [
   "Asystowanie przy zabiegach",
 ];
 
-const Presentation = () => {
+type PresentationProps = Pick<Offer, "requirements" | "tasks">;
+
+const Presentation = ({ requirements, tasks }: PresentationProps) => {
   return (
     <div className="text-sm">
       <CompanyDetails />
       <Job />
-      <List data={data} title="Zakres obowiązków" />
-      <List data={data} title="Wymagania" />
-      <List data={data} title="Nasza oferta" />
+      <List data={requirements} title="Zakres obowiązków" />
+      <List data={tasks} title="Wymagania" />
+      {/* <List data={data} title="Nasza oferta" /> */}
     </div>
   );
 };

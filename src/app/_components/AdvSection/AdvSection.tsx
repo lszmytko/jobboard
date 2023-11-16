@@ -2,7 +2,7 @@ import AdvCard from "../AdvCard";
 
 //TODO: remove mock data
 const mockData = {
-  id: Math.floor(Math.random() * 1000),
+  id: "65566d591bd665199b6cb8fd",
   post: "Technik weterynarii",
   company: "VetTech sp. z. o.o.",
   city: "Warszawa",
