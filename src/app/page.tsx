@@ -1,5 +1,5 @@
-import AdvSection from "./_components/AdvSection";
-import Search from "./_components/Search";
+import AdvSection from "../components/AdvSection";
+import Search from "../components/Search";
 
 export default function Home() {
   return (

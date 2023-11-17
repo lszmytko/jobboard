@@ -4,7 +4,7 @@ import { useState } from "react";
 import React from "react";
 import Modal from "react-modal";
 
-import AdvCard from "@/app/_components/AdvCard";
+import AdvCard from "@/components/AdvCard";
 import { Offer } from "@/common/types";
 
 import DeleteOffer from "./DeleteOffer";
