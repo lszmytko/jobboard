@@ -1,7 +1,32 @@
-const ApplyButton = () => {
+const ApplyButton = ({
+  mail,
+  post,
+  offerID,
+}: {
+  mail: string;
+  post: string;
+  offerID: string;
+}) => {
+  const subject = `[Twoje imię i nazwisko] Stanowisko: ${post} ID stanowiska: ${offerID}`;
+  const emailBody = `Szanowni Państwo, wysyłam swoją aplikację na stanowisko ${post}, ID stanowiska: ${offerID}`;
+
   return (
-    <button className="block w-80 bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-3xl text-3xl">
-      Aplikuj
+    <button
+      className="block w-80 bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-3xl text-xl"
+      onClick={() => {
+        console.log("clicked");
+        // window.open(
+        //   "mailto:" + mail + "&subject=" + subject + "&body=" + emailBody
+        // );
+        // window.location.href = "mailto:email@example.com";
+        window.open(
+          `mailto:${mail}?subject=${encodeURIComponent(
+            subject
+          )}&body=${encodeURIComponent(emailBody)}`
+        );
+      }}
+    >
+      Aplikuj wysyłając maila
     </button>
   );
 };
