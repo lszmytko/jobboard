@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { User } from "../models/User";
-import connectToDatabase from "../db/connectToDatabase";
+import { User } from "../../models/User";
+import connectToDatabase from "../../db/connectToDatabase";
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -34,7 +34,7 @@ export async function POST(req: Request) {
       {
         error: { message: "User already exists" },
       },
-      { status: 405 }
+      { status: 400 }
     );
   }
 

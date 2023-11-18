@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { StatusCodes } from "http-status-codes";
 
-import { User } from "../models/User";
-import connectToDatabase from "../db/connectToDatabase";
+import { User } from "../../models/User";
+import connectToDatabase from "../../db/connectToDatabase";
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }),

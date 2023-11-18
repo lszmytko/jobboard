@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ThreeDots } from "react-loader-spinner";
 import { useMutation } from "@tanstack/react-query";
+import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 import { paths } from "@/common/paths";
@@ -26,13 +27,22 @@ const LoginForm = () => {
     },
   });
 
+  const notify = () => toast("Rejestracja powiodła się!");
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm<LoginFormInputs>();
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => mutateAsync(data);
+  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
+    try {
+      mutateAsync(data);
+      notify();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>

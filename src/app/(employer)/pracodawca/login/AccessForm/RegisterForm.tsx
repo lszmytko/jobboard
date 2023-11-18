@@ -1,11 +1,12 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ThreeDots } from "react-loader-spinner";
+import { useMutation } from "@tanstack/react-query";
 
 import { registerUser } from "./registerUser";
 
@@ -26,12 +27,7 @@ const schema = z
     path: ["emailConfirmation"],
   });
 
-const RegisterForm = ({
-  setIsLogin,
-}: {
-  setIsLogin: Dispatch<SetStateAction<boolean>>;
-}) => {
-  const [error, setError] = useState(false);
+const RegisterForm = () => {
   const {
     register,
     handleSubmit,
@@ -40,15 +36,20 @@ const RegisterForm = ({
 
   const notify = () => toast("Rejestracja powiodła się!");
 
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+  const { isLoading, isError, error, mutateAsync } = useMutation({
+    mutationFn: registerUser,
+  });
+
+  const onSubmit = async (data: FormFields) => {
     try {
-      await registerUser(data);
+      await mutateAsync(data);
       notify();
-      setIsLogin(true);
     } catch (error) {
-      setError(true);
+      console.log("error", error);
     }
   };
+
+  console.log({ error });
 
   return (
     <>
@@ -86,17 +87,33 @@ const RegisterForm = ({
             />
           </label>
         </div>
-        <input
-          type="submit"
-          className="w-full py-2 px-1 rounded-lg bg-primary-light font-semibold mt-2 cursor-pointer"
-        />
+        {isLoading ? (
+          <div>
+            <ThreeDots
+              height="40"
+              width="100"
+              radius="9"
+              color="#4fa94d"
+              ariaLabel="three-dots-loading"
+              visible={true}
+            />
+          </div>
+        ) : (
+          <input
+            type="submit"
+            className="w-full py-2 px-1 rounded-lg bg-primary-light font-semibold mt-2 cursor-pointer"
+          />
+        )}
       </form>
-      {error && (
+      {isError && (
         <div className="font-semibold mt-2 text-red-400 text-center">
           Rejestracja nie powiodła się
         </div>
       )}
-      <ToastContainer progressClassName="bg-black" />
+      <ToastContainer
+        progressClassName="bg-black"
+        className="toastify-color-success"
+      />
     </>
   );
 };
