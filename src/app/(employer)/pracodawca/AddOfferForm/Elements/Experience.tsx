@@ -15,6 +15,7 @@ const Experience = ({ register }: { register: UseFormRegister<Inputs> }) => {
             fieldGroup={experienceData.groupName}
             polishName={value}
             register={register}
+            type="radio"
           />
         );
       })}

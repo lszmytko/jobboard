@@ -64,7 +64,6 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: NextRequest) {
-  console.log("get przezzło");
   await connectToDatabase();
 
   const userID = req.nextUrl.searchParams.get("userID");

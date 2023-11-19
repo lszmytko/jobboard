@@ -13,8 +13,13 @@ import { addOffer } from "./addOffer";
 import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
 import { fetchUserData } from "../EmployerPanel/UserInfo/utils";
 import { getUserFromLocalStorage } from "@/utils/utils";
+import { DevTool } from "@hookform/devtools";
 
-export type Inputs = Omit<Offer, "timeOfPosting">;
+export type Inputs = Omit<Offer, "timeOfPosting" | "requirements" | "tasks"> & {
+  tasks: { name: string }[];
+} & {
+  requirements: { name: string }[];
+};
 
 const AddOfferForm = () => {
   const { isLoading, isError, mutateAsync } = useMutation({
@@ -33,9 +38,7 @@ const AddOfferForm = () => {
     queryFn: () => fetchUserData(userID || ""),
   });
 
-  console.log("*** data", data);
-
-  const { companyName, city, street, flatNumber } = data?.data?.user;
+  const { companyName, city, street, flatNumber } = data?.data?.user as User;
 
   const {
     register,
@@ -43,25 +46,54 @@ const AddOfferForm = () => {
     formState: { errors, isValid },
     control,
   } = useForm<Inputs>({
-    mode: "onSubmit",
     defaultValues: {
-      tasks: [""], // initialize with one empty task
       company: companyName,
       city,
       address: `${street} ${flatNumber}`,
+      tasks: [{ name: "" }],
+      requirements: [{ name: "" }],
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const {
+    fields: taskFields,
+    append: taskAppend,
+    remove: taskRemove,
+  } = useFieldArray({
     control,
     name: "tasks",
+    rules: { required: true, minLength: 1 },
+  });
+
+  const {
+    fields: requirementFields,
+    append: requirementAppend,
+    remove: requirementRemove,
+  } = useFieldArray({
+    control,
+    name: "requirements",
+    rules: { required: true, minLength: 1 },
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data, event) => {
     event?.preventDefault();
 
+    const parsedRequirements = data.requirements.map(
+      (requirement) => requirement.name
+    );
+    const parsedTasks = data.tasks.map((task) => task.name);
+
     const timeOfPosting = new Date().toISOString();
-    const payload = { ...data, timeOfPosting };
+
+    const user = getUserFromLocalStorage();
+    const payload = {
+      ...data,
+      timeOfPosting,
+      tasks: parsedTasks,
+      requirements: parsedRequirements,
+      user,
+    };
+
     mutateAsync(payload);
   };
 
@@ -106,25 +138,56 @@ const AddOfferForm = () => {
           <h1 className="mb-1 font-semibold capitalize text-primary text-center">
             Zadania
           </h1>
-          {fields.map((field, index) => (
+          {taskFields.map((field, index) => (
             <div className="flex gap-2 mb-4" key={field.id}>
               <input
                 type="text"
-                {...register(`tasks.${index}.task` as const)}
+                {...register(`tasks.${index}.name`)}
                 className="text-xl grow px-2"
+                defaultValue={field.name}
               />
               <IoIosAddCircle
                 className="cursor-pointer"
                 size={38}
                 onClick={() => {
-                  append({ task: "" });
+                  taskAppend({ name: "" });
                 }}
               />
               <IoIosRemoveCircle
                 className="cursor-pointer"
                 size={38}
                 onClick={() => {
-                  remove(index);
+                  taskRemove(index);
+                }}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="mb-4">
+          <h1 className="mb-1 font-semibold capitalize text-primary text-center">
+            Wymagania
+          </h1>
+          {requirementFields.map((field, index) => (
+            <div className="flex gap-2 mb-4" key={field.id}>
+              <input
+                type="text"
+                {...register(`requirements.${index}.name`)}
+                className="text-xl grow px-2"
+                defaultValue={field.name}
+              />
+              <IoIosAddCircle
+                className="cursor-pointer"
+                size={38}
+                onClick={() => {
+                  requirementAppend({ name: "" });
+                }}
+              />
+              <IoIosRemoveCircle
+                className="cursor-pointer"
+                size={38}
+                onClick={() => {
+                  requirementRemove(index);
                 }}
               />
             </div>
@@ -136,19 +199,28 @@ const AddOfferForm = () => {
             Dodatkowa treść ogłoszenia
           </h1>
           <textarea
+            {...register("offerText")}
             className="block w-full p-2 rounded mb-2"
             maxLength={400}
             rows={10}
           />
         </div>
         <div className="flex justify-center">
-          <input
-            type="submit"
-            className="p-2 bg-primary-light rounded text-xl cursor-pointer disabled:opacity-75"
-            disabled={!isValid}
-          />
+          {isLoading ? (
+            <p>Ładowanie...</p>
+          ) : (
+            <input
+              type="submit"
+              className="p-2 text-white bg-primary rounded text-xl cursor-pointer disabled:opacity-50 disabled:cursor-auto"
+              disabled={!isValid}
+            />
+          )}
         </div>
+        {Object.values(errors).length > 0 && (
+          <div>Napraw błędy w formularzu</div>
+        )}
       </form>
+      <DevTool control={control} />
     </div>
   );
 };

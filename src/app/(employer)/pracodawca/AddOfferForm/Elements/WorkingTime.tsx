@@ -15,6 +15,7 @@ const WorkingTime = ({ register }: { register: UseFormRegister<Inputs> }) => {
             fieldGroup={workingTime.groupName}
             polishName={value}
             register={register}
+            type="checkbox"
           />
         );
       })}

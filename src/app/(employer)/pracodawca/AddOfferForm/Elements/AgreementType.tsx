@@ -15,6 +15,7 @@ const AgreementType = ({ register }: { register: UseFormRegister<Inputs> }) => {
             fieldGroup={agreementData.groupName}
             polishName={value}
             register={register}
+            type="checkbox"
           />
         );
       })}
