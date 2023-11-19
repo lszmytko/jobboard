@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ThreeDots } from "react-loader-spinner";
 import { useMutation } from "@tanstack/react-query";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 import { paths } from "@/common/paths";
@@ -27,17 +27,18 @@ const LoginForm = () => {
     },
   });
 
-  const notify = () => toast("Rejestracja powiodła się!");
+  const notify = () => {
+    toast.success("Logowanie się powiodło!");
+  };
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<LoginFormInputs>();
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
+  const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
     try {
-      mutateAsync(data);
+      await mutateAsync(data);
       notify();
     } catch (error) {
       console.log(error);
@@ -45,59 +46,61 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="">
-        <div className="mb-4">
-          <label>
-            <h1 className="mb-1 text-white">Email</h1>
-            <input
-              {...register("email", { required: true })}
-              className="w-full py-2 px-1 rounded-lg"
-            />
-          </label>
-        </div>
-        <div className="mb-4">
-          <label>
-            <h1 className="mb-1 text-white">Hasło</h1>
-            <input
-              {...register("password", { required: true })}
-              type="password"
-              className="w-full py-2 px-1 rounded-lg"
-            />
-          </label>
-        </div>
-        {errors.password && <span>Puste pole</span>}
-        {isLoading ? (
-          <div className="flex justify-center">
-            <ThreeDots
-              height="40"
-              width="40"
-              radius="9"
-              color={"#4fa94d"}
-              ariaLabel="three-dots-loading"
-              visible={true}
-            />
+    <>
+      <div>
+        <form onSubmit={handleSubmit(onSubmit)} className="">
+          <div className="mb-4">
+            <label>
+              <h1 className="mb-1 text-white">Email</h1>
+              <input
+                {...register("email", { required: true })}
+                className="w-full py-2 px-1 rounded-lg"
+              />
+            </label>
           </div>
-        ) : (
-          <input
-            type="submit"
-            className="w-full py-2 px-1 mt-2 rounded-lg bg-primary-light font-semibold cursor-pointer"
-            value="Zaloguj"
-          />
+          <div className="mb-4">
+            <label>
+              <h1 className="mb-1 text-white">Hasło</h1>
+              <input
+                {...register("password", { required: true })}
+                type="password"
+                className="w-full py-2 px-1 rounded-lg"
+              />
+            </label>
+          </div>
+          {errors.password && <span>Puste pole</span>}
+          {isLoading ? (
+            <div className="flex justify-center">
+              <ThreeDots
+                height="40"
+                width="40"
+                radius="9"
+                color={"#4fa94d"}
+                ariaLabel="three-dots-loading"
+                visible={true}
+              />
+            </div>
+          ) : (
+            <input
+              type="submit"
+              className="w-full py-2 px-1 mt-2 rounded-lg bg-primary-light font-semibold cursor-pointer"
+              value="Zaloguj"
+            />
+          )}
+        </form>
+        {isError && (
+          <div className="text-red-300 mt-4 text-center">Wystąpił błąd</div>
         )}
-      </form>
-      {isError && (
-        <div className="text-red-300 mt-4 text-center">Wystąpił błąd</div>
-      )}
-      <div className="flex justify-center">
-        <button
-          className="mt-4 text-center text-white cursor-pointer"
-          onClick={() => setIsPasswordForgotten(true)}
-        >
-          Zapomniałeś hasła?
-        </button>
+        <div className="flex justify-center">
+          <button
+            className="mt-4 text-center text-white cursor-pointer"
+            onClick={() => setIsPasswordForgotten(true)}
+          >
+            Zapomniałeś hasła?
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,7 +34,7 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
-  const notify = () => toast("Rejestracja powiodła się!");
+  const notify = () => toast.success("Rejestracja powiodła się!");
 
   const { isLoading, isError, error, mutateAsync } = useMutation({
     mutationFn: registerUser,
@@ -110,10 +110,6 @@ const RegisterForm = () => {
           Rejestracja nie powiodła się
         </div>
       )}
-      <ToastContainer
-        progressClassName="bg-black"
-        className="toastify-color-success"
-      />
     </>
   );
 };

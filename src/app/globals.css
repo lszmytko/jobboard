@@ -11,12 +11,3 @@ input:focus {
 }
 
 /* Toast */
-
-.toastify-color-success .Toastify__toast {
-  background-color: #186F65;
-  color: #F3B664; 
-}
-
-.bg-black .Toastify__progress-bar {
-  background: #F3B664;
-}

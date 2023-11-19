@@ -33,9 +33,6 @@ export async function POST(req: Request) {
   if (!existingAdmin) {
     return NextResponse.json({ error: "There is no admin" }, { status: 403 });
   }
-  console.log("przeszło tutaj", existingAdmin);
-
-  console.log("existingAdmin", existingAdmin);
 
   const isPasswordCorrect = await existingAdmin.comparePasswords(password);
 

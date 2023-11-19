@@ -46,7 +46,7 @@ const UserInfo = () => {
     phoneNumber,
   };
 
-  const notify = () => toast("Dane zmienione poprawnie");
+  const notify = () => toast.success("Dane zmienione poprawnie");
 
   const {
     register,
@@ -109,7 +109,7 @@ const UserInfo = () => {
 
         <div className="mb-4">
           <label>
-            <h1 className="mb-1 text-primary">Numer lokalu</h1>
+            <h1 className="mb-1 text-primary-light">Numer lokalu</h1>
             <input
               {...register("flatNumber", { required: true })}
               className="w-full py-2 px-1 rounded-lg"
@@ -145,14 +145,13 @@ const UserInfo = () => {
         ) : (
           <input
             type="submit"
-            className="py-2 px-4 mt-2 rounded-lg bg-primary-light font-semibold cursor-pointer"
+            className="py-2 px-4 mt-2 rounded-lg bg-primary-light font-semibold cursor-pointer text-white"
             value="Prześlij"
           />
         )}
         {Object.keys(errors).length > 0 && <p>Wypełnij wszystkie pola</p>}
       </form>
       {isMutationError ? <p>Coś poszło nie tak...</p> : null}
-      <ToastContainer progressClassName="bg-black" />
     </>
   );
 };

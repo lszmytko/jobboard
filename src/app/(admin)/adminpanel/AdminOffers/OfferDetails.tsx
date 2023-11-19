@@ -15,7 +15,7 @@ const mockData = {
   workingTime: ["pełen etat"],
   timeOfPosting: "1 godz.",
   offerText: "tekst oferty",
-  tasks: [{ task: "task" }],
+  tasks: ["task"],
   requirements: ["requirement"],
   isActive: true,
 } as Offer;

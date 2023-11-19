@@ -1,8 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { ToastContainer } from "react-toastify";
 
-import Header from "../components/Header";
 import Providers from "./providers";
 
 const poppins = Poppins({
@@ -24,12 +24,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.className} bg-slate-100 text-dark-blue`}>
         <Providers>
-          <div className="">
-            <div className="sm:mt-4">
-              <Header />
-            </div>
-            {children}
-          </div>
+          <div className="">{children}</div>
+          <ToastContainer />
         </Providers>
       </body>
     </html>

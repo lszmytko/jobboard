@@ -1,9 +1,9 @@
 "use client";
 
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { Offer } from "@/common/types";
+import { Offer, User } from "@/common/types";
 
 import InputFields from "./InputFields";
 import Experience from "./Elements/Experience";
@@ -11,6 +11,8 @@ import AgreementType from "./Elements/AgreementType";
 import WorkingTime from "./Elements/WorkingTime";
 import { addOffer } from "./addOffer";
 import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
+import { fetchUserData } from "../EmployerPanel/UserInfo/utils";
+import { getUserFromLocalStorage } from "@/utils/utils";
 
 export type Inputs = Omit<Offer, "timeOfPosting">;
 
@@ -20,6 +22,21 @@ const AddOfferForm = () => {
     onSuccess: () => {},
   });
 
+  const userID = getUserFromLocalStorage();
+
+  const {
+    isLoading: isQueryLoading,
+    data,
+    error,
+  } = useQuery({
+    queryKey: ["todos", userID],
+    queryFn: () => fetchUserData(userID || ""),
+  });
+
+  console.log("*** data", data);
+
+  const { companyName, city, street, flatNumber } = data?.data?.user;
+
   const {
     register,
     handleSubmit,
@@ -28,7 +45,10 @@ const AddOfferForm = () => {
   } = useForm<Inputs>({
     mode: "onSubmit",
     defaultValues: {
-      tasks: [{ task: "" }], // initialize with one empty task
+      tasks: [""], // initialize with one empty task
+      company: companyName,
+      city,
+      address: `${street} ${flatNumber}`,
     },
   });
 
@@ -46,8 +66,6 @@ const AddOfferForm = () => {
   };
 
   if (isLoading) return <div>Loading...</div>;
-
-  console.log(fields);
 
   return (
     <div className="max-w-3xl w-full p-2 pt-0">

@@ -1,3 +1,5 @@
+import { User } from "@/app/api/models/User";
+
 export type Offer = {
   id: string;
   post: string;
@@ -13,4 +15,15 @@ export type Offer = {
   tasks: string[];
   requirements: string[];
   isActive: boolean;
+};
+
+export type User = {
+  id: string;
+  email: string;
+  password: string;
+  companyName: string;
+  city: string;
+  street: string;
+  phoneNumber: string;
+  flatNumber: string;
 };

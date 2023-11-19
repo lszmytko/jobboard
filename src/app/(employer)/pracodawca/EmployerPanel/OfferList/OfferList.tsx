@@ -29,25 +29,34 @@ const OfferList = () => {
 
   if (isLoading) return <div>Ładowanie...</div>;
   if (isError) return <div>Coś poszło nie tak...</div>;
-  if (!data) return <div>Brak ogłoszeń.</div>;
+  // if (!data.data.userOffers.length) return <div>Brak ogłoszeń.</div>;
+
+  const offers = data.data.userOffers;
+  const areOffers = offers.length > 0;
+
+  console.log("*** offers", offers);
 
   return (
     <div>
       <h1 className="text-center font-bold mb-6 text-2xl text-primary">
         Twoje ogłoszenia
       </h1>
-      <div>
-        {data.data.userOffers.map((item) => {
-          return (
-            <Item
-              date={item.timeOfPosting}
-              post={item.post}
-              isActive={item.isActive}
-              key={Math.random()}
-            />
-          );
-        })}
-      </div>
+      {!areOffers ? (
+        <div>Brak ogłoszeń.</div>
+      ) : (
+        <div>
+          {offers.map((item) => {
+            return (
+              <Item
+                date={item.timeOfPosting}
+                post={item.post}
+                isActive={item.isActive}
+                key={Math.random()}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
