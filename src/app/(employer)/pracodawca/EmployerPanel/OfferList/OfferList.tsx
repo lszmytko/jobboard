@@ -29,7 +29,6 @@ const OfferList = () => {
 
   if (isLoading) return <div>Ładowanie...</div>;
   if (isError) return <div>Coś poszło nie tak...</div>;
-  // if (!data.data.userOffers.length) return <div>Brak ogłoszeń.</div>;
 
   const offers = data.data.userOffers;
   const areOffers = offers.length > 0;

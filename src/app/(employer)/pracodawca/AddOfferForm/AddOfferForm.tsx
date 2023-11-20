@@ -85,12 +85,9 @@ const AddOfferForm = () => {
     );
     const parsedTasks = data.tasks.map((task) => task.name);
 
-    const timeOfPosting = new Date().toISOString();
-
     const user = getUserFromLocalStorage();
     const payload = {
       ...data,
-      timeOfPosting,
       tasks: parsedTasks,
       requirements: parsedRequirements,
       user,

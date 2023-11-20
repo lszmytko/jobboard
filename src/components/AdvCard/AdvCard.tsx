@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Offer } from "@/common/types";
 import { paths } from "@/common/paths";
 
-type AdvCardProps = Omit<Offer, "offerText">;
+type AdvCardProps = Omit<Offer & { timeOfPosting: string }, "offerText">;
 
 const AdvCard = ({
   post,

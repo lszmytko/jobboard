@@ -51,8 +51,10 @@ export async function POST(req: AxiosRequestHeaders) {
     );
   }
 
+  const timeOfPosting = new Date().toISOString();
+
   try {
-    await Offer.create(response);
+    await Offer.create({ ...response, timeOfPosting, status: "pending" });
   } catch (error) {
     console.log(error);
     throw new Error("Failed to create offer");

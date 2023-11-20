@@ -3,7 +3,9 @@ import { Offer as OfferType } from "@/common/types";
 
 const { Schema } = mongoose;
 
-type OfferSchemaType = OfferType & { user: SchemaDefinitionProperty<number> };
+type OfferSchemaType = OfferType & {
+  user: SchemaDefinitionProperty<number>;
+} & { status: string } & { timeOfPosting: string };
 
 const OfferSchema = new Schema<OfferSchemaType>({
   post: { type: String, required: true },
@@ -24,6 +26,7 @@ const OfferSchema = new Schema<OfferSchemaType>({
     ref: "User",
     required: true,
   },
+  status: { type: String, required: true },
 });
 
 export const Offer =

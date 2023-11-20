@@ -6,7 +6,7 @@ import { Offer } from "@/common/types";
 const userOffersEndpoint = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/getuseroffers`;
 
 interface UserOffersResponse {
-  data: { userOffers: Offer[] };
+  data: { userOffers: (Offer & { timeOfPosting: string })[] };
 }
 
 export const fetchUserOffers = async (
