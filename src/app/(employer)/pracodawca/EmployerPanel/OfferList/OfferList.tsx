@@ -51,6 +51,7 @@ const OfferList = () => {
                 post={item.post}
                 isActive={item.isActive}
                 key={Math.random()}
+                id={item._id}
               />
             );
           })}

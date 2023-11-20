@@ -32,7 +32,7 @@ const AdvCardDetails = () => {
     address,
     tasks,
     requirements,
-    id: offerID,
+    _id: offerID,
   } = data?.data.offer;
 
   return (
