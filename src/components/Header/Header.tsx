@@ -22,7 +22,11 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("userToken");
     localStorage.removeItem("user");
-    router.push(paths.home);
+    if (window.location.pathname === paths.home) {
+      window.location.reload();
+    } else {
+      router.push(paths.home);
+    }
     notify();
   };
 

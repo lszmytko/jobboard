@@ -2,6 +2,9 @@
 
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import { getUserFromLocalStorage } from "@/utils/utils";
+import { DevTool } from "@hookform/devtools";
 
 import { Offer, User } from "@/common/types";
 
@@ -12,8 +15,6 @@ import WorkingTime from "./Elements/WorkingTime";
 import { addOffer } from "./addOffer";
 import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
 import { fetchUserData } from "../EmployerPanel/UserInfo/utils";
-import { getUserFromLocalStorage } from "@/utils/utils";
-import { DevTool } from "@hookform/devtools";
 
 export type Inputs = Omit<Offer, "timeOfPosting" | "requirements" | "tasks"> & {
   tasks: { name: string }[];
@@ -45,6 +46,7 @@ const AddOfferForm = () => {
     handleSubmit,
     formState: { errors, isValid },
     control,
+    reset,
   } = useForm<Inputs>({
     defaultValues: {
       company: companyName,
@@ -95,6 +97,8 @@ const AddOfferForm = () => {
     };
 
     mutateAsync(payload);
+    reset();
+    toast.success("Oferta pomyślnie dodana");
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -142,7 +146,7 @@ const AddOfferForm = () => {
             <div className="flex gap-2 mb-4" key={field.id}>
               <input
                 type="text"
-                {...register(`tasks.${index}.name`)}
+                {...register(`tasks.${index}.name`, { required: true })}
                 className="text-xl grow px-2"
                 defaultValue={field.name}
               />
@@ -172,7 +176,9 @@ const AddOfferForm = () => {
             <div className="flex gap-2 mb-4" key={field.id}>
               <input
                 type="text"
-                {...register(`requirements.${index}.name`)}
+                {...register(`requirements.${index}.name`, {
+                  required: true,
+                })}
                 className="text-xl grow px-2"
                 defaultValue={field.name}
               />
@@ -220,6 +226,7 @@ const AddOfferForm = () => {
           <div>Napraw błędy w formularzu</div>
         )}
       </form>
+      {Object.values(errors).length > 0 && <div>Napraw błędy w formularzu</div>}
       <DevTool control={control} />
     </div>
   );

@@ -15,7 +15,7 @@ const OfferSchema = new Schema<OfferSchemaType>({
   agreementType: { type: [String], required: true },
   workingTime: { type: [String], required: true },
   timeOfPosting: { type: String, required: true },
-  offerText: { type: String, required: true },
+  offerText: { type: String, required: false },
   tasks: { type: [String], required: true },
   requirements: { type: [String], required: true },
   isActive: { type: Boolean },
