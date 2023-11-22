@@ -46,9 +46,7 @@ const Header = () => {
           <Link href="/" className="bg-primary rounded px-2">
             Praca
           </Link>
-          {!isUser ? (
-            <Link href={paths.pracodawca}>Panel pracodawcy</Link>
-          ) : null}
+          <Link href={paths.employer}>Panel pracodawcy</Link>
           <a
             href="https://www.vettech.pl"
             className="trainings hidden sm:block"

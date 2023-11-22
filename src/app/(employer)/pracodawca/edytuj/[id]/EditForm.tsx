@@ -5,16 +5,16 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { getUserFromLocalStorage } from "@/utils/utils";
 import { DevTool } from "@hookform/devtools";
+import { usePathname } from "next/navigation";
 
-import { Offer, User } from "@/common/types";
+import { Offer } from "@/common/types";
 
-import InputFields from "./InputFields";
-import Experience from "./Elements/Experience";
-import AgreementType from "./Elements/AgreementType";
-import WorkingTime from "./Elements/WorkingTime";
-import { addOffer } from "./addOffer";
 import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
-import { fetchUserData } from "../EmployerPanel/UserInfo/utils";
+import { addOffer } from "../../AddOfferForm/addOffer";
+import Experience from "../../AddOfferForm/Elements/Experience";
+import AgreementType from "../../AddOfferForm/Elements/AgreementType";
+import WorkingTime from "../../AddOfferForm/Elements/WorkingTime";
+import { fetchSingleOffer } from "@/app/(user)/advdetails/[id]/AdvCardDetails/fetchSingleOffer";
 
 export type Inputs = Omit<Offer, "timeOfPosting" | "requirements" | "tasks"> & {
   tasks: { name: string }[];
@@ -28,18 +28,24 @@ const AddOfferForm = () => {
     onSuccess: () => {},
   });
 
-  const userID = getUserFromLocalStorage();
+  const pathname = usePathname();
+
+  const offerID = pathname.split("/").slice(-1)[0];
+
+  console.log("*** offerID", offerID);
 
   const {
     isLoading: isQueryLoading,
     data,
     error,
   } = useQuery({
-    queryKey: ["todos", userID],
-    queryFn: () => fetchUserData(userID || ""),
+    queryKey: ["offerDetails"],
+    queryFn: () => fetchSingleOffer(offerID || ""),
   });
 
-  const { companyName, city, street, flatNumber } = data?.data?.user as User;
+  console.log("***offerDetails", data);
+
+  const { company, city, address } = data?.data?.offer as Offer;
 
   const {
     register,
@@ -49,9 +55,9 @@ const AddOfferForm = () => {
     reset,
   } = useForm<Inputs>({
     defaultValues: {
-      company: companyName,
+      company,
       city,
-      address: `${street} ${flatNumber}`,
+      address,
       tasks: [{ name: "" }],
       requirements: [{ name: "" }],
     },

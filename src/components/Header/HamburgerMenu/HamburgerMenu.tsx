@@ -44,7 +44,7 @@ const HamburgerMenu = () => {
           </a>
         </div>
         <div className="border-y-2 p-1">
-          <Link href={paths.pracodawca}>Panel pracodawcy</Link>
+          <Link href={paths.employer}>Panel pracodawcy</Link>
         </div>
       </aside>
     </div>

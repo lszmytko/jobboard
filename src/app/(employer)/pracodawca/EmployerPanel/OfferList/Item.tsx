@@ -16,7 +16,8 @@ const Item = ({
 }) => {
   const parsedDate = dayjs(date).format("YYYY-MM-DD HH:mm:ss");
 
-  const editLink = `${paths.pracodawca}/${id}`;
+  const editLink = `${paths.editOffer}/${id}`;
+
   return (
     <div className="border-primary-light border-solid border-2 mb-2 p-2 rounded w-96 max-w-screen-md md:w-full ">
       <div className="flex justify-between">

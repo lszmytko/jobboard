@@ -23,7 +23,7 @@ const LoginForm = () => {
   const { isLoading, isError, mutateAsync } = useMutation({
     mutationFn: loginUser,
     onSuccess: () => {
-      router.push(paths.pracodawca);
+      router.push(paths.employer);
     },
   });
 
