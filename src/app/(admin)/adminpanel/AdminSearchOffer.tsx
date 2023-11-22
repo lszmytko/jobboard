@@ -29,8 +29,6 @@ const AdminSearchOffer = ({
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     const responseData = await mutateAsync(data);
 
-    console.log("responseData", responseData.data.offers);
-
     if (responseData.data.offers) {
       setOfferData(responseData.data.offers);
     }

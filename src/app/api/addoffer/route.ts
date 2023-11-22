@@ -56,7 +56,6 @@ export async function POST(req: AxiosRequestHeaders) {
   try {
     await Offer.create({ ...response, timeOfPosting, status: "pending" });
   } catch (error) {
-    console.log(error);
     throw new Error("Failed to create offer");
   }
 

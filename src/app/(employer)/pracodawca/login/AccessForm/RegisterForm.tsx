@@ -44,12 +44,8 @@ const RegisterForm = () => {
     try {
       await mutateAsync(data);
       notify();
-    } catch (error) {
-      console.log("error", error);
-    }
+    } catch (error) {}
   };
-
-  console.log({ error });
 
   return (
     <>

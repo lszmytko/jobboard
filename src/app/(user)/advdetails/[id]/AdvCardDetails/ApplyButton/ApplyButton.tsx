@@ -14,11 +14,6 @@ const ApplyButton = ({
     <button
       className="block w-80 bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-3xl text-xl"
       onClick={() => {
-        console.log("clicked");
-        // window.open(
-        //   "mailto:" + mail + "&subject=" + subject + "&body=" + emailBody
-        // );
-        // window.location.href = "mailto:email@example.com";
         window.open(
           `mailto:${mail}?subject=${encodeURIComponent(
             subject

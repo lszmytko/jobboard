@@ -15,13 +15,10 @@ const AdvCardDetails = () => {
 
   const id = pathname.split("/").slice(-1)[0];
 
-  console.log("*** id", id);
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["getSingleOffer"],
     queryFn: () => fetchSingleOffer(id),
   });
-
-  console.log("*** data", data);
 
   if (isError || !data) return <div>Coś poszło nie tak...</div>;
 

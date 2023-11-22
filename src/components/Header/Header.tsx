@@ -30,8 +30,6 @@ const Header = () => {
     notify();
   };
 
-  console.log("Header render isUser", isUser);
-
   return (
     <div className="w-screen flex justify-center">
       <HamburgerMenu />

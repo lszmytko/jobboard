@@ -56,7 +56,6 @@ const UserInfo = () => {
     formState: { errors, isValid },
   } = useForm<UserInfo>({ defaultValues: defaultData });
   const onSubmit: SubmitHandler<UserInfo> = async (formData) => {
-    console.log(formData);
     try {
       await mutateAsync(formData);
       notify();

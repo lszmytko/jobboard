@@ -40,9 +40,7 @@ const LoginForm = () => {
     try {
       await mutateAsync(data);
       notify();
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (

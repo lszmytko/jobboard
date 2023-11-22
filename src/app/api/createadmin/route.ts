@@ -27,8 +27,6 @@ export async function POST(req: Request) {
 
   const isUserExisting = await Admin.find();
 
-  console.log(isUserExisting);
-
   if (isUserExisting.length > 0) {
     return NextResponse.json(
       {

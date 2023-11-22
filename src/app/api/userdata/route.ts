@@ -49,8 +49,6 @@ export async function POST(req: Request) {
   existingUser.flatNumber = flatNumber;
   existingUser.phoneNumber = phoneNumber;
 
-  console.log(existingUser);
-
   try {
     const user = await existingUser.save();
   } catch (error) {

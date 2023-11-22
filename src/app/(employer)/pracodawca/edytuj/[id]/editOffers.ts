@@ -7,8 +7,6 @@ export const editOffer = async (data: Offer) => {
   const token = getUserToken();
   const finalData = { ...data };
 
-  console.log("*** data", data);
-
   const response = axios.request({
     headers: {
       Authorization: `Bearer ${token}`,

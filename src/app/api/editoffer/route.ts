@@ -25,7 +25,6 @@ const schema = z.object({
 export async function PUT(req: AxiosRequestHeaders) {
   await connectToDatabase();
   const response = await req.json();
-  console.log("*** przeszło");
   const validation = schema.safeParse(response);
 
   if (!validation.success) {
@@ -59,7 +58,6 @@ export async function PUT(req: AxiosRequestHeaders) {
       timeOfPosting,
     });
   } catch (error) {
-    console.log(error);
     throw new Error("Failed to create offer");
   }
 

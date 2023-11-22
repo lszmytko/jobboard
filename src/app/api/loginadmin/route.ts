@@ -38,7 +38,6 @@ export async function POST(req: Request) {
 
   if (isPasswordCorrect) {
     const token = await existingAdmin.createJWT();
-    console.log("token", token);
     return NextResponse.json({
       error: "login successful",
       status: StatusCodes.OK,

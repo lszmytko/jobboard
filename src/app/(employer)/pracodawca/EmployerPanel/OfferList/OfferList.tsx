@@ -25,15 +25,11 @@ const OfferList = () => {
     queryFn: () => fetchUserOffers(user || ""),
   });
 
-  console.log("*** data", data);
-
   if (isLoading) return <div>Ładowanie...</div>;
   if (isError) return <div>Coś poszło nie tak...</div>;
 
   const offers = data.data.userOffers;
   const areOffers = offers.length > 0;
-
-  console.log("*** offers", offers);
 
   return (
     <div>

@@ -12,7 +12,6 @@ interface fetchOfferResponse {
 export const fetchSingleOffer = async (
   offerID: string
 ): Promise<fetchOfferResponse> => {
-  console.log("*** offerID", offerID);
   const response = await axios.get(singleOfferEndpoint, {
     params: {
       offerID,

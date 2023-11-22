@@ -47,7 +47,6 @@ export async function GET(req: AxiosRequestHeaders) {
       { status: StatusCodes.OK }
     );
   } else {
-    console.log("if przeszedł");
     return NextResponse.json({ offer }, { status: StatusCodes.BAD_REQUEST });
   }
 }

@@ -9,8 +9,6 @@ export const addOffer = async (data: Offer) => {
   const token = getUserToken();
   const finalData = { ...data, isActive: DEFAULT_OFFER_ISACTIVE };
 
-  console.log("*** data", data);
-
   const response = axios.request({
     headers: {
       Authorization: `Bearer ${token}`,

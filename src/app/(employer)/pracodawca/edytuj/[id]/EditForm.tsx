@@ -33,8 +33,6 @@ const EditForm = () => {
 
   const offerID = pathname.split("/").slice(-1)[0];
 
-  console.log("*** offerID", offerID);
-
   const {
     isLoading: isQueryLoading,
     data,
