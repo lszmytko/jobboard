@@ -19,7 +19,7 @@ const Item = ({
   const editLink = `${paths.editOffer}/${id}`;
 
   return (
-    <div className="border-primary-light border-solid border-2 mb-2 p-2 rounded w-96 max-w-screen-md md:w-full ">
+    <div className="border-primary-extra mb-4 p-2 rounded w-96 max-w-screen-md md:w-full bg-primary-extra-light shadow-2xl">
       <div className="flex justify-between">
         <h1 className="text-sm mb-1">Data dodania: {parsedDate}</h1>
         <Link href={editLink} className="cursor-pointer text-sm">

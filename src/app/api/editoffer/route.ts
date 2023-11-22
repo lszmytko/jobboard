@@ -52,13 +52,17 @@ export async function PUT(req: AxiosRequestHeaders) {
 
   const timeOfPosting = new Date().toISOString();
 
-  try {
-    await Offer.findOneAndUpdate({
+  const updatedOffer = await Offer.findOneAndUpdate(
+    { _id: response._id },
+    {
       ...response,
       timeOfPosting,
-    });
-  } catch (error) {
-    throw new Error("Failed to create offer");
+    }
+  );
+
+  console.log("offer id", response._id);
+  if (!updatedOffer) {
+    return NextResponse.json({ message: "No such offer" }, { status: 400 });
   }
 
   return NextResponse.json({ message: "Request successful" }, { status: 200 });

@@ -1,4 +1,9 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
+
 import AdvCard from "../AdvCard";
+import { fetchAllOffers } from "./fetchAllOffers";
 
 //TODO: remove mock data
 const mockData = {
@@ -18,12 +23,24 @@ const mockData = {
 const mockArray = [mockData, mockData, mockData, mockData, mockData, mockData];
 
 const AdvSection = () => {
+  const {
+    isLoading: isQueryLoading,
+    data,
+    error,
+  } = useQuery({
+    queryKey: ["fetchAllOffers"],
+    queryFn: () => fetchAllOffers(true),
+  });
+
+  console.log("*** data", data);
+  const offers = data?.data?.offers;
+
   return (
     <section className="flex justify-center p-2">
       <div className="w-full">
-        {mockArray.map((ad) => {
+        {offers?.map((ad) => {
           const {
-            id,
+            _id,
             post,
             company,
             city,
@@ -36,7 +53,7 @@ const AdvSection = () => {
           } = ad;
           return (
             <div
-              key={id}
+              key={_id}
               className="card-wrapper mb-4 md:flex md:justify-center"
             >
               <AdvCard
@@ -49,7 +66,7 @@ const AdvSection = () => {
                 agreementType={agreementType}
                 workingTime={workingTime}
                 timeOfPosting={timeOfPosting}
-                id={id}
+                id={_id}
               />
             </div>
           );

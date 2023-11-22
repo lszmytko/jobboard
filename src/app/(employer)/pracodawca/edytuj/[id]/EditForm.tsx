@@ -10,34 +10,34 @@ import { usePathname } from "next/navigation";
 import { Offer } from "@/common/types";
 
 import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
-import { addOffer } from "../../AddOfferForm/addOffer";
 import Experience from "../../AddOfferForm/Elements/Experience";
 import AgreementType from "../../AddOfferForm/Elements/AgreementType";
 import WorkingTime from "../../AddOfferForm/Elements/WorkingTime";
 import { fetchSingleOffer } from "@/app/(user)/advdetails/[id]/AdvCardDetails/fetchSingleOffer";
 import FullPageLoader from "@/components/loaders/FullPageLoader";
+import { editOffer } from "./editOffer";
 
-export type Inputs = Omit<Offer, "timeOfPosting" | "requirements" | "tasks"> & {
+type Inputs = Omit<Offer, "timeOfPosting" | "requirements" | "tasks"> & {
   tasks: { name: string }[];
 } & {
   requirements: { name: string }[];
 };
 
 const EditForm = () => {
-  const { isLoading, isError, mutateAsync } = useMutation({
-    mutationFn: addOffer,
+  const { mutateAsync, isError } = useMutation({
+    mutationFn: editOffer,
     onSuccess: () => {},
+    onError: () => {
+      console.log("*** onError");
+      toast.error("Coś poszło nie tak");
+    },
   });
 
   const pathname = usePathname();
 
   const offerID = pathname.split("/").slice(-1)[0];
 
-  const {
-    isLoading: isQueryLoading,
-    data,
-    error,
-  } = useQuery({
+  const { isLoading: isQueryLoading, data } = useQuery({
     queryKey: ["offerDetails"],
     queryFn: () => fetchSingleOffer(offerID || ""),
   });
@@ -54,10 +54,23 @@ const EditFormUI = ({
   mutate: any;
   data: Offer | undefined;
 }) => {
-  const pathname = usePathname();
-  const offerID = pathname.split("/").slice(-1)[0];
+  const {
+    company,
+    city,
+    address,
+    tasks,
+    requirements,
+    post,
+    postLevel,
+    experience,
+    agreementType,
+    workingTime,
+    offerText,
+  } = data || {};
 
-  const { company, city, address } = data || {};
+  const formattedTasks = tasks?.map((task) => ({ name: task })) || [];
+  const formattedRequirements =
+    requirements?.map((task) => ({ name: task })) || [];
 
   const {
     register,
@@ -67,11 +80,17 @@ const EditFormUI = ({
     reset,
   } = useForm<Inputs>({
     defaultValues: {
+      post,
+      postLevel,
+      experience,
+      agreementType,
+      workingTime,
       company,
       city,
       address,
-      tasks: [{ name: "" }],
-      requirements: [{ name: "" }],
+      offerText,
+      tasks: formattedTasks,
+      requirements: formattedRequirements,
     },
   });
 
@@ -95,9 +114,7 @@ const EditFormUI = ({
     rules: { required: true, minLength: 1 },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (formData, event) => {
-    event?.preventDefault();
-
+  const onSubmit: SubmitHandler<Inputs> = (formData) => {
     const parsedRequirements = formData.requirements.map(
       (requirement) => requirement.name
     );
@@ -113,8 +130,6 @@ const EditFormUI = ({
     };
 
     mutate(payload);
-    reset();
-    toast.success("Oferta pomyślnie zedytowana");
   };
 
   const submitFn = handleSubmit(onSubmit);

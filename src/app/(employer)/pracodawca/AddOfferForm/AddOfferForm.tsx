@@ -8,15 +8,15 @@ import { DevTool } from "@hookform/devtools";
 
 import { Offer, User } from "@/common/types";
 
-import InputFields from "./InputFields";
 import Experience from "./Elements/Experience";
 import AgreementType from "./Elements/AgreementType";
 import WorkingTime from "./Elements/WorkingTime";
 import { addOffer } from "./addOffer";
 import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
 import { fetchUserData } from "../EmployerPanel/UserInfo/utils";
+import InputLoader from "@/components/loaders/InputLoader";
 
-export type Inputs = Omit<Offer, "timeOfPosting" | "requirements" | "tasks"> & {
+export type Inputs = Omit<Offer, "requirements" | "tasks"> & {
   tasks: { name: string }[];
 } & {
   requirements: { name: string }[];
@@ -78,8 +78,6 @@ const AddOfferForm = () => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data, event) => {
-    event?.preventDefault();
-
     const parsedRequirements = data.requirements.map(
       (requirement) => requirement.name
     );
@@ -93,12 +91,14 @@ const AddOfferForm = () => {
       user,
     };
 
-    mutateAsync(payload);
-    reset();
-    toast.success("Oferta pomyślnie dodana");
+    try {
+      mutateAsync(payload);
+      reset();
+      toast.success("Oferta pomyślnie dodana");
+    } catch (error) {
+      toast.error("Coś poszło nie tak");
+    }
   };
-
-  if (isLoading) return <div>Loading...</div>;
 
   const submitFn = handleSubmit(onSubmit);
 
@@ -225,6 +225,7 @@ const AddOfferForm = () => {
           <div>Napraw błędy w formularzu</div>
         )}
       </form>
+      {isLoading ? <InputLoader /> : null}
       {Object.values(errors).length > 0 && <div>Napraw błędy w formularzu</div>}
       <DevTool control={control} />
     </div>

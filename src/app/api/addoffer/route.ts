@@ -17,7 +17,6 @@ const schema = z.object({
   postLevel: z.string(),
   requirements: z.array(z.string()),
   tasks: z.array(z.string()),
-  timeOfPosting: z.string(),
   workingTime: z.array(z.string()),
   offerText: z.string(),
   isActive: z.boolean(),
@@ -52,6 +51,8 @@ export async function POST(req: AxiosRequestHeaders) {
   }
 
   const timeOfPosting = new Date().toISOString();
+
+  console.log("*** timeOfPosting", timeOfPosting);
 
   try {
     await Offer.create({ ...response, timeOfPosting, status: "pending" });

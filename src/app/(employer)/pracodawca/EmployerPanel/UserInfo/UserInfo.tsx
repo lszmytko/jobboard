@@ -13,6 +13,7 @@ import { getUserFromLocalStorage } from "@/utils/utils";
 import { fetchUserData, updateUserData } from "./utils";
 import { UserInfo } from "./UserInfo.types";
 import { useEffect, useRef, useState } from "react";
+import FullPageLoader from "@/components/loaders/FullPageLoader";
 
 const UserInfo = () => {
   const userID = getUserFromLocalStorage();
@@ -71,7 +72,7 @@ const UserInfo = () => {
     }
   });
 
-  if (isQueryLoading) return <p>Chwilka...</p>;
+  if (isQueryLoading) return <FullPageLoader />;
 
   return (
     <>

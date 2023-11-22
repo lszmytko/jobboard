@@ -4,6 +4,7 @@ import { getUserFromLocalStorage } from "@/utils/utils";
 
 import Item from "./Item";
 import { fetchUserOffers } from "./utils";
+import FullPageLoader from "@/components/loaders/FullPageLoader";
 
 //TODO: remove when there is real data
 const mockData = [
@@ -25,7 +26,7 @@ const OfferList = () => {
     queryFn: () => fetchUserOffers(user || ""),
   });
 
-  if (isLoading) return <div>Ładowanie...</div>;
+  if (isLoading) return <FullPageLoader />;
   if (isError) return <div>Coś poszło nie tak...</div>;
 
   const offers = data.data.userOffers;
