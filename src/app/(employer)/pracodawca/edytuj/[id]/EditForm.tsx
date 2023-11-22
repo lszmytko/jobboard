@@ -15,6 +15,7 @@ import Experience from "../../AddOfferForm/Elements/Experience";
 import AgreementType from "../../AddOfferForm/Elements/AgreementType";
 import WorkingTime from "../../AddOfferForm/Elements/WorkingTime";
 import { fetchSingleOffer } from "@/app/(user)/advdetails/[id]/AdvCardDetails/fetchSingleOffer";
+import FullPageLoader from "@/components/loaders/FullPageLoader";
 
 export type Inputs = Omit<Offer, "timeOfPosting" | "requirements" | "tasks"> & {
   tasks: { name: string }[];
@@ -22,7 +23,7 @@ export type Inputs = Omit<Offer, "timeOfPosting" | "requirements" | "tasks"> & {
   requirements: { name: string }[];
 };
 
-const AddOfferForm = () => {
+const EditForm = () => {
   const { isLoading, isError, mutateAsync } = useMutation({
     mutationFn: addOffer,
     onSuccess: () => {},
@@ -43,14 +44,27 @@ const AddOfferForm = () => {
     queryFn: () => fetchSingleOffer(offerID || ""),
   });
 
-  console.log("***offerDetails", data);
+  if (isQueryLoading) return <FullPageLoader />;
 
-  const { company, city, address } = data?.data?.offer as Offer;
+  return <EditFormUI mutate={mutateAsync} data={data?.data.offer} />;
+};
+
+const EditFormUI = ({
+  mutate,
+  data,
+}: {
+  mutate: any;
+  data: Offer | undefined;
+}) => {
+  const pathname = usePathname();
+  const offerID = pathname.split("/").slice(-1)[0];
+
+  const { company, city, address } = data || {};
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isLoading },
     control,
     reset,
   } = useForm<Inputs>({
@@ -83,35 +97,34 @@ const AddOfferForm = () => {
     rules: { required: true, minLength: 1 },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data, event) => {
+  const onSubmit: SubmitHandler<Inputs> = (formData, event) => {
     event?.preventDefault();
 
-    const parsedRequirements = data.requirements.map(
+    const parsedRequirements = formData.requirements.map(
       (requirement) => requirement.name
     );
-    const parsedTasks = data.tasks.map((task) => task.name);
+    const parsedTasks = formData.tasks.map((task) => task.name);
 
     const user = getUserFromLocalStorage();
     const payload = {
-      ...data,
+      ...(data ?? {}),
+      ...formData,
       tasks: parsedTasks,
       requirements: parsedRequirements,
       user,
     };
 
-    mutateAsync(payload);
+    mutate(payload);
     reset();
-    toast.success("Oferta pomyślnie dodana");
+    toast.success("Oferta pomyślnie zedytowana");
   };
-
-  if (isLoading) return <div>Loading...</div>;
 
   const submitFn = handleSubmit(onSubmit);
 
   return (
     <div className="max-w-3xl w-full p-2 pt-0">
       <h1 className="mb-4 text-center text-primary font-semibold text-2xl">
-        Nowe ogłoszenie
+        Edytuj ofertę
       </h1>
       <form onSubmit={submitFn}>
         <input
@@ -237,4 +250,4 @@ const AddOfferForm = () => {
   );
 };
 
-export default AddOfferForm;
+export default EditForm;
