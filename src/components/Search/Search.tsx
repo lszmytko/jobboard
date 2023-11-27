@@ -1,5 +1,7 @@
 "use client";
 
+import { DevTool } from "@hookform/devtools";
+import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
@@ -12,43 +14,54 @@ const Search = () => {
     register,
     handleSubmit,
     watch,
+    control,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
+  const router = useRouter();
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    // setSearchCriteria(data);
+
+    const params = `?postOrCompany=${data.postOrCompany ?? ""}&city=${
+      data.city ?? ""
+    }&page=1`;
+    router.push(params);
+  };
+
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <div className="mt-4 flex justify-center">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="p-3 mb-2 md:flex w-4/5 max-w-4xl"
-      >
-        {/* register your input into the hook by invoking the "register" function */}
-        <div className="md:grow">
-          <input
-            placeholder="Nazwa stanowiska/firmy"
-            {...register("postOrCompany")}
-            className="w-full text-center max-sm:border-b-2 p-2 border-primary-extra-light focus:outline-none md:border-r-2"
-          />
-        </div>
-        {/* include validation with required or other standard HTML validation rules */}
-        <div className="md:grow">
-          <input
-            placeholder="Miasto"
-            {...register("city", { required: true })}
-            className="w-full text-center max-sm:border-b-2 p-2 border-primary-extra-light mb-2 focus:outline-none"
-          />
-        </div>
-        {/* errors will return when field validation fails  */}
-        {errors.city && <span>This field is required</span>}
-        <div>
-          <input
-            type="submit"
-            value="Szukaj"
-            className="w-full text-center rounded py-2 px-4 bg-primary-light cursor-pointer"
-          />
-        </div>
-      </form>
-    </div>
+    <>
+      <div className="mt-4 flex justify-center">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="p-3 mb-2 md:flex w-4/5 max-w-4xl"
+        >
+          <div className="md:grow">
+            <input
+              placeholder="Nazwa stanowiska/firmy"
+              {...register("postOrCompany")}
+              className="w-full text-center max-sm:border-b-2 p-2 border-primary-extra-light focus:outline-none md:border-r-2"
+            />
+          </div>
+          <div className="md:grow">
+            <input
+              placeholder="Miasto"
+              {...register("city", { required: true })}
+              className="w-full text-center max-sm:border-b-2 p-2 border-primary-extra-light mb-2 focus:outline-none"
+            />
+          </div>
+          {errors.city && <span>This field is required</span>}
+          <div>
+            <input
+              type="submit"
+              value="Szukaj"
+              className="w-full text-center rounded py-2 px-4 bg-primary-light cursor-pointer"
+            />
+          </div>
+        </form>
+      </div>
+      <DevTool control={control} />
+    </>
   );
 };
 

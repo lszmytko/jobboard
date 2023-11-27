@@ -11,6 +11,8 @@ const ITEMS_PER_PAGE = 15;
 const schema = z.object({
   isActive: z.string().nullable().optional(),
   page: z.string(),
+  city: z.string().nullable().optional(),
+  postOrCompany: z.string().nullable().optional(),
 });
 
 export async function GET(req: AxiosRequestHeaders) {
@@ -18,8 +20,10 @@ export async function GET(req: AxiosRequestHeaders) {
 
   const isActive = req.nextUrl.searchParams.get("isActive");
   const page = req.nextUrl.searchParams.get("page");
+  const city = req.nextUrl.searchParams.get("city");
+  const postOrCompany = req.nextUrl.searchParams.get("postOrCompany");
 
-  const response = schema.safeParse({ isActive, page });
+  const response = schema.safeParse({ isActive, page, city, postOrCompany });
 
   if (!response.success) {
     const { errors } = response.error;
@@ -33,7 +37,13 @@ export async function GET(req: AxiosRequestHeaders) {
   let offers;
   let numberOfOffers: number;
 
-  const filter = isActive ? { isActive } : {};
+  let filter = {};
+  filter = isActive ? { ...filter, isActive } : { ...filter };
+  filter = city ? { ...filter, city } : { ...filter };
+  filter = postOrCompany ? { ...filter, postOrCompany } : { ...filter };
+
+  console.log("filter", filter);
+  console.log("city", city);
 
   try {
     numberOfOffers = await Offer.find(filter).count();
@@ -44,6 +54,8 @@ export async function GET(req: AxiosRequestHeaders) {
     throw e;
   }
 
+  console.log("offers", offers);
+
   if (offers.length) {
     return NextResponse.json(
       {
@@ -53,14 +65,14 @@ export async function GET(req: AxiosRequestHeaders) {
         hasPreviousPage: page > 1,
         nextPage: page + 1,
         previousPage: page - 1,
-        lastPage: Math.ceil(numberOfOffers / ITEMS_PER_PAGE),
+        pages: Math.ceil(numberOfOffers / ITEMS_PER_PAGE),
       },
       { status: StatusCodes.OK }
     );
   } else {
     return NextResponse.json(
       { offers, numberOfOffers },
-      { status: StatusCodes.BAD_REQUEST }
+      { status: StatusCodes.OK }
     );
   }
 }

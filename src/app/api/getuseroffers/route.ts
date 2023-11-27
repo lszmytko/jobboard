@@ -10,12 +10,16 @@ import { auth } from "../middleware/auth";
 
 const schema = z.object({
   user: z.string(),
+  page: z.string(),
 });
+
+const ITEMS_PER_PAGE = 15;
 
 export async function GET(req: AxiosRequestHeaders) {
   await connectToDatabase();
 
   const userID = req.nextUrl.searchParams.get("user");
+  const page = req.nextUrl.searchParams.get("page");
 
   const response = schema.safeParse({ user: userID });
 
@@ -43,10 +47,23 @@ export async function GET(req: AxiosRequestHeaders) {
     return NextResponse.json({ error: "No such user" }, { status: 403 });
   }
 
-  const userOffers = await Offer.find({ user: userID });
+  const userOffers = await Offer.find({ user: userID })
+    .skip((page - 1) * 15)
+    .limit(ITEMS_PER_PAGE);
 
-  return NextResponse.json({
-    status: StatusCodes.OK,
-    userOffers,
-  });
+  const numberOfOffers = await Offer.find({ user: userID }).count();
+
+  return NextResponse.json(
+    {
+      userOffers,
+      hasNextPage: ITEMS_PER_PAGE * page < numberOfOffers,
+      hasPreviousPage: page > 1,
+      nextPage: page + 1,
+      previousPage: page - 1,
+      pages: Math.ceil(numberOfOffers / ITEMS_PER_PAGE),
+    },
+    {
+      status: StatusCodes.OK,
+    }
+  );
 }

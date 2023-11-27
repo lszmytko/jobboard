@@ -1,10 +1,7 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-
 import AdvCard from "../AdvCard";
-import { fetchAllOffers } from "./fetchAllOffers";
-import { useSearchParams } from "next/navigation";
+import { Offer } from "@/common/types";
 
 //TODO: remove mock data
 const mockData = {
@@ -23,21 +20,21 @@ const mockData = {
 //TODO: remove mock data
 const mockArray = [mockData, mockData, mockData, mockData, mockData, mockData];
 
-const AdvSection = () => {
-  const searchParams = useSearchParams();
-  const page = searchParams.get("page") ?? "1";
-
-  const {
-    isLoading: isQueryLoading,
-    data,
-    error,
-  } = useQuery({
-    queryKey: ["fetchAllOffers"],
-    queryFn: () => fetchAllOffers(true, page),
-  });
-
-  console.log("*** data", data);
-  const offers = data?.data?.offers;
+const AdvSection = ({
+  offers,
+  isLoading,
+}: {
+  offers: Offer[] | undefined;
+  isLoading: boolean;
+}) => {
+  console.log("*** offers", offers);
+  if (isLoading) return <div>Chwilka...</div>;
+  if (offers?.length === 0)
+    return (
+      <section className="flex justify-center p-2 mt-8">
+        <p>Brak ogłoszeń.</p>
+      </section>
+    );
 
   return (
     <section className="flex justify-center p-2">
