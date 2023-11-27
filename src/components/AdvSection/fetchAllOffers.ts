@@ -6,8 +6,10 @@ const offersEndpoint = `${process.env.NEXT_PUBLIC_API_ENDPOINT}${paths.getAllOff
 
 type ResponseStructure = { offers: Offer[] };
 
-export const fetchAllOffers = async (isActive?: boolean) => {
-  const params = isActive ? { params: { isActive } } : {};
+export const fetchAllOffers = async (isActive?: boolean, page?: string) => {
+  const params = isActive
+    ? { params: { isActive, page } }
+    : { params: { page } };
 
   const response = await axios.get<ResponseStructure>(offersEndpoint, params);
 

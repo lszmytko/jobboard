@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import AdvCard from "../AdvCard";
 import { fetchAllOffers } from "./fetchAllOffers";
+import { useSearchParams } from "next/navigation";
 
 //TODO: remove mock data
 const mockData = {
@@ -23,13 +24,16 @@ const mockData = {
 const mockArray = [mockData, mockData, mockData, mockData, mockData, mockData];
 
 const AdvSection = () => {
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page") ?? "1";
+
   const {
     isLoading: isQueryLoading,
     data,
     error,
   } = useQuery({
     queryKey: ["fetchAllOffers"],
-    queryFn: () => fetchAllOffers(true),
+    queryFn: () => fetchAllOffers(true, page),
   });
 
   console.log("*** data", data);
