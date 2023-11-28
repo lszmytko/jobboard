@@ -60,7 +60,6 @@ export async function PUT(req: AxiosRequestHeaders) {
     }
   );
 
-  console.log("offer id", response._id);
   if (!updatedOffer) {
     return NextResponse.json({ message: "No such offer" }, { status: 400 });
   }

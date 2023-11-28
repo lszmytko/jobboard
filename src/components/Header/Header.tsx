@@ -8,25 +8,24 @@ import { paths } from "@/common/paths";
 import Logo from "./Logo";
 import HamburgerMenu from "./HamburgerMenu";
 import { checkIfUserIsLoggedIn } from "@/utils/utils";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 const Header = () => {
+  console.log("*** Header rendered");
   const isUser = checkIfUserIsLoggedIn();
   const router = useRouter();
+  const pathname = usePathname();
 
   const notify = () => toast.success("Wylogowanie zakończone sukcesem");
 
   const handleLogout = () => {
     localStorage.removeItem("userToken");
     localStorage.removeItem("user");
-    if (window.location.pathname === paths.home) {
-      window.location.reload();
-    } else {
-      router.push(paths.home);
-    }
+    router.push(paths.home);
+
     notify();
   };
 

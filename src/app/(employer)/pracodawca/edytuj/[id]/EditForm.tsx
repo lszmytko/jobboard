@@ -28,7 +28,6 @@ const EditForm = () => {
     mutationFn: editOffer,
     onSuccess: () => {},
     onError: () => {
-      console.log("*** onError");
       toast.error("Coś poszło nie tak");
     },
   });

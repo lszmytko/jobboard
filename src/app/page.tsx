@@ -21,7 +21,6 @@ export default function Home() {
     queryFn: () => fetchAllOffers(true, params),
   });
 
-  console.log("*** data", data);
   const offers = data?.data?.offers;
   const pages = data?.data.pages ?? 1;
 

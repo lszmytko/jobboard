@@ -42,9 +42,6 @@ export async function GET(req: AxiosRequestHeaders) {
   filter = city ? { ...filter, city } : { ...filter };
   filter = postOrCompany ? { ...filter, postOrCompany } : { ...filter };
 
-  console.log("filter", filter);
-  console.log("city", city);
-
   try {
     numberOfOffers = await Offer.find(filter).count();
     offers = await Offer.find(filter)
@@ -53,8 +50,6 @@ export async function GET(req: AxiosRequestHeaders) {
   } catch (e) {
     throw e;
   }
-
-  console.log("offers", offers);
 
   if (offers.length) {
     return NextResponse.json(

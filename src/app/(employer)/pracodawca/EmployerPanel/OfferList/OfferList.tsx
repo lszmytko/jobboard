@@ -30,7 +30,7 @@ const OfferList = () => {
   if (isError) return <div>Coś poszło nie tak...</div>;
 
   const offers = data.data.userOffers;
-  const areOffers = offers.length > 0;
+  const areOffers = offers?.length > 0;
 
   return (
     <div>

@@ -7,6 +7,7 @@ export const paths = {
   adminlogin: "/adminpanel",
   advdetails: "/advdetails",
   getAllOffers: "/getalloffers",
+  resetPassword: "/resetpassword",
 };
 
 export const apiRoutes = {

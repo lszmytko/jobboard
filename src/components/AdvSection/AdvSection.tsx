@@ -27,7 +27,6 @@ const AdvSection = ({
   offers: Offer[] | undefined;
   isLoading: boolean;
 }) => {
-  console.log("*** offers", offers);
   if (isLoading) return <div>Chwilka...</div>;
   if (offers?.length === 0)
     return (

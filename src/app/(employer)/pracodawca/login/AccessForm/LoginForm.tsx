@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { paths } from "@/common/paths";
 
 import { loginUser } from "./loginUser";
+import Link from "next/link";
 
 type LoginFormInputs = {
   email: string;
@@ -90,12 +91,13 @@ const LoginForm = () => {
           <div className="text-red-300 mt-4 text-center">Wystąpił błąd</div>
         )}
         <div className="flex justify-center">
-          <button
+          <Link
+            href={paths.resetPassword}
             className="mt-4 text-center text-white cursor-pointer"
             onClick={() => setIsPasswordForgotten(true)}
           >
             Zapomniałeś hasła?
-          </button>
+          </Link>
         </div>
       </div>
     </>

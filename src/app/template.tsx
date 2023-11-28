@@ -5,6 +5,7 @@ export default function RootTemplate({
 }: {
   children: React.ReactNode;
 }) {
+  console.log("*** RootTemplate rendered");
   return (
     <div>
       <div className="sm:mt-4">

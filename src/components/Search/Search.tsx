@@ -4,7 +4,7 @@ import { DevTool } from "@hookform/devtools";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-type Inputs = {
+type SearchInputs = {
   postOrCompany: string;
   city: string;
 };
@@ -13,19 +13,18 @@ const Search = () => {
   const {
     register,
     handleSubmit,
-    watch,
     control,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<SearchInputs>();
 
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    // setSearchCriteria(data);
+  const onSubmit: SubmitHandler<SearchInputs> = (data) => {
+    let params = "?page=1";
+    if (data.postOrCompany)
+      params = params + `&postOrCompany=${data.postOrCompany}`;
+    if (data.city) params = params + `&city=${data.city}`;
 
-    const params = `?postOrCompany=${data.postOrCompany ?? ""}&city=${
-      data.city ?? ""
-    }&page=1`;
     router.push(params);
   };
 
@@ -46,11 +45,10 @@ const Search = () => {
           <div className="md:grow">
             <input
               placeholder="Miasto"
-              {...register("city", { required: true })}
+              {...register("city")}
               className="w-full text-center max-sm:border-b-2 p-2 border-primary-extra-light mb-2 focus:outline-none"
             />
           </div>
-          {errors.city && <span>This field is required</span>}
           <div>
             <input
               type="submit"
