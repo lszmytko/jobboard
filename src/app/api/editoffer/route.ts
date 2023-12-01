@@ -9,7 +9,7 @@ import { Offer } from "../models/Offer";
 
 const schema = z.object({
   post: z.string(),
-  user: z.string(),
+  user: z.string().nullable().optional(),
   company: z.string(),
   agreementType: z.array(z.string()),
   city: z.string(),
@@ -24,8 +24,10 @@ const schema = z.object({
 
 export async function PUT(req: AxiosRequestHeaders) {
   await connectToDatabase();
-  const response = await req.json();
-  const validation = schema.safeParse(response);
+  const request = await req.json();
+  const validation = schema.safeParse(request);
+  const authHeader = req.headers.get("authorization");
+  console.log("***authHeader", authHeader);
 
   if (!validation.success) {
     const { errors } = validation.error;
@@ -35,27 +37,29 @@ export async function PUT(req: AxiosRequestHeaders) {
     );
   }
 
-  const existingUser = await User.findOne({ _id: response.user });
+  const existingUser = await User.findOne({ _id: request.user });
 
   if (!existingUser) {
     return NextResponse.json({ message: "No such user" }, { status: 400 });
   }
 
-  const isAuthorized = auth(req);
+  if (authHeader) {
+    const isAuthorized = auth(req);
 
-  if (!isAuthorized) {
-    return NextResponse.json(
-      { message: "You are not authorized" },
-      { status: 403 }
-    );
+    if (!isAuthorized) {
+      return NextResponse.json(
+        { message: "You are not authorized" },
+        { status: 403 }
+      );
+    }
   }
 
   const timeOfPosting = new Date().toISOString();
 
   const updatedOffer = await Offer.findOneAndUpdate(
-    { _id: response._id },
+    { _id: request._id },
     {
-      ...response,
+      ...request,
       timeOfPosting,
     }
   );

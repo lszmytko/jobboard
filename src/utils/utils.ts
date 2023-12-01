@@ -13,3 +13,19 @@ export const getUserToken = () => {
 export const getUserFromLocalStorage = () => {
   return localStorage.getItem("user");
 };
+
+export const parseRequirements = (
+  requirements: {
+    name: string;
+  }[]
+) => {
+  return requirements.map((requirement) => requirement.name);
+};
+
+export const parseTasks = (
+  tasks: {
+    name: string;
+  }[]
+) => {
+  return tasks.map((task) => task.name);
+};

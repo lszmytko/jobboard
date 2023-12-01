@@ -54,7 +54,7 @@ const AdminSearchOffer = ({
           <div>
             <input
               type="submit"
-              value="Zaloguj"
+              value="Wyszukaj"
               className="w-full text-center rounded py-2 px-4 bg-primary-light cursor-pointer"
             />
           </div>

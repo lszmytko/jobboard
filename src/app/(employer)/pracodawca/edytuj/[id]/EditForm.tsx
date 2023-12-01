@@ -3,7 +3,11 @@
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { getUserFromLocalStorage } from "@/utils/utils";
+import {
+  getUserFromLocalStorage,
+  parseRequirements,
+  parseTasks,
+} from "@/utils/utils";
 import { DevTool } from "@hookform/devtools";
 import { usePathname } from "next/navigation";
 
@@ -114,10 +118,8 @@ const EditFormUI = ({
   });
 
   const onSubmit: SubmitHandler<Inputs> = (formData) => {
-    const parsedRequirements = formData.requirements.map(
-      (requirement) => requirement.name
-    );
-    const parsedTasks = formData.tasks.map((task) => task.name);
+    const parsedRequirements = parseRequirements(formData.requirements);
+    const parsedTasks = parseTasks(formData.tasks);
 
     const user = getUserFromLocalStorage();
     const payload = {
@@ -128,7 +130,7 @@ const EditFormUI = ({
       user,
     };
 
-    mutate(payload);
+    mutate(payload, true);
   };
 
   const submitFn = handleSubmit(onSubmit);

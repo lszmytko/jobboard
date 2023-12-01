@@ -2,6 +2,7 @@ import { User } from "@/app/api/models/User";
 
 export type Offer = {
   _id: string;
+  user: string;
   post: string;
   company: string;
   city: string;

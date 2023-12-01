@@ -19,7 +19,7 @@ export async function GET(req: AxiosRequestHeaders) {
   await connectToDatabase();
 
   const isActive = req.nextUrl.searchParams.get("isActive");
-  const page = req.nextUrl.searchParams.get("page");
+  const page = req.nextUrl.searchParams.get("page") ?? "1";
   const city = req.nextUrl.searchParams.get("city");
   const postOrCompany = req.nextUrl.searchParams.get("postOrCompany");
 

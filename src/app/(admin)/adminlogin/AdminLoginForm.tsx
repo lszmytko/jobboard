@@ -65,7 +65,9 @@ const AdminLoginForm = () => {
         </form>
       </div>
       {isLoading ? <p>Ładowanie...</p> : null}
-      {isError ? <p>Wystąpił błąd...</p> : null}
+      {isError ? (
+        <p className="text-red text-center">Wystąpił błąd...</p>
+      ) : null}
     </div>
   );
 };

@@ -3,19 +3,24 @@ import axios from "axios";
 import { Offer } from "@/common/types";
 import { getUserToken } from "@/utils/utils";
 
-export const editOffer = async (data: Offer) => {
-  const token = getUserToken();
-  const finalData = { ...data };
+export const editOffer = async (data: Offer, withToken?: boolean) => {
+  const token = withToken ? getUserToken() : null;
 
   console.log("*** editOffer");
 
+  const headers = token
+    ? {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    : {};
+
   const response = await axios.request({
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    ...headers,
     method: "PUT",
-    url: `http://localhost:3000/api/editofferr`,
-    data: finalData,
+    url: `http://localhost:3000/api/editoffer`,
+    data,
   });
 
   console.log("*** editOffer response", response);

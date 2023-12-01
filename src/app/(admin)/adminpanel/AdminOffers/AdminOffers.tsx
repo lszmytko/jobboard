@@ -4,11 +4,10 @@ import { useState } from "react";
 import React from "react";
 import Modal from "react-modal";
 
-import AdvCard from "@/components/AdvCard";
 import { Offer } from "@/common/types";
 
-import DeleteOffer from "./DeleteOffer";
-import OfferDetails from "./OfferDetails";
+import OfferDetails from "./OfferDetails/OfferDetails";
+import AdminOffer from "./AdminOffer";
 
 const mockData = {
   id: Math.floor(Math.random() * 1000),
@@ -66,67 +65,17 @@ const AdminOffers = ({ data }: { data: Offer[] }) => {
   return (
     <>
       <div className="mt-4">
-        {/* {data.map((item) => {
-        const {
-          post,
-          company,
-          city,
-          address,
-          postLevel,
-          experience,
-          agreementType,
-          workingTime,
-          timeOfPosting,
-          tasks,
-          requirements,
-          isActive,
-        } = item;
-        return (
-          <div className="">
-            <p>Stanowisko: {post}</p>
-            <p>Firma: {post}</p>
-            <p>ID oferty: {id}</p>
-            <p>Czy aktywne: {isActive ? "tak" : "nie"}</p>
-          </div>
-        );
-      })} */}
-
-        <div
-          className="flex border-2 border-solid p-2 border-primary"
-          key={Math.random()}
-        >
-          <div className="">
-            <p>Stanowisko: {mockData.post}</p>
-            <p>Firma: {mockData.post}</p>
-            <p>ID oferty: {mockData.id}</p>
-            <p>Czy aktywne: {mockData.isActive ? "tak" : "nie"}</p>
-          </div>
-          <div className="options flex flex-col p-1">
-            <div className="option basis-2/4 flex justify-center align-center">
-              <button
-                className=" cursor-pointer"
-                onClick={() => openDetailsModal(offerID)}
-              >
-                Edytuj
-              </button>
-            </div>
-            <div
-              className="option basis-2/4 flex justify-center align-center"
-              onClick={() => openDeleteModal("654615b8d529d6cb5bee1cf4")}
-            >
-              <button className="option basis-2/4 cursor-pointer">Usuń</button>
-            </div>
-          </div>
-        </div>
+        {data.map((item) => {
+          return (
+            <AdminOffer
+              details={item}
+              openDetailsModal={openDetailsModal}
+              openDeleteModal={openDeleteModal}
+              key={item._id}
+            />
+          );
+        })}
       </div>
-      <Modal
-        isOpen={isDeleteModalOpen}
-        onRequestClose={closeDeleteModal}
-        style={customStyles}
-        contentLabel="Delete Modal"
-      >
-        <DeleteOffer closeDeleteModal={closeDeleteModal} offerID={offerID} />
-      </Modal>
       <Modal
         isOpen={isDetailsModalOpen}
         onRequestClose={closeDetailsModal}
