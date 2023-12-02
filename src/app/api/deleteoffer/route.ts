@@ -16,6 +16,7 @@ export async function DELETE(req: AxiosRequestHeaders) {
 
   const offerID = req.nextUrl.searchParams.get("offerID");
 
+  console.log("*** request", offerID);
   const response = schema.safeParse({ offerID });
 
   if (!response.success) {
@@ -27,19 +28,10 @@ export async function DELETE(req: AxiosRequestHeaders) {
     });
   }
 
-  //   const isAuthorized = auth(req);
-
-  //   if (!isAuthorized) {
-  //     return NextResponse.json(
-  //       { message: "You are not authorized" },
-  //       { status: 403 }
-  //     );
-  //   }
-
   const deletedOffer = await Offer.findOneAndDelete({ _id: offerID });
 
   if (!deletedOffer) {
-    return NextResponse.json({ error: "No such user" }, { status: 403 });
+    return NextResponse.json({ error: "No such offer" }, { status: 403 });
   }
 
   return NextResponse.json(

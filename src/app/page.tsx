@@ -18,7 +18,7 @@ export default function Home() {
 
   const { isLoading, data, isError } = useQuery({
     queryKey: ["fetchAllOffers"],
-    queryFn: () => fetchAllOffers(true, params),
+    queryFn: () => fetchAllOffers({ isActive: true, params }),
   });
 
   const offers = data?.data?.offers;

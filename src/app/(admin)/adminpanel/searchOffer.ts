@@ -17,9 +17,6 @@ export const searchOffer = async ({
       company,
       offerID,
     },
-    // headers: {
-    //   Authorization: `Bearer ${userToken}`,
-    // },
   });
 
   return response;

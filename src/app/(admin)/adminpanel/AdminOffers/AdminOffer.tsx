@@ -1,6 +1,10 @@
 import { Offer } from "@/common/types";
 import React from "react";
 
+const paragraphStyle = "text-xs 0 mb-2";
+const activeStyle = "text-green-500";
+const inActiveStyle = "text-red-500";
+
 const AdminOffer = ({
   details,
   openDetailsModal,
@@ -11,31 +15,38 @@ const AdminOffer = ({
   openDeleteModal: any;
 }) => {
   const { post, city, company, _id, isActive } = details;
+
   return (
     <div
-      className="flex border-2 border-solid p-2 border-primary mb-2"
+      className="flex justify-between max-w-sm p-4 gap-4 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 mb-4"
       key={Math.random()}
     >
-      <div className="">
-        <p>Stanowisko: {post}</p>
-        <p>Firma: {company}</p>
-        <p>ID oferty: {_id}</p>
-        <p>Czy aktywne: {isActive ? "tak" : "nie"}</p>
+      <div>
+        <p className={paragraphStyle}>Stanowisko: {post}</p>
+        <p className={paragraphStyle}>Firma: {company}</p>
+        <p className={paragraphStyle}>ID oferty: {_id}</p>
+        <p className={paragraphStyle}>
+          Status:{" "}
+          <span className={`${isActive ? activeStyle : inActiveStyle}`}>
+            {" "}
+            {isActive ? "Aktywne" : "Niekatywne"}
+          </span>
+        </p>
       </div>
-      <div className="options flex flex-col p-1">
-        <div className="option basis-2/4 flex justify-center align-center">
+      <div className="options flex flex-col">
+        <div className="option basis-2/4 flex justify-start">
           <button
-            className=" cursor-pointer"
+            className="flex cursor-pointer align-start"
             onClick={() => openDetailsModal(_id)}
           >
             Edytuj
           </button>
         </div>
         <div
-          className="option basis-2/4 flex justify-center align-center"
-          onClick={() => openDeleteModal("654615b8d529d6cb5bee1cf4")}
+          className="option basis-2/4 flex justify-end"
+          onClick={() => openDeleteModal(_id)}
         >
-          <button className="option basis-2/4 cursor-pointer">Usuń</button>
+          <button className="flex cursor-pointer align-start">Usuń</button>
         </div>
       </div>
     </div>

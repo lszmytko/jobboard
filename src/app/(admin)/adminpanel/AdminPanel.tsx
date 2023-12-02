@@ -1,36 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AdminOffers from "./AdminOffers";
 import AdminSearchOffer from "./AdminSearchOffer";
 import { Offer } from "@/common/types";
 import { useQuery } from "@tanstack/react-query";
 import FullPageLoader from "@/components/loaders/FullPageLoader";
 import { fetchAllOffers } from "@/components/AdvSection/fetchAllOffers";
+import Pagination from "./Pagination";
+import { useSearchParams } from "next/navigation";
 
 const AdminPanel = () => {
   const [offerData, setOfferData] = useState<Offer[]>([]);
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page") ?? "1";
+  const company = searchParams.get("company") ?? "";
+  const offerID = searchParams.get("offerID") ?? "";
 
-  const { isLoading, isError, data, error } = useQuery({
+  const { isLoading, isError, data, error, refetch } = useQuery({
     queryKey: ["adminUserOffers"],
-    queryFn: () => fetchAllOffers(),
+    queryFn: () => fetchAllOffers({ params: { page, company, offerID } }),
     onSuccess: (data) => {
       setOfferData(data.data.offers);
     },
   });
 
-  console.log("*** data", data);
+  useEffect(() => {
+    refetch();
+  }, [page, offerID, company]);
 
   if (isLoading) return <FullPageLoader />;
   if (isError) return <div>Coś poszło nie tak...</div>;
 
-  const offers = data.data.offers;
-  const areOffers = offers?.length > 0;
+  const pages = data.data.pages;
 
   return (
     <div>
       <AdminSearchOffer setOfferData={setOfferData} />
       <AdminOffers data={offerData} />
+      <Pagination pages={pages} />
     </div>
   );
 };

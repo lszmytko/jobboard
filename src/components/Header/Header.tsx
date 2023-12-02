@@ -19,6 +19,8 @@ const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
 
+  console.log("*** pathname", pathname);
+
   const notify = () => toast.success("Wylogowanie zakończone sukcesem");
 
   const handleLogout = () => {
@@ -29,8 +31,10 @@ const Header = () => {
     notify();
   };
 
+  if (pathname.startsWith("/adminpanel")) return null;
+
   return (
-    <div className="w-screen flex justify-center">
+    <div className="w-screen flex justify-center sm:mt-4">
       <HamburgerMenu />
 
       <div

@@ -22,6 +22,10 @@ export async function GET(req: AxiosRequestHeaders) {
   const page = req.nextUrl.searchParams.get("page") ?? "1";
   const city = req.nextUrl.searchParams.get("city");
   const postOrCompany = req.nextUrl.searchParams.get("postOrCompany");
+  const company = req.nextUrl.searchParams.get("company");
+  const offerID = req.nextUrl.searchParams.get("offerID");
+
+  console.log("*** company", company);
 
   const response = schema.safeParse({ isActive, page, city, postOrCompany });
 
@@ -41,6 +45,10 @@ export async function GET(req: AxiosRequestHeaders) {
   filter = isActive ? { ...filter, isActive } : { ...filter };
   filter = city ? { ...filter, city } : { ...filter };
   filter = postOrCompany ? { ...filter, postOrCompany } : { ...filter };
+  filter = company ? { ...filter, company } : { ...filter };
+  filter = offerID ? { ...filter, offerID } : { ...filter };
+
+  console.log("*** przeeeeeszło", filter);
 
   try {
     numberOfOffers = await Offer.find(filter).count();

@@ -7,5 +7,8 @@ export const loginAdmin = async (data: { name: string; password: string }) => {
     ...data,
   });
 
+  if (response.data.token)
+    localStorage.setItem("adminToken", response.data.token);
+
   return response;
 };
