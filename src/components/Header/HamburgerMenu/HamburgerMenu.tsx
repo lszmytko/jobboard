@@ -15,7 +15,7 @@ const HamburgerMenu = () => {
   const handleClick = () => setExtended((prev) => !prev);
 
   return (
-    <div className="sm:hidden absolute top-0 left-0">
+    <div className="">
       <div className="absolute left-2 top-5">
         <GiHamburgerMenu
           size={30}
@@ -24,7 +24,7 @@ const HamburgerMenu = () => {
         />
       </div>
       <aside
-        className={`relative ${hiddenStyles} w-60 bg-primary-light rounded-br-lg`}
+        className={`sm:hidden absolute top-0 left-0 ${hiddenStyles} w-60 bg-primary-light rounded-br-lg`}
       >
         <div className="flex justify-end p-3">
           <GrClose

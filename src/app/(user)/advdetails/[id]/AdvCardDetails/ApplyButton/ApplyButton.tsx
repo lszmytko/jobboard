@@ -8,7 +8,7 @@ const ApplyButton = ({
   offerID: string;
 }) => {
   const subject = `[Twoje imię i nazwisko] Stanowisko: ${post} ID stanowiska: ${offerID}`;
-  const emailBody = `Szanowni Państwo, wysyłam swoją aplikację na stanowisko ${post}, ID stanowiska: ${offerID}`;
+  const emailBody = `Szanowni Państwo, w odpowiedzi na ofertę pracy na protalu VetTechKariera przesyłam swoją aplikację na stanowisko ${post}, ID stanowiska: ${offerID}`;
 
   return (
     <button

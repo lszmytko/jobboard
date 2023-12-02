@@ -19,7 +19,6 @@ const Presentation = ({ requirements, tasks }: PresentationProps) => {
       <Job />
       <List data={requirements} title="Zakres obowiązków" />
       <List data={tasks} title="Wymagania" />
-      {/* <List data={data} title="Nasza oferta" /> */}
     </div>
   );
 };

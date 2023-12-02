@@ -1,4 +1,4 @@
-const detailStyle = "mb-2 font-thin";
+const detailStyle = "mb-2 font-light";
 
 const EmailData = ({ mail, post }: { mail: string; post: string }) => {
   return (

@@ -6,9 +6,19 @@ import { FaRegHandshake, FaBuilding } from "react-icons/fa";
 import Detail from "./Detail";
 import { Offer } from "@/common/types";
 
-type SummaryProps = Pick<Offer, "post" | "company" | "city" | "address">;
+type SummaryProps = Pick<
+  Offer,
+  "post" | "company" | "city" | "address" | "experience" | "workingTime"
+>;
 
-const Summary = ({ post, company, city, address }: SummaryProps) => {
+const Summary = ({
+  post,
+  company,
+  city,
+  address,
+  experience,
+  workingTime,
+}: SummaryProps) => {
   return (
     <div className="text-sky-900 shadow-xl overflow-hidden">
       <div className="p-2">
@@ -28,10 +38,10 @@ const Summary = ({ post, company, city, address }: SummaryProps) => {
         </div>
       </div>
       <div className="sm:flex text-sm border-y-2">
-        <Detail info="1/3 lat doświadczenia">
+        <Detail info={experience}>
           <GrUserWorker />
         </Detail>
-        <Detail info="pełny etat">
+        <Detail info={workingTime}>
           <PiSuitcaseSimpleFill />
         </Detail>
         <Detail info="umowa o pracę" isLast={true}>

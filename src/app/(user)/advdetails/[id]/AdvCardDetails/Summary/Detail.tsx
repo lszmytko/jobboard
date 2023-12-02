@@ -4,12 +4,14 @@ const Detail = ({
   isLast,
 }: {
   children: React.ReactNode;
-  info: string;
+  info: string | ("pełen etat" | "część etatu")[];
   isLast?: boolean;
 }) => {
   const border = !isLast
     ? "border-b-2 sm:border-b-0 border-r-0 sm:border-r-2"
     : "";
+
+  console.log("*** info", info);
 
   return (
     <div className={`${border} px-3 py-1 grow`}>

@@ -1,14 +1,14 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { usePathname } from "next/navigation";
 
 import ApplyButton from "./ApplyButton";
 import Presentation from "./Presentation";
 import EmailData from "./EmailData";
 import Summary from "./Summary";
 import { fetchSingleOffer } from "./fetchSingleOffer";
-import { usePathname } from "next/navigation";
-import UserNames from "./UserNames";
+import FullPageLoader from "@/components/loaders/FullPageLoader";
 
 const AdvCardDetails = () => {
   const pathname = usePathname();
@@ -20,7 +20,8 @@ const AdvCardDetails = () => {
     queryFn: () => fetchSingleOffer(id),
   });
 
-  if (isError || !data) return <div>Coś poszło nie tak...</div>;
+  if (isError) return <div>Coś poszło nie tak...</div>;
+  if (isLoading) return <FullPageLoader />;
 
   const {
     post,
@@ -29,16 +30,24 @@ const AdvCardDetails = () => {
     address,
     tasks,
     requirements,
+    experience,
     _id: offerID,
-  } = data?.data.offer;
+    workingTime,
+  } = data?.data?.offer || {};
 
   return (
-    <div className="flex justify-center max-w-5xl border-orange-300 border-2">
+    <div className="flex justify-center max-w-5xl border-orange-300 border-2 shadow-lg rounded mt-4 ">
       <div>
-        <Summary post={post} company={company} city={city} address={address} />
+        <Summary
+          post={post}
+          company={company}
+          city={city}
+          address={address}
+          experience={experience}
+          workingTime={workingTime}
+        />
         <div className="p-2 bg-gray-100">
           <Presentation tasks={tasks} requirements={requirements} />
-          <UserNames />
           <div className="mb-2 mt-4 flex justify-center">
             <ApplyButton
               offerID={offerID}
