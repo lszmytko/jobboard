@@ -3,23 +3,6 @@
 import AdvCard from "../AdvCard";
 import { Offer } from "@/common/types";
 
-//TODO: remove mock data
-const mockData = {
-  id: "65566d591bd665199b6cb8fd",
-  post: "Technik weterynarii",
-  company: "VetTech sp. z. o.o.",
-  city: "Warszawa",
-  address: "ul. Szlenkierów 6/1",
-  postLevel: "Kierownik",
-  experience: "1-3 lata",
-  agreementType: "UoP",
-  workingTime: "pełen etat",
-  timeOfPosting: "1 godz.",
-} as const;
-
-//TODO: remove mock data
-const mockArray = [mockData, mockData, mockData, mockData, mockData, mockData];
-
 const AdvSection = ({
   offers,
   isLoading,
@@ -27,7 +10,7 @@ const AdvSection = ({
   offers: Offer[] | undefined;
   isLoading: boolean;
 }) => {
-  if (isLoading) return <div>Chwilka...</div>;
+  if (isLoading) return <div className="text-center">Chwilka...</div>;
   if (offers?.length === 0)
     return (
       <section className="flex justify-center p-2 mt-8">
@@ -66,7 +49,7 @@ const AdvSection = ({
                 agreementType={agreementType}
                 workingTime={workingTime}
                 timeOfPosting={timeOfPosting}
-                id={_id}
+                _id={_id}
               />
             </div>
           );

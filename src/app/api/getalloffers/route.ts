@@ -42,17 +42,30 @@ export async function GET(req: AxiosRequestHeaders) {
   let numberOfOffers: number;
 
   let filter = {};
+  filter = company
+    ? { ...filter, company: { $regex: company, $options: "i" } }
+    : { ...filter };
+  filter = offerID
+    ? { ...filter, offerID: { $regex: offerID, $options: "i" } }
+    : { ...filter };
   filter = isActive ? { ...filter, isActive } : { ...filter };
   filter = city ? { ...filter, city } : { ...filter };
-  filter = postOrCompany ? { ...filter, postOrCompany } : { ...filter };
-  filter = company ? { ...filter, company } : { ...filter };
-  filter = offerID ? { ...filter, offerID } : { ...filter };
+  const filterWithCompany = postOrCompany
+    ? { ...filter, company: { $regex: postOrCompany, $options: "i" } }
+    : { ...filter };
+  const filterWithPost = postOrCompany
+    ? { ...filter, post: { $regex: postOrCompany, $options: "i" } }
+    : { ...filter };
 
-  console.log("*** przeeeeeszło", filter);
+  const finalFilter = {
+    $or: [filterWithCompany, filterWithPost],
+  };
+
+  console.log("*** przeeeeeszło", finalFilter);
 
   try {
-    numberOfOffers = await Offer.find(filter).count();
-    offers = await Offer.find(filter)
+    numberOfOffers = await Offer.find(finalFilter).count();
+    offers = await Offer.find(finalFilter)
       .skip((page - 1) * 15)
       .limit(ITEMS_PER_PAGE);
   } catch (e) {

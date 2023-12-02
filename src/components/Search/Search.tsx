@@ -9,7 +9,7 @@ type SearchInputs = {
   city: string;
 };
 
-const Search = () => {
+const Search = ({ remove }: { remove: any }) => {
   const {
     register,
     handleSubmit,
@@ -25,7 +25,13 @@ const Search = () => {
       params = params + `&postOrCompany=${data.postOrCompany}`;
     if (data.city) params = params + `&city=${data.city}`;
 
+    remove();
     router.push(params);
+  };
+
+  const resetCriteria = () => {
+    router.push("/");
+    remove();
   };
 
   return (
@@ -59,6 +65,14 @@ const Search = () => {
         </form>
       </div>
       <DevTool control={control} />
+      <div className="flex justify-center">
+        <button
+          onClick={resetCriteria}
+          className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
+        >
+          Resetuj kryteria
+        </button>
+      </div>
     </>
   );
 };

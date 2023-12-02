@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import Pagination from "@/components/Pagination";
 import AdvSection from "../components/AdvSection";
 import Search from "../components/Search";
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllOffers } from "@/components/AdvSection/fetchAllOffers";
+import { useEffect } from "react";
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -16,7 +16,7 @@ export default function Home() {
 
   const params = { page, city, postOrCompany };
 
-  const { isLoading, data, isError } = useQuery({
+  const { isLoading, data, isError, remove } = useQuery({
     queryKey: ["fetchAllOffers"],
     queryFn: () => fetchAllOffers({ isActive: true, params }),
   });
@@ -26,11 +26,11 @@ export default function Home() {
 
   return (
     <>
-      <Search />
+      <Search remove={remove} />
       {!isError ? (
         <>
           <AdvSection offers={offers} isLoading={isLoading} />
-          <Pagination pages={pages} />
+          <Pagination pages={pages} remove={remove} />
         </>
       ) : null}
     </>

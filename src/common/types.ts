@@ -15,6 +15,7 @@ export type Offer = {
   tasks: string[];
   requirements: string[];
   isActive: boolean;
+  timeOfPosting: string;
 };
 
 export type User = {

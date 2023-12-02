@@ -3,7 +3,19 @@ import Link from "next/link";
 import { Offer } from "@/common/types";
 import { paths } from "@/common/paths";
 
-type AdvCardProps = Omit<Offer & { timeOfPosting: string }, "offerText">;
+type AdvCardProps = Pick<
+  Offer,
+  | "post"
+  | "company"
+  | "city"
+  | "address"
+  | "postLevel"
+  | "experience"
+  | "agreementType"
+  | "workingTime"
+  | "timeOfPosting"
+  | "_id"
+>;
 
 const AdvCard = ({
   post,
@@ -15,11 +27,17 @@ const AdvCard = ({
   agreementType,
   workingTime,
   timeOfPosting,
-  id,
+  _id,
 }: AdvCardProps) => {
+  const parsedTime = new Date(timeOfPosting).toLocaleDateString("pl-PL", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <div className="max-w-2xl w-full  border-orange-300 border-2 rounded-lg bg-gray-100 shadow-xl overflow-hidden">
-      <Link href={`${paths.advdetails}/${id}`}>
+      <Link href={`${paths.advdetails}/${_id}`}>
         <div className="p-4">
           <p className="text-xl font-bold mb-4">{post}</p>
           <div className="text-xs flex gap-2 mb-4 flex-wrap">
@@ -36,7 +54,7 @@ const AdvCard = ({
         </div>
         <div className="h-px bg-primary-light"></div>
         <div className="flex justify-between text-xs px-4 py-2">
-          <p>{timeOfPosting}</p>
+          <p>{parsedTime}</p>
           <p>szczegóły</p>
         </div>
       </Link>
