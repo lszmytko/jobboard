@@ -34,11 +34,8 @@ const OfferList = () => {
 
   return (
     <div>
-      <h1 className="text-center font-bold mb-6 text-2xl text-primary">
-        Twoje ogłoszenia
-      </h1>
       {!areOffers ? (
-        <div>Brak ogłoszeń.</div>
+        <div className="text-center">Brak ogłoszeń.</div>
       ) : (
         <div>
           {offers.map((item) => {

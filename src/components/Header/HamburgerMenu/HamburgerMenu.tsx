@@ -16,7 +16,7 @@ const HamburgerMenu = () => {
 
   return (
     <div className="">
-      <div className="absolute left-2 top-5">
+      <div className="absolute left-2 top-5 sm:hidden">
         <GiHamburgerMenu
           size={30}
           className={`${extended ? "hidden" : ""} cursor-pointer text-white`}

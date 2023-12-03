@@ -19,12 +19,14 @@ const EmployerPanel = () => {
   const [option, setOption] = useState<EmployerPanelOptions>("userData");
 
   return (
-    <div className="mt-4 flex max-md:flex-col gap-4 md:gap-12">
-      <Menu handleToggle={setOption} option={option} />
-      <div className="grow">
-        {option === "offerForm" && <AddOfferForm />}
-        {option === "userOffers" && <OfferList />}
-        {option === "userData" && <Info />}
+    <div className="flex justify-center mt-8">
+      <div className="w-96 sm:w-3/4 max-w-[700px]">
+        <Menu handleToggle={setOption} option={option} />
+        <div className="w-full mt-8">
+          {option === "offerForm" && <AddOfferForm />}
+          {option === "userOffers" && <OfferList />}
+          {option === "userData" && <Info />}
+        </div>
       </div>
     </div>
   );

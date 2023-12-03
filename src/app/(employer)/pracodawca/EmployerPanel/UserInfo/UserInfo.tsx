@@ -75,7 +75,7 @@ const UserInfo = () => {
   if (isQueryLoading) return <FullPageLoader />;
 
   return (
-    <>
+    <div className="p-2">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label>
@@ -125,7 +125,10 @@ const UserInfo = () => {
                 name="phoneNumber"
                 control={control}
                 rules={{ required: true }}
-                className="w-full py-2 px-1 rounded-lg"
+                defaultCountry="PL"
+                // className="w-full py-2 px-1 rounded-lg"
+                className="phoneInput"
+                // style={{ padding: "8px" }}
               />
             </div>
           </label>
@@ -145,14 +148,14 @@ const UserInfo = () => {
         ) : (
           <input
             type="submit"
-            className="py-2 px-4 mt-2 rounded-lg bg-primary-light font-semibold cursor-pointer text-white"
+            className="py-2 px-4 mt-2 rounded-lg bg-primary-light font-semibold cursor-pointer text-white w-full"
             value="Prześlij"
           />
         )}
         {Object.keys(errors).length > 0 && <p>Wypełnij wszystkie pola</p>}
       </form>
       {isMutationError ? <p>Coś poszło nie tak...</p> : null}
-    </>
+    </div>
   );
 };
 

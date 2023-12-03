@@ -11,8 +11,8 @@ const Menu = ({
   option: EmployerPanelOptions;
 }) => {
   return (
-    <aside className="md:pt-32 md:px-8 md:w-1/6 flex md:block text-sm">
-      <div className="flex justify-center grow">
+    <section className="flex text-sm justify-center gap-4">
+      <div className="flex justify-center">
         <button
           className={`p-4 text-primary ${
             option === "offerForm" && activeOptionStyles
@@ -24,7 +24,7 @@ const Menu = ({
           ogłoszenie
         </button>
       </div>
-      <div className="flex justify-center grow">
+      <div className="flex justify-center">
         <button
           className={`p-4 text-primary ${
             option === "userOffers" && activeOptionStyles
@@ -36,7 +36,7 @@ const Menu = ({
           ogłoszenia
         </button>
       </div>
-      <div className="flex justify-center grow">
+      <div className="flex justify-center">
         <button
           className={`p-4 text-primary ${
             option === "userData" && activeOptionStyles
@@ -45,10 +45,10 @@ const Menu = ({
         >
           Twoje
           <br />
-          dane
+          konto
         </button>
       </div>
-    </aside>
+    </section>
   );
 };
 

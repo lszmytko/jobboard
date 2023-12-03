@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { getUserFromLocalStorage } from "@/utils/utils";
@@ -12,9 +12,10 @@ import Experience from "./Elements/Experience";
 import AgreementType from "./Elements/AgreementType";
 import WorkingTime from "./Elements/WorkingTime";
 import { addOffer } from "./addOffer";
-import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
 import { fetchUserData } from "../EmployerPanel/UserInfo/utils";
 import InputLoader from "@/components/loaders/InputLoader";
+import Input from "./Input/Input";
+import InputGroup from "./InputGroup/InputGroup";
 
 export type Inputs = Omit<Offer, "requirements" | "tasks"> & {
   tasks: { name: string }[];
@@ -57,26 +58,6 @@ const AddOfferForm = () => {
     },
   });
 
-  const {
-    fields: taskFields,
-    append: taskAppend,
-    remove: taskRemove,
-  } = useFieldArray({
-    control,
-    name: "tasks",
-    rules: { required: true, minLength: 1 },
-  });
-
-  const {
-    fields: requirementFields,
-    append: requirementAppend,
-    remove: requirementRemove,
-  } = useFieldArray({
-    control,
-    name: "requirements",
-    rules: { required: true, minLength: 1 },
-  });
-
   const onSubmit: SubmitHandler<Inputs> = (data, event) => {
     const parsedRequirements = data.requirements.map(
       (requirement) => requirement.name
@@ -103,102 +84,44 @@ const AddOfferForm = () => {
   const submitFn = handleSubmit(onSubmit);
 
   return (
-    <div className="max-w-3xl w-full p-2 pt-0">
-      <h1 className="mb-4 text-center text-primary font-semibold text-2xl">
-        Nowe ogłoszenie
-      </h1>
+    <div className="max-w-3xl w-full p-2">
       <form onSubmit={submitFn}>
-        <input
+        <Input
+          register={register}
           placeholder="Nazwa stanowiska"
-          {...register("post", { required: true })}
-          className="block w-full mb-4 p-2"
+          inputName="post"
         />
-        <input
-          {...register("company", { required: true })}
+        <Input
+          register={register}
           placeholder="Nazwa firmy"
-          className="block w-full mb-4 p-2"
+          inputName="company"
         />
-        <input
-          {...register("city", { required: true })}
-          placeholder="Miasto"
-          className="block w-full mb-4 p-2"
-        />
-        <input
-          {...register("address", { required: true })}
+        <Input register={register} placeholder="Miasto" inputName="city" />
+        <Input
+          register={register}
           placeholder="Ulica i numer mieszkania"
-          className="block w-full mb-4 p-2"
+          inputName="address"
         />
-        <input
-          {...register("postLevel", { required: true })}
+        <Input
+          register={register}
           placeholder="Stopień stanowiska"
-          className="block w-full mb-4 p-2"
+          inputName="postLevel"
         />
         <Experience register={register} />
         <AgreementType register={register} />
         <WorkingTime register={register} />
-
-        <div className="mb-4">
-          <h1 className="mb-1 font-semibold capitalize text-primary text-center">
-            Zadania
-          </h1>
-          {taskFields.map((field, index) => (
-            <div className="flex gap-2 mb-4" key={field.id}>
-              <input
-                type="text"
-                {...register(`tasks.${index}.name`, { required: true })}
-                className="text-xl grow px-2"
-                defaultValue={field.name}
-              />
-              <IoIosAddCircle
-                className="cursor-pointer"
-                size={38}
-                onClick={() => {
-                  taskAppend({ name: "" });
-                }}
-              />
-              <IoIosRemoveCircle
-                className="cursor-pointer"
-                size={38}
-                onClick={() => {
-                  taskRemove(index);
-                }}
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="mb-4">
-          <h1 className="mb-1 font-semibold capitalize text-primary text-center">
-            Wymagania
-          </h1>
-          {requirementFields.map((field, index) => (
-            <div className="flex gap-2 mb-4" key={field.id}>
-              <input
-                type="text"
-                {...register(`requirements.${index}.name`, {
-                  required: true,
-                })}
-                className="text-xl grow px-2"
-                defaultValue={field.name}
-              />
-              <IoIosAddCircle
-                className="cursor-pointer"
-                size={38}
-                onClick={() => {
-                  requirementAppend({ name: "" });
-                }}
-              />
-              <IoIosRemoveCircle
-                className="cursor-pointer"
-                size={38}
-                onClick={() => {
-                  requirementRemove(index);
-                }}
-              />
-            </div>
-          ))}
-        </div>
-
+        <InputGroup
+          control={control}
+          name="tasks"
+          register={register}
+          title="Zadania"
+        />
+        <InputGroup
+          control={control}
+          name="requirements"
+          register={register}
+          title="Wymagania"
+        />
         <div>
           <h1 className="text-primary text-center font-semibold mb-2">
             Dodatkowa treść ogłoszenia

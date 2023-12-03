@@ -1,15 +1,15 @@
 import React from "react";
-import { Control, useFieldArray } from "react-hook-form";
+import { Control, FieldArrayWithId, useFieldArray } from "react-hook-form";
 import { IoIosAddCircle, IoIosRemoveCircle } from "react-icons/io";
-import { OfferDetailsInputs } from "./OfferDetails";
+import { Inputs } from "../AddOfferForm";
 
-const OfferDetailsGroup = ({
+const InputGroup = ({
   control,
   name,
   register,
   title,
 }: {
-  control: Control<OfferDetailsInputs> | undefined;
+  control: Control<Inputs> | undefined;
   name: "tasks" | "requirements";
   register: any;
   title: string;
@@ -29,7 +29,9 @@ const OfferDetailsGroup = ({
         <div className="flex gap-2 mb-4" key={field.id}>
           <input
             type="text"
-            {...register(`${name}.${index}.name`, { required: true })}
+            {...register(`${name}.${index}.name`, {
+              required: true,
+            })}
             className="text-xl grow px-2"
             defaultValue={field.name}
           />
@@ -53,4 +55,4 @@ const OfferDetailsGroup = ({
   );
 };
 
-export default OfferDetailsGroup;
+export default InputGroup;

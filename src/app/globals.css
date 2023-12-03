@@ -10,4 +10,8 @@ input:focus {
   outline: none;
 }
 
+.phoneInput input{
+  padding: 8px;
+}
+
 /* Toast */
