@@ -14,6 +14,14 @@ export const getUserFromLocalStorage = () => {
   return localStorage.getItem("user");
 };
 
+export const removeUserToken = () => {
+  localStorage.removeItem("userToken");
+};
+
+export const removeUserFromLocalStorage = () => {
+  localStorage.removeItem("user");
+};
+
 export const parseRequirements = (
   requirements: {
     name: string;

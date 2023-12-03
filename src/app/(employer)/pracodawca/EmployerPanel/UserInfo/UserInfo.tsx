@@ -14,6 +14,7 @@ import { fetchUserData, updateUserData } from "./utils";
 import { UserInfo } from "./UserInfo.types";
 import { useEffect, useRef, useState } from "react";
 import FullPageLoader from "@/components/loaders/FullPageLoader";
+import DeleteAccount from "./DeleteAccount/DeleteAccount";
 
 const UserInfo = () => {
   const userID = getUserFromLocalStorage();
@@ -149,12 +150,13 @@ const UserInfo = () => {
           <input
             type="submit"
             className="py-2 px-4 mt-2 rounded-lg bg-primary-light font-semibold cursor-pointer text-white w-full"
-            value="Prześlij"
+            value="Uaktualnij dane"
           />
         )}
         {Object.keys(errors).length > 0 && <p>Wypełnij wszystkie pola</p>}
       </form>
       {isMutationError ? <p>Coś poszło nie tak...</p> : null}
+      <DeleteAccount />
     </div>
   );
 };
