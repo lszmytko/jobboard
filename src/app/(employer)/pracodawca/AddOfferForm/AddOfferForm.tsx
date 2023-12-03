@@ -1,8 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
 import { getUserFromLocalStorage } from "@/utils/utils";
 import { DevTool } from "@hookform/devtools";
 
@@ -11,11 +11,10 @@ import { Offer, User } from "@/common/types";
 import Experience from "./Elements/Experience";
 import AgreementType from "./Elements/AgreementType";
 import WorkingTime from "./Elements/WorkingTime";
-import { addOffer } from "./addOffer";
 import { fetchUserData } from "../EmployerPanel/UserInfo/utils";
-import InputLoader from "@/components/loaders/InputLoader";
 import Input from "./Input/Input";
 import InputGroup from "./InputGroup/InputGroup";
+import Preview from "./Preview/Preview";
 
 export type Inputs = Omit<Offer, "requirements" | "tasks"> & {
   tasks: { name: string }[];
@@ -23,11 +22,11 @@ export type Inputs = Omit<Offer, "requirements" | "tasks"> & {
   requirements: { name: string }[];
 };
 
+export type OfferData = Offer & { user: string | null };
+
 const AddOfferForm = () => {
-  const { isLoading, isError, mutateAsync } = useMutation({
-    mutationFn: addOffer,
-    onSuccess: () => {},
-  });
+  const [shouldShowPreview, setShouldShowPreview] = useState(false);
+  const [offerData, setOfferData] = useState<OfferData | null>(null);
 
   const userID = getUserFromLocalStorage();
 
@@ -64,24 +63,33 @@ const AddOfferForm = () => {
     );
     const parsedTasks = data.tasks.map((task) => task.name);
 
-    const user = getUserFromLocalStorage();
-    const payload = {
+    const user = getUserFromLocalStorage() ?? "";
+    const payload: OfferData = {
       ...data,
       tasks: parsedTasks,
       requirements: parsedRequirements,
       user,
     };
 
-    try {
-      mutateAsync(payload);
-      reset();
-      toast.success("Oferta pomyślnie dodana");
-    } catch (error) {
-      toast.error("Coś poszło nie tak");
-    }
+    console.log("*** payload", payload);
+
+    setShouldShowPreview(true);
+    setOfferData(payload);
   };
 
   const submitFn = handleSubmit(onSubmit);
+
+  if (shouldShowPreview) {
+    const closeModal = () => setShouldShowPreview(false);
+    return (
+      <Preview
+        isOpen={shouldShowPreview}
+        closeModal={closeModal}
+        offerData={offerData as OfferData}
+        reset={reset}
+      />
+    );
+  }
 
   return (
     <div className="max-w-3xl w-full p-2">
@@ -134,21 +142,16 @@ const AddOfferForm = () => {
           />
         </div>
         <div className="flex justify-center">
-          {isLoading ? (
-            <p>Ładowanie...</p>
-          ) : (
-            <input
-              type="submit"
-              className="p-2 text-white bg-primary rounded text-xl cursor-pointer disabled:opacity-50 disabled:cursor-auto"
-              disabled={!isValid}
-            />
-          )}
+          <input
+            type="submit"
+            className="p-2 text-white bg-primary rounded text-xl cursor-pointer disabled:opacity-50 disabled:cursor-auto"
+            disabled={!isValid}
+          />
         </div>
         {Object.values(errors).length > 0 && (
           <div>Napraw błędy w formularzu</div>
         )}
       </form>
-      {isLoading ? <InputLoader /> : null}
       {Object.values(errors).length > 0 && <div>Napraw błędy w formularzu</div>}
       <DevTool control={control} />
     </div>
