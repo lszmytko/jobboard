@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function AdminLayout({
   children,
 }: {
@@ -5,7 +7,9 @@ export default function AdminLayout({
 }) {
   return (
     <section>
-      <header>Admin Header</header>
+      <header className="flex justify-center">
+        <Link href="/adminpanel">Dodaj ofertę</Link>
+      </header>
       {children}
     </section>
   );

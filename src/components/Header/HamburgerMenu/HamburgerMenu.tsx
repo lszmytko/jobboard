@@ -35,7 +35,7 @@ const HamburgerMenu = () => {
         </div>
         <div className="border-t-2 p-1">
           <Link href="/" className="">
-            Praca
+            Oferty pracy
           </Link>
         </div>
         <div className="border-t-2 p-1">

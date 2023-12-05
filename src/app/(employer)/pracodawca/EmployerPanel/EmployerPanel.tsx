@@ -23,7 +23,7 @@ const EmployerPanel = () => {
       <div className="w-96 sm:w-3/4 max-w-[700px]">
         <Menu handleToggle={setOption} option={option} />
         <div className="w-full mt-8">
-          {option === "offerForm" && <AddOfferForm />}
+          {option === "offerForm" && <AddOfferForm creator="employer" />}
           {option === "userOffers" && <OfferList />}
           {option === "userData" && <Info />}
         </div>

@@ -5,8 +5,7 @@ import "react-phone-number-input/style.css";
 import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { ThreeDots } from "react-loader-spinner";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "sonner";
 
 import { getUserFromLocalStorage } from "@/utils/utils";
 

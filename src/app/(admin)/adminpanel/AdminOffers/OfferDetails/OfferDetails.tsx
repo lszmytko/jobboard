@@ -37,9 +37,11 @@ const EditForm = ({ offerID }: { offerID: string }) => {
     isLoading: isMutationLoading,
   } = useMutation({
     mutationFn: editOffer,
-    onSuccess: () => {},
+    onSuccess: () => {
+      toast.error("Oferta zaktualizowana");
+    },
     onError: () => {
-      toast.error("Coś poszło nie tak");
+      toast.success("Coś poszło nie tak");
     },
   });
 

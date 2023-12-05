@@ -24,23 +24,49 @@ export type Inputs = Omit<Offer, "requirements" | "tasks"> & {
 
 export type OfferData = Offer & { user: string | null };
 
-const AddOfferForm = () => {
-  const [shouldShowPreview, setShouldShowPreview] = useState(false);
-  const [offerData, setOfferData] = useState<OfferData | null>(null);
+const AddOfferForm = ({
+  creator,
+  selectedUser,
+}: {
+  creator: "employer" | "admin";
+  selectedUser?: string;
+}) => {
+  const userID =
+    creator === "employer" ? getUserFromLocalStorage() : selectedUser;
 
-  const userID = getUserFromLocalStorage();
+  console.log("*** userID", userID);
 
-  const {
-    isLoading: isQueryLoading,
-    data,
-    error,
-  } = useQuery({
+  const { isLoading, data, error } = useQuery({
     queryKey: ["todos", userID],
     queryFn: () => fetchUserData(userID || ""),
   });
 
+  if (isLoading) return <div>Ładowanie...</div>;
   const { companyName, city, street, flatNumber } = data?.data?.user as User;
 
+  return (
+    <AddOfferFormUI
+      companyName={companyName}
+      city={city}
+      street={street}
+      flatNumber={flatNumber}
+    />
+  );
+};
+
+const AddOfferFormUI = ({
+  companyName,
+  city,
+  street,
+  flatNumber,
+}: {
+  companyName: string;
+  city: string;
+  street: string;
+  flatNumber: string;
+}) => {
+  const [shouldShowPreview, setShouldShowPreview] = useState(false);
+  const [offerData, setOfferData] = useState<OfferData | null>(null);
   const {
     register,
     handleSubmit,

@@ -45,7 +45,7 @@ const Header = () => {
         </div>
         <div className="max-sm:hidden flex gap-2">
           <Link href="/" className="bg-primary rounded px-2">
-            Praca
+            Oferty pracy
           </Link>
           <Link href={paths.employer}>Panel pracodawcy</Link>
           <a
