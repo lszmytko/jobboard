@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { handleDeleteOffer } from "./handleDeleteOffer";
 
 type DeleteOfferPRops = {

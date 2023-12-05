@@ -2,7 +2,7 @@
 
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import {
   getUserFromLocalStorage,
   parseRequirements,

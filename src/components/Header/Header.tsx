@@ -9,7 +9,7 @@ import Logo from "./Logo";
 import HamburgerMenu from "./HamburgerMenu";
 import { checkIfUserIsLoggedIn } from "@/utils/utils";
 import { usePathname, useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 

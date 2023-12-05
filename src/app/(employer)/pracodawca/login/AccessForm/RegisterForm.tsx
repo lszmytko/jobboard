@@ -1,8 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "sonner";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ThreeDots } from "react-loader-spinner";

@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "sonner";
 
 import Providers from "./providers";
 
@@ -25,8 +25,13 @@ export default function RootLayout({
       <body className={`${poppins.className} bg-slate-100 text-dark-blue`}>
         <Providers>
           <div className="">{children}</div>
-          <ToastContainer />
         </Providers>
+        <Toaster
+          position="top-right"
+          closeButton={true}
+          duration={2000}
+          richColors={true}
+        />
       </body>
     </html>
   );

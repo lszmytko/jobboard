@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ThreeDots } from "react-loader-spinner";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 import { paths } from "@/common/paths";

@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import React from "react";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 
 import {
