@@ -27,7 +27,6 @@ export async function PUT(req: AxiosRequestHeaders) {
   const request = await req.json();
   const validation = schema.safeParse(request);
   const authHeader = req.headers.get("authorization");
-  console.log("***authHeader", authHeader);
 
   if (!validation.success) {
     const { errors } = validation.error;

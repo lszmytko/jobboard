@@ -11,8 +11,6 @@ const Detail = ({
     ? "border-b-2 sm:border-b-0 border-r-0 sm:border-r-2"
     : "";
 
-  console.log("*** info", info);
-
   return (
     <div className={`${border} px-3 py-1 grow`}>
       <div className="flex justify-center">{children}</div>

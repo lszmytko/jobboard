@@ -19,8 +19,6 @@ export async function DELETE(req: AxiosRequestHeaders) {
   const authHeader = req.headers.get("authorization");
   const user = req.nextUrl.searchParams.get("user");
 
-  console.log("*** user", user);
-
   const response = schema.safeParse({
     user,
   });
@@ -66,9 +64,6 @@ export async function DELETE(req: AxiosRequestHeaders) {
     }).session(session);
 
     if (!userDeleted) throw new Error("No user deleted");
-
-    console.log("*** offersDeleted", offersDeleted);
-    console.log("*** userDeleted", userDeleted);
 
     await session.commitTransaction();
 

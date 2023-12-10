@@ -16,7 +16,6 @@ export async function DELETE(req: AxiosRequestHeaders) {
 
   const offerID = req.nextUrl.searchParams.get("offerID");
 
-  console.log("*** request", offerID);
   const response = schema.safeParse({ offerID });
 
   if (!response.success) {

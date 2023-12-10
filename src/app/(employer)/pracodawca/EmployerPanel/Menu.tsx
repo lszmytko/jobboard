@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { EmployerPanelOptions } from "./EmployerPanel";
 
-const activeOptionStyles = "font-extrabold text-lg";
+const activeOptionStyles = "font-extrabold";
 
 const Menu = ({
   handleToggle,
@@ -14,9 +14,9 @@ const Menu = ({
     <section className="flex text-sm justify-center gap-4">
       <div className="flex justify-center">
         <button
-          className={`p-4 text-primary ${
+          className={`p-4 text-dark-blue ${
             option === "offerForm" && activeOptionStyles
-          } hover:scale-125`}
+          } `}
           onClick={() => handleToggle("offerForm")}
         >
           Dodaj
@@ -26,7 +26,7 @@ const Menu = ({
       </div>
       <div className="flex justify-center">
         <button
-          className={`p-4 text-primary ${
+          className={`p-4 text-dark-blue ${
             option === "userOffers" && activeOptionStyles
           } hover:scale-125`}
           onClick={() => handleToggle("userOffers")}
@@ -38,7 +38,7 @@ const Menu = ({
       </div>
       <div className="flex justify-center">
         <button
-          className={`p-4 text-primary ${
+          className={`p-4 text-dark-blue ${
             option === "userData" && activeOptionStyles
           } hover:scale-125`}
           onClick={() => handleToggle("userData")}

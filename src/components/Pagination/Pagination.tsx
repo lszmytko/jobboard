@@ -19,7 +19,7 @@ const Pagination = ({ pages, remove }: { pages: number; remove: any }) => {
     const postOrCompanyString = postOrCompany
       ? `&postOrCompany=${postOrCompany}`
       : "";
-    console.log("*** selected", data);
+
     const paramsString = `?page=${
       data.selected + 1
     }${cityString}${postOrCompanyString}`;

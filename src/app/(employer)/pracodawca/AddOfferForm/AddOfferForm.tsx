@@ -34,14 +34,14 @@ const AddOfferForm = ({
   const userID =
     creator === "employer" ? getUserFromLocalStorage() : selectedUser;
 
-  console.log("*** userID", userID);
-
   const { isLoading, data, error } = useQuery({
-    queryKey: ["todos", userID],
+    queryKey: ["userDetails", userID],
     queryFn: () => fetchUserData(userID || ""),
+    refetchOnWindowFocus: true,
   });
 
   if (isLoading) return <div>Ładowanie...</div>;
+  if (error) return <div>Wystąpił błąd</div>;
   const { companyName, city, street, flatNumber } = data?.data?.user as User;
 
   return (
@@ -96,8 +96,6 @@ const AddOfferFormUI = ({
       requirements: parsedRequirements,
       user,
     };
-
-    console.log("*** payload", payload);
 
     setShouldShowPreview(true);
     setOfferData(payload);

@@ -35,7 +35,6 @@ export const updateUserData = async (data: UserInfo) => {
 type ResponseStructure = { user: User };
 
 export const fetchUserData = async (userID: string) => {
-  console.log("*** fetchUserData ***");
   const response = await axios.get<ResponseStructure>(userDataEndpoint, {
     params: {
       userID,

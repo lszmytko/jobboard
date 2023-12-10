@@ -11,7 +11,7 @@ import { getUserFromLocalStorage } from "@/utils/utils";
 
 import { fetchUserData, updateUserData } from "./utils";
 import { UserInfo } from "./UserInfo.types";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import FullPageLoader from "@/components/loaders/FullPageLoader";
 import DeleteAccount from "./DeleteAccount/DeleteAccount";
 
@@ -26,6 +26,7 @@ const UserInfo = () => {
   } = useQuery({
     queryKey: ["todos", userID],
     queryFn: () => fetchUserData(userID || ""),
+    refetchOnWindowFocus: true,
   });
 
   const {
@@ -148,7 +149,7 @@ const UserInfo = () => {
         ) : (
           <input
             type="submit"
-            className="py-2 px-4 mt-2 rounded-lg bg-primary-light font-semibold cursor-pointer text-white w-full"
+            className="py-2 px-4 mt-2 rounded-lg bg-primary-light font-semibold cursor-pointer text-white w-full hover:brightness-90"
             value="Uaktualnij dane"
           />
         )}

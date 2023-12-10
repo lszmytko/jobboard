@@ -14,12 +14,9 @@ import { toast } from "sonner";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 const Header = () => {
-  console.log("*** Header rendered");
   const isUser = checkIfUserIsLoggedIn();
   const router = useRouter();
   const pathname = usePathname();
-
-  console.log("*** pathname", pathname);
 
   const notify = () => toast.success("Wylogowanie zakończone sukcesem");
 

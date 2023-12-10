@@ -25,8 +25,6 @@ export async function GET(req: AxiosRequestHeaders) {
   const company = req.nextUrl.searchParams.get("company");
   const offerID = req.nextUrl.searchParams.get("offerID");
 
-  console.log("*** company", company);
-
   const response = schema.safeParse({ isActive, page, city, postOrCompany });
 
   if (!response.success) {
@@ -60,8 +58,6 @@ export async function GET(req: AxiosRequestHeaders) {
   const finalFilter = {
     $or: [filterWithCompany, filterWithPost],
   };
-
-  console.log("*** przeeeeeszło", finalFilter);
 
   try {
     numberOfOffers = await Offer.find(finalFilter).count();

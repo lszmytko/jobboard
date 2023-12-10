@@ -14,7 +14,7 @@ const CheckboxField = ({
   type: "checkbox" | "radio";
 }) => {
   return (
-    <label className="inline-block mr-4 text-sm sm:text-base">
+    <label className="inline-block mr-4 text-sm sm:text-base text-center last:mr-0">
       <span className="inline-block mr-1">{polishName}</span>
       <input
         type={type}

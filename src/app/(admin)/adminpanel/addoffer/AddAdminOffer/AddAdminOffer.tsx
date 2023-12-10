@@ -1,12 +1,18 @@
+"use client";
+
 import AddOfferForm from "@/app/(employer)/pracodawca/AddOfferForm";
-import React from "react";
-import EmployerSelector from "./EmployerSelector";
+import React, { useRef } from "react";
+import SelectedEmployer from "./SelectedEmployer";
 
 const AddAdminOffer = () => {
+  const [selectedUser, setSelectedUser] = React.useState("");
+
   return (
-    <div className="flex justify-center">
-      <EmployerSelector />
-      <AddOfferForm creator="admin" selectedUser="655ba7bb87ceb3cf14f1af03" />
+    <div className="flex justify-center items-center">
+      <div className="w-3/5">
+        <SelectedEmployer setSelectedUser={setSelectedUser} />
+        <AddOfferForm creator="admin" selectedUser={selectedUser} />
+      </div>
     </div>
   );
 };

@@ -12,8 +12,6 @@ export const deleteEmployer = async () => {
   const token = getUserToken();
   const user = getUserFromLocalStorage();
 
-  console.log("*** deleteUser", user);
-
   const response = axios.request({
     headers: {
       Authorization: `Bearer ${token}`,

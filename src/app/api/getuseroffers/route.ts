@@ -10,7 +10,7 @@ import { auth } from "../middleware/auth";
 
 const schema = z.object({
   user: z.string(),
-  page: z.string(),
+  page: z.string().nullable().optional(),
 });
 
 const ITEMS_PER_PAGE = 15;
@@ -19,7 +19,7 @@ export async function GET(req: AxiosRequestHeaders) {
   await connectToDatabase();
 
   const userID = req.nextUrl.searchParams.get("user");
-  const page = req.nextUrl.searchParams.get("page");
+  const page = req.nextUrl.searchParams.get("page") ?? "1";
 
   const response = schema.safeParse({ user: userID });
 

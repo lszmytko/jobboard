@@ -1,14 +1,11 @@
 export const customDeleteModalStyles = {
   content: {
     width: "80%",
-    height: "80%",
+    minHeight: "80%",
     position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
   },
   overlay: {
     position: "fixed",
@@ -21,7 +18,7 @@ export const customDeleteModalStyles = {
     height: "100%",
     backgroundColor: "rgba(0,0,0, .8)",
     zIndex: "1000",
-    overflowY: "auto",
+    overflowY: "scroll",
   },
 };
 

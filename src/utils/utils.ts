@@ -10,6 +10,10 @@ export const getUserToken = () => {
   return localStorage.getItem("userToken");
 };
 
+export const getAdminToken = () => {
+  return localStorage.getItem("adminToken");
+};
+
 export const getUserFromLocalStorage = () => {
   return localStorage.getItem("user");
 };

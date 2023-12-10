@@ -24,6 +24,7 @@ const OfferList = () => {
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["userOffers"],
     queryFn: () => fetchUserOffers(user || ""),
+    refetchOnWindowFocus: true,
   });
 
   if (isLoading) return <FullPageLoader />;

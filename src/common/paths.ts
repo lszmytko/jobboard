@@ -12,4 +12,5 @@ export const paths = {
 
 export const apiRoutes = {
   getSingleOffer: "/getsingleoffer",
+  getUserByEmail: "/getuserbyemail",
 };

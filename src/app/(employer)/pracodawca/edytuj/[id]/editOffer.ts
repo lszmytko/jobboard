@@ -6,8 +6,6 @@ import { getUserToken } from "@/utils/utils";
 export const editOffer = async (data: Offer, withToken?: boolean) => {
   const token = withToken ? getUserToken() : null;
 
-  console.log("*** editOffer");
-
   const headers = token
     ? {
         headers: {
@@ -22,8 +20,6 @@ export const editOffer = async (data: Offer, withToken?: boolean) => {
     url: `http://localhost:3000/api/editoffer`,
     data,
   });
-
-  console.log("*** editOffer response", response);
 
   return response;
 };

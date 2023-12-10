@@ -52,8 +52,6 @@ export async function POST(req: AxiosRequestHeaders) {
 
   const timeOfPosting = new Date().toISOString();
 
-  console.log("*** timeOfPosting", timeOfPosting);
-
   try {
     await Offer.create({ ...response, timeOfPosting, status: "pending" });
   } catch (error) {

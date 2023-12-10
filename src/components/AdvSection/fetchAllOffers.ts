@@ -20,7 +20,6 @@ export const fetchAllOffers = async ({
   isActive?: boolean;
   params?: Params;
 }) => {
-  console.log("*** params", params);
   const finalParams = isActive
     ? { params: { isActive, ...params } }
     : { params: { ...params } };
