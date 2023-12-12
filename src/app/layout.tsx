@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
-
+import { inter } from "@/app/ui/fonts";
 import Providers from "./providers";
 
 const poppins = Poppins({
@@ -22,7 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} bg-slate-100 text-dark-blue`}>
+      <body
+        className={`${inter.className} antialiased bg-slate-100 text-dark-blue`}
+      >
         <Providers>
           <div className="">{children}</div>
         </Providers>

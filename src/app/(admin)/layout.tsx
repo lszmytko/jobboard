@@ -17,7 +17,7 @@ export default function AdminLayout({
           <Link href="/adminpanel/addoffer" className={navCss}>
             Dodaj ofertę
           </Link>
-          <Link href="/adminpanel" className={navCss}>
+          <Link href="/adminpanel/manageusers" className={navCss}>
             Zarządzaj uzytkownikami
           </Link>
         </nav>

@@ -7,7 +7,15 @@ import ReactPaginate from "react-paginate";
 
 const activeStyle = "text-lg font-bold";
 
-const Pagination = ({ pages, remove }: { pages: number; remove: any }) => {
+const Pagination = ({
+  pages,
+  remove,
+  path,
+}: {
+  pages: number;
+  remove: any;
+  path: string;
+}) => {
   const router = useRouter();
   const params = useSearchParams();
 
@@ -24,7 +32,7 @@ const Pagination = ({ pages, remove }: { pages: number; remove: any }) => {
       data.selected + 1
     }${cityString}${postOrCompanyString}`;
 
-    router.push(paths.home + paramsString);
+    router.push(paramsString);
     remove();
   };
 

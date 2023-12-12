@@ -1,3 +1,5 @@
+import { sendCV } from "./sendCV";
+
 const ApplyButton = ({
   mail,
   post,
@@ -13,13 +15,7 @@ const ApplyButton = ({
   return (
     <button
       className="block w-80 bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-3xl text-xl"
-      onClick={() => {
-        window.open(
-          `mailto:${mail}?subject=${encodeURIComponent(
-            subject
-          )}&body=${encodeURIComponent(emailBody)}`
-        );
-      }}
+      onClick={sendCV}
     >
       Aplikuj wysyłając maila
     </button>

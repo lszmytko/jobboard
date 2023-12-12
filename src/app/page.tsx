@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllOffers } from "@/components/AdvSection/fetchAllOffers";
 import { useEffect } from "react";
+import { paths } from "@/common/paths";
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -30,7 +31,7 @@ export default function Home() {
       {!isError ? (
         <>
           <AdvSection offers={offers} isLoading={isLoading} />
-          <Pagination pages={pages} remove={remove} />
+          <Pagination pages={pages} remove={remove} path={paths.home} />
         </>
       ) : null}
     </>
