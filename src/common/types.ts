@@ -19,7 +19,7 @@ export type Offer = {
 };
 
 export type User = {
-  id: string;
+  _id: string;
   email: string;
   password: string;
   companyName: string;
