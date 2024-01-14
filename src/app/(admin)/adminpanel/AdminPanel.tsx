@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import AdminOffers from "./AdminOffers";
 import AdminSearchOffer from "./AdminSearchOffer";
 import { Offer } from "@/common/types";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import FullPageLoader from "@/components/loaders/FullPageLoader";
 import { fetchAllOffers } from "@/components/AdvSection/fetchAllOffers";
 import Pagination from "./Pagination";
@@ -25,12 +25,12 @@ const AdminPanel = () => {
     },
   });
 
-  useEffect(() => {
-    refetch();
-  }, [page, offerID, company]);
+  const queryClient = useQueryClient();
 
   if (isLoading) return <FullPageLoader />;
   if (isError) return <div>Coś poszło nie tak...</div>;
+
+  console.log("*** data", data);
 
   const pages = data.data.pages;
 

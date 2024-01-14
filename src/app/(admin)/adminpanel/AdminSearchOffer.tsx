@@ -3,10 +3,10 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import { useMutation } from "@tanstack/react-query";
-import { searchOffer } from "./searchOffer";
 import { Dispatch, SetStateAction } from "react";
 import { Offer } from "@/common/types";
 import { useRouter } from "next/navigation";
+import { fetchAllOffers } from "@/components/AdvSection/fetchAllOffers";
 
 type FormInputs = {
   company: string;
@@ -21,7 +21,7 @@ const AdminSearchOffer = ({
   const router = useRouter();
 
   const { isLoading, isError, mutateAsync } = useMutation({
-    mutationFn: searchOffer,
+    mutationFn: fetchAllOffers,
   });
 
   const {
@@ -31,17 +31,18 @@ const AdminSearchOffer = ({
   } = useForm<FormInputs>();
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
-    // const responseData = await mutateAsync(data);
-
-    // if (responseData.data.offers) {
-    //   setOfferData(responseData.data.offers);
-
     let params = "?page=1";
     if (data.company) params = params + `&company=${data.company}`;
-    if (data.offerID) params = params + `&city=${data.offerID}`;
+    if (data.offerID) params = params + `&offerID=${data.offerID}`;
 
-    router.push(params);
-    // }
+    try {
+      const response = await mutateAsync({
+        params: { page: "1", company: data.company, offerID: data.offerID },
+      });
+      console.log("*** params", params);
+      setOfferData(response.data.offers);
+      router.push(params);
+    } catch (error) {}
   };
 
   return (

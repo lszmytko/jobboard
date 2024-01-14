@@ -5,6 +5,7 @@ import { StatusCodes } from "http-status-codes";
 import connectToDatabase from "../db/connectToDatabase";
 import { Offer } from "../models/Offer";
 import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
 const ITEMS_PER_PAGE = 15;
 
@@ -25,6 +26,8 @@ export async function GET(req: AxiosRequestHeaders) {
   const company = req.nextUrl.searchParams.get("company");
   const offerID = req.nextUrl.searchParams.get("offerID");
 
+  console.log("*** offerID", offerID);
+
   const response = schema.safeParse({ isActive, page, city, postOrCompany });
 
   if (!response.success) {
@@ -44,7 +47,10 @@ export async function GET(req: AxiosRequestHeaders) {
     ? { ...filter, company: { $regex: company, $options: "i" } }
     : { ...filter };
   filter = offerID
-    ? { ...filter, offerID: { $regex: offerID, $options: "i" } }
+    ? {
+        ...filter,
+        _id: new mongoose.Types.ObjectId(offerID),
+      }
     : { ...filter };
   filter = isActive ? { ...filter, isActive } : { ...filter };
   filter = city ? { ...filter, city } : { ...filter };
@@ -58,6 +64,8 @@ export async function GET(req: AxiosRequestHeaders) {
   const finalFilter = {
     $or: [filterWithCompany, filterWithPost],
   };
+
+  console.log("*** finalFilter", finalFilter);
 
   try {
     numberOfOffers = await Offer.find(finalFilter).count();

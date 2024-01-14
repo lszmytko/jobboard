@@ -55,6 +55,8 @@ export async function PUT(req: AxiosRequestHeaders) {
 
   const timeOfPosting = new Date().toISOString();
 
+  console.log("*** timeOfPosting ***", timeOfPosting);
+
   const updatedOffer = await Offer.findOneAndUpdate(
     { _id: request._id },
     {
