@@ -24,8 +24,9 @@ const schema = z.object({
 
 export async function POST(req: AxiosRequestHeaders) {
   await connectToDatabase();
-  const response = await req.json();
-  const validation = schema.safeParse(response);
+  const request = await req.json();
+  console.log("*** request ***", request);
+  const validation = schema.safeParse(request);
 
   if (!validation.success) {
     const { errors } = validation.error;
@@ -35,25 +36,27 @@ export async function POST(req: AxiosRequestHeaders) {
     );
   }
 
-  const existingUser = await User.findOne({ _id: response.user });
+  const existingUser = await User.findOne({ _id: request.user });
 
   if (!existingUser) {
     return NextResponse.json({ message: "No such user" }, { status: 400 });
   }
 
-  const isAuthorized = auth(req);
+  if (request.creator === "employer") {
+    const isAuthorized = auth(req);
 
-  if (!isAuthorized) {
-    return NextResponse.json(
-      { message: "You are not authorized" },
-      { status: 403 }
-    );
+    if (!isAuthorized) {
+      return NextResponse.json(
+        { message: "You are not authorized" },
+        { status: 403 }
+      );
+    }
   }
 
   const timeOfPosting = new Date().toISOString();
 
   try {
-    await Offer.create({ ...response, timeOfPosting, status: "pending" });
+    await Offer.create({ ...request, timeOfPosting, status: "pending" });
   } catch (error) {
     throw new Error("Failed to create offer");
   }

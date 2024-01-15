@@ -2,10 +2,13 @@ import axios from "axios";
 
 import { Offer } from "@/common/types";
 import { getUserToken } from "@/utils/utils";
+import { OfferData } from "./AddOfferForm";
 
 const DEFAULT_OFFER_ISACTIVE = false;
 
-export const addOffer = async (data: Offer) => {
+export const addOffer = async (
+  data: OfferData & { creator: "admin" | "employer" }
+) => {
   const token = getUserToken();
   const finalData = { ...data, isActive: DEFAULT_OFFER_ISACTIVE };
 

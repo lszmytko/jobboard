@@ -2,9 +2,9 @@ import Modal from "react-modal";
 import React from "react";
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 import { accceptButtonStyles, customDeleteModalStyles } from "./styles";
-import { useRouter } from "next/navigation";
 import { addOffer } from "../addOffer";
 import AdvCardDetailsUI from "@/app/(user)/advdetails/[id]/AdvCardDetails/AdvCardDetailsUI";
 import { OfferData } from "../AddOfferForm";
@@ -14,11 +14,13 @@ const Preview = ({
   closeModal,
   offerData,
   reset,
+  creator,
 }: {
   isOpen: boolean;
   closeModal: () => void;
   offerData: OfferData;
   reset: () => void;
+  creator: "admin" | "employer";
 }) => {
   const router = useRouter();
   const { isLoading, isError, mutateAsync } = useMutation({
@@ -27,9 +29,12 @@ const Preview = ({
       reset();
       closeModal();
       toast.success("Oferta pomyślnie dodana");
+      creator === "admin"
+        ? router.push("/adminpanel")
+        : router.push("/pracodawca");
     },
     onError: () => {
-      toast.success("Nie udało się dodać oferty");
+      toast.error("Nie udało się dodać oferty");
     },
   });
 
@@ -72,7 +77,7 @@ const Preview = ({
           />
           <div className="mt-4 flex justify-center">
             <button
-              onClick={() => mutateAsync(offerData)}
+              onClick={() => mutateAsync({ ...offerData, creator })}
               className={`${accceptButtonStyles} ${loadingStyles}`}
             >
               Dodaj ofertę

@@ -42,7 +42,8 @@ const AddOfferForm = ({
 
   if (isLoading) return <div>Ładowanie...</div>;
   if (error) return <div>Wystąpił błąd</div>;
-  const { companyName, city, street, flatNumber } = data?.data?.user as User;
+  const { companyName, city, street, flatNumber, _id } = data?.data
+    ?.user as User;
 
   return (
     <AddOfferFormUI
@@ -50,6 +51,8 @@ const AddOfferForm = ({
       city={city}
       street={street}
       flatNumber={flatNumber}
+      userID={_id}
+      creator={creator}
     />
   );
 };
@@ -59,11 +62,15 @@ const AddOfferFormUI = ({
   city,
   street,
   flatNumber,
+  userID,
+  creator,
 }: {
   companyName: string;
   city: string;
   street: string;
   flatNumber: string;
+  userID: string;
+  creator: "employer" | "admin";
 }) => {
   const [shouldShowPreview, setShouldShowPreview] = useState(false);
   const [offerData, setOfferData] = useState<OfferData | null>(null);
@@ -89,12 +96,11 @@ const AddOfferFormUI = ({
     );
     const parsedTasks = data.tasks.map((task) => task.name);
 
-    const user = getUserFromLocalStorage() ?? "";
     const payload: OfferData = {
       ...data,
       tasks: parsedTasks,
       requirements: parsedRequirements,
-      user,
+      user: userID,
     };
 
     setShouldShowPreview(true);
@@ -111,6 +117,7 @@ const AddOfferFormUI = ({
         closeModal={closeModal}
         offerData={offerData as OfferData}
         reset={reset}
+        creator={creator}
       />
     );
   }

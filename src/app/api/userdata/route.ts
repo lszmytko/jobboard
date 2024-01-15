@@ -68,5 +68,15 @@ export async function GET(req: NextRequest) {
 
   const userData = await User.findOne({ _id: userID }).exec();
 
+  console.log("*** tutaj", userData);
+
+  if (!userData)
+    return NextResponse.json(
+      {
+        msg: "Something wrong with the user",
+      },
+      { status: 400 }
+    );
+
   return NextResponse.json({ msg: "success", user: userData }, { status: 200 });
 }

@@ -9,9 +9,11 @@ const AddAdminOffer = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="w-3/5">
+      <div className="md:w-3/5">
         <SelectedEmployer setSelectedUser={setSelectedUser} />
-        <AddOfferForm creator="admin" selectedUser={selectedUser} />
+        {selectedUser && (
+          <AddOfferForm creator="admin" selectedUser={selectedUser} />
+        )}
       </div>
     </div>
   );
