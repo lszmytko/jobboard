@@ -12,6 +12,7 @@ export const updateUserData = async (data: UserInfo) => {
   const user = getUserFromLocalStorage();
 
   let response;
+  console.log("*** data ***", data);
   try {
     response = await axios.post(
       userDataEndpoint,

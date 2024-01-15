@@ -4,4 +4,5 @@ export type UserInfo = {
   street: string;
   flatNumber: string;
   phoneNumber: string;
+  description: string;
 };

@@ -3,13 +3,6 @@ import CompanyDetails from "./CompanyDetails";
 import List from "./List";
 import { Offer } from "@/common/types";
 
-const data = [
-  "Przygotowywanie zwierząt do zabiegów",
-  "Asystowanie przy zabiegach",
-  "Przygotowywanie zwierząt do zabiegów",
-  "Asystowanie przy zabiegach",
-];
-
 type PresentationProps = Pick<Offer, "requirements" | "tasks">;
 
 const Presentation = ({ requirements, tasks }: PresentationProps) => {

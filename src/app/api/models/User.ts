@@ -12,6 +12,7 @@ interface User {
   street: string;
   flatNumber: string;
   phoneNumber: string;
+  description: string;
   comparePasswords: (password: string) => boolean;
 }
 
@@ -23,6 +24,7 @@ const UserSchema = new Schema<User>({
   street: { type: String },
   flatNumber: { type: String },
   phoneNumber: { type: String },
+  description: { type: String },
 });
 
 UserSchema.pre("save", async function () {

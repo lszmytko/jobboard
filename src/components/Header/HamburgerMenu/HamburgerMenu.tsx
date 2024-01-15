@@ -46,6 +46,9 @@ const HamburgerMenu = () => {
         <div className="border-y-2 p-1">
           <Link href={paths.employer}>Panel pracodawcy</Link>
         </div>
+        <div className="border-y-2 p-1">
+          <Link href={paths.worker}>Panel pracownika</Link>
+        </div>
       </aside>
     </div>
   );

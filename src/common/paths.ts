@@ -1,8 +1,9 @@
 export const paths = {
   home: "/",
   employer: "/pracodawca",
-  editOffer: "/pracodawca/edytuj",
   admin: "/admin",
+  worker: "/pracownik",
+  editOffer: "/pracodawca/edytuj",
   adminpanel: "/adminpanel",
   adminlogin: "/adminpanel",
   adminManageUsers: "adminpanel/manageusers",

@@ -6,6 +6,7 @@ import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { ThreeDots } from "react-loader-spinner";
 import { toast } from "sonner";
+import { DevTool } from "@hookform/devtools";
 
 import { getUserFromLocalStorage } from "@/utils/utils";
 
@@ -22,7 +23,6 @@ const UserInfo = () => {
     isLoading: isQueryLoading,
     isError,
     data,
-    error,
   } = useQuery({
     queryKey: ["todos", userID],
     queryFn: () => fetchUserData(userID || ""),
@@ -57,6 +57,7 @@ const UserInfo = () => {
     reset,
     formState: { errors, isValid },
   } = useForm<UserInfo>({ defaultValues: defaultData });
+
   const onSubmit: SubmitHandler<UserInfo> = async (formData) => {
     try {
       await mutateAsync(formData);
@@ -74,6 +75,7 @@ const UserInfo = () => {
   });
 
   if (isQueryLoading) return <FullPageLoader />;
+  if (isError) return <p>Coś poszło nie tak...</p>;
 
   return (
     <div className="p-2">
@@ -127,9 +129,21 @@ const UserInfo = () => {
                 control={control}
                 rules={{ required: true }}
                 defaultCountry="PL"
-                // className="w-full py-2 px-1 rounded-lg"
                 className="phoneInput"
-                // style={{ padding: "8px" }}
+              />
+            </div>
+          </label>
+        </div>
+
+        <div className="mb-4">
+          <label>
+            <h1 className="mb-1 text-primary-light">Kilka słów o firmie</h1>
+            <div>
+              <textarea
+                {...register("description", { required: true })}
+                maxLength={500}
+                rows={4}
+                className="w-full py-2 px-1 rounded-lg"
               />
             </div>
           </label>
@@ -157,6 +171,7 @@ const UserInfo = () => {
       </form>
       {isMutationError ? <p>Coś poszło nie tak...</p> : null}
       <DeleteAccount />
+      <DevTool control={control} />
     </div>
   );
 };

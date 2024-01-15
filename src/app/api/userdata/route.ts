@@ -11,6 +11,7 @@ const schema = z.object({
   flatNumber: z.string().nonempty(),
   phoneNumber: z.string().nonempty(),
   user: z.string().nonempty(),
+  description: z.string().nonempty(),
 });
 
 export async function POST(req: Request) {
@@ -32,8 +33,15 @@ export async function POST(req: Request) {
     );
   }
 
-  const { user, companyName, city, street, flatNumber, phoneNumber } =
-    response.data;
+  const {
+    user,
+    companyName,
+    city,
+    street,
+    flatNumber,
+    phoneNumber,
+    description,
+  } = response.data;
 
   const existingUser = await User.findOne({ _id: user });
 
@@ -48,9 +56,12 @@ export async function POST(req: Request) {
   existingUser.street = street;
   existingUser.flatNumber = flatNumber;
   existingUser.phoneNumber = phoneNumber;
+  existingUser.description = description;
+
+  console.log("*** existingUser ***", existingUser);
 
   try {
-    const user = await existingUser.save();
+    await existingUser.save();
   } catch (error) {
     throw error;
   }
@@ -67,8 +78,6 @@ export async function GET(req: NextRequest) {
   const userID = req.nextUrl.searchParams.get("userID");
 
   const userData = await User.findOne({ _id: userID }).exec();
-
-  console.log("*** tutaj", userData);
 
   if (!userData)
     return NextResponse.json(

@@ -45,6 +45,7 @@ const Header = () => {
             Oferty pracy
           </Link>
           <Link href={paths.employer}>Panel pracodawcy</Link>
+          <Link href={paths.worker}>Panel pracownika</Link>
           <a
             href="https://www.vettech.pl"
             className="trainings hidden sm:block"
