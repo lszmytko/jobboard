@@ -6,8 +6,10 @@ import Search from "../components/Search";
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllOffers } from "@/components/AdvSection/fetchAllOffers";
-import { useEffect } from "react";
 import { paths } from "@/common/paths";
+import WorkerAdvCard from "@/components/WorkerAdvCard/WorkerAdvCard";
+import { useState } from "react";
+import WorkerAdvSection from "@/components/WorkerAdvSection/WorkerAdvSection";
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -15,11 +17,14 @@ export default function Home() {
   const city = searchParams.get("city") ?? "";
   const postOrCompany = searchParams.get("postOrCompany") ?? "";
 
+  const [option, setOption] = useState<"workers" | "employers">("employers");
+
   const params = { page, city, postOrCompany };
 
   const { isLoading, data, isError, remove } = useQuery({
     queryKey: ["fetchAllOffers"],
     queryFn: () => fetchAllOffers({ isActive: true, params }),
+    retryOnMount: false,
   });
 
   const offers = data?.data?.offers;
@@ -27,13 +32,40 @@ export default function Home() {
 
   return (
     <>
-      <Search remove={remove} />
-      {!isError ? (
+      <div className="flex justify-center gap-4">
+        <button
+          onClick={() => setOption("employers")}
+          className={
+            option === "employers"
+              ? "p-2 bg-primary-light rounded-full text-white"
+              : ""
+          }
+        >
+          Oferty pracodawców
+        </button>
+        <button
+          onClick={() => setOption("workers")}
+          className={
+            option === "workers"
+              ? "p-2 bg-primary-light rounded-full text-white"
+              : ""
+          }
+        >
+          Oferty kandydatów
+        </button>
+      </div>
+      {option === "employers" && (
         <>
-          <AdvSection offers={offers} isLoading={isLoading} />
-          <Pagination pages={pages} remove={remove} path={paths.home} />
+          <Search remove={remove} />
+          {!isError ? (
+            <>
+              <AdvSection offers={offers} isLoading={isLoading} />
+              <Pagination pages={pages} remove={remove} path={paths.home} />
+            </>
+          ) : null}
         </>
-      ) : null}
+      )}
+      {option === "workers" && <WorkerAdvSection />}
     </>
   );
 }

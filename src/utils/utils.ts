@@ -41,3 +41,16 @@ export const parseTasks = (
 ) => {
   return tasks.map((task) => task.name);
 };
+
+export function shortenString(
+  str: string,
+  maxLength: number = 100,
+  ellipsis: boolean = true
+): string {
+  if (str.length <= maxLength) {
+    return str;
+  }
+
+  const shortened = str.substring(0, maxLength);
+  return ellipsis ? `${shortened}...` : shortened;
+}

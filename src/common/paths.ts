@@ -8,12 +8,15 @@ export const paths = {
   adminlogin: "/adminpanel",
   adminManageUsers: "adminpanel/manageusers",
   advdetails: "/advdetails",
+  workeradvdetails: "/pracownik/szczegoly",
   getAllOffers: "/getalloffers",
   resetPassword: "/resetpassword",
 };
 
 export const apiRoutes = {
   getSingleOffer: "/getsingleoffer",
+  getSingleWorkerOffer: "/getsingleworkeroffer",
   getSingleUser: "/getsingleuser",
+  getAllWorkerOffers: "/getallworkeroffers",
   getUserByEmail: "/getuserbyemail",
 };

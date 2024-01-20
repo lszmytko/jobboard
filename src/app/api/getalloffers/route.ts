@@ -65,8 +65,6 @@ export async function GET(req: AxiosRequestHeaders) {
     $or: [filterWithCompany, filterWithPost],
   };
 
-  console.log("*** finalFilter", finalFilter);
-
   try {
     numberOfOffers = await Offer.find(finalFilter).count();
     offers = await Offer.find(finalFilter)
