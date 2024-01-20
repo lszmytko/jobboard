@@ -18,6 +18,23 @@ export type Offer = {
   timeOfPosting: string;
 };
 
+export type Availability =
+  | "cały etat"
+  | "pół etatu"
+  | "dorywczo"
+  | "weekendy"
+  | "praca w nocy";
+
+export type WorkerOffer = {
+  email: string;
+  phoneNumber: string;
+  city: string;
+  education: string;
+  experience: string;
+  availability: Availability[];
+  offerText: string;
+};
+
 export type User = {
   _id: string;
   email: string;

@@ -150,7 +150,7 @@ const UserInfo = () => {
         </div>
 
         {isMutationLoading ? (
-          <div className="">
+          <div>
             <ThreeDots
               height="40"
               width="100"
