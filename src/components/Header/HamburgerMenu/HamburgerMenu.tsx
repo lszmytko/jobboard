@@ -44,10 +44,10 @@ const HamburgerMenu = () => {
           </a>
         </div>
         <div className="border-y-2 p-1">
-          <Link href={paths.employer}>Panel pracodawcy</Link>
+          <Link href={paths.employer}>Dam pracę</Link>
         </div>
         <div className="border-y-2 p-1">
-          <Link href={paths.worker}>Panel pracownika</Link>
+          <Link href={paths.worker}>Szukam pracy</Link>
         </div>
       </aside>
     </div>

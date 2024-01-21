@@ -2,14 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 import connectToDatabase from "../db/connectToDatabase";
-import { User } from "../models/User";
-import { auth } from "../middleware/auth";
 import { AxiosRequestHeaders } from "axios";
 import { Offer } from "../models/Offer";
 
 const schema = z.object({
   post: z.string(),
-  user: z.string(),
   company: z.string(),
   agreementType: z.array(z.string()),
   city: z.string(),
@@ -20,6 +17,7 @@ const schema = z.object({
   workingTime: z.array(z.string()),
   offerText: z.string(),
   isActive: z.boolean(),
+  aboutCompany: z.string(),
 });
 
 export async function POST(req: AxiosRequestHeaders) {
@@ -36,24 +34,9 @@ export async function POST(req: AxiosRequestHeaders) {
     );
   }
 
-  const existingUser = await User.findOne({ _id: request.user });
-
-  if (!existingUser) {
-    return NextResponse.json({ message: "No such user" }, { status: 400 });
-  }
-
-  if (request.creator === "employer") {
-    const isAuthorized = auth(req);
-
-    if (!isAuthorized) {
-      return NextResponse.json(
-        { message: "You are not authorized" },
-        { status: 403 }
-      );
-    }
-  }
-
   const timeOfPosting = new Date().toISOString();
+
+  console.log({ timeOfPosting });
 
   try {
     await Offer.create({ ...request, timeOfPosting, status: "pending" });

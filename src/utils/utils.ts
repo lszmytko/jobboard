@@ -1,29 +1,5 @@
-export const checkIfUserIsLoggedIn = () => {
-  const token = localStorage.getItem("userToken");
-  if (token) {
-    return true;
-  }
-  return false;
-};
-
-export const getUserToken = () => {
-  return localStorage.getItem("userToken");
-};
-
 export const getAdminToken = () => {
   return localStorage.getItem("adminToken");
-};
-
-export const getUserFromLocalStorage = () => {
-  return localStorage.getItem("user");
-};
-
-export const removeUserToken = () => {
-  localStorage.removeItem("userToken");
-};
-
-export const removeUserFromLocalStorage = () => {
-  localStorage.removeItem("user");
 };
 
 export const parseRequirements = (

@@ -3,11 +3,7 @@
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
-import {
-  getUserFromLocalStorage,
-  parseRequirements,
-  parseTasks,
-} from "@/utils/utils";
+import { parseRequirements, parseTasks } from "@/utils/utils";
 import { DevTool } from "@hookform/devtools";
 
 import { Offer } from "@/common/types";

@@ -1,7 +1,11 @@
-import EmployerPanel from "./EmployerPanel";
+import AddOfferForm from "./AddOfferForm";
 
 const EmployerPage = () => {
-  return <EmployerPanel />;
+  return (
+    <div className="flex justify-center">
+      <AddOfferForm />;
+    </div>
+  );
 };
 
 export default EmployerPage;

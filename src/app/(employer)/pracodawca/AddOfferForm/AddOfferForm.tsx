@@ -2,16 +2,13 @@
 
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useQuery } from "@tanstack/react-query";
-import { getUserFromLocalStorage } from "@/utils/utils";
 import { DevTool } from "@hookform/devtools";
 
-import { Offer, User } from "@/common/types";
+import { Offer } from "@/common/types";
 
 import Experience from "./Elements/Experience";
 import AgreementType from "./Elements/AgreementType";
 import WorkingTime from "./Elements/WorkingTime";
-import { fetchUserData } from "../EmployerPanel/UserInfo/utils";
 import Input from "./Input/Input";
 import InputGroup from "./InputGroup/InputGroup";
 import Preview from "./Preview/Preview";
@@ -22,56 +19,13 @@ export type Inputs = Omit<Offer, "requirements" | "tasks"> & {
   requirements: { name: string }[];
 };
 
-export type OfferData = Offer & { user: string | null };
+export type OfferData = Offer;
 
-const AddOfferForm = ({
-  creator,
-  selectedUser,
-}: {
-  creator: "employer" | "admin";
-  selectedUser?: string;
-}) => {
-  const userID =
-    creator === "employer" ? getUserFromLocalStorage() : selectedUser;
-
-  const { isLoading, data, error } = useQuery({
-    queryKey: ["userDetails", userID],
-    queryFn: () => fetchUserData(userID || ""),
-    refetchOnWindowFocus: true,
-  });
-
-  if (isLoading) return <div>Ładowanie...</div>;
-  if (error) return <div>Wystąpił błąd</div>;
-  const { companyName, city, street, flatNumber, _id } = data?.data
-    ?.user as User;
-
-  return (
-    <AddOfferFormUI
-      companyName={companyName}
-      city={city}
-      street={street}
-      flatNumber={flatNumber}
-      userID={_id}
-      creator={creator}
-    />
-  );
+const AddOfferForm = () => {
+  return <AddOfferFormUI creator="employer" />;
 };
 
-const AddOfferFormUI = ({
-  companyName,
-  city,
-  street,
-  flatNumber,
-  userID,
-  creator,
-}: {
-  companyName: string;
-  city: string;
-  street: string;
-  flatNumber: string;
-  userID: string;
-  creator: "employer" | "admin";
-}) => {
+const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
   const [shouldShowPreview, setShouldShowPreview] = useState(false);
   const [offerData, setOfferData] = useState<OfferData | null>(null);
   const {
@@ -82,15 +36,12 @@ const AddOfferFormUI = ({
     reset,
   } = useForm<Inputs>({
     defaultValues: {
-      company: companyName,
-      city,
-      address: `${street} ${flatNumber}`,
       tasks: [{ name: "" }],
       requirements: [{ name: "" }],
     },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data, event) => {
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
     const parsedRequirements = data.requirements.map(
       (requirement) => requirement.name
     );
@@ -100,7 +51,6 @@ const AddOfferFormUI = ({
       ...data,
       tasks: parsedTasks,
       requirements: parsedRequirements,
-      user: userID,
     };
 
     setShouldShowPreview(true);
@@ -163,10 +113,21 @@ const AddOfferFormUI = ({
         />
         <div>
           <h1 className="text-primary text-center font-semibold mb-2">
+            O firmie
+          </h1>
+          <textarea
+            {...register("aboutCompany", { required: true })}
+            className="block w-full p-2 rounded mb-2"
+            maxLength={400}
+            rows={10}
+          />
+        </div>
+        <div>
+          <h1 className="text-primary text-center font-semibold mb-2">
             Dodatkowa treść ogłoszenia
           </h1>
           <textarea
-            {...register("offerText")}
+            {...register("offerText", { required: true })}
             className="block w-full p-2 rounded mb-2"
             maxLength={400}
             rows={10}

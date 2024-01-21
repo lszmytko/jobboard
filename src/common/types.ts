@@ -16,6 +16,7 @@ export type Offer = {
   requirements: string[];
   isActive: boolean;
   timeOfPosting: string;
+  aboutCompany: string;
 };
 
 export type Availability =

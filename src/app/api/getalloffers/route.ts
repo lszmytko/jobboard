@@ -68,6 +68,7 @@ export async function GET(req: AxiosRequestHeaders) {
   try {
     numberOfOffers = await Offer.find(finalFilter).count();
     offers = await Offer.find(finalFilter)
+      .sort({ timeOfPosting: -1 })
       .skip((page - 1) * 15)
       .limit(ITEMS_PER_PAGE);
   } catch (e) {
