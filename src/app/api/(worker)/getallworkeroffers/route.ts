@@ -11,7 +11,7 @@ const ITEMS_PER_PAGE = 15;
 export async function GET(req: AxiosRequestHeaders) {
   await connectToDatabase();
   const criterium = req.nextUrl.searchParams.get("filterCriteria");
-  const page = req.nextUrl.searchParams.get("page") ?? 1;
+  const page = Number(req.nextUrl.searchParams.get("page")) ?? 1;
   console.log({ page });
 
   const finalFilter = criterium

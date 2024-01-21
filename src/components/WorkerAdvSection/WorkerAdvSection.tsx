@@ -31,6 +31,7 @@ const WorkerAdvSection = () => {
       </div>
     );
   const offers = data.data.offers;
+  const pages = data.data.pages;
 
   if (!offers.length)
     return (
@@ -41,7 +42,6 @@ const WorkerAdvSection = () => {
           </div>
         </div>
         <p className="text-center">Brak ofert...</p>
-        <Pagination page={page} setPage={setPage} />
       </>
     );
 
@@ -72,7 +72,7 @@ const WorkerAdvSection = () => {
           </div>
         </section>
       </div>
-      <Pagination page={page} setPage={setPage} />
+      <Pagination page={page} setPage={setPage} pages={pages} />
     </>
   );
 };

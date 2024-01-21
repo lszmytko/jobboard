@@ -8,10 +8,12 @@ import ReactPaginate from "react-paginate";
 const activeStyle = "text-lg font-bold";
 
 const Pagination = ({
+  page,
   pages,
   setPage,
 }: {
   pages: number;
+  page: number;
   setPage: Dispatch<SetStateAction<number>>;
 }) => {
   const handlePageClick = (data: { selected: number }) => {
@@ -30,7 +32,7 @@ const Pagination = ({
         nextLabel=">"
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
-        pageCount={2}
+        pageCount={pages}
         previousLabel="<"
         renderOnZeroPageCount={null}
         activeLinkClassName={activeStyle}
