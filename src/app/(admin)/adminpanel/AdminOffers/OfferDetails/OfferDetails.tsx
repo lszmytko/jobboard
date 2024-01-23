@@ -13,9 +13,9 @@ import FullPageLoader from "@/components/loaders/FullPageLoader";
 import Experience from "@/app/(employer)/pracodawca/AddOfferForm/Elements/Experience";
 import AgreementType from "@/app/(employer)/pracodawca/AddOfferForm/Elements/AgreementType";
 import WorkingTime from "@/app/(employer)/pracodawca/AddOfferForm/Elements/WorkingTime";
-import { editOffer } from "@/app/(employer)/pracodawca/edytuj/[id]/editOffer";
 import Details from "./Details";
 import OfferDetailsGroup from "./OfferDetailsGroup";
+import { editOffer } from "./editOffer";
 
 export type OfferDetailsInputs = Omit<
   Offer,
