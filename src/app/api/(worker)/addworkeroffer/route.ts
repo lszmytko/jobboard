@@ -29,10 +29,17 @@ export async function POST(req: AxiosRequestHeaders) {
   }
 
   const timeOfPosting = new Date().toISOString();
+  const timeOfEditing = "";
 
   try {
-    await WorkerOffer.create({ ...request, timeOfPosting, status: "pending" });
+    await WorkerOffer.create({
+      ...request,
+      timeOfPosting,
+      timeOfEditing,
+      status: "pending",
+    });
   } catch (error) {
+    console.log(error);
     throw new Error("Failed to create worker offer");
   }
 

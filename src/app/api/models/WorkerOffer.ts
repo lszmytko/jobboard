@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 
 type WorkerOfferSchemaType = WorkerOfferType & { status: string } & {
   timeOfPosting: string;
+  timeOfEditing: string;
 };
 
 const WorkerOfferSchema = new Schema<WorkerOfferSchemaType>({
@@ -14,6 +15,7 @@ const WorkerOfferSchema = new Schema<WorkerOfferSchemaType>({
   experience: { type: String, required: true },
   availability: { type: [String], required: true },
   timeOfPosting: { type: String, required: true },
+  timeOfEditing: { type: String },
   offerText: { type: String, required: false },
   status: { type: String, required: true },
 });

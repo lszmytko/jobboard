@@ -6,7 +6,6 @@ export const paths = {
   editOffer: "/pracodawca/edytuj",
   adminpanel: "/adminpanel",
   adminlogin: "/adminpanel",
-  adminManageUsers: "adminpanel/manageusers",
   advdetails: "/advdetails",
   workeradvdetails: "/pracownik/szczegoly",
   getAllOffers: "/getalloffers",
@@ -19,4 +18,5 @@ export const apiRoutes = {
   getSingleUser: "/getsingleuser",
   getAllWorkerOffers: "/getallworkeroffers",
   getUserByEmail: "/getuserbyemail",
+  handleOfferActivation: "/handleofferactivation",
 };

@@ -1,0 +1,20 @@
+import { apiRoutes } from "@/common/paths";
+import axios from "axios";
+
+const activateOfferEndpoint = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/${apiRoutes.handleOfferActivation}`;
+
+export const handleOfferActivation = async ({
+  id,
+  option,
+}: {
+  id: string;
+  option: "activate" | "deactivate";
+}) => {
+  console.log("*** ahndleOfferActivation ***");
+  const response = await axios.put(activateOfferEndpoint, {
+    id,
+    option,
+  });
+
+  return response;
+};

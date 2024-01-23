@@ -21,8 +21,8 @@ export type Inputs = Omit<Offer, "requirements" | "tasks"> & {
 
 export type OfferData = Offer;
 
-const AddOfferForm = () => {
-  return <AddOfferFormUI creator="employer" />;
+const AddOfferForm = ({ creator }: { creator: "admin" | "employer" }) => {
+  return <AddOfferFormUI creator={creator} />;
 };
 
 const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {

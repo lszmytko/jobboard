@@ -1,9 +1,14 @@
 import { Offer } from "@/common/types";
 import React from "react";
+import { handleOfferActivation } from "./handleOfferActivation";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 const paragraphStyle = "text-xs 0 mb-2";
 const activeStyle = "text-green-500";
 const inActiveStyle = "text-red-500";
+
+const btnTextStyle = "flex cursor-pointer align-start text-xs w-full";
 
 const AdminOffer = ({
   details,
@@ -14,7 +19,23 @@ const AdminOffer = ({
   openDetailsModal: any;
   openDeleteModal: any;
 }) => {
-  const { post, city, company, _id, isActive } = details;
+  const { post, city, company, _id, status } = details;
+  const queryClient = useQueryClient();
+
+  const { isLoading, isError, mutateAsync } = useMutation({
+    mutationFn: handleOfferActivation,
+    onSuccess: () => {
+      toast.success("Zmieniono status oferty");
+      queryClient.invalidateQueries({ queryKey: ["adminUserOffers"] });
+    },
+    onError: () => {
+      toast.error("Nie udało się zmienić statusu oferty");
+    },
+  });
+
+  const isActive = status === "active";
+
+  const activateBtnCopy = isLoading ? "..." : isActive ? "Zakończ" : "Aktywuj";
 
   return (
     <div
@@ -33,10 +54,10 @@ const AdminOffer = ({
           </span>
         </p>
       </div>
-      <div className="options flex flex-col">
-        <div className="option basis-2/4 flex justify-start">
+      <div className="options flex flex-col text-end">
+        <div className="option basis-2/4 flex">
           <button
-            className="flex cursor-pointer align-start"
+            className={btnTextStyle}
             onClick={() => openDetailsModal(_id)}
           >
             Edytuj
@@ -46,7 +67,20 @@ const AdminOffer = ({
           className="option basis-2/4 flex justify-end"
           onClick={() => openDeleteModal(_id)}
         >
-          <button className="flex cursor-pointer align-start">Usuń</button>
+          <button className={btnTextStyle}>Usuń</button>
+        </div>
+        <div className="option basis-2/4 flex justify-end">
+          <button
+            className={btnTextStyle}
+            onClick={() =>
+              mutateAsync({
+                id: _id,
+                option: isActive ? "deactivate" : "activate",
+              })
+            }
+          >
+            {activateBtnCopy}
+          </button>
         </div>
       </div>
     </div>

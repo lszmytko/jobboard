@@ -18,6 +18,7 @@ const schema = z.object({
   offerText: z.string(),
   isActive: z.boolean(),
   aboutCompany: z.string(),
+  creator: z.string(),
 });
 
 export async function POST(req: AxiosRequestHeaders) {
@@ -35,11 +36,17 @@ export async function POST(req: AxiosRequestHeaders) {
   }
 
   const timeOfPosting = new Date().toISOString();
+  const timeOfEditing = "kkk";
 
   console.log({ timeOfPosting });
 
   try {
-    await Offer.create({ ...request, timeOfPosting, status: "pending" });
+    await Offer.create({
+      ...request,
+      timeOfPosting,
+      timeOfEditing,
+      status: "pending",
+    });
   } catch (error) {
     throw new Error("Failed to create offer");
   }

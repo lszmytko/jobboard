@@ -25,8 +25,6 @@ const AdminPanel = () => {
     },
   });
 
-  const queryClient = useQueryClient();
-
   if (isLoading) return <FullPageLoader />;
   if (isError) return <div>Coś poszło nie tak...</div>;
 

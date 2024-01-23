@@ -16,7 +16,9 @@ export type Offer = {
   requirements: string[];
   isActive: boolean;
   timeOfPosting: string;
+  timeOfEditing: string;
   aboutCompany: string;
+  creator: "employer" | "admin";
 };
 
 export type Availability =

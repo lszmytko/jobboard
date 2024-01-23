@@ -26,8 +26,6 @@ export async function GET(req: AxiosRequestHeaders) {
   const company = req.nextUrl.searchParams.get("company");
   const offerID = req.nextUrl.searchParams.get("offerID");
 
-  console.log("*** offerID", offerID);
-
   const response = schema.safeParse({ isActive, page, city, postOrCompany });
 
   if (!response.success) {

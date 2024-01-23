@@ -1,9 +1,9 @@
-import AddWorkerForm from "./AddWorkerForm/AddWorkerForm";
+import AddWorkerOfferForm from "./AddWorkerOfferForm/AddWorkerForm";
 
 const Page = () => {
   return (
     <div className="w-screen flex justify-center">
-      <AddWorkerForm />
+      <AddWorkerOfferForm />
     </div>
   );
 };

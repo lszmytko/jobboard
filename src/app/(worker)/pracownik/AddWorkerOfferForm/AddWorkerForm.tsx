@@ -38,7 +38,7 @@ type FormInputs = {
 const inputStyles = "block w-full p-1 mb-2";
 const headingStyles = "text-center text-primary text-sm font-bold mb-1";
 
-const AddWorkerForm = () => {
+const AddWorkerOfferForm = () => {
   const {
     register,
     control,
@@ -197,4 +197,4 @@ const AddWorkerForm = () => {
   );
 };
 
-export default AddWorkerForm;
+export default AddWorkerOfferForm;
