@@ -48,3 +48,5 @@ export type User = {
   phoneNumber: string;
   flatNumber: string;
 };
+
+export type creator = "worker" | "admin";

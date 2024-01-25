@@ -6,21 +6,28 @@ import { handleDeleteOffer } from "./handleDeleteOffer";
 type DeleteOfferPRops = {
   closeDeleteModal: () => void;
   offerID: string;
+  type: "worker" | "employer";
 };
 
-const DeleteOffer = ({ closeDeleteModal, offerID }: DeleteOfferPRops) => {
+const DeleteOffer = ({ closeDeleteModal, offerID, type }: DeleteOfferPRops) => {
   const queryClient = useQueryClient();
 
   const notify = () => {
     toast.success("Usunięto ofertę!");
   };
 
+  const queryKey =
+    type === "worker" ? ["fetchAllWorkerOffers"] : ["adminUserOffers"];
+
   const { isLoading, isError, mutateAsync } = useMutation({
     mutationFn: handleDeleteOffer,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["adminUserOffers"] });
+      queryClient.invalidateQueries({ queryKey });
       closeDeleteModal();
       notify();
+    },
+    onError: () => {
+      toast.error("Usuwanie oferty się nie powiodło...");
     },
   });
 
@@ -33,7 +40,7 @@ const DeleteOffer = ({ closeDeleteModal, offerID }: DeleteOfferPRops) => {
         <div className="flex justify-center">
           <button
             className="mr-6 text-green-700"
-            onClick={() => mutateAsync(offerID)}
+            onClick={() => mutateAsync({ offerID, type })}
           >
             Tak
           </button>

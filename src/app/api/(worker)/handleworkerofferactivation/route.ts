@@ -3,7 +3,7 @@ import { z } from "zod";
 
 import { AxiosRequestHeaders } from "axios";
 import connectToDatabase from "../../db/connectToDatabase";
-import { Offer } from "../../models/Offer";
+import { WorkerOffer } from "../../models/WorkerOffer";
 
 const schema = z.object({
   id: z.string(),
@@ -29,7 +29,7 @@ export async function PUT(req: AxiosRequestHeaders) {
 
   const status = request.option === "activate" ? "active" : "inactive";
 
-  const updatedOffer = await Offer.findOneAndUpdate(
+  const updatedOffer = await WorkerOffer.findOneAndUpdate(
     { _id: request.id },
     {
       ...request,
@@ -38,6 +38,7 @@ export async function PUT(req: AxiosRequestHeaders) {
     }
   );
 
+  console.log("*** updatedOffer ***", updatedOffer);
   if (!updatedOffer) {
     return NextResponse.json({ message: "No offer found" }, { status: 400 });
   }

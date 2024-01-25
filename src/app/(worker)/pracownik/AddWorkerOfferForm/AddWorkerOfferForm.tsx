@@ -11,7 +11,7 @@ import PhoneInput from "react-phone-number-input/input";
 import { DevTool } from "@hookform/devtools";
 import { useMutation } from "@tanstack/react-query";
 
-import { Availability } from "@/common/types";
+import { Availability, creator as creatorType } from "@/common/types";
 
 import { addWorkerOffer } from "./addWorkerOffer";
 import { useRouter } from "next/navigation";
@@ -38,21 +38,23 @@ type FormInputs = {
 const inputStyles = "block w-full p-1 mb-2";
 const headingStyles = "text-center text-primary text-sm font-bold mb-1";
 
-const AddWorkerOfferForm = () => {
+const AddWorkerOfferForm = ({ creator }: { creator: creatorType }) => {
   const {
     register,
     control,
     handleSubmit,
-    clearErrors,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FormInputs>();
 
   const router = useRouter();
 
+  const onSuccessPath =
+    creator === "worker" ? "/pracownik/sukces" : "/adminpanel";
+
   const { isLoading, isError, mutateAsync } = useMutation({
     mutationFn: addWorkerOffer,
     onSuccess: () => {
-      router.push("/pracownik/sukces");
+      router.push(onSuccessPath);
     },
   });
 
@@ -71,6 +73,7 @@ const AddWorkerOfferForm = () => {
       await mutateAsync({
         ...data,
         availability: parsedAvailability,
+        creator,
       });
     } catch (error) {}
   };
@@ -182,8 +185,9 @@ const AddWorkerOfferForm = () => {
         ) : (
           <input
             type="submit"
-            value="Zaloguj"
+            value="Dodaj"
             className="w-full text-center rounded py-2 px-4 bg-primary-light cursor-pointer"
+            disabled={!isValid}
           />
         )}
         {isError && (

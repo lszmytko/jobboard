@@ -12,6 +12,7 @@ const schema = z.object({
   experience: z.string(),
   availability: z.array(z.string()),
   offerText: z.string(),
+  creator: z.string(),
 });
 
 export async function POST(req: AxiosRequestHeaders) {

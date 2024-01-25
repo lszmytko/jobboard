@@ -35,7 +35,7 @@ const AdminPanel = () => {
   return (
     <div>
       <AdminSearchOffer setOfferData={setOfferData} />
-      <AdminOffers data={offerData} />
+      <AdminOffers data={offerData} type="employer" />
       <Pagination pages={pages} />
     </div>
   );

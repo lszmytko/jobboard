@@ -29,7 +29,6 @@ export async function GET(req: AxiosRequestHeaders) {
   let numberOfOffers: number;
 
   try {
-    // offers = await WorkerOffer.find({ isActive: true });
     numberOfOffers = await WorkerOffer.find(finalFilter).count();
     offers = await WorkerOffer.find(finalFilter)
       .skip((page - 1) * 15)

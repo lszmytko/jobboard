@@ -9,6 +9,7 @@ export const paths = {
   advdetails: "/advdetails",
   workeradvdetails: "/pracownik/szczegoly",
   getAllOffers: "/getalloffers",
+  getWorkerOffers: "/getworkeroffers",
   resetPassword: "/resetpassword",
 };
 
@@ -19,4 +20,5 @@ export const apiRoutes = {
   getAllWorkerOffers: "/getallworkeroffers",
   getUserByEmail: "/getuserbyemail",
   handleOfferActivation: "/handleofferactivation",
+  handleWorkerOfferActivation: "/handleworkerofferactivation",
 };

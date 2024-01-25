@@ -4,11 +4,12 @@ import { useState } from "react";
 import React from "react";
 import Modal from "react-modal";
 
-import { Offer } from "@/common/types";
+import { Offer, WorkerOffer as WorkerOfferType } from "@/common/types";
 
 import OfferDetails from "./OfferDetails/OfferDetails";
 import DeleteOffer from "./DeleteOffer";
 import AdminOffer from "./AdminOffer";
+import WorkerOffer from "../getworkeroffers/WorkerOffer/WorkerOffer";
 
 const customEditModalStyles = {
   content: {},
@@ -50,7 +51,13 @@ const customDeleteModalStyles = {
   },
 };
 
-const AdminOffers = ({ data }: { data: Offer[] }) => {
+const AdminOffers = ({
+  data,
+  type,
+}: {
+  data: Offer[] | WorkerOfferType[];
+  type: "worker" | "employer";
+}) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [offerID, setOfferID] = useState("");
@@ -78,12 +85,22 @@ const AdminOffers = ({ data }: { data: Offer[] }) => {
       <div className="mt-4 flex justify-center">
         <div className="">
           {data.map((item) => {
+            if (type === "employer") {
+              return (
+                <AdminOffer
+                  details={item}
+                  openDetailsModal={openDetailsModal}
+                  openDeleteModal={openDeleteModal}
+                  key={item._id}
+                />
+              );
+            }
             return (
-              <AdminOffer
+              <WorkerOffer
                 details={item}
+                key={item._id}
                 openDetailsModal={openDetailsModal}
                 openDeleteModal={openDeleteModal}
-                key={item._id}
               />
             );
           })}
@@ -103,7 +120,11 @@ const AdminOffers = ({ data }: { data: Offer[] }) => {
         style={customDeleteModalStyles}
         contentLabel="Delete Modal"
       >
-        <DeleteOffer closeDeleteModal={closeDeleteModal} offerID={offerID} />
+        <DeleteOffer
+          closeDeleteModal={closeDeleteModal}
+          offerID={offerID}
+          type={type}
+        />
       </Modal>
     </>
   );

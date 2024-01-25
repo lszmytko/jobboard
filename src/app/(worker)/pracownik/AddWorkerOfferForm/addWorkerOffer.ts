@@ -1,8 +1,10 @@
 import axios from "axios";
 
-import { WorkerOffer } from "@/common/types";
+import { WorkerOffer, creator as creatorType } from "@/common/types";
 
-export const addWorkerOffer = async (data: WorkerOffer) => {
+export const addWorkerOffer = async (
+  data: WorkerOffer & { creator: creatorType }
+) => {
   const response = axios.request({
     method: "POST",
     url: `http://localhost:3000/api/addworkeroffer`,
