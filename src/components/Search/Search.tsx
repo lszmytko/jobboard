@@ -14,6 +14,7 @@ const Search = ({ remove }: { remove: any }) => {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm<SearchInputs>();
 
@@ -32,6 +33,7 @@ const Search = ({ remove }: { remove: any }) => {
   const resetCriteria = () => {
     router.push("/");
     remove();
+    reset();
   };
 
   return (

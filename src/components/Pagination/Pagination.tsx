@@ -52,7 +52,6 @@ const Pagination = ({
         previousLabel="<"
         renderOnZeroPageCount={null}
         activeLinkClassName={activeStyle}
-        // initialPage={parseInt(page) - 1}
       />
     </div>
   );

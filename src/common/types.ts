@@ -1,4 +1,4 @@
-import { User } from "@/app/api/models/User";
+type OfferStatus = "pending" | "active" | "inactive";
 
 export type Offer = {
   _id: string;
@@ -29,6 +29,7 @@ export type Availability =
   | "praca w nocy";
 
 export type WorkerOffer = {
+  _id: string;
   email: string;
   phoneNumber: string;
   city: string;
@@ -36,17 +37,17 @@ export type WorkerOffer = {
   experience: string;
   availability: Availability[];
   offerText: string;
+  status: OfferStatus;
+  timeOfPosting: string;
+  timeOfEditing: string;
+  creator: WorkerOfferCreator;
 };
 
-export type User = {
-  _id: string;
-  email: string;
-  password: string;
-  companyName: string;
-  city: string;
-  street: string;
-  phoneNumber: string;
-  flatNumber: string;
+export type WorkerOfferFormInputs = Pick<
+  WorkerOffer,
+  "email" | "phoneNumber" | "education" | "experience" | "city" | "offerText"
+> & {
+  availability: { name: Availability }[];
 };
 
-export type creator = "worker" | "admin";
+export type WorkerOfferCreator = "worker" | "admin";

@@ -5,7 +5,6 @@ import { StatusCodes } from "http-status-codes";
 
 import connectToDatabase from "../db/connectToDatabase";
 import { Offer } from "../models/Offer";
-import { auth } from "../middleware/auth";
 import { WorkerOffer } from "../models/WorkerOffer";
 
 const schema = z.object({

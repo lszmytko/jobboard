@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { WorkerOffer } from "@/common/types";
-import { apiRoutes, paths } from "@/common/paths";
+import { apiRoutes } from "@/common/paths";
 
 const singleOfferEndpoint = `${process.env.NEXT_PUBLIC_API_ENDPOINT}${apiRoutes.getSingleWorkerOffer}`;
 

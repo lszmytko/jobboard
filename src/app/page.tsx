@@ -3,16 +3,16 @@
 import Pagination from "@/components/Pagination";
 import AdvSection from "../components/AdvSection";
 import Search from "../components/Search";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllOffers } from "@/components/AdvSection/fetchAllOffers";
 import { paths } from "@/common/paths";
-import WorkerAdvCard from "@/components/WorkerAdvCard/WorkerAdvCard";
 import { useState } from "react";
 import WorkerAdvSection from "@/components/WorkerAdvSection/WorkerAdvSection";
 
 export default function Home() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const page = searchParams.get("page") ?? "1";
   const city = searchParams.get("city") ?? "";
   const postOrCompany = searchParams.get("postOrCompany") ?? "";
@@ -30,11 +30,20 @@ export default function Home() {
   const offers = data?.data?.offers;
   const pages = data?.data.pages ?? 1;
 
+  const handleOptionChange = (option: "workers" | "employers") => {
+    router.push(paths.home);
+    if (option === "workers") {
+      setOption("workers");
+    } else {
+      setOption("employers");
+    }
+  };
+
   return (
     <>
       <div className="flex justify-center gap-4">
         <button
-          onClick={() => setOption("employers")}
+          onClick={() => handleOptionChange("employers")}
           className={
             option === "employers"
               ? "p-2 bg-primary-light rounded-full text-white"
@@ -44,7 +53,7 @@ export default function Home() {
           Oferty pracodawców
         </button>
         <button
-          onClick={() => setOption("workers")}
+          onClick={() => handleOptionChange("workers")}
           className={
             option === "workers"
               ? "p-2 bg-primary-light rounded-full text-white"

@@ -4,10 +4,10 @@ import { WorkerOffer } from "@/common/types";
 import { paths } from "@/common/paths";
 import { shortenString } from "@/utils/utils";
 
-type WorkerCardProps = Pick<WorkerOffer, "city" | "offerText"> & {
-  _id: string;
-  timeOfPosting: string;
-};
+type WorkerCardProps = Pick<
+  WorkerOffer,
+  "city" | "offerText" | "_id" | "timeOfPosting"
+>;
 
 const WorkerAdvCard = ({
   offerText,

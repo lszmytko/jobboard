@@ -1,14 +1,12 @@
 import mongoose from "mongoose";
 import {
   WorkerOffer as WorkerOfferType,
-  creator as creatorType,
+  WorkerOfferCreator as creatorType,
 } from "@/common/types";
 
 const { Schema } = mongoose;
 
-type WorkerOfferSchemaType = WorkerOfferType & { status: string } & {
-  timeOfPosting: string;
-  timeOfEditing: string;
+type WorkerOfferSchemaType = WorkerOfferType & {
   creator: creatorType;
 };
 

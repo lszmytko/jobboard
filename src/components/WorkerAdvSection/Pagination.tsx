@@ -20,6 +20,8 @@ const Pagination = ({
     setPage(data.selected + 1);
   };
 
+  const params = useSearchParams();
+
   if (pages === 1) return null;
 
   return (
@@ -27,7 +29,7 @@ const Pagination = ({
       <ReactPaginate
         containerClassName="flex flex-row justify-center items-center gap-2 "
         pageLinkClassName="px-2 cursor-pointer"
-        forcePage={0}
+        forcePage={page - 1}
         breakLabel="..."
         nextLabel=">"
         onPageChange={handlePageClick}

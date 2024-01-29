@@ -21,4 +21,5 @@ export const apiRoutes = {
   getUserByEmail: "/getuserbyemail",
   handleOfferActivation: "/handleofferactivation",
   handleWorkerOfferActivation: "/handleworkerofferactivation",
+  editworkeroffer: "/editworkeroffer",
 };

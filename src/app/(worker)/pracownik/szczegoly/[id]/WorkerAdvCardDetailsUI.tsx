@@ -6,11 +6,7 @@ import dayjs from "dayjs";
 const spanStyles = "font-bold text-primary-light";
 const paragraphStyles = "mb-2";
 
-const WorkerAdvCardDetailsUI = ({
-  data,
-}: {
-  data: WorkerOffer & { timeOfPosting: string };
-}) => {
+const WorkerAdvCardDetailsUI = ({ data }: { data: WorkerOffer }) => {
   const {
     email,
     phoneNumber,

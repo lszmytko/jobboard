@@ -10,6 +10,7 @@ import OfferDetails from "./OfferDetails/OfferDetails";
 import DeleteOffer from "./DeleteOffer";
 import AdminOffer from "./AdminOffer";
 import WorkerOffer from "../getworkeroffers/WorkerOffer/WorkerOffer";
+import EditWorkerOffer from "../getworkeroffers/WorkerOffer/EditWorkerOffer";
 
 const customEditModalStyles = {
   content: {},
@@ -112,7 +113,11 @@ const AdminOffers = ({
         style={customEditModalStyles}
         contentLabel="Details Modal"
       >
-        <OfferDetails offerID={offerID} />
+        {type === "employer" ? (
+          <OfferDetails offerID={offerID} />
+        ) : (
+          <EditWorkerOffer offerID={offerID} />
+        )}
       </Modal>
       <Modal
         isOpen={isDeleteModalOpen}

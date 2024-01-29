@@ -1,6 +1,7 @@
-import { paths, apiRoutes } from "@/common/paths";
-import { Offer, WorkerOffer } from "@/common/types";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
+
+import { apiRoutes } from "@/common/paths";
+import { WorkerOffer } from "@/common/types";
 
 const offersEndpoint = `${process.env.NEXT_PUBLIC_API_ENDPOINT}${apiRoutes.getAllWorkerOffers}`;
 

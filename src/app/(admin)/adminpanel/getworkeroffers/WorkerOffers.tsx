@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAllWorkerOffers } from "@/components/WorkerAdvSection/fetchAllWorkerOffers";
 import { ThreeDots } from "react-loader-spinner";
-import WorkerOffer from "./WorkerOffer/WorkerOffer";
 import AdminOffers from "../AdminOffers";
 
 const paragraphStyle = "text-xs 0 mb-2";

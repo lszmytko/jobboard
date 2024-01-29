@@ -1,26 +1,23 @@
-"use client";
-
 import React from "react";
+import { editWorkerOffer } from "./editWorkerOfferFn";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { fetchSingleWorkerOffer } from "@/app/(worker)/pracownik/szczegoly/[id]/fetchSingleWorkerOffer";
 import {
+  Controller,
   SubmitHandler,
   useFieldArray,
   useForm,
-  Controller,
 } from "react-hook-form";
-import PhoneInput from "react-phone-number-input/input";
-import { DevTool } from "@hookform/devtools";
-import { useMutation } from "@tanstack/react-query";
-
 import {
   Availability,
   WorkerOffer,
-  WorkerOfferCreator,
   WorkerOfferFormInputs,
 } from "@/common/types";
-
-import { addWorkerOffer } from "./addWorkerOffer";
 import { useRouter } from "next/navigation";
+import PhoneInput from "react-phone-number-input/input";
 import { ThreeDots } from "react-loader-spinner";
+import { DevTool } from "@hookform/devtools";
+import { toast } from "sonner";
 
 const availabilityOptions = [
   "cały etat",
@@ -33,23 +30,47 @@ const availabilityOptions = [
 const inputStyles = "block w-full p-1 mb-2";
 const headingStyles = "text-center text-primary text-sm font-bold mb-1";
 
-const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
+const EditWorkerOffer = ({ offerID }: { offerID: string }) => {
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ["fetchSingleWorkerOffer"],
+    queryFn: () => fetchSingleWorkerOffer(offerID),
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Something went wrong...</div>;
+
+  const offerDetails = data.data.offer;
+
+  return <EditWorkerOfferFormUI data={offerDetails} />;
+};
+
+const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
+  const { availability, email, education, experience, city, offerText, _id } =
+    data;
+
   const {
     register,
     control,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<WorkerOfferFormInputs>();
+  } = useForm<WorkerOfferFormInputs>({
+    defaultValues: {
+      availability: availability.map((item) => ({ name: item })),
+      email,
+      education,
+      experience,
+      city,
+      offerText,
+    },
+  });
 
   const router = useRouter();
 
-  const onSuccessPath =
-    creator === "worker" ? "/pracownik/sukces" : "/adminpanel";
-
   const { isLoading, isError, mutateAsync } = useMutation({
-    mutationFn: addWorkerOffer,
+    mutationFn: editWorkerOffer,
     onSuccess: () => {
-      router.push(onSuccessPath);
+      router.push("/adminpanel/getworkeroffers");
+      toast.success("Pomyślnie edytowano ogłoszenie!");
     },
   });
 
@@ -64,11 +85,12 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
     const parsedAvailability = data.availability
       .filter((item) => item.name)
       .map((item) => item.name);
+
     try {
       await mutateAsync({
         ...data,
         availability: parsedAvailability,
-        creator,
+        _id,
       });
     } catch (error) {}
   };
@@ -76,7 +98,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
   return (
     <div className="mb-1 p-2">
       <h1 className="mb-2 text-lg font-bold text-center">
-        Wypełnij formularz by dodać ogłoszenie.
+        Wypełnij formularz by edytować ogłoszenie.
       </h1>
       {Object.values(errors).length > 0 && (
         <p className="text-center text-red-600 text-sm font-bold">
@@ -196,4 +218,4 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
   );
 };
 
-export default AddWorkerOfferForm;
+export default EditWorkerOffer;

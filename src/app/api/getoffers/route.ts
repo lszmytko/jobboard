@@ -2,10 +2,8 @@ import { z } from "zod";
 import { AxiosRequestHeaders } from "axios";
 import { StatusCodes } from "http-status-codes";
 
-import { User } from "../models/User";
 import connectToDatabase from "../db/connectToDatabase";
 import { Offer } from "../models/Offer";
-import { auth } from "../middleware/auth";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 
