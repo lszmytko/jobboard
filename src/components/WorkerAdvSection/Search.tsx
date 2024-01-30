@@ -21,7 +21,7 @@ const Search = ({
   return (
     <div className="mb-4">
       <form
-        className="mb-2 mt-4 md:flex justify-center"
+        className="mb-6 mt-4 md:flex justify-center"
         onSubmit={handleSubmit(onSubmit)}
       >
         <input

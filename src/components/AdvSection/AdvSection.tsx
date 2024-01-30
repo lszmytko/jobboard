@@ -1,5 +1,6 @@
 "use client";
 
+import { ThreeDots } from "react-loader-spinner";
 import AdvCard from "../AdvCard";
 import { Offer } from "@/common/types";
 
@@ -10,7 +11,12 @@ const AdvSection = ({
   offers: Offer[] | undefined;
   isLoading: boolean;
 }) => {
-  if (isLoading) return <div className="text-center">Chwilka...</div>;
+  if (isLoading)
+    return (
+      <div className="flex justify-center">
+        <ThreeDots />
+      </div>
+    );
   if (offers?.length === 0)
     return (
       <section className="flex justify-center p-2 mt-8">

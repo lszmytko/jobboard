@@ -74,6 +74,9 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
 
   return (
     <div className="max-w-3xl w-full p-2">
+      <h1 className="mb-2 text-lg font-bold text-center">
+        Wypełnij formularz by dodać ogłoszenie.
+      </h1>
       <form onSubmit={submitFn}>
         <Input
           register={register}

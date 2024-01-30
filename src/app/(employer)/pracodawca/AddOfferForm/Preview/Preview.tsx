@@ -28,10 +28,12 @@ const Preview = ({
     onSuccess: () => {
       reset();
       closeModal();
-      toast.success("Oferta pomyślnie dodana");
+      console.log({ creator });
+      debugger;
+      toast.success("Oferta pomyślnie dodanaaaaa");
       creator === "admin"
         ? router.push("/adminpanel")
-        : router.push("/pracodawca");
+        : router.push("/pracodawca/sukces");
     },
     onError: () => {
       toast.error("Nie udało się dodać oferty");

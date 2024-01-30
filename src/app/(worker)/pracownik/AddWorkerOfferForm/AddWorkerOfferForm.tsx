@@ -30,8 +30,8 @@ const availabilityOptions = [
   "praca w nocy",
 ] as const;
 
-const inputStyles = "block w-full p-1 mb-2";
-const headingStyles = "text-center text-primary text-sm font-bold mb-1";
+const inputStyles = "block w-full p-2 mb-2";
+const headingStyles = "text-center text-primary  font-bold mb-1";
 
 const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
   const {
@@ -74,7 +74,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
   };
 
   return (
-    <div className="mb-1 p-2">
+    <div className="mb-1 p-2 sm:w-1/2">
       <h1 className="mb-2 text-lg font-bold text-center">
         Wypełnij formularz by dodać ogłoszenie.
       </h1>
@@ -87,7 +87,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
         <div>
           <h1 className={headingStyles}>Twój email</h1>
           <input
-            {...register("email")}
+            {...register("email", { required: true })}
             placeholder="Email"
             className={inputStyles}
           />
@@ -95,7 +95,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
         <div>
           <h1 className={headingStyles}>Miasto</h1>
           <input
-            {...register("city")}
+            {...register("city", { required: true })}
             placeholder="Miasto"
             className={inputStyles}
           />
@@ -120,7 +120,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
         <div>
           <h1 className={headingStyles}>Twoje Wykształcenie</h1>
           <textarea
-            {...register("education")}
+            {...register("education", { required: true })}
             maxLength={300}
             rows={3}
             placeholder="Wykształcenie"
@@ -130,7 +130,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
         <div>
           <h1 className={headingStyles}>Twoje Doświadczenie</h1>
           <textarea
-            {...register("experience")}
+            {...register("experience", { required: true })}
             maxLength={300}
             rows={3}
             className={inputStyles}
@@ -140,7 +140,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
           <h1 className={headingStyles}>Dostępność</h1>
           <div className="flex gap-2">
             {availabilityOptions.map((option, index) => (
-              <div key={option}>
+              <div key={option} className="grow">
                 <div className="flex justify-center">
                   <input
                     type="checkbox"
@@ -181,7 +181,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
           <input
             type="submit"
             value="Dodaj"
-            className="w-full text-center rounded py-2 px-4 bg-primary-light cursor-pointer"
+            className="w-full text-center rounded py-2 px-4 bg-primary-light cursor-pointer disabled:opacity-50"
             disabled={!isValid}
           />
         )}

@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import { SignJWT } from "jose";
+import { getJwtSecretKey } from "@/utils";
 
 const { Schema } = mongoose;
 
@@ -19,14 +21,17 @@ AdminSchema.pre("save", async function () {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-AdminSchema.methods.createJWT = function () {
-  return jwt.sign(
-    { id: this._id, name: this.name },
-    process.env.NEXT_PUBLIC_JWT_SECRET as string,
-    {
-      expiresIn: "30d",
-    }
-  );
+AdminSchema.methods.createJWT = async function () {
+  const token = await new SignJWT({
+    id: this._id,
+    name: this.name,
+  })
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime("30d")
+    .sign(getJwtSecretKey());
+
+  return token;
 };
 
 AdminSchema.methods.comparePasswords = async function (

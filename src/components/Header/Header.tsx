@@ -8,13 +8,22 @@ import { paths } from "@/common/paths";
 import Logo from "./Logo";
 import HamburgerMenu from "./HamburgerMenu";
 import { usePathname } from "next/navigation";
+import { createStyles } from "@/utils/utils";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
+
+const activeClassName = "bg-primary rounded px-2";
 
 const Header = () => {
   const pathname = usePathname();
 
   if (pathname.startsWith("/adminpanel")) return null;
+
+  console.log({ pathname });
+
+  const styles = createStyles(pathname, activeClassName);
+
+  console.log({ styles });
 
   return (
     <div className="w-screen flex justify-center sm:mt-4">
@@ -27,11 +36,15 @@ const Header = () => {
           <Logo />
         </div>
         <div className="max-sm:hidden flex gap-2">
-          <Link href="/" className="bg-primary rounded px-2">
+          <Link href="/" className={styles.allOffers}>
             Oferty pracy
           </Link>
-          <Link href={paths.employer}>Dam pracę</Link>
-          <Link href={paths.worker}>Szukam pracy</Link>
+          <Link className={styles.employer} href={paths.employer}>
+            Dam pracę
+          </Link>
+          <Link className={styles.worker} href={paths.worker}>
+            Szukam pracy
+          </Link>
           <a
             href="https://www.vettech.pl"
             className="trainings hidden sm:block"

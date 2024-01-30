@@ -30,3 +30,21 @@ export function shortenString(
   const shortened = str.substring(0, maxLength);
   return ellipsis ? `${shortened}...` : shortened;
 }
+
+export const createStyles = (path: string, className: string) => {
+  let defaultStyles = { worker: "", allOffers: "", employer: "" };
+
+  if (path.startsWith("/pracownik")) {
+    return { ...defaultStyles, worker: className };
+  }
+
+  if (path.startsWith("/pracodawca")) {
+    return { ...defaultStyles, employer: className };
+  }
+
+  if (path.startsWith("/")) {
+    return { ...defaultStyles, allOffers: className };
+  }
+
+  return defaultStyles;
+};
