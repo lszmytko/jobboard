@@ -1,8 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 import connectToDatabase from "../db/connectToDatabase";
-import { AxiosRequestHeaders } from "axios";
 import { Offer } from "../models/Offer";
 
 const schema = z.object({
@@ -20,7 +19,7 @@ const schema = z.object({
   offerText: z.string(),
 });
 
-export async function PUT(req: AxiosRequestHeaders) {
+export async function PUT(req: NextRequest) {
   await connectToDatabase();
   const request = await req.json();
   const validation = schema.safeParse(request);

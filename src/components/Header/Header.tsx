@@ -19,11 +19,7 @@ const Header = () => {
 
   if (pathname.startsWith("/adminpanel")) return null;
 
-  console.log({ pathname });
-
   const styles = createStyles(pathname, activeClassName);
-
-  console.log({ styles });
 
   return (
     <div className="w-screen flex justify-center sm:mt-4">

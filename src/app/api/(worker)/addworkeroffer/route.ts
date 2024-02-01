@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import { AxiosRequestHeaders } from "axios";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 import connectToDatabase from "../../db/connectToDatabase";
@@ -15,10 +14,9 @@ const schema = z.object({
   creator: z.string(),
 });
 
-export async function POST(req: AxiosRequestHeaders) {
+export async function POST(req: NextRequest) {
   await connectToDatabase();
   const request = await req.json();
-  console.log("*** request ***", request);
   const validation = schema.safeParse(request);
 
   if (!validation.success) {
@@ -40,7 +38,6 @@ export async function POST(req: AxiosRequestHeaders) {
       status: "pending",
     });
   } catch (error) {
-    console.log(error);
     throw new Error("Failed to create worker offer");
   }
 

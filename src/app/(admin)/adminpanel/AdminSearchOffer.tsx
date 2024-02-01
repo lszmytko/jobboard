@@ -39,7 +39,6 @@ const AdminSearchOffer = ({
       const response = await mutateAsync({
         params: { page: "1", company: data.company, offerID: data.offerID },
       });
-      console.log("*** params", params);
       setOfferData(response.data.offers);
       router.push(params);
     } catch (error) {}

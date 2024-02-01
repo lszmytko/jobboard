@@ -81,7 +81,6 @@ const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
   });
 
   const onSubmit: SubmitHandler<WorkerOfferFormInputs> = async (data) => {
-    console.log("availability", data.availability);
     const parsedAvailability = data.availability
       .filter((item) => item.name)
       .map((item) => item.name);

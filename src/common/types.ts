@@ -19,6 +19,7 @@ export type Offer = {
   timeOfEditing: string;
   aboutCompany: string;
   creator: "employer" | "admin";
+  status: OfferStatus;
 };
 
 export type Availability =

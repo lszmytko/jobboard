@@ -1,10 +1,9 @@
 import { z } from "zod";
-import { AxiosRequestHeaders } from "axios";
 import { StatusCodes } from "http-status-codes";
 
 import connectToDatabase from "../db/connectToDatabase";
 import { Offer } from "../models/Offer";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
 
 const ITEMS_PER_PAGE = 15;
@@ -16,11 +15,11 @@ const schema = z.object({
   postOrCompany: z.string().nullable().optional(),
 });
 
-export async function GET(req: AxiosRequestHeaders) {
+export async function GET(req: NextRequest) {
   await connectToDatabase();
 
   const isActive = req.nextUrl.searchParams.get("isActive");
-  const page = req.nextUrl.searchParams.get("page") ?? "1";
+  const page = Number(req.nextUrl.searchParams.get("page") ?? "1");
   const city = req.nextUrl.searchParams.get("city");
   const postOrCompany = req.nextUrl.searchParams.get("postOrCompany");
   const company = req.nextUrl.searchParams.get("company");
@@ -39,8 +38,6 @@ export async function GET(req: AxiosRequestHeaders) {
 
   let offers;
   let numberOfOffers: number;
-
-  console.log({ isActive });
 
   let filter = {};
   filter = company
@@ -61,8 +58,6 @@ export async function GET(req: AxiosRequestHeaders) {
   const filterWithPost = postOrCompany
     ? { ...filter, post: { $regex: postOrCompany, $options: "i" } }
     : { ...filter };
-
-  console.log({ filter });
 
   const finalFilter = {
     $or: [filterWithCompany, filterWithPost],

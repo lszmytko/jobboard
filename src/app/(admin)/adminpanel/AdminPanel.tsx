@@ -28,8 +28,6 @@ const AdminPanel = () => {
   if (isLoading) return <FullPageLoader />;
   if (isError) return <div>Coś poszło nie tak...</div>;
 
-  console.log("*** data", data);
-
   const pages = data.data.pages;
 
   return (

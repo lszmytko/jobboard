@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import { AxiosRequestHeaders } from "axios";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 import connectToDatabase from "../../db/connectToDatabase";
@@ -14,10 +13,9 @@ const schema = z.object({
   offerText: z.string(),
 });
 
-export async function PUT(req: AxiosRequestHeaders) {
+export async function PUT(req: NextRequest) {
   await connectToDatabase();
   const request = await req.json();
-  console.log("*** request ***", request);
   const validation = schema.safeParse(request);
 
   if (!validation.success) {
@@ -29,8 +27,6 @@ export async function PUT(req: AxiosRequestHeaders) {
   }
 
   const timeOfEditing = new Date().toISOString();
-
-  console.log({ timeOfEditing });
 
   try {
     const offer = await WorkerOffer.findOneAndUpdate(
@@ -45,7 +41,6 @@ export async function PUT(req: AxiosRequestHeaders) {
       return NextResponse.json({ message: "Offer not found" }, { status: 400 });
     }
   } catch (error) {
-    console.log(error);
     throw new Error("Failed to create worker offer");
   }
 

@@ -1,6 +1,5 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { AxiosRequestHeaders } from "axios";
 import { StatusCodes } from "http-status-codes";
 
 import connectToDatabase from "../db/connectToDatabase";
@@ -13,11 +12,11 @@ const schema = z.object({
 
 const ITEMS_PER_PAGE = 15;
 
-export async function GET(req: AxiosRequestHeaders) {
+export async function GET(req: NextRequest) {
   await connectToDatabase();
 
   const userID = req.nextUrl.searchParams.get("user");
-  const page = req.nextUrl.searchParams.get("page") ?? "1";
+  const page = Number(req.nextUrl.searchParams.get("page") ?? "1");
 
   const response = schema.safeParse({ user: userID });
 

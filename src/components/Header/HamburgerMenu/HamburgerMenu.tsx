@@ -24,7 +24,7 @@ const HamburgerMenu = () => {
         />
       </div>
       <aside
-        className={`sm:hidden absolute top-0 left-0 ${hiddenStyles} w-60 bg-primary-light rounded-br-lg`}
+        className={`sm:hidden absolute top-0 left-0 ${hiddenStyles} w-60 bg-white rounded-br-lg`}
       >
         <div className="flex justify-end p-3">
           <GrClose
@@ -43,10 +43,10 @@ const HamburgerMenu = () => {
             Szkolenia
           </a>
         </div>
-        <div className="border-y-2 p-1">
+        <div className="border-t-2 p-1">
           <Link href={paths.employer}>Dam pracę</Link>
         </div>
-        <div className="border-y-2 p-1">
+        <div className="border-t-2 p-1">
           <Link href={paths.worker}>Szukam pracy</Link>
         </div>
       </aside>

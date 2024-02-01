@@ -10,7 +10,6 @@ export const handleOfferActivation = async ({
   id: string;
   option: "activate" | "deactivate";
 }) => {
-  console.log("*** ahndleOfferActivation ***");
   const response = await axios.put(activateOfferEndpoint, {
     id,
     option,

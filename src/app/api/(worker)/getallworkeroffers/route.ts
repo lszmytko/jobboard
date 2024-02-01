@@ -1,18 +1,15 @@
-import { z } from "zod";
-import { AxiosRequestHeaders } from "axios";
 import { StatusCodes } from "http-status-codes";
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { WorkerOffer } from "../../models/WorkerOffer";
 import connectToDatabase from "../../db/connectToDatabase";
 
 const ITEMS_PER_PAGE = 15;
 
-export async function GET(req: AxiosRequestHeaders) {
+export async function GET(req: NextRequest) {
   await connectToDatabase();
   const criterium = req.nextUrl.searchParams.get("filterCriteria");
   const page = Number(req.nextUrl.searchParams.get("page")) ?? 1;
-  console.log({ page });
 
   const finalFilter = criterium
     ? {
@@ -22,8 +19,6 @@ export async function GET(req: AxiosRequestHeaders) {
         ],
       }
     : {};
-
-  console.log({ finalFilter });
 
   let offers;
   let numberOfOffers: number;

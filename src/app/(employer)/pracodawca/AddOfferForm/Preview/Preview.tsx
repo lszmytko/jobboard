@@ -1,4 +1,4 @@
-import Modal from "react-modal";
+import Modal, { Styles } from "react-modal";
 import React from "react";
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
@@ -28,8 +28,6 @@ const Preview = ({
     onSuccess: () => {
       reset();
       closeModal();
-      console.log({ creator });
-      debugger;
       toast.success("Oferta pomyślnie dodanaaaaa");
       creator === "admin"
         ? router.push("/adminpanel")
@@ -50,6 +48,7 @@ const Preview = ({
     tasks,
     requirements,
     _id,
+    aboutCompany,
   } = offerData;
 
   const loadingStyles = isLoading ? "cursor-not-allowed opacity" : "";
@@ -58,7 +57,7 @@ const Preview = ({
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
-      style={customDeleteModalStyles}
+      style={customDeleteModalStyles as Styles}
       contentLabel="Delete Modal"
     >
       <div className="flex justify-center items-center">
@@ -75,6 +74,7 @@ const Preview = ({
             workingTime={workingTime}
             tasks={tasks}
             requirements={requirements}
+            aboutCompany={aboutCompany}
             _id={_id}
           />
           <div className="mt-4 flex justify-center">

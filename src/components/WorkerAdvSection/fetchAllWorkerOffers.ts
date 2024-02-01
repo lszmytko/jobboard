@@ -20,7 +20,6 @@ export const fetchAllWorkerOffers = async (
       }
     : { params: { page } };
 
-  console.log({ parsedParams });
   const response = await axios.get<ResponseStructure>(
     offersEndpoint,
     parsedParams

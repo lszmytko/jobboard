@@ -20,6 +20,8 @@ const AdvCardDetails = () => {
   if (isError) return <div>Coś poszło nie tak...</div>;
   if (isLoading) return <FullPageLoader />;
 
+  console.log(data?.data?.offer);
+
   const {
     post,
     company,
@@ -30,6 +32,7 @@ const AdvCardDetails = () => {
     experience,
     _id: offerID,
     workingTime,
+    aboutCompany,
   } = data?.data?.offer || {};
 
   return (
@@ -43,6 +46,7 @@ const AdvCardDetails = () => {
       tasks={tasks}
       requirements={requirements}
       _id={offerID}
+      aboutCompany={aboutCompany}
     />
   );
 };

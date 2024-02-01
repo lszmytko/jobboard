@@ -1,10 +1,9 @@
 import { z } from "zod";
-import { AxiosRequestHeaders } from "axios";
 import { StatusCodes } from "http-status-codes";
 
 import connectToDatabase from "../db/connectToDatabase";
 import { Offer } from "../models/Offer";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
 
 const schema = z.object({
@@ -12,7 +11,7 @@ const schema = z.object({
   offerID: z.string(),
 });
 
-export async function GET(req: AxiosRequestHeaders) {
+export async function GET(req: NextRequest) {
   await connectToDatabase();
 
   const offerID = req.nextUrl.searchParams.get("offerID");
@@ -32,7 +31,7 @@ export async function GET(req: AxiosRequestHeaders) {
   let offers;
 
   try {
-    const offerIDAsObjectId = new mongoose.Types.ObjectId(offerID);
+    const offerIDAsObjectId = new mongoose.Types.ObjectId(offerID as string);
     offers = await Offer.find({ company, _id: offerIDAsObjectId });
   } catch (e) {
     throw e;

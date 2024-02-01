@@ -5,7 +5,7 @@ import CheckBoxGroup from "../CheckBoxGroup/CheckBoxGroup";
 import CheckboxField from "../CheckBoxGroup/CheckboxField/CheckboxField";
 import { Inputs } from "../AddOfferForm";
 
-const AgreementType = ({ register }: { register: UseFormRegister<Inputs> }) => {
+const AgreementType = ({ register }: { register: UseFormRegister<any> }) => {
   return (
     <CheckBoxGroup title="Rodzaj umowy">
       {agreementData.values.map((value, index) => {

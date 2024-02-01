@@ -1,8 +1,7 @@
 import { z } from "zod";
-import { AxiosRequestHeaders } from "axios";
 import { StatusCodes } from "http-status-codes";
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { WorkerOffer } from "../../models/WorkerOffer";
 import connectToDatabase from "../../db/connectToDatabase";
 
@@ -10,7 +9,7 @@ const schema = z.object({
   offerID: z.string(),
 });
 
-export async function GET(req: AxiosRequestHeaders) {
+export async function GET(req: NextRequest) {
   await connectToDatabase();
 
   const offerID = req.nextUrl.searchParams.get("offerID");

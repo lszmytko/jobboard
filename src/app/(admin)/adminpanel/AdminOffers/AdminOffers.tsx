@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import React from "react";
-import Modal from "react-modal";
+import Modal, { Styles } from "react-modal";
 
 import { Offer, WorkerOffer as WorkerOfferType } from "@/common/types";
 
@@ -89,7 +89,7 @@ const AdminOffers = ({
             if (type === "employer") {
               return (
                 <AdminOffer
-                  details={item}
+                  details={item as Offer}
                   openDetailsModal={openDetailsModal}
                   openDeleteModal={openDeleteModal}
                   key={item._id}
@@ -98,7 +98,7 @@ const AdminOffers = ({
             }
             return (
               <WorkerOffer
-                details={item}
+                details={item as WorkerOfferType}
                 key={item._id}
                 openDetailsModal={openDetailsModal}
                 openDeleteModal={openDeleteModal}
@@ -110,7 +110,7 @@ const AdminOffers = ({
       <Modal
         isOpen={isDetailsModalOpen}
         onRequestClose={closeDetailsModal}
-        style={customEditModalStyles}
+        style={customEditModalStyles as Styles}
         contentLabel="Details Modal"
       >
         {type === "employer" ? (
@@ -122,7 +122,7 @@ const AdminOffers = ({
       <Modal
         isOpen={isDeleteModalOpen}
         onRequestClose={closeDeleteModal}
-        style={customDeleteModalStyles}
+        style={customDeleteModalStyles as Styles}
         contentLabel="Delete Modal"
       >
         <DeleteOffer

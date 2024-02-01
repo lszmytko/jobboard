@@ -1,7 +1,6 @@
 import { SignJWT, jwtVerify } from "jose";
 
 export function getJwtSecretKey() {
-  console.log("secret", process.env.JWT_SECRET);
   const secret = process.env.JWT_SECRET;
   if (!secret) {
     throw new Error("JWT Secret key is not matched");

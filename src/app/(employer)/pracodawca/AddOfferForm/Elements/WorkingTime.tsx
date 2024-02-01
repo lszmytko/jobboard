@@ -5,7 +5,7 @@ import CheckBoxGroup from "../CheckBoxGroup/CheckBoxGroup";
 import CheckboxField from "../CheckBoxGroup/CheckboxField/CheckboxField";
 import { Inputs } from "../AddOfferForm";
 
-const WorkingTime = ({ register }: { register: UseFormRegister<Inputs> }) => {
+const WorkingTime = ({ register }: { register: UseFormRegister<any> }) => {
   return (
     <CheckBoxGroup title="Wymiar pracy">
       {workingTime.values.map((value, index) => {

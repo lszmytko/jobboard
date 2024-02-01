@@ -17,6 +17,7 @@ type Props = Pick<
   | "tasks"
   | "requirements"
   | "_id"
+  | "aboutCompany"
 >;
 
 const AdvCardDetailsUI = ({
@@ -28,8 +29,10 @@ const AdvCardDetailsUI = ({
   workingTime,
   tasks,
   requirements,
+  aboutCompany,
   _id,
 }: Props) => {
+  console.log(aboutCompany);
   return (
     <div className="flex justify-center max-w-5xl border-orange-300 border-2 shadow-lg rounded mt-4 ">
       <div>
@@ -42,7 +45,12 @@ const AdvCardDetailsUI = ({
           workingTime={workingTime}
         />
         <div className="p-2 bg-gray-100">
-          <Presentation tasks={tasks} requirements={requirements} />
+          <Presentation
+            tasks={tasks}
+            requirements={requirements}
+            aboutCompany={aboutCompany}
+            post={post}
+          />
           <div className="mb-2 mt-4 flex justify-center">
             <ApplyButton
               offerID={_id}

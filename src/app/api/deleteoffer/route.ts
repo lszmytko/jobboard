@@ -1,6 +1,5 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { AxiosRequestHeaders } from "axios";
 import { StatusCodes } from "http-status-codes";
 
 import connectToDatabase from "../db/connectToDatabase";
@@ -12,13 +11,11 @@ const schema = z.object({
   type: z.string(),
 });
 
-export async function DELETE(req: AxiosRequestHeaders) {
+export async function DELETE(req: NextRequest) {
   await connectToDatabase();
 
   const offerID = req.nextUrl.searchParams.get("offerID");
   const type = req.nextUrl.searchParams.get("type");
-
-  console.log({ type });
 
   const response = schema.safeParse({ offerID, type });
 
