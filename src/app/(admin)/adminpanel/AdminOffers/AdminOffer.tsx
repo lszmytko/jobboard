@@ -50,7 +50,7 @@ const AdminOffer = ({
           Status:{" "}
           <span className={`${isActive ? activeStyle : inActiveStyle}`}>
             {" "}
-            {isActive ? "Aktywne" : "Niekatywne"}
+            {isActive ? "Aktywne" : "Nieaktywne"}
           </span>
         </p>
       </div>

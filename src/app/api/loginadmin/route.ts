@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import bcrypt from "bcryptjs";
 import { StatusCodes } from "http-status-codes";
 
 import connectToDatabase from "../db/connectToDatabase";
-import { Admin } from "../models/Admin";
+import { createJWT } from "../utils";
 
 const schema = z.object({
   name: z.string(),
@@ -28,21 +29,17 @@ export async function POST(req: Request) {
     );
   }
 
-  const existingAdmin = await Admin.findOne({ name });
-
-  if (!existingAdmin) {
-    return NextResponse.json({ error: "There is no admin" }, { status: 403 });
-  }
-
-  const isPasswordCorrect = await existingAdmin.comparePasswords(password);
+  const isPasswordCorrect = await bcrypt.compare(
+    password,
+    process.env.ADMIN_PASSWORD as string
+  );
 
   if (isPasswordCorrect) {
-    const token = await existingAdmin.createJWT();
+    const token = await createJWT();
     return NextResponse.json({
       error: "login successful",
       status: StatusCodes.OK,
       token: token,
-      admin: existingAdmin._id,
     });
   } else
     return NextResponse.json({ error: "Invalid password" }, { status: 403 });

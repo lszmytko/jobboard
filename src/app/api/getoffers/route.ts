@@ -29,15 +29,6 @@ export async function GET(req: AxiosRequestHeaders) {
     });
   }
 
-  //   const isAuthorized = auth(req);
-
-  //   if (!isAuthorized) {
-  //     return NextResponse.json(
-  //       { message: "You are not authorized" },
-  //       { status: 403 }
-  //     );
-  //   }
-
   let offers;
 
   try {

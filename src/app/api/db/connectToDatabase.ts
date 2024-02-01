@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
-const uri =
-  process.env.NEXT_PUBLIC_MONGODB_URI || "mongodb://localhost:27017/nextjs";
+const uri = process.env.MONGODB_URI || "mongodb://localhost:27017/nextjs";
 
 async function connectToDatabase() {
   try {

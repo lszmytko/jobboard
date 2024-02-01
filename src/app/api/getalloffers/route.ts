@@ -40,6 +40,8 @@ export async function GET(req: AxiosRequestHeaders) {
   let offers;
   let numberOfOffers: number;
 
+  console.log({ isActive });
+
   let filter = {};
   filter = company
     ? { ...filter, company: { $regex: company, $options: "i" } }
@@ -50,7 +52,8 @@ export async function GET(req: AxiosRequestHeaders) {
         _id: new mongoose.Types.ObjectId(offerID),
       }
     : { ...filter };
-  filter = isActive ? { ...filter, isActive } : { ...filter };
+  filter =
+    isActive === "true" ? { ...filter, status: "active" } : { ...filter };
   filter = city ? { ...filter, city } : { ...filter };
   const filterWithCompany = postOrCompany
     ? { ...filter, company: { $regex: postOrCompany, $options: "i" } }
@@ -58,6 +61,8 @@ export async function GET(req: AxiosRequestHeaders) {
   const filterWithPost = postOrCompany
     ? { ...filter, post: { $regex: postOrCompany, $options: "i" } }
     : { ...filter };
+
+  console.log({ filter });
 
   const finalFilter = {
     $or: [filterWithCompany, filterWithPost],
