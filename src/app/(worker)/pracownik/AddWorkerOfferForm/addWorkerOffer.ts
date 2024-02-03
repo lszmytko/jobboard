@@ -17,7 +17,7 @@ type Args = Pick<
 export const addWorkerOffer = async (data: Args) => {
   const response = axios.request({
     method: "POST",
-    url: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/addworkeroffer`,
+    url: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/addworkeroffer`,
     data,
   });
 
