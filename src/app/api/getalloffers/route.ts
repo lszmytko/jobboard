@@ -10,7 +10,7 @@ const ITEMS_PER_PAGE = 15;
 
 const schema = z.object({
   isActive: z.string().nullable().optional(),
-  page: z.string(),
+  page: z.number(),
   city: z.string().nullable().optional(),
   postOrCompany: z.string().nullable().optional(),
 });
@@ -30,10 +30,12 @@ export async function GET(req: NextRequest) {
   if (!response.success) {
     const { errors } = response.error;
 
-    return NextResponse.json({
-      error: { message: "Invalid request", errors },
-      status: 400,
-    });
+    return NextResponse.json(
+      {
+        error: { message: "Invalid request", errors },
+      },
+      { status: StatusCodes.BAD_REQUEST }
+    );
   }
 
   let offers;

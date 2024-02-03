@@ -7,7 +7,7 @@ import { Offer } from "../models/Offer";
 
 const schema = z.object({
   user: z.string(),
-  page: z.string().nullable().optional(),
+  page: z.number().nullable().optional(),
 });
 
 const ITEMS_PER_PAGE = 15;
@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
   const userID = req.nextUrl.searchParams.get("user");
   const page = Number(req.nextUrl.searchParams.get("page") ?? "1");
 
-  const response = schema.safeParse({ user: userID });
+  const response = schema.safeParse({ user: userID, page });
 
   if (!response.success) {
     const { errors } = response.error;
