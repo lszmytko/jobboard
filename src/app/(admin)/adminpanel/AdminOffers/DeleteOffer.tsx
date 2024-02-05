@@ -32,26 +32,31 @@ const DeleteOffer = ({ closeDeleteModal, offerID, type }: DeleteOfferPRops) => {
   });
 
   return (
-    <>
-      <div>
-        <p className="text-center mb-4">
-          Czy na pewno chcesz usunąć tę ofertę?
-        </p>
-        <div className="flex justify-center">
-          <button
-            className="mr-6 text-green-700"
-            onClick={() => mutateAsync({ offerID, type })}
-          >
-            Tak
-          </button>
-          <button className="text-red-700" onClick={closeDeleteModal}>
-            Nie
-          </button>
+    <div className="w-full h-full flex items-center">
+      <div className="basis-full">
+        <div>
+          <p className="text-center mb-4 font-bold">
+            Czy na pewno chcesz usunąć tę ofertę?
+          </p>
+          <div className="flex justify-center">
+            <button
+              className="mr-6 text-green-700 font-semibold"
+              onClick={() => mutateAsync({ offerID, type })}
+            >
+              Tak
+            </button>
+            <button
+              className="text-red-700 font-semibold"
+              onClick={closeDeleteModal}
+            >
+              Nie
+            </button>
+          </div>
         </div>
+        {isLoading ? <p>Ładowanie...</p> : null}
+        {isError ? <p>Coś poszło nie tak...</p> : null}
       </div>
-      {isLoading ? <p>Ładowanie...</p> : null}
-      {isError ? <p>Coś poszło nie tak...</p> : null}
-    </>
+    </div>
   );
 };
 

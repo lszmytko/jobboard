@@ -48,7 +48,7 @@ const AdminSearchOffer = ({
     <div className="mt-4">
       <h1 className="text-center mb-4">Wyszukaj ofertę</h1>
       <div className="flex justify-center">
-        <form onSubmit={handleSubmit(onSubmit)} className="w-1/2">
+        <form onSubmit={handleSubmit(onSubmit)} className="sm:w-1/2 px-2">
           <div className="flex gap-1 mb-2">
             <input
               placeholder="Nazwa firmy"

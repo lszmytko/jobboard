@@ -30,8 +30,12 @@ const customEditModalStyles = {
 
 const customDeleteModalStyles = {
   content: {
-    width: "25%",
-    height: "25%",
+    width: "75%",
+    maxWidth: "500px",
+    maxHeight: "200px",
+    display: "flex",
+    alignItems: "center",
+    // height: "75%",
     position: "absolute",
     top: "50%",
     left: "50%",

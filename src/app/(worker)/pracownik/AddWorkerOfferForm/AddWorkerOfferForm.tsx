@@ -31,7 +31,7 @@ const availabilityOptions = [
 ] as const;
 
 const inputStyles = "block w-full p-2 mb-2";
-const headingStyles = "text-center text-primary  font-bold mb-1";
+const headingStyles = "text-center text-primary font-bold mb-2";
 
 const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
   const {
@@ -135,7 +135,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
             className={inputStyles}
           />
         </div>
-        <div className="mb-4">
+        <div>
           <h1 className={headingStyles}>Dostępność</h1>
           <div className="flex gap-2">
             {availabilityOptions.map((option, index) => (
