@@ -162,7 +162,7 @@ const EditFormUI = ({
             control={control}
             name="tasks"
             register={register}
-            title="Zadania"
+            title="Zakres obowiązków"
           />
           <OfferDetailsGroup
             control={control}

@@ -106,7 +106,7 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
           control={control}
           name="tasks"
           register={register}
-          title="Zadania"
+          title="Zakres obowiązków"
         />
         <InputGroup
           control={control}

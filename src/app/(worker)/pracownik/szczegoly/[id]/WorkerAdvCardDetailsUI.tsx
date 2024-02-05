@@ -17,7 +17,7 @@ const WorkerAdvCardDetailsUI = ({ data }: { data: WorkerOffer }) => {
     offerText,
   } = data;
   return (
-    <div className="w-1/2 max-w-5xl border-orange-300 border-4 shadow-lg rounded mt-4 p-4 text-sm">
+    <div className="sm:w-1/2 max-w-5xl  border-2 shadow-lg p-2 rounded  text-sm  border-primary-light bg-orange-50">
       <h1 className="text-xl font-bold text-center mb-4">Oferta kandydata</h1>
       <p className={paragraphStyles}>{offerText}</p>
       <p className={paragraphStyles}>
