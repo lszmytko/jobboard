@@ -49,6 +49,7 @@ const Preview = ({
     requirements,
     _id,
     aboutCompany,
+    email,
   } = offerData;
 
   const loadingStyles = isLoading ? "cursor-not-allowed opacity" : "";
@@ -75,6 +76,7 @@ const Preview = ({
             tasks={tasks}
             requirements={requirements}
             aboutCompany={aboutCompany}
+            email={email}
             _id={_id}
           />
           <div className="mt-4 flex justify-center">

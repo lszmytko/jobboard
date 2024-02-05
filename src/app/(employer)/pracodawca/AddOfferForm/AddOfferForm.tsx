@@ -91,14 +91,10 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
         <Input register={register} placeholder="Miasto" inputName="city" />
         <Input
           register={register}
-          placeholder="Ulica i numer mieszkania"
+          placeholder="Adres placówki"
           inputName="address"
         />
-        <Input
-          register={register}
-          placeholder="Stopień stanowiska"
-          inputName="postLevel"
-        />
+        <Input register={register} placeholder="Email" inputName="email" />
         <Experience register={register} />
         <AgreementType register={register} />
         <WorkingTime register={register} />

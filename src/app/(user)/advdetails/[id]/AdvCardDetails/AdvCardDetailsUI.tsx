@@ -18,6 +18,7 @@ type Props = Pick<
   | "requirements"
   | "_id"
   | "aboutCompany"
+  | "email"
 >;
 
 const AdvCardDetailsUI = ({
@@ -30,6 +31,7 @@ const AdvCardDetailsUI = ({
   tasks,
   requirements,
   aboutCompany,
+  email,
   _id,
 }: Props) => {
   console.log(aboutCompany);
@@ -60,7 +62,7 @@ const AdvCardDetailsUI = ({
           </div>
           <p className="text-center py-1 text-xl">lub</p>
           <div className="mb-2 flex justify-center">
-            <EmailData post={post} mail={"lszmytko@gmail.com"} />
+            <EmailData post={post} mail={email} />
           </div>
         </div>
       </div>

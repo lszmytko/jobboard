@@ -12,7 +12,7 @@ const OfferSchema = new Schema<OfferSchemaType>({
   company: { type: String, required: true },
   city: { type: String, required: true },
   address: { type: String, required: true },
-  postLevel: { type: String, required: true },
+  email: { type: String, required: true },
   experience: { type: String, required: true },
   agreementType: { type: [String], required: true },
   workingTime: { type: [String], required: true },

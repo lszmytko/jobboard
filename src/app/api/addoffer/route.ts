@@ -10,7 +10,7 @@ const schema = z.object({
   agreementType: z.array(z.string()),
   city: z.string(),
   experience: z.string(),
-  postLevel: z.string(),
+  email: z.string(),
   requirements: z.array(z.string()),
   tasks: z.array(z.string()),
   workingTime: z.array(z.string()),

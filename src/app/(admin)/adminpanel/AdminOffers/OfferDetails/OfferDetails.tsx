@@ -76,7 +76,7 @@ const EditFormUI = ({
     tasks,
     requirements,
     post,
-    postLevel,
+    email,
     experience,
     agreementType,
     workingTime,
@@ -97,7 +97,7 @@ const EditFormUI = ({
   } = useForm<OfferDetailsInputs>({
     defaultValues: {
       post,
-      postLevel,
+      email,
       experience,
       agreementType,
       workingTime,
@@ -147,13 +147,13 @@ const EditFormUI = ({
           <Details register={register} placeholder="Miasto" name="city" />
           <Details
             register={register}
-            placeholder="Ulica i numer mieszkania"
+            placeholder="Adres placówki"
             name="address"
           />
           <Details
             register={register}
             placeholder="Stopień stanowiska"
-            name="postLevel"
+            name="email"
           />
           <Experience register={register} />
           <AgreementType register={register} />

@@ -9,7 +9,7 @@ type AdvCardProps = Pick<
   | "company"
   | "city"
   | "address"
-  | "postLevel"
+  | "email"
   | "experience"
   | "agreementType"
   | "workingTime"
@@ -22,7 +22,7 @@ const AdvCard = ({
   company,
   city,
   address,
-  postLevel,
+  email,
   experience,
   agreementType,
   workingTime,
@@ -46,7 +46,7 @@ const AdvCard = ({
             <p>{address}</p>
           </div>
           <div className="md:flex flex-wrap text-xs gap-2 md:gap-4">
-            <p className="mb-1 md:mb-0">{postLevel}</p>
+            <p className="mb-1 md:mb-0">{email}</p>
             <p className="mb-1 md:mb-0 font-bold">{experience}</p>
             <p className="mb-1 md:mb-0">{agreementType}</p>
             <p className="mb-1 md:mb-0">{workingTime}</p>

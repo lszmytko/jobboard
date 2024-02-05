@@ -34,7 +34,7 @@ const AdvSection = ({
             company,
             city,
             address,
-            postLevel,
+            email,
             experience,
             agreementType,
             workingTime,
@@ -50,7 +50,7 @@ const AdvSection = ({
                 company={company}
                 city={city}
                 address={address}
-                postLevel={postLevel}
+                email={email}
                 experience={experience}
                 agreementType={agreementType}
                 workingTime={workingTime}
