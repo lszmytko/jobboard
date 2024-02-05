@@ -26,17 +26,20 @@ const AdminLoginForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FormInputs>();
+
   const onSubmit: SubmitHandler<FormInputs> = (data) => mutateAsync(data);
+
+  const formIvalidStyles = !isValid ? "opacity-50 cursor-not-allowed" : "";
+
   return (
     <div className="mt-4">
-      <h1 className="text-center mb-4">Zaloguj się jako Admin</h1>
-      <div className="flex justify-center">
+      <h1 className="text-center mb-4 font-bold">Zaloguj się jako Admin</h1>
+      <div className="md:flex md:justify-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="p-3 mb-2 flex flex-col gap-4 w-1/2 max-w-2xl justify-center"
+          className="p-3 mb-2 flex flex-col gap-4 sm:w-1/2 max-w-2xl justify-center"
         >
           <div className="md:grow">
             <input
@@ -54,17 +57,23 @@ const AdminLoginForm = () => {
             />
           </div>
           {/* errors will return when field validation fails  */}
-          {errors.password && <span>This field is required</span>}
+          {errors.password && (
+            <span className="text-red-400 text-center">
+              Uzupełnij wszystkie pola
+            </span>
+          )}
           <div>
             <input
               type="submit"
               value="Zaloguj"
-              className="w-full text-center rounded py-2 px-4 bg-primary-light cursor-pointer"
+              className={`w-full text-center rounded py-2 px-4 bg-primary-light cursor-pointer ${formIvalidStyles}`}
             />
           </div>
         </form>
       </div>
-      {isLoading ? <p>Ładowanie...</p> : null}
+      {isLoading ? (
+        <p className="text-center text-primary-light">Ładowanie...</p>
+      ) : null}
       {isError ? (
         <p className="text-red text-center">Wystąpił błąd...</p>
       ) : null}
