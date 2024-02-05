@@ -1,52 +1,64 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
+import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { GrClose } from "react-icons/gr";
+import { AiOutlineClose } from "react-icons/ai";
+import { usePathname } from "next/navigation";
 
 import { paths } from "@/common/paths";
+import { createStyles } from "@/utils/utils";
+
+const activePageStyles = "bg-primary-light";
+const linkStyles = `border-t-2 border-light-blue p-1 text-white`;
 
 const HamburgerMenu = () => {
   const [extended, setExtended] = useState(false);
+  const pathname = usePathname();
+
+  const styles = createStyles(pathname, activePageStyles);
+  const workerLinkStyles = linkStyles + " " + styles.worker;
+  const allOffersLinkStyles = linkStyles + " " + styles.allOffers;
+  const employerLinkStyles = linkStyles + " " + styles.employer;
 
   const hiddenStyles = extended ? "translate-x-0" : "-translate-x-96";
 
   const handleClick = () => setExtended((prev) => !prev);
 
   return (
-    <div className="">
+    <div>
       <div className="absolute left-2 top-5 sm:hidden">
         <GiHamburgerMenu
           size={30}
-          className={`${extended ? "hidden" : ""} cursor-pointer text-white`}
+          className={`${extended ? "hidden" : ""} cursor-pointer text-white `}
           onClick={handleClick}
         />
       </div>
       <aside
-        className={`sm:hidden absolute top-0 left-0 ${hiddenStyles} w-60 bg-white rounded-br-lg`}
+        className={`sm:hidden absolute top-0 left-0 ${hiddenStyles} w-60 bg-dark-blue rounded-br-lg`}
       >
         <div className="flex justify-end p-3">
-          <GrClose
+          <AiOutlineClose
             size={30}
-            className={`${extended ? "" : "hidden"} cursor-pointer text-orange`}
+            className={`${extended ? "" : "hidden"} cursor-pointer `}
             onClick={handleClick}
+            color="white"
           />
         </div>
-        <div className="border-t-2 p-1">
+        <div className={allOffersLinkStyles}>
           <Link href="/" className="">
             Oferty pracy
           </Link>
         </div>
-        <div className="border-t-2 p-1">
+        <div className={linkStyles}>
           <a href="https://www.vettech.pl" className="trainings">
             Szkolenia
           </a>
         </div>
-        <div className="border-t-2 p-1">
+        <div className={employerLinkStyles}>
           <Link href={paths.employer}>Dam pracę</Link>
         </div>
-        <div className="border-t-2 p-1">
+        <div className={workerLinkStyles}>
           <Link href={paths.worker}>Szukam pracy</Link>
         </div>
       </aside>
