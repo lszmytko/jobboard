@@ -1,4 +1,5 @@
-import mongoose, { SchemaDefinitionProperty } from "mongoose";
+import mongoose from "mongoose";
+
 import { Offer as OfferType } from "@/common/types";
 
 const { Schema } = mongoose;

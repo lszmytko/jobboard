@@ -27,14 +27,15 @@ const Summary = ({
           <FaBuilding size={18} />
           <p className="text-sm">{company}</p>
         </div>
-        <div className="flex gap-2 text-sm mb-4">
+        <div className="text-sm mb-4">
           <div className="flex gap-2">
             <div className="flex justify-center">
               <HiOutlineLocationMarker size={18} />
             </div>
-            <p>{city}</p>
+            <p>
+              {city}, {address}
+            </p>
           </div>
-          <p>{address}</p>
         </div>
       </div>
       <div className="sm:flex text-sm border-y-2">

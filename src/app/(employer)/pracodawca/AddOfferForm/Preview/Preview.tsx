@@ -28,7 +28,7 @@ const Preview = ({
     onSuccess: () => {
       reset();
       closeModal();
-      toast.success("Oferta pomyślnie dodanaaaaa");
+      toast.success("Oferta pomyślnie dodana");
       creator === "admin"
         ? router.push("/adminpanel")
         : router.push("/pracodawca/sukces");

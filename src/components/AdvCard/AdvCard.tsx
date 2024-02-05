@@ -1,7 +1,15 @@
 import Link from "next/link";
+import { MdEmail } from "react-icons/md";
 
 import { Offer } from "@/common/types";
 import { paths } from "@/common/paths";
+import { GrUserWorker } from "react-icons/gr";
+import { FaBuilding, FaRegHandshake } from "react-icons/fa";
+import { HiOutlineLocationMarker } from "react-icons/hi";
+import { PiSuitcaseSimpleFill } from "react-icons/pi";
+
+const flexStyles = "flex gap-2 mb-2";
+const iconStyles = "w-4 h-4 sm:w-5 sm:h-5";
 
 type AdvCardProps = Pick<
   Offer,
@@ -35,22 +43,40 @@ const AdvCard = ({
     year: "numeric",
   });
 
+  const agreement = agreementType.join(" / ");
+
   return (
-    <div className="max-w-2xl w-full  border-orange-300 border-2 rounded-lg bg-gray-100 shadow-xl overflow-hidden">
+    <div className="max-w-2xl w-full border-orange-300 border-2 rounded-lg bg-gray-100 shadow-xl overflow-hidden">
       <Link href={`${paths.advdetails}/${_id}`}>
-        <div className="p-4">
-          <p className="text-xl font-bold mb-4">{post}</p>
-          <div className="text-xs flex gap-2 mb-4 flex-wrap">
-            <p>{company}</p>
-            <p className="font-semibold">{city}</p>
-            <p>{address}</p>
-          </div>
-          <div className="md:flex flex-wrap text-xs gap-2 md:gap-4">
-            <p className="mb-1 md:mb-0">{email}</p>
-            <p className="mb-1 md:mb-0 font-bold">{experience}</p>
-            <p className="mb-1 md:mb-0">{agreementType}</p>
-            <p className="mb-1 md:mb-0">{workingTime}</p>
-          </div>
+        <div className="p-4 text-xs sm:text-sm">
+          <p className="text-sm font-bold mb-2 text-center sm:text-lg">
+            {post}
+          </p>
+          <p className={flexStyles}>
+            <FaBuilding className={iconStyles} />
+            {company}
+          </p>
+          <p className={flexStyles}>
+            <HiOutlineLocationMarker className={iconStyles} />
+            <span>
+              {city}, {address}
+            </span>
+          </p>
+          <p className={flexStyles}>
+            <MdEmail className={iconStyles} /> <span>{email}</span>
+          </p>
+          <p className={flexStyles}>
+            <GrUserWorker className={iconStyles} />
+            <span>{experience}</span>
+          </p>
+          <p className={flexStyles}>
+            <FaRegHandshake className={iconStyles} />
+            <span>{agreement}</span>
+          </p>
+          <p className={flexStyles}>
+            <PiSuitcaseSimpleFill className={iconStyles} />
+            <span>{workingTime}</span>
+          </p>
         </div>
         <div className="h-px bg-primary-light"></div>
         <div className="flex justify-between text-xs px-4 py-2">

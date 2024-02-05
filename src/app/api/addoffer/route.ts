@@ -16,7 +16,6 @@ const schema = z.object({
   workingTime: z.array(z.string()),
   offerText: z.string(),
   isActive: z.boolean(),
-  aboutCompany: z.string(),
   creator: z.string(),
 });
 
