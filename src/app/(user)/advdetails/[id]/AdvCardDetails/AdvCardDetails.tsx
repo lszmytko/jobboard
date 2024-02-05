@@ -32,7 +32,6 @@ const AdvCardDetails = () => {
     experience,
     _id: offerID,
     workingTime,
-    aboutCompany,
     email,
   } = data?.data?.offer || {};
 
@@ -47,7 +46,6 @@ const AdvCardDetails = () => {
       tasks={tasks}
       requirements={requirements}
       _id={offerID}
-      aboutCompany={aboutCompany}
       email={email}
     />
   );

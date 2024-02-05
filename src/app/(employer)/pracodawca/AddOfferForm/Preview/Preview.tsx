@@ -48,7 +48,6 @@ const Preview = ({
     tasks,
     requirements,
     _id,
-    aboutCompany,
     email,
   } = offerData;
 
@@ -75,7 +74,6 @@ const Preview = ({
             workingTime={workingTime}
             tasks={tasks}
             requirements={requirements}
-            aboutCompany={aboutCompany}
             email={email}
             _id={_id}
           />

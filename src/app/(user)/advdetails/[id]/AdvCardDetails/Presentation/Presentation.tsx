@@ -1,22 +1,13 @@
-import Job from "./Job";
-import CompanyDetails from "./CompanyDetails";
-import List from "./List";
 import { Offer } from "@/common/types";
 
-type PresentationProps = Pick<
-  Offer,
-  "requirements" | "tasks" | "aboutCompany" | "post"
->;
+import Job from "./Job";
+import List from "./List";
 
-const Presentation = ({
-  requirements,
-  tasks,
-  aboutCompany,
-  post,
-}: PresentationProps) => {
+type PresentationProps = Pick<Offer, "requirements" | "tasks" | "post">;
+
+const Presentation = ({ requirements, tasks, post }: PresentationProps) => {
   return (
     <div className="text-sm">
-      <CompanyDetails aboutCompany={aboutCompany} />
       <Job post={post} />
       <List data={requirements} title="Zakres obowiązków" />
       <List data={tasks} title="Wymagania" />

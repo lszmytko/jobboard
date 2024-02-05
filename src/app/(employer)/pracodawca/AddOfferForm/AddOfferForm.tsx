@@ -112,17 +112,6 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
         />
         <div>
           <h1 className="text-primary text-center font-semibold mb-2">
-            O firmie
-          </h1>
-          <textarea
-            {...register("aboutCompany", { required: true })}
-            className="block w-full p-2 rounded mb-2"
-            maxLength={400}
-            rows={10}
-          />
-        </div>
-        <div>
-          <h1 className="text-primary text-center font-semibold mb-2">
             Dodatkowa treść ogłoszenia
           </h1>
           <textarea

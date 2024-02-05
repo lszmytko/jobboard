@@ -17,7 +17,6 @@ export type Offer = {
   isActive: boolean;
   timeOfPosting: string;
   timeOfEditing: string;
-  aboutCompany: string;
   creator: "employer" | "admin";
   status: OfferStatus;
 };
