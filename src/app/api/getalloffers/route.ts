@@ -53,7 +53,9 @@ export async function GET(req: NextRequest) {
     : { ...filter };
   filter =
     isActive === "true" ? { ...filter, status: "active" } : { ...filter };
-  filter = city ? { ...filter, city } : { ...filter };
+  filter = city
+    ? { ...filter, city: { $regex: city, $options: "i" } }
+    : { ...filter };
   const filterWithCompany = postOrCompany
     ? { ...filter, company: { $regex: postOrCompany, $options: "i" } }
     : { ...filter };
