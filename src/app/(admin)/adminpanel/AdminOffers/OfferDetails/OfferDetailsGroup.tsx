@@ -30,18 +30,18 @@ const OfferDetailsGroup = ({
           <input
             type="text"
             {...register(`${name}.${index}.name`, { required: true })}
-            className="text-xl grow px-2"
+            className="sm:text-xl grow px-2"
             defaultValue={field.name}
           />
           <IoIosAddCircle
-            className="cursor-pointer"
+            className="cursor-pointer flex-shrink-0 w-9"
             size={38}
             onClick={() => {
               append({ name: "" });
             }}
           />
           <IoIosRemoveCircle
-            className="cursor-pointer"
+            className="cursor-pointer  flex-shrink-0 w-9"
             size={38}
             onClick={() => {
               remove(index);

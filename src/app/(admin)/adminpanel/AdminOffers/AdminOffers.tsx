@@ -13,7 +13,7 @@ import WorkerOffer from "../getworkeroffers/WorkerOffer/WorkerOffer";
 import EditWorkerOffer from "../getworkeroffers/WorkerOffer/EditWorkerOffer";
 
 const customEditModalStyles = {
-  content: {},
+  content: { padding: "2px" },
   overlay: {
     position: "fixed",
     display: "flex",

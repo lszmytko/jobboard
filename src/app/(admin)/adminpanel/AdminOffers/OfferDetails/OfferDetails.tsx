@@ -128,83 +128,91 @@ const EditFormUI = ({
   const submitFn = handleSubmit(onSubmit);
 
   return (
-    <div className="max-w-3xl w-full p-2 pt-0">
-      <h1 className="mb-4 text-center text-primary font-semibold text-2xl">
-        Edytuj ofertę
-      </h1>
-      <form onSubmit={submitFn}>
-        <Details
-          register={register}
-          placeholder="Nazwa stanowiska"
-          name="post"
-        />
-        <Details register={register} placeholder="Nazwa firmy" name="company" />
-        <Details register={register} placeholder="Miasto" name="city" />
-        <Details
-          register={register}
-          placeholder="Ulica i numer mieszkania"
-          name="address"
-        />
-        <Details
-          register={register}
-          placeholder="Stopień stanowiska"
-          name="postLevel"
-        />
-        <Experience register={register} />
-        <AgreementType register={register} />
-        <WorkingTime register={register} />
-        <OfferDetailsGroup
-          control={control}
-          name="tasks"
-          register={register}
-          title="Zadania"
-        />
-        <OfferDetailsGroup
-          control={control}
-          name="tasks"
-          register={register}
-          title="Wymagania"
-        />
-        <div>
-          <h1 className="text-primary text-center font-semibold mb-2">
-            Dodatkowa treść ogłoszenia
-          </h1>
-          <textarea
-            {...register("offerText", { required: true })}
-            className="block w-full p-2 rounded mb-2"
-            maxLength={400}
-            rows={10}
+    <div className=" w-full p-2 pt-0 flex justify-center">
+      <div className="w-full max-w-3xl">
+        <h1 className="mb-4 text-center text-primary font-semibold text-2xl">
+          Edytuj ofertę
+        </h1>
+        <form onSubmit={submitFn}>
+          <Details
+            register={register}
+            placeholder="Nazwa stanowiska"
+            name="post"
           />
-        </div>
-        <div>
-          <h1 className="text-primary text-center font-semibold mb-2">
-            O firmie
-          </h1>
-          <textarea
-            {...register("aboutCompany", { required: true })}
-            className="block w-full p-2 rounded mb-2"
-            maxLength={400}
-            rows={10}
+          <Details
+            register={register}
+            placeholder="Nazwa firmy"
+            name="company"
           />
-        </div>
-        <div className="flex justify-center">
-          {isMutationLoading ? (
-            <p>Ładowanie...</p>
-          ) : (
-            <input
-              type="submit"
-              className="p-2 text-white bg-primary rounded text-xl cursor-pointer disabled:opacity-50 disabled:cursor-auto"
-              disabled={!isValid}
+          <Details register={register} placeholder="Miasto" name="city" />
+          <Details
+            register={register}
+            placeholder="Ulica i numer mieszkania"
+            name="address"
+          />
+          <Details
+            register={register}
+            placeholder="Stopień stanowiska"
+            name="postLevel"
+          />
+          <Experience register={register} />
+          <AgreementType register={register} />
+          <WorkingTime register={register} />
+          <OfferDetailsGroup
+            control={control}
+            name="tasks"
+            register={register}
+            title="Zadania"
+          />
+          <OfferDetailsGroup
+            control={control}
+            name="requirements"
+            register={register}
+            title="Wymagania"
+          />
+          <div>
+            <h1 className="text-primary text-center font-semibold mb-2">
+              Dodatkowa treść ogłoszenia
+            </h1>
+            <textarea
+              {...register("offerText", { required: true })}
+              className="block w-full p-2 rounded mb-2 outline-primary"
+              maxLength={400}
+              rows={10}
             />
+          </div>
+          <div>
+            <h1 className="text-primary text-center font-semibold mb-2">
+              O firmie
+            </h1>
+            <textarea
+              {...register("aboutCompany", { required: true })}
+              className="block w-full p-2 rounded mb-2"
+              maxLength={400}
+              rows={10}
+            />
+          </div>
+          <div className="flex justify-center">
+            {isMutationLoading ? (
+              <p>Ładowanie...</p>
+            ) : (
+              <input
+                type="submit"
+                className="p-2 text-white bg-primary rounded text-xl cursor-pointer disabled:opacity-50 disabled:cursor-auto"
+                disabled={!isValid}
+              />
+            )}
+          </div>
+          {Object.values(errors).length > 0 && (
+            <div>Napraw błędy w formularzu</div>
           )}
-        </div>
+        </form>
         {Object.values(errors).length > 0 && (
           <div>Napraw błędy w formularzu</div>
         )}
-      </form>
-      {Object.values(errors).length > 0 && <div>Napraw błędy w formularzu</div>}
-      {isMuationError && <div className="text-red">Coś poszło nie tak</div>}
-      <DevTool control={control} />
+        {isMuationError && <div className="text-red">Coś poszło nie tak</div>}
+        <DevTool control={control} />
+      </div>
     </div>
   );
 };
