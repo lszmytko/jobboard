@@ -1,6 +1,6 @@
 export const experienceData = {
   groupName: "experience",
-  values: ["<1 rok", "1-3 lata", "3-5 lat", "5-10 lat", ">10 lat"],
+  values: ["Brak doświadczenia", "poniżej 2 lat", "powyżej 2 lat"],
 } as const;
 
 export const agreementData = {

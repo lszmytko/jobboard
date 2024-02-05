@@ -10,6 +10,9 @@ import { paths } from "@/common/paths";
 import { useState } from "react";
 import WorkerAdvSection from "@/components/WorkerAdvSection/WorkerAdvSection";
 
+const baseButtonStyles = "font-extrabold";
+const selectedButtonStyles = "p-2 bg-primary-light rounded-full text-white";
+
 export default function Home() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -44,21 +47,19 @@ export default function Home() {
       <div className="flex justify-center gap-4">
         <button
           onClick={() => handleOptionChange("employers")}
-          className={
-            option === "employers"
-              ? "p-2 bg-primary-light rounded-full text-white"
-              : ""
-          }
+          className={`${
+            option === "employers" ? selectedButtonStyles : ""
+          } ${baseButtonStyles}
+          `}
         >
           Oferty pracodawców
         </button>
         <button
           onClick={() => handleOptionChange("workers")}
-          className={
-            option === "workers"
-              ? "p-2 bg-primary-light rounded-full text-white"
-              : ""
-          }
+          className={`${
+            option === "workers" ? selectedButtonStyles : ""
+          } ${baseButtonStyles}
+          `}
         >
           Oferty kandydatów
         </button>
