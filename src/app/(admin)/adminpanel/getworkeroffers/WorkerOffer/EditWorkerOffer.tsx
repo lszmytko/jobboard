@@ -18,15 +18,10 @@ import PhoneInput from "react-phone-number-input/input";
 import { ThreeDots } from "react-loader-spinner";
 import { DevTool } from "@hookform/devtools";
 import { toast } from "sonner";
-import { availability as availabilityOptions } from "@/common/consts";
-
-const workingTimeOptions = [
-  "cały etat",
-  "pół etatu",
-  "dorywczo",
-  "weekendy",
-  "praca w nocy",
-] as const;
+import {
+  availability as availabilityOptions,
+  workingTimeOptions,
+} from "@/common/consts";
 
 const inputStyles = "block w-full p-1 mb-2";
 const headingStyles = "text-center text-primary text-sm font-bold mb-1";

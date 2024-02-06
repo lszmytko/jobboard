@@ -13,7 +13,7 @@ const Salary = ({
   return (
     <div>
       <h1 className="mb-1 font-semibold capitalize text-primary text-center">
-        Wynagrodzenie miesięczne
+        Wynagrodzenie
       </h1>
       <div className="flex justify-center gap-2 mb-1">
         <input

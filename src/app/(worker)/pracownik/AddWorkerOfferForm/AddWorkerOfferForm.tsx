@@ -21,15 +21,7 @@ import {
 import { addWorkerOffer } from "./addWorkerOffer";
 import { useRouter } from "next/navigation";
 import { ThreeDots } from "react-loader-spinner";
-import { availability } from "@/common/consts";
-
-const workingTimeOptions = [
-  "cały etat",
-  "pół etatu",
-  "dorywczo",
-  "weekendy",
-  "praca w nocy",
-] as const;
+import { availability, workingTimeOptions } from "@/common/consts";
 
 const inputStyles = "block w-full p-2";
 const headingStyles = "text-center text-primary font-bold mb-2";

@@ -6,3 +6,11 @@ export const availability = [
 ] as const;
 
 export const salaryOptions = ["hourly", "monthly"] as const;
+
+export const workingTimeOptions = [
+  "cały etat",
+  "pół etatu",
+  "dorywczo",
+  "weekendy",
+  "praca w nocy",
+] as const;

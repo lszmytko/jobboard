@@ -1,4 +1,4 @@
-import { availability, salaryOptions } from "./consts";
+import { availability, salaryOptions, workingTimeOptions } from "./consts";
 
 type OfferStatus = "pending" | "active" | "inactive";
 
@@ -27,12 +27,7 @@ export type Offer = {
   salaryOption: "hourly" | "monthly";
 };
 
-export type WorkingTime =
-  | "cały etat"
-  | "pół etatu"
-  | "dorywczo"
-  | "weekendy"
-  | "praca w nocy";
+export type WorkingTime = (typeof workingTimeOptions)[number];
 
 export type WorkerOffer = {
   _id: string;
