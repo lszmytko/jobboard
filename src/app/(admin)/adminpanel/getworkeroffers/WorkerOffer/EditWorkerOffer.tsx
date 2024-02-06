@@ -18,6 +18,7 @@ import PhoneInput from "react-phone-number-input/input";
 import { ThreeDots } from "react-loader-spinner";
 import { DevTool } from "@hookform/devtools";
 import { toast } from "sonner";
+import { availability as availabilityOptions } from "@/common/consts";
 
 const workingTimeOptions = [
   "cały etat",
@@ -45,8 +46,17 @@ const EditWorkerOffer = ({ offerID }: { offerID: string }) => {
 };
 
 const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
-  const { workingTime, email, education, experience, city, offerText, _id } =
-    data;
+  const {
+    workingTime,
+    email,
+    education,
+    experience,
+    city,
+    offerText,
+    _id,
+    availability,
+    phoneNumber,
+  } = data;
 
   const {
     register,
@@ -61,6 +71,8 @@ const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
       experience,
       city,
       offerText,
+      availability,
+      phoneNumber,
     },
   });
 
@@ -177,6 +189,21 @@ const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
               </div>
             ))}
           </div>
+        </div>
+        <div>
+          <h1 className={headingStyles}>Dostępność</h1>
+          <select
+            id="countries"
+            className="bg-gray-50 border border-gray-300 text-dark-blue text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            {...register("availability", { required: true })}
+          >
+            <option value="">Wybierz dostępność</option>
+            {availabilityOptions.map((item) => (
+              <option value={item} key={item}>
+                {item}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <h1 className={headingStyles}>Opis ogłoszenia</h1>

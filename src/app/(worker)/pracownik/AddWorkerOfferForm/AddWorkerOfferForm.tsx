@@ -21,6 +21,7 @@ import {
 import { addWorkerOffer } from "./addWorkerOffer";
 import { useRouter } from "next/navigation";
 import { ThreeDots } from "react-loader-spinner";
+import { availability } from "@/common/consts";
 
 const workingTimeOptions = [
   "cały etat",
@@ -30,7 +31,7 @@ const workingTimeOptions = [
   "praca w nocy",
 ] as const;
 
-const inputStyles = "block w-full p-2 mb-2";
+const inputStyles = "block w-full p-2";
 const headingStyles = "text-center text-primary font-bold mb-2";
 
 const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
@@ -83,7 +84,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
         </p>
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+        <div className="mb-2">
           <h1 className={headingStyles}>Twój email</h1>
           <input
             {...register("email", { required: true })}
@@ -91,7 +92,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
             className={inputStyles}
           />
         </div>
-        <div>
+        <div className="mb-2">
           <h1 className={headingStyles}>Miasto</h1>
           <input
             {...register("city", { required: true })}
@@ -99,7 +100,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
             className={inputStyles}
           />
         </div>
-        <div>
+        <div className="mb-2">
           <h1 className={headingStyles}>Twój numer telefonu</h1>
           <Controller
             name="phoneNumber"
@@ -116,7 +117,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
             )}
           />
         </div>
-        <div>
+        <div className="mb-2">
           <h1 className={headingStyles}>Twoje Wykształcenie</h1>
           <textarea
             {...register("education", { required: true })}
@@ -126,7 +127,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
             className={inputStyles}
           />
         </div>
-        <div>
+        <div className="mb-2">
           <h1 className={headingStyles}>Twoje Doświadczenie</h1>
           <textarea
             {...register("experience", { required: true })}
@@ -135,7 +136,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
             className={inputStyles}
           />
         </div>
-        <div>
+        <div className="mb-2">
           <h1 className={headingStyles}>Wymiar pracy</h1>
           <div className="flex gap-2">
             {workingTimeOptions.map((option, index) => (
@@ -156,14 +157,20 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
             ))}
           </div>
         </div>
-        <div>
+        <div className="mb-2">
           <h1 className={headingStyles}>Dostępność</h1>
-          <textarea
-            maxLength={500}
-            rows={5}
-            className="block w-full p-1 mb-4"
-            {...register("offerText", { required: true })}
-          />
+          <select
+            id="countries"
+            className="bg-gray-50 border border-gray-300 text-dark-blue text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            {...register("availability", { required: true })}
+          >
+            <option value="">Wybierz dostępność</option>
+            {availability.map((item) => (
+              <option value={item} key={item}>
+                {item}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <h1 className={headingStyles}>Opis ogłoszenia</h1>

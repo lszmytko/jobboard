@@ -12,6 +12,8 @@ const schema = z.object({
   workingTime: z.array(z.string()),
   offerText: z.string(),
   creator: z.string(),
+  availability: z.string(),
+  education: z.string(),
 });
 
 export async function POST(req: NextRequest) {

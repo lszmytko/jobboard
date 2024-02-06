@@ -21,6 +21,8 @@ const WorkerOfferSchema = new Schema<WorkerOfferSchemaType>({
   offerText: { type: String, required: false },
   status: { type: String, required: true },
   creator: { type: String, required: true },
+  availability: { type: String, required: true },
+  education: { type: String, required: true },
 });
 
 export const WorkerOffer =

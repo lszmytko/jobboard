@@ -1,3 +1,5 @@
+import { availability } from "./consts";
+
 type OfferStatus = "pending" | "active" | "inactive";
 
 export type Offer = {
@@ -44,13 +46,22 @@ export type WorkerOffer = {
   timeOfPosting: string;
   timeOfEditing: string;
   creator: WorkerOfferCreator;
+  availability: Availability;
 };
 
 export type WorkerOfferFormInputs = Pick<
   WorkerOffer,
-  "email" | "phoneNumber" | "education" | "experience" | "city" | "offerText"
+  | "email"
+  | "phoneNumber"
+  | "education"
+  | "experience"
+  | "city"
+  | "offerText"
+  | "availability"
 > & {
   workingTime: { name: WorkingTime }[];
 };
 
 export type WorkerOfferCreator = "worker" | "admin";
+
+export type Availability = (typeof availability)[number];

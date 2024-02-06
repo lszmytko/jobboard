@@ -11,6 +11,7 @@ const schema = z.object({
   experience: z.string(),
   workingTime: z.array(z.string()),
   offerText: z.string(),
+  availability: z.string(),
 });
 
 export async function PUT(req: NextRequest) {
