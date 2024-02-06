@@ -9,16 +9,26 @@ const ITEMS_PER_PAGE = 15;
 export async function GET(req: NextRequest) {
   await connectToDatabase();
   const criterium = req.nextUrl.searchParams.get("filterCriteria");
+  const isActive = req.nextUrl.searchParams.get("isActive");
   const page = Number(req.nextUrl.searchParams.get("page")) ?? 1;
+
+  const activeFilter = isActive === "true" ? { status: "active" } : {};
+
+  console.log(isActive);
 
   const finalFilter = criterium
     ? {
-        $or: [
-          { city: new RegExp(criterium, "i") },
-          { email: new RegExp(criterium, "i") },
+        $and: [
+          {
+            $or: [
+              { city: new RegExp(criterium, "i") },
+              { email: new RegExp(criterium, "i") },
+            ],
+          },
+          activeFilter,
         ],
       }
-    : {};
+    : activeFilter;
 
   let offers;
   let numberOfOffers: number;
