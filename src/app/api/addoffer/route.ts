@@ -19,6 +19,7 @@ const schema = z.object({
   creator: z.string(),
   minSalary: z.string(),
   maxSalary: z.string(),
+  phoneNumber: z.string(),
 });
 
 export async function POST(req: NextRequest) {

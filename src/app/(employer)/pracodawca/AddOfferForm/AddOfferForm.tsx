@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 import { Offer } from "@/common/types";
@@ -13,10 +13,11 @@ import Input from "./Input/Input";
 import InputGroup from "./InputGroup/InputGroup";
 import Preview from "./Preview/Preview";
 import Salary from "./Salary/Salary";
+import { headingStyles } from "./consts";
+import PhoneInput from "react-phone-number-input/input";
 
 export type Inputs = Omit<Offer, "requirements" | "tasks"> & {
   tasks: { name: string }[];
-} & {
   requirements: { name: string }[];
 };
 
@@ -96,6 +97,23 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
           placeholder="Adres placówki"
           inputName="address"
         />
+        <div>
+          <h1 className={headingStyles}>Numer telefonu</h1>
+          <Controller
+            name="phoneNumber"
+            control={control}
+            rules={{ required: true }}
+            render={({ field: { onChange, value } }) => (
+              <PhoneInput
+                country="PL"
+                value={value}
+                onChange={onChange}
+                placeholder="Numer telefonu"
+                className="block w-full mb-4 p-2"
+              />
+            )}
+          />
+        </div>
         <Input register={register} placeholder="Email" inputName="email" />
         <Experience register={register} />
         <AgreementType register={register} />

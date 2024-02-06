@@ -1,6 +1,11 @@
 "use client";
 
-import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
+import {
+  useForm,
+  SubmitHandler,
+  useFieldArray,
+  Controller,
+} from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { parseRequirements, parseTasks } from "@/utils/utils";
@@ -17,6 +22,7 @@ import Details from "./Details";
 import OfferDetailsGroup from "./OfferDetailsGroup";
 import { editOffer } from "./editOffer";
 import Salary from "@/app/(employer)/pracodawca/AddOfferForm/Salary/Salary";
+import PhoneInput from "react-phone-number-input/input";
 
 export type OfferDetailsInputs = Omit<
   Offer,
@@ -85,6 +91,7 @@ const EditFormUI = ({
     user,
     minSalary,
     maxSalary,
+    phoneNumber,
   } = data || {};
 
   const formattedTasks = tasks?.map((task) => ({ name: task })) || [];
@@ -112,6 +119,7 @@ const EditFormUI = ({
       requirements: formattedRequirements,
       minSalary,
       maxSalary,
+      phoneNumber,
     },
   });
 
@@ -155,6 +163,25 @@ const EditFormUI = ({
             placeholder="Adres placówki"
             name="address"
           />
+          <div>
+            <h1 className="mb-1 font-semibold capitalize text-primary text-center">
+              Numer telefonu
+            </h1>
+            <Controller
+              name="phoneNumber"
+              control={control}
+              rules={{ required: true }}
+              render={({ field: { onChange, value } }) => (
+                <PhoneInput
+                  country="PL"
+                  value={value}
+                  onChange={onChange}
+                  placeholder="Numer telefonu"
+                  className="block w-full mb-4 p-2"
+                />
+              )}
+            />
+          </div>
           <Details
             register={register}
             placeholder="Stopień stanowiska"

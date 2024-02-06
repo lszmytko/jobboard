@@ -29,6 +29,7 @@ const OfferSchema = new Schema<OfferSchemaType>({
   creator: { type: String, required: true },
   minSalary: { type: String, required: true },
   maxSalary: { type: String, required: true },
+  phoneNumber: { type: String, required: true },
 });
 
 export const Offer =

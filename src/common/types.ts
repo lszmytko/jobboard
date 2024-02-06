@@ -21,6 +21,7 @@ export type Offer = {
   status: OfferStatus;
   minSalary: string;
   maxSalary: string;
+  phoneNumber: string;
 };
 
 export type Availability =
