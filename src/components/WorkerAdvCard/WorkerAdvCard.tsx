@@ -3,11 +3,15 @@ import Link from "next/link";
 import { WorkerOffer } from "@/common/types";
 import { paths } from "@/common/paths";
 import { shortenString } from "@/utils/utils";
+import { HiOutlineLocationMarker } from "react-icons/hi";
+import { IoMdInformationCircle } from "react-icons/io";
 
 type WorkerCardProps = Pick<
   WorkerOffer,
   "city" | "offerText" | "_id" | "timeOfPosting"
 >;
+
+const iconStyles = "w-5 h-5";
 
 const WorkerAdvCard = ({
   offerText,
@@ -27,16 +31,18 @@ const WorkerAdvCard = ({
     <div className="max-w-2xl w-full border-orange-300 border-2 rounded-lg bg-orange-100 shadow-xl overflow-hidden">
       <Link href={`${paths.workeradvdetails}/${_id}`}>
         <div className="p-4">
-          <div className="text-sm flex gap-2 mb-1 flex-wrap">
-            <p className="font-semibold">Miasto: {city}</p>
+          <div className="flex flex-wrap text-sm gap-2 mb-2">
+            <IoMdInformationCircle className={iconStyles} />
+            {shortenedOfferText}
           </div>
-          <div className="md:flex flex-wrap text-xs gap-2 md:gap-4">
-            <p className="mb-1 md:mb-0">{shortenedOfferText}</p>
+          <div className="text-sm flex gap-2 mb-2 flex-wrap">
+            <HiOutlineLocationMarker className={iconStyles} />
+            <span>{city}</span>
           </div>
         </div>
         <div className="h-px bg-primary-light"></div>
         <div className="flex justify-between text-xs px-4 py-2">
-          <p>{parsedTime}</p>
+          <p>Data dodania: {parsedTime}</p>
           <p>szczegóły</p>
         </div>
       </Link>
