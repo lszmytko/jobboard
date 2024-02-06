@@ -92,6 +92,7 @@ const EditFormUI = ({
     minSalary,
     maxSalary,
     phoneNumber,
+    salaryOption,
   } = data || {};
 
   const formattedTasks = tasks?.map((task) => ({ name: task })) || [];
@@ -120,6 +121,7 @@ const EditFormUI = ({
       minSalary,
       maxSalary,
       phoneNumber,
+      salaryOption,
     },
   });
 

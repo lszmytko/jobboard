@@ -4,3 +4,5 @@ export const availability = [
   "1 miesiąc",
   "3 miesiące",
 ] as const;
+
+export const salaryOptions = ["hourly", "monthly"] as const;

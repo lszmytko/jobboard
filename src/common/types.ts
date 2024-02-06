@@ -1,4 +1,4 @@
-import { availability } from "./consts";
+import { availability, salaryOptions } from "./consts";
 
 type OfferStatus = "pending" | "active" | "inactive";
 
@@ -24,6 +24,7 @@ export type Offer = {
   minSalary: string;
   maxSalary: string;
   phoneNumber: string;
+  salaryOption: "hourly" | "monthly";
 };
 
 export type WorkingTime =
@@ -65,3 +66,5 @@ export type WorkerOfferFormInputs = Pick<
 export type WorkerOfferCreator = "worker" | "admin";
 
 export type Availability = (typeof availability)[number];
+
+export type SalaryOptions = (typeof salaryOptions)[number];

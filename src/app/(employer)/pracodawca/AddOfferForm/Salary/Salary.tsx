@@ -15,6 +15,22 @@ const Salary = ({
       <h1 className="mb-1 font-semibold capitalize text-primary text-center">
         Wynagrodzenie miesięczne
       </h1>
+      <div className="flex justify-center gap-2 mb-1">
+        <input
+          type="radio"
+          id="hourly"
+          value="hourly"
+          {...register("salaryOption")}
+        />
+        <label htmlFor="perHour">Godzinowe</label>
+        <input
+          type="radio"
+          id="monthly"
+          value="monthly"
+          {...register("salaryOption")}
+        />
+        <label htmlFor="monthly">Miesięczne</label>
+      </div>
       <div className="flex gap-2 mb-2 justify-between">
         <input
           placeholder="Min"

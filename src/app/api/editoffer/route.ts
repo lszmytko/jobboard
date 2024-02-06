@@ -20,6 +20,7 @@ const schema = z.object({
   maxSalary: z.string(),
   minSalary: z.string(),
   phoneNumber: z.string(),
+  salaryOption: z.string(),
 });
 
 export async function PUT(req: NextRequest) {
