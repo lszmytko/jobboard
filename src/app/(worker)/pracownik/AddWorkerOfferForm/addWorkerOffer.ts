@@ -10,7 +10,7 @@ type Args = Pick<
   | "experience"
   | "city"
   | "offerText"
-  | "availability"
+  | "workingTime"
   | "creator"
 >;
 

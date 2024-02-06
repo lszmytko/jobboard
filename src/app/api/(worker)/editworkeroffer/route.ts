@@ -9,7 +9,7 @@ const schema = z.object({
   phoneNumber: z.string(),
   city: z.string(),
   experience: z.string(),
-  availability: z.array(z.string()),
+  workingTime: z.array(z.string()),
   offerText: z.string(),
 });
 

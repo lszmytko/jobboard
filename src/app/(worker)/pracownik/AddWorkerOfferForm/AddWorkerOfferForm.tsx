@@ -12,7 +12,7 @@ import { DevTool } from "@hookform/devtools";
 import { useMutation } from "@tanstack/react-query";
 
 import {
-  Availability,
+  WorkingTime,
   WorkerOffer,
   WorkerOfferCreator,
   WorkerOfferFormInputs,
@@ -22,7 +22,7 @@ import { addWorkerOffer } from "./addWorkerOffer";
 import { useRouter } from "next/navigation";
 import { ThreeDots } from "react-loader-spinner";
 
-const availabilityOptions = [
+const workingTimeOptions = [
   "cały etat",
   "pół etatu",
   "dorywczo",
@@ -55,18 +55,18 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
 
   const { fields } = useFieldArray({
     control,
-    name: "availability",
+    name: "workingTime",
     rules: { required: true },
   });
 
   const onSubmit: SubmitHandler<WorkerOfferFormInputs> = async (data) => {
-    const parsedAvailability = data.availability
+    const parsedWorkingTime = data.workingTime
       .filter((item) => item.name)
       .map((item) => item.name);
     try {
       await mutateAsync({
         ...data,
-        availability: parsedAvailability,
+        workingTime: parsedWorkingTime,
         creator,
       });
     } catch (error) {}
@@ -136,15 +136,15 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
           />
         </div>
         <div>
-          <h1 className={headingStyles}>Dostępność</h1>
+          <h1 className={headingStyles}>Wymiar pracy</h1>
           <div className="flex gap-2">
-            {availabilityOptions.map((option, index) => (
+            {workingTimeOptions.map((option, index) => (
               <div key={option} className="grow">
                 <div className="flex justify-center">
                   <input
                     type="checkbox"
                     className="text-center"
-                    {...register(`availability.${index}.name`)}
+                    {...register(`workingTime.${index}.name`)}
                     value={option}
                     defaultChecked={fields.some(
                       (field) => field.name === option
@@ -155,6 +155,15 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
               </div>
             ))}
           </div>
+        </div>
+        <div>
+          <h1 className={headingStyles}>Dostępność</h1>
+          <textarea
+            maxLength={500}
+            rows={5}
+            className="block w-full p-1 mb-4"
+            {...register("offerText", { required: true })}
+          />
         </div>
         <div>
           <h1 className={headingStyles}>Opis ogłoszenia</h1>

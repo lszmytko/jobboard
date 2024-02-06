@@ -9,7 +9,7 @@ import {
   useForm,
 } from "react-hook-form";
 import {
-  Availability,
+  WorkingTime,
   WorkerOffer,
   WorkerOfferFormInputs,
 } from "@/common/types";
@@ -19,7 +19,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { DevTool } from "@hookform/devtools";
 import { toast } from "sonner";
 
-const availabilityOptions = [
+const workingTimeOptions = [
   "cały etat",
   "pół etatu",
   "dorywczo",
@@ -45,7 +45,7 @@ const EditWorkerOffer = ({ offerID }: { offerID: string }) => {
 };
 
 const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
-  const { availability, email, education, experience, city, offerText, _id } =
+  const { workingTime, email, education, experience, city, offerText, _id } =
     data;
 
   const {
@@ -55,7 +55,7 @@ const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
     formState: { errors, isValid },
   } = useForm<WorkerOfferFormInputs>({
     defaultValues: {
-      availability: availability.map((item) => ({ name: item })),
+      workingTime: workingTime.map((item) => ({ name: item })),
       email,
       education,
       experience,
@@ -76,19 +76,19 @@ const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
 
   const { fields } = useFieldArray({
     control,
-    name: "availability",
+    name: "workingTime",
     rules: { required: true },
   });
 
   const onSubmit: SubmitHandler<WorkerOfferFormInputs> = async (data) => {
-    const parsedAvailability = data.availability
+    const parsedWorkingTime = data.workingTime
       .filter((item) => item.name)
       .map((item) => item.name);
 
     try {
       await mutateAsync({
         ...data,
-        availability: parsedAvailability,
+        workingTime: parsedWorkingTime,
         _id,
       });
     } catch (error) {}
@@ -158,15 +158,15 @@ const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
           />
         </div>
         <div className="mb-4">
-          <h1 className={headingStyles}>Dostępność</h1>
+          <h1 className={headingStyles}>Wymiar pracy</h1>
           <div className="flex gap-2">
-            {availabilityOptions.map((option, index) => (
+            {workingTimeOptions.map((option, index) => (
               <div key={option}>
                 <div className="flex justify-center">
                   <input
                     type="checkbox"
                     className="text-center"
-                    {...register(`availability.${index}.name`)}
+                    {...register(`workingTime.${index}.name`)}
                     value={option}
                     defaultChecked={fields.some(
                       (field) => field.name === option

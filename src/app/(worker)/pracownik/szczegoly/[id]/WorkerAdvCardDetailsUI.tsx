@@ -12,7 +12,7 @@ const WorkerAdvCardDetailsUI = ({ data }: { data: WorkerOffer }) => {
     phoneNumber,
     city,
     experience,
-    availability,
+    workingTime,
     timeOfPosting,
     offerText,
   } = data;
@@ -33,7 +33,7 @@ const WorkerAdvCardDetailsUI = ({ data }: { data: WorkerOffer }) => {
         <span className={spanStyles}>Doświadczenie:</span> {experience}
       </p>
       <p className={paragraphStyles}>
-        <span className={spanStyles}>Dostępność:</span> {availability}
+        <span className={spanStyles}>Wymiar pracy:</span> {workingTime}
       </p>
       <p className="mb-2">
         Jeeli jesteście Państwo zainteresowani ofertą kandydata, prośba o

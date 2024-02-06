@@ -24,7 +24,7 @@ export type Offer = {
   phoneNumber: string;
 };
 
-export type Availability =
+export type WorkingTime =
   | "cały etat"
   | "pół etatu"
   | "dorywczo"
@@ -38,7 +38,7 @@ export type WorkerOffer = {
   city: string;
   education: string;
   experience: string;
-  availability: Availability[];
+  workingTime: WorkingTime[];
   offerText: string;
   status: OfferStatus;
   timeOfPosting: string;
@@ -50,7 +50,7 @@ export type WorkerOfferFormInputs = Pick<
   WorkerOffer,
   "email" | "phoneNumber" | "education" | "experience" | "city" | "offerText"
 > & {
-  availability: { name: Availability }[];
+  workingTime: { name: WorkingTime }[];
 };
 
 export type WorkerOfferCreator = "worker" | "admin";

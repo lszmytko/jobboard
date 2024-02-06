@@ -15,7 +15,7 @@ const WorkerOfferSchema = new Schema<WorkerOfferSchemaType>({
   phoneNumber: { type: String, required: true },
   city: { type: String, required: true },
   experience: { type: String, required: true },
-  availability: { type: [String], required: true },
+  workingTime: { type: [String], required: true },
   timeOfPosting: { type: String, required: true },
   timeOfEditing: { type: String },
   offerText: { type: String, required: false },
