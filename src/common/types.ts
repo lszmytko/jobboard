@@ -19,6 +19,8 @@ export type Offer = {
   timeOfEditing: string;
   creator: "employer" | "admin";
   status: OfferStatus;
+  minSalary: string;
+  maxSalary: string;
 };
 
 export type Availability =

@@ -17,6 +17,8 @@ const schema = z.object({
   timeOfPosting: z.string(),
   workingTime: z.array(z.string()),
   offerText: z.string(),
+  maxSalary: z.string(),
+  minSalary: z.string(),
 });
 
 export async function PUT(req: NextRequest) {

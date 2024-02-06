@@ -4,9 +4,11 @@ import { Offer as OfferType } from "@/common/types";
 
 const { Schema } = mongoose;
 
-type OfferSchemaType = OfferType & { status: string } & {
+type OfferSchemaType = OfferType & {
+  status: string;
   timeOfPosting: string;
-} & { timeOfEditing: string };
+  timeOfEditing: string;
+};
 
 const OfferSchema = new Schema<OfferSchemaType>({
   post: { type: String, required: true },
@@ -25,6 +27,8 @@ const OfferSchema = new Schema<OfferSchemaType>({
   isActive: { type: Boolean },
   status: { type: String, required: true },
   creator: { type: String, required: true },
+  minSalary: { type: String, required: true },
+  maxSalary: { type: String, required: true },
 });
 
 export const Offer =

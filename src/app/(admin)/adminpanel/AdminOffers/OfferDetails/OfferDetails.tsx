@@ -16,6 +16,7 @@ import WorkingTime from "@/app/(employer)/pracodawca/AddOfferForm/Elements/Worki
 import Details from "./Details";
 import OfferDetailsGroup from "./OfferDetailsGroup";
 import { editOffer } from "./editOffer";
+import Salary from "@/app/(employer)/pracodawca/AddOfferForm/Salary/Salary";
 
 export type OfferDetailsInputs = Omit<
   Offer,
@@ -82,6 +83,8 @@ const EditFormUI = ({
     workingTime,
     offerText,
     user,
+    minSalary,
+    maxSalary,
   } = data || {};
 
   const formattedTasks = tasks?.map((task) => ({ name: task })) || [];
@@ -93,7 +96,7 @@ const EditFormUI = ({
     handleSubmit,
     formState: { errors, isValid },
     control,
-    reset,
+    getValues,
   } = useForm<OfferDetailsInputs>({
     defaultValues: {
       post,
@@ -107,6 +110,8 @@ const EditFormUI = ({
       offerText,
       tasks: formattedTasks,
       requirements: formattedRequirements,
+      minSalary,
+      maxSalary,
     },
   });
 
@@ -158,6 +163,7 @@ const EditFormUI = ({
           <Experience register={register} />
           <AgreementType register={register} />
           <WorkingTime register={register} />
+          <Salary register={register} getValues={getValues} />
           <OfferDetailsGroup
             control={control}
             name="tasks"

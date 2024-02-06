@@ -12,6 +12,7 @@ import WorkingTime from "./Elements/WorkingTime";
 import Input from "./Input/Input";
 import InputGroup from "./InputGroup/InputGroup";
 import Preview from "./Preview/Preview";
+import Salary from "./Salary/Salary";
 
 export type Inputs = Omit<Offer, "requirements" | "tasks"> & {
   tasks: { name: string }[];
@@ -33,6 +34,7 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
     handleSubmit,
     formState: { errors, isValid },
     control,
+    getValues,
     reset,
   } = useForm<Inputs>({
     defaultValues: {
@@ -98,6 +100,7 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
         <Experience register={register} />
         <AgreementType register={register} />
         <WorkingTime register={register} />
+        <Salary register={register} getValues={getValues} />
         <InputGroup
           control={control}
           name="tasks"

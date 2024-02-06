@@ -3,7 +3,6 @@ import { UseFormRegister } from "react-hook-form";
 import { workingTime } from "./consts";
 import CheckBoxGroup from "../CheckBoxGroup/CheckBoxGroup";
 import CheckboxField from "../CheckBoxGroup/CheckboxField/CheckboxField";
-import { Inputs } from "../AddOfferForm";
 
 const WorkingTime = ({ register }: { register: UseFormRegister<any> }) => {
   return (

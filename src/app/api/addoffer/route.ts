@@ -17,12 +17,16 @@ const schema = z.object({
   offerText: z.string(),
   isActive: z.boolean(),
   creator: z.string(),
+  minSalary: z.string(),
+  maxSalary: z.string(),
 });
 
 export async function POST(req: NextRequest) {
   await connectToDatabase();
   const request = await req.json();
   const validation = schema.safeParse(request);
+
+  console.log(request);
 
   if (!validation.success) {
     const { errors } = validation.error;
