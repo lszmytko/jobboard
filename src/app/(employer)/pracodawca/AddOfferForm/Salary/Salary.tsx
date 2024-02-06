@@ -1,9 +1,7 @@
 import React from "react";
 import { UseFormGetValues, UseFormRegister } from "react-hook-form";
 
-import { Inputs } from "../AddOfferForm";
-
-const inputStyle = "p-1";
+const inputStyle = "block p-1 w-1/2";
 
 const Salary = ({
   register,
@@ -17,7 +15,7 @@ const Salary = ({
       <h1 className="mb-1 font-semibold capitalize text-primary text-center">
         Wynagrodzenie miesięczne
       </h1>
-      <div className="flex gap-2 mb-2">
+      <div className="flex gap-2 mb-2 justify-between">
         <input
           placeholder="Min"
           type="number"
