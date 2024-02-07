@@ -36,8 +36,8 @@ const WorkerAdvSection = () => {
   if (!offers.length)
     return (
       <>
-        <div className="mt-6 text-center flex justify-center">
-          <div className="max-w-2xl">
+        <div className="mt-4 text-center flex justify-center">
+          <div className="max-w-2xl w-4/5">
             <Search setFilterCriteria={setFilterCriteria} />
           </div>
         </div>
@@ -47,7 +47,7 @@ const WorkerAdvSection = () => {
 
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-4">
         <section className="max-w-2xl w-4/5">
           <Search setFilterCriteria={setFilterCriteria} />
           <div className="flex justify-center p-2">

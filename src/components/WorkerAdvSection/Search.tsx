@@ -21,12 +21,12 @@ const Search = ({
   return (
     <div className="mb-4">
       <form
-        className="mb-6 mt-4 md:flex justify-center"
+        className="mb-6 mt-4 md:flex justify-center "
         onSubmit={handleSubmit(onSubmit)}
       >
         <input
           type="text"
-          placeholder="Wpisz email lub miasto"
+          placeholder="Wpisz miasto"
           className="w-full text-center max-sm:border-b-2 p-2 border-primary-extra-light focus:outline-none md:border-r-2"
           {...register("criterium")}
         />

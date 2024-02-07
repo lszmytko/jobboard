@@ -18,15 +18,7 @@ export async function GET(req: NextRequest) {
 
   const finalFilter = criterium
     ? {
-        $and: [
-          {
-            $or: [
-              { city: new RegExp(criterium, "i") },
-              { email: new RegExp(criterium, "i") },
-            ],
-          },
-          activeFilter,
-        ],
+        $and: [{ city: new RegExp(criterium, "i") }, activeFilter],
       }
     : activeFilter;
 
