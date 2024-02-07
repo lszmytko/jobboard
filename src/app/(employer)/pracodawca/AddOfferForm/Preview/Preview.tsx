@@ -49,6 +49,7 @@ const Preview = ({
     requirements,
     _id,
     email,
+    agreementType,
   } = offerData;
 
   const loadingStyles = isLoading ? "cursor-not-allowed opacity" : "";
@@ -72,6 +73,7 @@ const Preview = ({
             address={address}
             experience={experience}
             workingTime={workingTime}
+            agreementType={agreementType}
             tasks={tasks}
             requirements={requirements}
             email={email}

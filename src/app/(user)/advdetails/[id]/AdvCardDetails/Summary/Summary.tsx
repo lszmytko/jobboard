@@ -8,7 +8,13 @@ import { Offer } from "@/common/types";
 
 type SummaryProps = Pick<
   Offer,
-  "post" | "company" | "city" | "address" | "experience" | "workingTime"
+  | "post"
+  | "company"
+  | "city"
+  | "address"
+  | "experience"
+  | "workingTime"
+  | "agreementType"
 >;
 
 const Summary = ({
@@ -18,6 +24,7 @@ const Summary = ({
   address,
   experience,
   workingTime,
+  agreementType,
 }: SummaryProps) => {
   return (
     <div className="text-sky-900 shadow-xl overflow-hidden">
@@ -45,7 +52,7 @@ const Summary = ({
         <Detail info={workingTime}>
           <PiSuitcaseSimpleFill />
         </Detail>
-        <Detail info="umowa o pracę" isLast={true}>
+        <Detail info={agreementType} isLast={true}>
           <FaRegHandshake />
         </Detail>
       </div>

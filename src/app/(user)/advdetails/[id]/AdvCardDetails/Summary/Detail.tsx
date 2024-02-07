@@ -1,10 +1,12 @@
+import { AgreementType, OfferWorkingTime } from "@/common/types";
+
 const Detail = ({
   children,
   info,
   isLast,
 }: {
   children: React.ReactNode;
-  info: string | ("pełen etat" | "część etatu")[];
+  info: string | AgreementType | OfferWorkingTime;
   isLast?: boolean;
 }) => {
   const border = !isLast

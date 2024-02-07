@@ -12,7 +12,7 @@ const AdvCardDetails = () => {
 
   const id = pathname.split("/").slice(-1)[0];
 
-  const { isLoading, isError, data, error } = useQuery({
+  const { isLoading, isError, data } = useQuery({
     queryKey: ["getSingleOffer"],
     queryFn: () => fetchSingleOffer(id),
   });
@@ -33,6 +33,7 @@ const AdvCardDetails = () => {
     _id: offerID,
     workingTime,
     email,
+    agreementType,
   } = data?.data?.offer || {};
 
   return (
@@ -43,6 +44,7 @@ const AdvCardDetails = () => {
       address={address}
       experience={experience}
       workingTime={workingTime}
+      agreementType={agreementType}
       tasks={tasks}
       requirements={requirements}
       _id={offerID}

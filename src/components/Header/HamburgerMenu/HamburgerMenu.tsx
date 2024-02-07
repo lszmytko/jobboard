@@ -50,16 +50,16 @@ const HamburgerMenu = () => {
             Oferty pracy
           </Link>
         </div>
-        <div className={linkStyles}>
-          <a href="https://www.vettech.pl" className="trainings">
-            Szkolenia
-          </a>
-        </div>
         <div className={employerLinkStyles}>
           <Link href={paths.employer}>Dam pracę</Link>
         </div>
         <div className={workerLinkStyles}>
           <Link href={paths.worker}>Szukam pracy</Link>
+        </div>
+        <div className={linkStyles}>
+          <a href="https://www.vettech.pl" className="trainings">
+            Szkolenia
+          </a>
         </div>
       </aside>
     </div>

@@ -2,6 +2,15 @@ import { availability, salaryOptions, workingTimeOptions } from "./consts";
 
 type OfferStatus = "pending" | "active" | "inactive";
 
+export type AgreementType = (
+  | "UoP"
+  | "B2B"
+  | "Umowa zlecenie"
+  | "Umowa o dzieło"
+)[];
+
+export type OfferWorkingTime = ("pełen etat" | "część etatu")[];
+
 export type Offer = {
   _id: string;
   user: string;
@@ -12,7 +21,7 @@ export type Offer = {
   email: string;
   experience: "< 1 rok" | "1-3 lata" | "3-5 lat" | "5-10 lat" | "> 10 lat";
   agreementType: ("UoP" | "B2B" | "Umowa zlecenie" | "Umowa o dzieło")[];
-  workingTime: ("pełen etat" | "część etatu")[];
+  workingTime: OfferWorkingTime;
   offerText: string;
   tasks: string[];
   requirements: string[];

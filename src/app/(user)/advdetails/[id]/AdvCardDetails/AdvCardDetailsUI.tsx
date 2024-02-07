@@ -18,6 +18,7 @@ type Props = Pick<
   | "requirements"
   | "_id"
   | "email"
+  | "agreementType"
 >;
 
 const AdvCardDetailsUI = ({
@@ -30,6 +31,7 @@ const AdvCardDetailsUI = ({
   tasks,
   requirements,
   email,
+  agreementType,
   _id,
 }: Props) => {
   return (
@@ -42,6 +44,7 @@ const AdvCardDetailsUI = ({
           address={address}
           experience={experience}
           workingTime={workingTime}
+          agreementType={agreementType}
         />
         <div className="p-2 bg-gray-100">
           <Presentation tasks={tasks} requirements={requirements} post={post} />
