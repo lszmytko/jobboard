@@ -38,20 +38,6 @@ const Preview = ({
     },
   });
 
-  const {
-    post,
-    company,
-    city,
-    address,
-    experience,
-    workingTime,
-    tasks,
-    requirements,
-    _id,
-    email,
-    agreementType,
-  } = offerData;
-
   const loadingStyles = isLoading ? "cursor-not-allowed opacity" : "";
 
   return (
@@ -66,19 +52,7 @@ const Preview = ({
           <h1 className="text-center text-xl font-bold mb-4">
             Podgląd dodawanej oferty
           </h1>
-          <AdvCardDetailsUI
-            post={post}
-            company={company}
-            city={city}
-            address={address}
-            experience={experience}
-            workingTime={workingTime}
-            agreementType={agreementType}
-            tasks={tasks}
-            requirements={requirements}
-            email={email}
-            _id={_id}
-          />
+          <AdvCardDetailsUI data={offerData} />
           <div className="mt-4 flex justify-center">
             <button
               onClick={() => mutateAsync({ ...offerData, creator })}

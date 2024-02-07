@@ -6,34 +6,20 @@ import ApplyButton from "./ApplyButton";
 import EmailData from "./EmailData";
 import { Offer } from "@/common/types";
 
-type Props = Pick<
-  Offer,
-  | "post"
-  | "company"
-  | "city"
-  | "address"
-  | "experience"
-  | "workingTime"
-  | "tasks"
-  | "requirements"
-  | "_id"
-  | "email"
-  | "agreementType"
->;
-
-const AdvCardDetailsUI = ({
-  post,
-  company,
-  city,
-  address,
-  experience,
-  workingTime,
-  tasks,
-  requirements,
-  email,
-  agreementType,
-  _id,
-}: Props) => {
+const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
+  const {
+    post,
+    company,
+    city,
+    address,
+    experience,
+    workingTime,
+    agreementType,
+    tasks,
+    requirements,
+    _id,
+    email,
+  } = data;
   return (
     <div className="flex justify-center max-w-5xl border-orange-300 border-2 shadow-lg rounded mt-4 ">
       <div>
