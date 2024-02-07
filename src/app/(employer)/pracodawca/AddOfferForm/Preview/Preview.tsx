@@ -4,9 +4,11 @@ import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
+import AdvCardDetailsUI from "@/app/(user)/advdetails/[id]/AdvCardDetails/AdvCardDetailsUI";
+import InputLoader from "@/components/loaders/InputLoader";
+
 import { accceptButtonStyles, customDeleteModalStyles } from "./styles";
 import { addOffer } from "../addOffer";
-import AdvCardDetailsUI from "@/app/(user)/advdetails/[id]/AdvCardDetails/AdvCardDetailsUI";
 import { OfferData } from "../AddOfferForm";
 
 const Preview = ({
@@ -54,12 +56,16 @@ const Preview = ({
           </h1>
           <AdvCardDetailsUI data={offerData} />
           <div className="mt-4 flex justify-center">
-            <button
-              onClick={() => mutateAsync({ ...offerData, creator })}
-              className={`${accceptButtonStyles} ${loadingStyles}`}
-            >
-              Dodaj ofertę
-            </button>
+            {isLoading ? (
+              <InputLoader />
+            ) : (
+              <button
+                onClick={() => mutateAsync({ ...offerData, creator })}
+                className={`${accceptButtonStyles} ${loadingStyles}`}
+              >
+                Dodaj ofertę
+              </button>
+            )}
           </div>
         </div>
       </div>

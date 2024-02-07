@@ -22,6 +22,7 @@ import { addWorkerOffer } from "./addWorkerOffer";
 import { useRouter } from "next/navigation";
 import { ThreeDots } from "react-loader-spinner";
 import { availability, workingTimeOptions } from "@/common/consts";
+import InputLoader from "@/components/loaders/InputLoader";
 
 const inputStyles = "block w-full p-2";
 const headingStyles = "text-center text-primary font-bold mb-2";
@@ -174,16 +175,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
           />
         </div>
         {isLoading ? (
-          <div className="flex justify-center">
-            <ThreeDots
-              height="40"
-              width="100"
-              radius="9"
-              color={"#4fa94d"}
-              ariaLabel="three-dots-loading"
-              visible={true}
-            />
-          </div>
+          <InputLoader />
         ) : (
           <input
             type="submit"

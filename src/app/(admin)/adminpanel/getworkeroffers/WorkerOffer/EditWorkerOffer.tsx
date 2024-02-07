@@ -22,6 +22,7 @@ import {
   availability as availabilityOptions,
   workingTimeOptions,
 } from "@/common/consts";
+import InputLoader from "@/components/loaders/InputLoader";
 
 const inputStyles = "block w-full p-1 mb-2";
 const headingStyles = "text-center text-primary text-sm font-bold mb-1";
@@ -210,16 +211,7 @@ const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
           />
         </div>
         {isLoading ? (
-          <div className="flex justify-center">
-            <ThreeDots
-              height="40"
-              width="100"
-              radius="9"
-              color={"#4fa94d"}
-              ariaLabel="three-dots-loading"
-              visible={true}
-            />
-          </div>
+          <InputLoader />
         ) : (
           <input
             type="submit"
