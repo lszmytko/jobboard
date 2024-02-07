@@ -13,10 +13,12 @@ const Detail = ({
     ? "border-b-2 sm:border-b-0 border-r-0 sm:border-r-2"
     : "";
 
+  const parsedInfo = typeof info === "string" ? info : info.join(" / ");
+
   return (
     <div className={`${border} px-3 py-1 grow`}>
       <div className="flex justify-center">{children}</div>
-      <p className="text-center">{info}</p>
+      <p className="text-center">{parsedInfo}</p>
     </div>
   );
 };

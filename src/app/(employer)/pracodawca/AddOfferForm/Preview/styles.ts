@@ -1,6 +1,6 @@
 export const customDeleteModalStyles = {
   content: {
-    width: "80%",
+    width: "92%",
     minHeight: "80%",
     position: "absolute",
     top: "50%",
