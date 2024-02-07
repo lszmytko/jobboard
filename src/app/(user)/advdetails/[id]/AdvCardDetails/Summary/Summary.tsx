@@ -2,8 +2,9 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { GrUserWorker } from "react-icons/gr";
 import { PiSuitcaseSimpleFill } from "react-icons/pi";
 import { FaRegHandshake, FaBuilding } from "react-icons/fa";
+import { GiMoneyStack } from "react-icons/gi";
 
-import Detail from "./Detail";
+import { Detail, SalaryDetail } from "./Details";
 import { Offer } from "@/common/types";
 
 type SummaryProps = Pick<
@@ -15,6 +16,9 @@ type SummaryProps = Pick<
   | "experience"
   | "workingTime"
   | "agreementType"
+  | "minSalary"
+  | "maxSalary"
+  | "salaryOption"
 >;
 
 const Summary = ({
@@ -25,6 +29,9 @@ const Summary = ({
   experience,
   workingTime,
   agreementType,
+  minSalary,
+  maxSalary,
+  salaryOption,
 }: SummaryProps) => {
   return (
     <div className="text-sky-900 shadow-xl overflow-hidden">
@@ -52,9 +59,14 @@ const Summary = ({
         <Detail info={workingTime}>
           <PiSuitcaseSimpleFill />
         </Detail>
-        <Detail info={agreementType} isLast={true}>
+        <Detail info={agreementType}>
           <FaRegHandshake />
         </Detail>
+        <SalaryDetail
+          minSalary={minSalary}
+          maxSalary={maxSalary}
+          salaryOption={salaryOption}
+        />
       </div>
     </div>
   );

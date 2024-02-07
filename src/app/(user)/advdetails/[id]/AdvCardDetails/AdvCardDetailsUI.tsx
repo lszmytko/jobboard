@@ -19,6 +19,9 @@ const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
     requirements,
     _id,
     email,
+    minSalary,
+    maxSalary,
+    salaryOption,
   } = data;
   return (
     <div className="flex justify-center max-w-5xl border-orange-300 border-2 shadow-lg rounded mt-4 ">
@@ -31,6 +34,9 @@ const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
           experience={experience}
           workingTime={workingTime}
           agreementType={agreementType}
+          minSalary={minSalary}
+          maxSalary={maxSalary}
+          salaryOption={salaryOption}
         />
         <div className="p-2 bg-gray-100">
           <Presentation tasks={tasks} requirements={requirements} post={post} />

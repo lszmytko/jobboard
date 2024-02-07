@@ -12,7 +12,7 @@ const ApplyButton = ({
 
   return (
     <button
-      className="block w-80 bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded-3xl text-xl"
+      className="block w-80 bg-primary hover:bg-primary-dark text-white font-bold p-2 rounded-3xl text-lg"
       onClick={() => {
         window.open(
           `mailto:${mail}?subject=${encodeURIComponent(
