@@ -1,16 +1,18 @@
 "use client";
 
-import Pagination from "@/components/Pagination";
-import AdvSection from "../components/AdvSection";
-import Search from "../components/Search";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
+
 import { fetchAllOffers } from "@/components/AdvSection/fetchAllOffers";
 import { paths } from "@/common/paths";
-import { useState } from "react";
 import WorkerAdvSection from "@/components/WorkerAdvSection/WorkerAdvSection";
+import Pagination from "@/components/Pagination";
 
-const baseButtonStyles = "font-extrabold";
+import AdvSection from "../components/AdvSection";
+import Search from "../components/Search";
+
+const baseButtonStyles = "font-extrabold sm:text-xl";
 const selectedButtonStyles = "p-2 bg-primary-light rounded-full text-white";
 
 export default function Home() {

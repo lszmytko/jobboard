@@ -44,6 +44,7 @@ const AdvCard = ({
   });
 
   const agreement = agreementType.join(" / ");
+  const parsedWorkingTime = workingTime.join(" / ");
 
   return (
     <div className="max-w-2xl w-full border-orange-300 border-2 rounded-lg bg-gray-100 shadow-xl overflow-hidden">
@@ -75,7 +76,7 @@ const AdvCard = ({
           </p>
           <p className={flexStyles}>
             <PiSuitcaseSimpleFill className={iconStyles} />
-            <span>{workingTime}</span>
+            <span>{parsedWorkingTime}</span>
           </p>
         </div>
         <div className="h-px bg-primary-light"></div>
