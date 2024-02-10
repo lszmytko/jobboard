@@ -4,10 +4,10 @@ import { Offer as OfferType } from "@/common/types";
 
 const { Schema } = mongoose;
 
-type OfferSchemaType = OfferType & {
+type OfferSchemaType = Omit<OfferType, "timeOfPosting" | "timeOfEditing"> & {
   status: string;
-  timeOfPosting: string;
-  timeOfEditing: string;
+  timeOfPosting: Date;
+  timeOfEditing: Date;
 };
 
 const OfferSchema = new Schema<OfferSchemaType>({
@@ -19,8 +19,8 @@ const OfferSchema = new Schema<OfferSchemaType>({
   experience: { type: String, required: true },
   agreementType: { type: [String], required: true },
   workingTime: { type: [String], required: true },
-  timeOfPosting: { type: String, required: true },
-  timeOfEditing: { type: String, required: true },
+  timeOfPosting: { type: Date, required: true, default: null },
+  timeOfEditing: { type: Date, default: null },
   offerText: { type: String, required: false },
   tasks: { type: [String], required: true },
   requirements: { type: [String], required: true },

@@ -13,6 +13,8 @@ const schema = z.object({
   page: z.number(),
   city: z.string().nullable().optional(),
   postOrCompany: z.string().nullable().optional(),
+  minDate: z.string().nullable().optional(),
+  maxDate: z.string().nullable().optional(),
 });
 
 export async function GET(req: NextRequest) {
@@ -24,6 +26,8 @@ export async function GET(req: NextRequest) {
   const postOrCompany = req.nextUrl.searchParams.get("postOrCompany");
   const company = req.nextUrl.searchParams.get("company");
   const offerID = req.nextUrl.searchParams.get("offerID");
+  const minDate = req.nextUrl.searchParams.get("minDate");
+  const maxDate = req.nextUrl.searchParams.get("maxDate");
 
   const response = schema.safeParse({ isActive, page, city, postOrCompany });
 
@@ -38,10 +42,23 @@ export async function GET(req: NextRequest) {
     );
   }
 
+  // have to adjust because react-datepicker selects bad hour
+  const parsedMaxDate = maxDate ? new Date(maxDate) : new Date("2100-01-01");
+  parsedMaxDate.setTime(parsedMaxDate.getTime() + 24 * 60 * 60 * 1000);
+
+  const parsedMinDate = minDate ? minDate : new Date("1970-01-01");
+
+  console.log("parsedmaxdate", parsedMaxDate.toISOString());
+
   let offers;
   let numberOfOffers: number;
 
-  let filter = {};
+  let filter: {} = {
+    timeOfPosting: {
+      $gte: parsedMinDate,
+      $lte: parsedMaxDate,
+    },
+  };
   filter = company
     ? { ...filter, company: { $regex: company, $options: "i" } }
     : { ...filter };

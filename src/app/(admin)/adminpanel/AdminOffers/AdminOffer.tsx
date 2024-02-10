@@ -19,7 +19,7 @@ const AdminOffer = ({
   openDetailsModal: any;
   openDeleteModal: any;
 }) => {
-  const { post, city, company, _id, status } = details;
+  const { post, company, _id, status, timeOfPosting } = details;
   const queryClient = useQueryClient();
 
   const { isLoading, isError, mutateAsync } = useMutation({
@@ -53,6 +53,7 @@ const AdminOffer = ({
             {isActive ? "Aktywne" : "Nieaktywne"}
           </span>
         </p>
+        <p className={paragraphStyle}>Data dodania: {timeOfPosting}</p>
       </div>
       <div className="options flex flex-col text-end">
         <div className="option basis-2/4 flex">

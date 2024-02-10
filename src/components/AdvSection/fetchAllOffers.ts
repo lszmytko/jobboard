@@ -11,6 +11,8 @@ type Params = {
   page: string;
   company?: string;
   offerID?: string;
+  minDate?: string;
+  maxDate?: string;
 };
 
 export const fetchAllOffers = async ({
@@ -20,6 +22,7 @@ export const fetchAllOffers = async ({
   isActive?: boolean;
   params?: Params;
 }) => {
+  console.log("*** fetchAllOffers");
   const finalParams = isActive
     ? { params: { isActive, ...params } }
     : { params: { ...params } };

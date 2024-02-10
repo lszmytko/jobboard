@@ -16,10 +16,13 @@ const AdminPanel = () => {
   const page = searchParams.get("page") ?? "1";
   const company = searchParams.get("company") ?? "";
   const offerID = searchParams.get("offerID") ?? "";
+  const minDate = searchParams.get("minDate") ?? "";
+  const maxDate = searchParams.get("minDate") ?? "";
 
-  const { isLoading, isError, data, error, refetch } = useQuery({
+  const { isLoading, isError, data } = useQuery({
     queryKey: ["adminUserOffers"],
-    queryFn: () => fetchAllOffers({ params: { page, company, offerID } }),
+    queryFn: () =>
+      fetchAllOffers({ params: { page, company, offerID, minDate, maxDate } }),
     onSuccess: (data) => {
       setOfferData(data.data.offers);
     },
@@ -34,7 +37,7 @@ const AdminPanel = () => {
     <div>
       <AdminSearchOffer setOfferData={setOfferData} />
       <AdminOffers data={offerData} type="employer" />
-      <Pagination pages={pages} />
+      {pages > 1 ? <Pagination pages={pages} /> : null}
     </div>
   );
 };

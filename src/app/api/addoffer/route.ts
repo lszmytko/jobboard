@@ -28,8 +28,6 @@ export async function POST(req: NextRequest) {
   const request = await req.json();
   const validation = schema.safeParse(request);
 
-  console.log(request);
-
   if (!validation.success) {
     const { errors } = validation.error;
     return NextResponse.json(
@@ -38,14 +36,12 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const timeOfPosting = new Date().toISOString();
-  const timeOfEditing = "kkk";
+  const timeOfPosting = new Date();
 
   try {
     await Offer.create({
       ...request,
       timeOfPosting,
-      timeOfEditing,
       status: "pending",
     });
   } catch (error) {
