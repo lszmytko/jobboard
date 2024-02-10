@@ -1,10 +1,11 @@
-import AddWorkerOfferForm from "@/app/(worker)/pracownik/AddWorkerOfferForm/AddWorkerOfferForm";
 import React from "react";
+
+import AddWorkerOfferForm from "@/app/(worker)/pracownik/AddWorkerOfferForm/AddWorkerOfferForm";
 
 const AddAdminOfferlPage = () => {
   return (
-    <div className="w-screen flex justify-center">
-      <div className="md:w-1/2">
+    <div className="w-screen">
+      <div className="flex justify-center">
         <AddWorkerOfferForm creator="admin" />
       </div>
     </div>

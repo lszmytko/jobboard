@@ -22,7 +22,7 @@ export async function PUT(req: NextRequest) {
     );
   }
 
-  const timeOfEditing = new Date().toISOString();
+  const timeOfEditing = new Date();
 
   const status = request.option === "activate" ? "active" : "inactive";
 

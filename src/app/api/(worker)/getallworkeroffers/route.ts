@@ -14,8 +14,6 @@ export async function GET(req: NextRequest) {
 
   const activeFilter = isActive === "true" ? { status: "active" } : {};
 
-  console.log(isActive);
-
   const finalFilter = criterium
     ? {
         $and: [{ city: new RegExp(criterium, "i") }, activeFilter],

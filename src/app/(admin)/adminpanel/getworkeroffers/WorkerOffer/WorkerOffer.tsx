@@ -35,7 +35,7 @@ const WorkerOffer = ({
   });
 
   const isActive = status === "active";
-  const parsedData = dayjs(timeOfPosting).format("DD-MM-YYYY");
+  const parsedDate = dayjs(timeOfPosting).format("DD-MM-YYYY");
 
   const activateBtnCopy = isLoading ? "..." : isActive ? "Zakończ" : "Aktywuj";
 
@@ -46,8 +46,8 @@ const WorkerOffer = ({
     >
       <div>
         <p className={paragraphStyle}>Email: {email}</p>
-        <p className={paragraphStyle}>Data dodania: {parsedData}</p>
         <p className={paragraphStyle}>ID oferty: {_id}</p>
+        <p className={paragraphStyle}>Miasto: {city}</p>
         <p className={paragraphStyle}>
           Status:{" "}
           <span className={`${isActive ? activeStyle : inActiveStyle}`}>
@@ -55,6 +55,7 @@ const WorkerOffer = ({
             {isActive ? "Aktywne" : "Nieaktywne"}
           </span>
         </p>
+        <p className={paragraphStyle}>Data dodania: {parsedDate}</p>
       </div>
       <div className="options flex flex-col text-end">
         <div className="option basis-2/4 flex">

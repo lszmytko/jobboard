@@ -27,7 +27,7 @@ export async function PUT(req: NextRequest) {
     );
   }
 
-  const timeOfEditing = new Date().toISOString();
+  const timeOfEditing = new Date();
 
   try {
     const offer = await WorkerOffer.findOneAndUpdate(

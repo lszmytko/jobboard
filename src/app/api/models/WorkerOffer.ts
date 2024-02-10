@@ -6,8 +6,13 @@ import {
 
 const { Schema } = mongoose;
 
-type WorkerOfferSchemaType = WorkerOfferType & {
+type WorkerOfferSchemaType = Omit<
+  WorkerOfferType,
+  "timeOfPosting" | "timeOfEditing"
+> & {
   creator: creatorType;
+  timeOfPosting: Date;
+  timeOfEditing: Date;
 };
 
 const WorkerOfferSchema = new Schema<WorkerOfferSchemaType>({
@@ -16,8 +21,8 @@ const WorkerOfferSchema = new Schema<WorkerOfferSchemaType>({
   city: { type: String, required: true },
   experience: { type: String, required: true },
   workingTime: { type: [String], required: true },
-  timeOfPosting: { type: String, required: true },
-  timeOfEditing: { type: String },
+  timeOfPosting: { type: Date, required: true, default: null },
+  timeOfEditing: { type: Date, default: null },
   offerText: { type: String, required: false },
   status: { type: String, required: true },
   creator: { type: String, required: true },

@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const timeOfPosting = new Date().toISOString();
+  const timeOfPosting = new Date();
   const timeOfEditing = "";
 
   try {

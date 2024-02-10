@@ -18,6 +18,7 @@ export const apiRoutes = {
   getSingleWorkerOffer: "/getsingleworkeroffer",
   getSingleUser: "/getsingleuser",
   getAllWorkerOffers: "/getallworkeroffers",
+  getAdminWorkerOffers: "/getadminworkeroffers",
   getUserByEmail: "/getuserbyemail",
   handleOfferActivation: "/handleofferactivation",
   handleWorkerOfferActivation: "/handleworkerofferactivation",

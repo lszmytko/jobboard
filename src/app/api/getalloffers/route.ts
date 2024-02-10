@@ -48,8 +48,6 @@ export async function GET(req: NextRequest) {
 
   const parsedMinDate = minDate ? minDate : new Date("1970-01-01");
 
-  console.log("parsedmaxdate", parsedMaxDate.toISOString());
-
   let offers;
   let numberOfOffers: number;
 
