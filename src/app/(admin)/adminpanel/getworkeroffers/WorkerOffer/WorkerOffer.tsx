@@ -35,7 +35,7 @@ const WorkerOffer = ({
   });
 
   const isActive = status === "active";
-  const parsedDate = dayjs(timeOfPosting).format("DD-MM-YYYY");
+  const parsedDate = dayjs(timeOfPosting).format("DD-MM-YYYY HH:mm");
 
   const activateBtnCopy = isLoading ? "..." : isActive ? "Zakończ" : "Aktywuj";
 

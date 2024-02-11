@@ -3,6 +3,7 @@ import React from "react";
 import { handleOfferActivation } from "./handleOfferActivation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import dayjs from "dayjs";
 
 const paragraphStyle = "text-xs 0 mb-2";
 const activeStyle = "text-green-500";
@@ -36,6 +37,7 @@ const AdminOffer = ({
   const isActive = status === "active";
 
   const activateBtnCopy = isLoading ? "..." : isActive ? "Zakończ" : "Aktywuj";
+  const parsedDate = dayjs(timeOfPosting).format("DD-MM-YYYY HH:mm");
 
   return (
     <div
@@ -53,7 +55,7 @@ const AdminOffer = ({
             {isActive ? "Aktywne" : "Nieaktywne"}
           </span>
         </p>
-        <p className={paragraphStyle}>Data dodania: {timeOfPosting}</p>
+        <p className={paragraphStyle}>Data dodania: {parsedDate}</p>
       </div>
       <div className="options flex flex-col text-end">
         <div className="option basis-2/4 flex">
