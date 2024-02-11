@@ -16,6 +16,9 @@ const WorkerAdvCardDetailsUI = ({ data }: { data: WorkerOffer }) => {
     timeOfPosting,
     offerText,
   } = data;
+
+  const parsedWorkingTime = workingTime.join(" / ");
+
   return (
     <div className="sm:w-1/2 max-w-5xl  border-2 shadow-lg p-2 rounded  text-sm  border-primary-light bg-orange-50">
       <h1 className="text-xl font-bold text-center mb-4">Oferta kandydata</h1>
@@ -33,7 +36,7 @@ const WorkerAdvCardDetailsUI = ({ data }: { data: WorkerOffer }) => {
         <span className={spanStyles}>Doświadczenie:</span> {experience}
       </p>
       <p className={paragraphStyles}>
-        <span className={spanStyles}>Wymiar pracy:</span> {workingTime}
+        <span className={spanStyles}>Wymiar pracy:</span> {parsedWorkingTime}
       </p>
       <p className="mb-2">
         Jeeli jesteście Państwo zainteresowani ofertą kandydata, prośba o

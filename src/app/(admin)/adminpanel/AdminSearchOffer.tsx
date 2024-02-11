@@ -91,7 +91,7 @@ const AdminSearchOffer = ({
                   onBlur={onBlur}
                   selected={value}
                   onChange={(date) => onChange(date)}
-                  className="p-1"
+                  className="p-1 w-full"
                   dateFormat="dd/MM/yyyy"
                 />
               )}
@@ -105,7 +105,7 @@ const AdminSearchOffer = ({
                   onBlur={onBlur}
                   selected={value}
                   onChange={(date) => onChange(date)}
-                  className="p-1"
+                  className="p-1 w-full"
                   dateFormat="dd-MM-yyyy"
                 />
               )}

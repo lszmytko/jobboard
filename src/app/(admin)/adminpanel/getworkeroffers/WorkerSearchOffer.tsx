@@ -70,7 +70,7 @@ const WorkerSearchOffer = ({
                   onBlur={onBlur}
                   selected={value}
                   onChange={(date) => onChange(date)}
-                  className="p-1"
+                  className="p-1 w-full"
                   dateFormat="dd/MM/yyyy"
                 />
               )}
@@ -84,7 +84,7 @@ const WorkerSearchOffer = ({
                   onBlur={onBlur}
                   selected={value}
                   onChange={(date) => onChange(date)}
-                  className="p-1"
+                  className="p-1 w-full"
                   dateFormat="dd-MM-yyyy"
                 />
               )}

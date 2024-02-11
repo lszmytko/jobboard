@@ -36,5 +36,13 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 }
 
 export const config = {
-  matcher: ["/adminpanel/:path*", ...adminRoutes],
+  matcher: [
+    "/adminpanel/:path*",
+    "/api/editoffer",
+    "/api/editworkeroffer",
+    "/api/deleteoffer",
+    "/api/deleteworkeroffer",
+    "/api/handleofferactivation",
+    "/api/handleworkerofferactivation",
+  ],
 };

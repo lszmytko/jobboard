@@ -148,7 +148,8 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
         <div className="flex justify-center">
           <input
             type="submit"
-            className="p-2 text-white bg-primary rounded text-xl cursor-pointer disabled:opacity-50 disabled:cursor-auto"
+            value="Prześlij"
+            className="p-2 w-full text-cente text-white bg-primary rounded text-xl cursor-pointer disabled:opacity-50 disabled:cursor-auto"
             disabled={!isValid}
           />
         </div>

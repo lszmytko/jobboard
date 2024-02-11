@@ -49,7 +49,7 @@ const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
             <span>{offerText}</span>
           </p>
           <div className="mb-2 mt-4 flex justify-center">
-            <ApplyButton offerID={_id} post={post} mail={email} />
+            <ApplyButton post={post} mail={email} />
           </div>
           <p className="text-center py-1 text-xl">lub</p>
           <div className="mb-2 flex justify-center">

@@ -181,7 +181,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
         ) : (
           <input
             type="submit"
-            value="Dodaj"
+            value="Prześlij"
             className="w-full text-center rounded py-2 px-4 bg-primary-light cursor-pointer disabled:opacity-50"
             disabled={!isValid}
           />
