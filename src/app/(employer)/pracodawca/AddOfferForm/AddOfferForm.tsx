@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import PhoneInput from "react-phone-number-input/input";
 
 import { Offer } from "@/common/types";
+import Statute from "@/components/Statute/Statute";
 
 import Experience from "./Elements/Experience";
 import AgreementType from "./Elements/AgreementType";
@@ -14,7 +16,6 @@ import InputGroup from "./InputGroup/InputGroup";
 import Preview from "./Preview/Preview";
 import Salary from "./Salary/Salary";
 import { headingStyles } from "./consts";
-import PhoneInput from "react-phone-number-input/input";
 
 export type Inputs = Omit<Offer, "requirements" | "tasks"> & {
   tasks: { name: string }[];
@@ -143,6 +144,7 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
             rows={10}
           />
         </div>
+        <Statute />
         <div className="flex justify-center">
           <input
             type="submit"

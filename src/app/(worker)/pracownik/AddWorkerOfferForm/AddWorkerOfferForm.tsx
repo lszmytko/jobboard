@@ -23,6 +23,7 @@ import { useRouter } from "next/navigation";
 import { ThreeDots } from "react-loader-spinner";
 import { availability, workingTimeOptions } from "@/common/consts";
 import InputLoader from "@/components/loaders/InputLoader";
+import Statute from "@/components/Statute/Statute";
 
 const inputStyles = "block w-full p-2";
 const headingStyles = "text-center text-primary font-bold mb-2";
@@ -174,6 +175,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
             {...register("offerText", { required: true })}
           />
         </div>
+        <Statute />
         {isLoading ? (
           <InputLoader />
         ) : (

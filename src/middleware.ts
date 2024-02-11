@@ -18,13 +18,11 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 
   if (!isAuthenticated) {
     if (adminRoutes.includes(req.nextUrl.pathname)) {
-      console.log("jestesmy tutaj 1", req.nextUrl.pathname);
       return Response.json(
         { success: false, message: "authentication failed" },
         { status: 401 }
       );
     }
-    console.log("jestesmy tutaj", req.nextUrl.pathname);
 
     if (req.nextUrl.pathname.startsWith("/adminpanel")) {
       const url = req.nextUrl.clone();
