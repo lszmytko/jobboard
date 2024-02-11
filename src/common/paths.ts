@@ -6,6 +6,7 @@ export const paths = {
   editOffer: "/pracodawca/edytuj",
   adminpanel: "/adminpanel",
   adminlogin: "/adminpanel",
+  regulamin: "/regulamin",
   advdetails: "/advdetails",
   workeradvdetails: "/pracownik/szczegoly",
   getAllOffers: "/getalloffers",
