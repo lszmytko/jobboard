@@ -57,20 +57,17 @@ export async function GET(req: NextRequest) {
       $lte: parsedMaxDate,
     },
   };
-  filter = company
-    ? { ...filter, company: { $regex: company, $options: "i" } }
-    : { ...filter };
-  filter = offerID
-    ? {
-        ...filter,
-        _id: new mongoose.Types.ObjectId(offerID),
-      }
-    : { ...filter };
-  filter =
-    isActive === "true" ? { ...filter, status: "active" } : { ...filter };
-  filter = city
-    ? { ...filter, city: { $regex: city, $options: "i" } }
-    : { ...filter };
+
+  if (company)
+    filter = { ...filter, company: { $regex: company, $options: "i" } };
+  if (offerID)
+    filter = {
+      ...filter,
+      _id: new mongoose.Types.ObjectId(offerID),
+    };
+  if (isActive === "true") filter = { ...filter, status: "active" };
+  if (city) filter = { ...filter, city: { $regex: city, $options: "i" } };
+
   const filterWithCompany = postOrCompany
     ? { ...filter, company: { $regex: postOrCompany, $options: "i" } }
     : { ...filter };
