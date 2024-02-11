@@ -11,8 +11,8 @@ export const fetchAdminWorkerOffers = async (data: {
   email: string;
   city: string;
   offerID: string;
-  minDate: Date;
-  maxDate: Date;
+  minDate: Date | string;
+  maxDate: Date | string;
   page: number;
 }) => {
   const parsedParams = {

@@ -64,7 +64,7 @@ export async function GET(req: NextRequest) {
 
   if (city) filter = { ...filter, city: { $regex: city, $options: "i" } };
 
-  console.log("filter", filter);
+  console.log("page", page);
 
   let offers;
   let numberOfOffers: number;

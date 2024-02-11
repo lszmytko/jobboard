@@ -5,14 +5,12 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchAllWorkerOffers } from "@/components/WorkerAdvSection/fetchAllWorkerOffers";
 import { ThreeDots } from "react-loader-spinner";
 import AdminOffers from "../AdminOffers";
+import { fetchAdminWorkerOffers } from "./fetchAdminWorkeroffers";
 
-const WorkerOffers = () => {
-  const [filterCriteria, setFilterCriteria] = useState("");
-  const [page, setPage] = useState(1);
-
+const WorkerOffers = ({ filterCriteria, page }: any) => {
   const { isLoading, data, isError } = useQuery({
-    queryKey: ["fetchAllWorkerOffers", filterCriteria, page],
-    queryFn: () => fetchAllWorkerOffers(filterCriteria, page, false),
+    queryKey: ["fetchAdminWorkerOffers", filterCriteria, page],
+    queryFn: () => fetchAdminWorkerOffers({ ...filterCriteria, page }),
     retryOnMount: false,
   });
 

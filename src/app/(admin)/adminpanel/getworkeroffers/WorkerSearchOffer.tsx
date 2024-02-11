@@ -3,9 +3,7 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
 import { useMutation } from "@tanstack/react-query";
-import { Dispatch, SetStateAction } from "react";
-import { Offer } from "@/common/types";
-import { useRouter } from "next/navigation";
+
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -20,11 +18,11 @@ type FormInputs = {
   maxDate: Date;
 };
 
-const WorkerSearchOffer = () => {
-  const { isLoading, isError, mutateAsync } = useMutation({
-    mutationFn: fetchAdminWorkerOffers,
-  });
-
+const WorkerSearchOffer = ({
+  setFilterCriteria,
+}: {
+  setFilterCriteria: React.Dispatch<React.SetStateAction<any>>;
+}) => {
   const {
     register,
     handleSubmit,
@@ -34,7 +32,7 @@ const WorkerSearchOffer = () => {
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     try {
-      const response = await mutateAsync({ ...data, page: 1 });
+      setFilterCriteria({ ...data });
     } catch (error) {
       console.log("*** error", error);
     }
@@ -44,7 +42,7 @@ const WorkerSearchOffer = () => {
     <div className="mt-4">
       <h1 className="text-center mb-4">Wyszukaj ofertę</h1>
       <div className="flex justify-center">
-        <form onSubmit={handleSubmit(onSubmit)} className="sm:w-1/2 px-2">
+        <form onSubmit={handleSubmit(onSubmit)} className="px-2">
           <div className="flex gap-1 mb-2">
             <input
               placeholder="Email"
@@ -105,8 +103,6 @@ const WorkerSearchOffer = () => {
         </form>
         <DevTool control={control} />
       </div>
-      {isLoading ? <p className="mt-2 text-center">Ładowanie...</p> : null}
-      {isError ? <p>Wystąpił błąd...</p> : null}
     </div>
   );
 };
