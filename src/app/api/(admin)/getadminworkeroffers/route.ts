@@ -64,8 +64,6 @@ export async function GET(req: NextRequest) {
 
   if (city) filter = { ...filter, city: { $regex: city, $options: "i" } };
 
-  console.log("page", page);
-
   let offers;
   let numberOfOffers: number;
 
@@ -74,7 +72,6 @@ export async function GET(req: NextRequest) {
     offers = await WorkerOffer.find(filter)
       .skip((page - 1) * 15)
       .limit(ITEMS_PER_PAGE);
-    console.log({ offers });
   } catch (e) {
     NextResponse.json(
       { msg: "Something went wrong" },

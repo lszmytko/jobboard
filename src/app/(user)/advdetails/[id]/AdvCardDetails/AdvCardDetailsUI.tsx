@@ -26,7 +26,6 @@ const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
     offerText,
   } = data;
 
-  console.log({ offerText });
   return (
     <div className="flex justify-center max-w-5xl border-orange-300 border-2 shadow-lg rounded mt-4 ">
       <div>

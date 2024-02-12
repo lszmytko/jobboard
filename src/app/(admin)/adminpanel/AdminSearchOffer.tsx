@@ -38,7 +38,6 @@ const AdminSearchOffer = ({
   } = useForm<FormInputs>();
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
-    console.log("*** onsubmit");
     let params = "?page=1";
     if (data.company) params = params + `&company=${data.company}`;
     if (data.offerID) params = params + `&offerID=${data.offerID}`;

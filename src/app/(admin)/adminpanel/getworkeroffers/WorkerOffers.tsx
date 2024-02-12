@@ -7,7 +7,7 @@ import { ThreeDots } from "react-loader-spinner";
 import AdminOffers from "../AdminOffers";
 import { fetchAdminWorkerOffers } from "./fetchAdminWorkeroffers";
 
-const WorkerOffers = ({ filterCriteria, page }: any) => {
+const WorkerOffers = ({ filterCriteria, page, pagesCount }: any) => {
   const { isLoading, data, isError } = useQuery({
     queryKey: ["fetchAdminWorkerOffers", filterCriteria, page],
     queryFn: () => fetchAdminWorkerOffers({ ...filterCriteria, page }),
@@ -26,6 +26,8 @@ const WorkerOffers = ({ filterCriteria, page }: any) => {
         Something went wrong...
       </div>
     );
+
+  pagesCount.current = data?.data?.pages;
 
   const offers = data?.data?.offers;
 
