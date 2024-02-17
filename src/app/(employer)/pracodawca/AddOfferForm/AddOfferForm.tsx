@@ -47,6 +47,7 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
+    if (!isValid) return;
     const parsedRequirements = data.requirements.map(
       (requirement) => requirement.name
     );
@@ -120,7 +121,7 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
         <Experience register={register} />
         <AgreementType register={register} />
         <WorkingTime register={register} />
-        <Salary register={register} getValues={getValues} />
+        <Salary register={register} getValues={getValues} errors={errors} />
         <InputGroup
           control={control}
           name="tasks"
@@ -150,14 +151,15 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
             type="submit"
             value="Prześlij"
             className="p-2 w-full text-cente text-white bg-primary rounded text-xl cursor-pointer disabled:opacity-50 disabled:cursor-auto"
-            disabled={!isValid}
+            // disabled={!isValid}
           />
         </div>
         {Object.values(errors).length > 0 && (
-          <div>Napraw błędy w formularzu</div>
+          <p className="mt-2 text-center text-red-500 font-semibold">
+            Napraw błędy w formularzu
+          </p>
         )}
       </form>
-      {Object.values(errors).length > 0 && <div>Napraw błędy w formularzu</div>}
       <DevTool control={control} />
     </div>
   );

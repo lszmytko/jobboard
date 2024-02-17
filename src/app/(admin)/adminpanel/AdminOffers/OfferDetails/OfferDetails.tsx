@@ -192,7 +192,7 @@ const EditFormUI = ({
           <Experience register={register} />
           <AgreementType register={register} />
           <WorkingTime register={register} />
-          <Salary register={register} getValues={getValues} />
+          <Salary register={register} getValues={getValues} errors={errors} />
           <OfferDetailsGroup
             control={control}
             name="tasks"

@@ -1,17 +1,26 @@
 import React from "react";
-import { UseFormGetValues, UseFormRegister } from "react-hook-form";
+import {
+  FieldErrors,
+  UseFormGetValues,
+  UseFormRegister,
+} from "react-hook-form";
+
+import { Inputs } from "../AddOfferForm";
 
 const inputStyle = "block p-1 w-1/2";
 
 const Salary = ({
   register,
   getValues,
+  errors,
 }: {
   register: UseFormRegister<any>;
   getValues: UseFormGetValues<any>;
+  errors: FieldErrors<Inputs>;
 }) => {
+  console.log({ errors });
   return (
-    <div>
+    <div className="mb-4">
       <h1 className="mb-1 font-semibold capitalize text-primary text-center">
         Wynagrodzenie
       </h1>
@@ -48,6 +57,11 @@ const Salary = ({
           })}
         />
       </div>
+      {errors.maxSalary && (
+        <p className="text-center text-sm text-red-500">
+          Maksymalne wynagrodzenie musi być większe od minimalnego
+        </p>
+      )}
     </div>
   );
 };
