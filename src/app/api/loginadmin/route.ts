@@ -44,3 +44,7 @@ export async function POST(req: Request) {
   } else
     return NextResponse.json({ error: "Invalid password" }, { status: 403 });
 }
+
+export async function OPTIONS() {
+  return NextResponse.json({ status: 200 });
+}

@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 import { inter } from "@/app/ui/fonts";
+import { Analytics } from "@vercel/analytics/react";
+
 import Providers from "./providers";
 
 const poppins = Poppins({
@@ -34,6 +36,7 @@ export default function RootLayout({
           duration={2000}
           richColors={true}
         />
+        <Analytics />
       </body>
     </html>
   );
