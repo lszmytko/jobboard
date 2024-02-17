@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  useForm,
-  SubmitHandler,
-  useFieldArray,
-  Controller,
-} from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { parseRequirements, parseTasks } from "@/utils/utils";
@@ -210,11 +205,16 @@ const EditFormUI = ({
               Dodatkowa treść ogłoszenia
             </h1>
             <textarea
-              {...register("offerText", { required: true })}
+              {...register("offerText", { required: true, maxLength: 1000 })}
               className="block w-full p-2 rounded mb-2 outline-primary"
-              maxLength={400}
+              maxLength={1000}
               rows={10}
             />
+            {errors.offerText && (
+              <p className="text-center text-sm text-red-500">
+                Maksymalna liczba znaków to 1000
+              </p>
+            )}
           </div>
           <div className="flex justify-center">
             {isMutationLoading ? (

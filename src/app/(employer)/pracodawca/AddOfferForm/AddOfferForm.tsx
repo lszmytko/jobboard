@@ -78,6 +78,8 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
     );
   }
 
+  console.log({ errors });
+
   return (
     <div className="max-w-3xl w-full p-2">
       <h1 className="mb-2 text-lg font-bold text-center">
@@ -139,11 +141,15 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
             Dodatkowa treść ogłoszenia
           </h1>
           <textarea
-            {...register("offerText", { required: true })}
+            {...register("offerText", { required: true, maxLength: 1000 })}
             className="block w-full p-2 rounded mb-2"
-            maxLength={400}
             rows={10}
           />
+          {errors.offerText && (
+            <p className="text-center text-sm text-red-500">
+              Maksymalna liczba znaków to 1000
+            </p>
+          )}
         </div>
         <Statute />
         <div className="flex justify-center">
@@ -151,7 +157,6 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
             type="submit"
             value="Prześlij"
             className="p-2 w-full text-cente text-white bg-primary rounded text-xl cursor-pointer disabled:opacity-50 disabled:cursor-auto"
-            // disabled={!isValid}
           />
         </div>
         {Object.values(errors).length > 0 && (
