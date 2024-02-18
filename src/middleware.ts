@@ -22,7 +22,17 @@ const allowedOrigins =
     : ["http://localhost:3000"];
 
 export async function middleware(req: NextRequest, res: NextResponse) {
-  const origin = req.headers.get("origin") ?? "";
+  if (req.method === "OPTIONS") {
+    console.log("options request");
+    return new NextResponse(null, {
+      status: 200,
+    });
+  }
+
+  const origin = req.nextUrl.origin ?? "";
+
+  console.log("headers", req.nextUrl);
+  console.log("process", process.env.NODE_ENV);
 
   if (origin && !allowedOrigins.includes(origin)) {
     return new NextResponse(null, {
@@ -34,7 +44,13 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 
   const response = NextResponse.next();
 
-  response.headers.set("Access-Control-Allow-Origin", origin);
+  // response.headers.set(
+  //   "Access-Control-Allow-Origin",
+  //   process.env.NODE_ENV === "production"
+  //     ? "https://vetpraca.vettech.pl"
+  //     : "http://localhost:3000"
+  // );
+  response.headers.set("Access-Control-Allow-Origin", "*");
   response.headers.set("Access-Control-Allow-Credentials", "true");
   response.headers.set(
     "Access-Control-Allow-Methods",
@@ -47,27 +63,29 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 
   const token = req.cookies.get("jwtToken")?.value;
 
-  console.log("token", token);
+  console.log(
+    "Access-Control-Allow-Origin",
+    response.headers.get("Access-Control-Allow-Origin")
+  );
 
   const isAuthenticated = await verifyJwtToken(token ?? "");
-
-  if (!isAuthenticated) {
-    if (adminRoutes.includes(req.nextUrl.pathname)) {
+  if (adminRoutes.includes(req.nextUrl.pathname)) {
+    if (!isAuthenticated) {
       return Response.json(
         { success: false, message: "authentication failed" },
         { status: 401 }
       );
     }
-
-    if (req.nextUrl.pathname.startsWith("/adminpanel")) {
-      const url = req.nextUrl.clone();
-      url.pathname = "/adminlogin";
-      url.searchParams.delete("page");
-      return NextResponse.redirect(url);
-    }
   }
 
-  return NextResponse.next();
+  if (req.nextUrl.pathname.startsWith("/adminpanel") && !isAuthenticated) {
+    const url = req.nextUrl.clone();
+    url.pathname = "/adminlogin";
+    url.searchParams.delete("page");
+    return NextResponse.redirect(url);
+  }
+
+  return response;
 }
 
 export const config = {
