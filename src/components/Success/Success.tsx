@@ -8,7 +8,7 @@ export const Success = () => {
           Gratulacje!
         </h1>
         <p className="text-lg font-bold text-primary">
-          Ogłoszenie zostało wysłane. Teraz, gdy zostanie zaakcpetowane przez
+          Ogłoszenie zostało wysłane. Teraz, gdy zostanie zaakceptowane przez
           administratora, pojawi się na liście ogłoszeń.
         </p>
         <div className="mt-6">

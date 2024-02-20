@@ -34,7 +34,7 @@ const EditWorkerOffer = ({ offerID }: { offerID: string }) => {
   });
 
   if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Something went wrong...</div>;
+  if (isError) return <div>Coś poszło nie tak...</div>;
 
   const offerDetails = data.data.offer;
 

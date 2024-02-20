@@ -12,7 +12,7 @@ type WorkerCardProps = Pick<
   "city" | "offerText" | "_id" | "timeOfPosting" | "email" | "workingTime"
 >;
 
-const iconStyles = "w-5 h-5";
+const iconStyles = "w-5 h-5 shrink-0";
 
 const WorkerAdvCard = ({
   offerText,
@@ -40,7 +40,7 @@ const WorkerAdvCard = ({
             </div>
             <span>{email}</span>
           </div>
-          <div className="flex flex-wrap text-sm gap-2 mb-2">
+          <div className="flex text-sm gap-2 mb-2">
             <IoMdInformationCircle className={iconStyles} />
             <div>{shortenedOfferText}</div>
           </div>

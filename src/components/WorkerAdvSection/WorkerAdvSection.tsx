@@ -26,9 +26,7 @@ const WorkerAdvSection = () => {
     );
   if (isError)
     return (
-      <div className="text-center text-red-700 mt-6">
-        Something went wrong...
-      </div>
+      <div className="text-center text-red-700 mt-6">Coś poszło nie tak...</div>
     );
   const offers = data.data.offers;
   const pages = data.data.pages;

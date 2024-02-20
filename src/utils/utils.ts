@@ -20,7 +20,7 @@ export const parseTasks = (
 
 export function shortenString(
   str: string,
-  maxLength: number = 100,
+  maxLength: number = 300,
   ellipsis: boolean = true
 ): string {
   if (str.length <= maxLength) {

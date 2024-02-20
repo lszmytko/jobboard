@@ -5,9 +5,13 @@ const Statute = () => {
   return (
     <p className="text-xs text-opacity-20 mb-2">
       Dodając ogłoszenie akceptuję{" "}
-      <Link href={paths.regulamin} className="text-primary pointer">
-        regulamin
-      </Link>{" "}
+      <a
+        href={paths.regulamin}
+        target="_blank"
+        className="text-primary pointer"
+      >
+        &nbsp;regulamin&nbsp;
+      </a>
       oraz wyrażam zgodę na przetwarzanie moich danych osobowych przez firmę
       Kamil Szmytko VetTech zgodnie z Rozporządzeniem Parlamentu Europejskiego i
       Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób
