@@ -53,13 +53,22 @@ const WorkerAdvSection = () => {
           <div className="flex justify-center p-2">
             <div className="w-full">
               {offers?.map((offer) => {
-                const { _id, city, offerText, timeOfPosting } = offer;
+                const {
+                  _id,
+                  city,
+                  offerText,
+                  timeOfPosting,
+                  email,
+                  workingTime,
+                } = offer;
                 return (
                   <div
                     key={_id}
                     className="card-wrapper mb-4 md:flex md:justify-center"
                   >
                     <WorkerAdvCard
+                      email={email}
+                      workingTime={workingTime}
                       offerText={offerText}
                       city={city}
                       timeOfPosting={timeOfPosting}

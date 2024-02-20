@@ -5,10 +5,11 @@ import { paths } from "@/common/paths";
 import { shortenString } from "@/utils/utils";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { IoMdInformationCircle } from "react-icons/io";
+import { MdEmail } from "react-icons/md";
 
 type WorkerCardProps = Pick<
   WorkerOffer,
-  "city" | "offerText" | "_id" | "timeOfPosting"
+  "city" | "offerText" | "_id" | "timeOfPosting" | "email" | "workingTime"
 >;
 
 const iconStyles = "w-5 h-5";
@@ -18,6 +19,8 @@ const WorkerAdvCard = ({
   city,
   timeOfPosting,
   _id,
+  email,
+  workingTime,
 }: WorkerCardProps) => {
   const parsedTime = new Date(timeOfPosting).toLocaleDateString("pl-PL", {
     day: "numeric",
@@ -32,8 +35,14 @@ const WorkerAdvCard = ({
       <Link href={`${paths.workeradvdetails}/${_id}`}>
         <div className="p-4">
           <div className="flex flex-wrap text-sm gap-2 mb-2">
+            <div>
+              <MdEmail className={iconStyles} />
+            </div>
+            <span>{email}</span>
+          </div>
+          <div className="flex flex-wrap text-sm gap-2 mb-2">
             <IoMdInformationCircle className={iconStyles} />
-            {shortenedOfferText}
+            <div>{shortenedOfferText}</div>
           </div>
           <div className="text-sm flex gap-2 mb-2 flex-wrap">
             <HiOutlineLocationMarker className={iconStyles} />
