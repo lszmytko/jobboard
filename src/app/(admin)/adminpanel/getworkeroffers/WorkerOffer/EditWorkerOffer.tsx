@@ -61,7 +61,6 @@ const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
     formState: { errors, isValid },
   } = useForm<WorkerOfferFormInputs>({
     defaultValues: {
-      workingTime: workingTime.map((item) => ({ name: item })),
       email,
       education,
       experience,
@@ -176,9 +175,7 @@ const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
                     className="text-center"
                     {...register(`workingTime.${index}.name`)}
                     value={option}
-                    defaultChecked={fields.some(
-                      (field) => field.name === option
-                    )}
+                    defaultChecked={workingTime.includes(option)}
                   />
                 </div>
                 <label className="block text-sm text-center">{option}</label>

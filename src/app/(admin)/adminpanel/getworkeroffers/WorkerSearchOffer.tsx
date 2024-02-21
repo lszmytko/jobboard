@@ -2,13 +2,10 @@
 
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 
-import { useMutation } from "@tanstack/react-query";
-
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { DevTool } from "@hookform/devtools";
-import { fetchAdminWorkerOffers } from "./fetchAdminWorkeroffers";
 
 type FormInputs = {
   email: string;

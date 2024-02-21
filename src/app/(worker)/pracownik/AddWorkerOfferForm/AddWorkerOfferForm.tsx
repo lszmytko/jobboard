@@ -11,16 +11,10 @@ import PhoneInput from "react-phone-number-input/input";
 import { DevTool } from "@hookform/devtools";
 import { useMutation } from "@tanstack/react-query";
 
-import {
-  WorkingTime,
-  WorkerOffer,
-  WorkerOfferCreator,
-  WorkerOfferFormInputs,
-} from "@/common/types";
+import { WorkerOfferCreator, WorkerOfferFormInputs } from "@/common/types";
 
 import { addWorkerOffer } from "./addWorkerOffer";
 import { useRouter } from "next/navigation";
-import { ThreeDots } from "react-loader-spinner";
 import { availability, workingTimeOptions } from "@/common/consts";
 import InputLoader from "@/components/loaders/InputLoader";
 import Statute from "@/components/Statute/Statute";
@@ -141,9 +135,6 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
                     className="text-center"
                     {...register(`workingTime.${index}.name`)}
                     value={option}
-                    defaultChecked={fields.some(
-                      (field) => field.name === option
-                    )}
                   />
                 </div>
                 <label className="block text-sm text-center">{option}</label>
