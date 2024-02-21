@@ -34,7 +34,11 @@ export function shortenString(
 export const createStyles = (path: string, className: string) => {
   let defaultStyles = { worker: "", allOffers: "", employer: "" };
 
-  if (path.startsWith("/pracownik")) {
+  //TODO: quick fix, to be refactored
+  if (
+    path.startsWith("/pracownik") &&
+    !path.startsWith("/pracownik/szczegoly")
+  ) {
     return { ...defaultStyles, worker: className };
   }
 
@@ -42,7 +46,7 @@ export const createStyles = (path: string, className: string) => {
     return { ...defaultStyles, employer: className };
   }
 
-  if (path.startsWith("/")) {
+  if (path.startsWith("/") || path.startsWith("/pracodawca/szczegoly")) {
     return { ...defaultStyles, allOffers: className };
   }
 

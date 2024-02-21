@@ -119,6 +119,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
           <h1 className={headingStyles}>Twoje Doświadczenie</h1>
           <textarea
             {...register("experience", { required: true })}
+            placeholder="Twoje doświadczenie"
             maxLength={1000}
             rows={3}
             className={inputStyles}
@@ -160,6 +161,7 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
         <div>
           <h1 className={headingStyles}>Opis ogłoszenia</h1>
           <textarea
+            placeholder="Opis ogłoszenia"
             maxLength={500}
             rows={5}
             className="block w-full p-1 mb-4"
