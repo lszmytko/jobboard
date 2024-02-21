@@ -26,6 +26,7 @@ export async function GET(req: NextRequest) {
   try {
     numberOfOffers = await WorkerOffer.find(finalFilter).count();
     offers = await WorkerOffer.find(finalFilter)
+      .sort({ timeOfPosting: -1 })
       .skip((page - 1) * 15)
       .limit(ITEMS_PER_PAGE);
   } catch (e) {
