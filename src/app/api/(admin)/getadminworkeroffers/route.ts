@@ -70,6 +70,7 @@ export async function GET(req: NextRequest) {
   try {
     numberOfOffers = await WorkerOffer.find(filter).count();
     offers = await WorkerOffer.find(filter)
+      .sort({ timeOfPosting: -1 })
       .skip((page - 1) * 15)
       .limit(ITEMS_PER_PAGE);
   } catch (e) {

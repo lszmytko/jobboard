@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { editWorkerOffer } from "./editWorkerOfferFn";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { fetchSingleWorkerOffer } from "@/app/(worker)/pracownik/szczegoly/[id]/fetchSingleWorkerOffer";
@@ -8,14 +8,9 @@ import {
   useFieldArray,
   useForm,
 } from "react-hook-form";
-import {
-  WorkingTime,
-  WorkerOffer,
-  WorkerOfferFormInputs,
-} from "@/common/types";
+import { WorkerOffer, WorkerOfferFormInputs } from "@/common/types";
 import { useRouter } from "next/navigation";
 import PhoneInput from "react-phone-number-input/input";
-import { ThreeDots } from "react-loader-spinner";
 import { DevTool } from "@hookform/devtools";
 import { toast } from "sonner";
 import {
@@ -29,11 +24,11 @@ const headingStyles = "text-center text-primary text-sm font-bold mb-1";
 
 const EditWorkerOffer = ({ offerID }: { offerID: string }) => {
   const { isLoading, isError, data } = useQuery({
-    queryKey: ["fetchSingleWorkerOffer"],
+    queryKey: ["fetchSingleWorkerOffer", offerID],
     queryFn: () => fetchSingleWorkerOffer(offerID),
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div className="text-center">Loading...</div>;
   if (isError) return <div>Coś poszło nie tak...</div>;
 
   const offerDetails = data.data.offer;
