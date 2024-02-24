@@ -23,16 +23,12 @@ const allowedOrigins =
 
 export async function middleware(req: NextRequest, res: NextResponse) {
   if (req.method === "OPTIONS") {
-    console.log("options request");
     return new NextResponse(null, {
       status: 200,
     });
   }
 
   const origin = req.nextUrl.origin ?? "";
-
-  console.log("headers", req.nextUrl);
-  console.log("process", process.env.NODE_ENV);
 
   if (origin && !allowedOrigins.includes(origin)) {
     return new NextResponse(null, {
@@ -62,11 +58,6 @@ export async function middleware(req: NextRequest, res: NextResponse) {
   );
 
   const token = req.cookies.get("jwtToken")?.value;
-
-  console.log(
-    "Access-Control-Allow-Origin",
-    response.headers.get("Access-Control-Allow-Origin")
-  );
 
   const isAuthenticated = await verifyJwtToken(token ?? "");
   if (adminRoutes.includes(req.nextUrl.pathname)) {

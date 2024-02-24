@@ -58,9 +58,7 @@ const AdminSearchOffer = ({
       });
       setOfferData(response.data.offers);
       router.push(params);
-    } catch (error) {
-      console.log("*** error", error);
-    }
+    } catch (error) {}
   };
 
   return (

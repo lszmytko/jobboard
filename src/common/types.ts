@@ -41,6 +41,7 @@ export type WorkingTime = (typeof workingTimeOptions)[number];
 
 export type WorkerOffer = {
   _id: string;
+  postTitle: string;
   email: string;
   phoneNumber: string;
   city: string;
@@ -64,6 +65,7 @@ export type WorkerOfferFormInputs = Pick<
   | "city"
   | "offerText"
   | "availability"
+  | "postTitle"
 > & {
   workingTime: { name: WorkingTime }[];
 };

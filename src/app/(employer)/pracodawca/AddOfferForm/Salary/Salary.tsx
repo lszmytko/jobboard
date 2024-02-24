@@ -18,7 +18,6 @@ const Salary = ({
   getValues: UseFormGetValues<any>;
   errors: FieldErrors<Inputs>;
 }) => {
-  console.log({ errors });
   return (
     <div className="mb-4">
       <h1 className="mb-1 font-semibold capitalize text-primary text-center">

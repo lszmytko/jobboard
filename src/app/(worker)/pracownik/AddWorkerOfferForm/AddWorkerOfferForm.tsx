@@ -73,6 +73,14 @@ const AddWorkerOfferForm = ({ creator }: { creator: WorkerOfferCreator }) => {
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-2">
+          <h1 className={headingStyles}>Nazwa stanowiska</h1>
+          <input
+            {...register("postTitle", { required: true })}
+            placeholder="Nazwa stanowiska"
+            className={inputStyles}
+          />
+        </div>
+        <div className="mb-2">
           <h1 className={headingStyles}>Twój email</h1>
           <input
             {...register("email", { required: true })}

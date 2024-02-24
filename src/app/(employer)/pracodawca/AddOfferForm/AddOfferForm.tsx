@@ -79,8 +79,6 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
     );
   }
 
-  console.log({ errors });
-
   return (
     <div className="max-w-3xl w-full p-2">
       <h1 className="mb-2 text-lg font-bold text-center">

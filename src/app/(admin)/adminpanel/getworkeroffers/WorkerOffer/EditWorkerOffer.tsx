@@ -47,6 +47,7 @@ const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
     _id,
     availability,
     phoneNumber,
+    postTitle,
   } = data;
 
   const {
@@ -63,6 +64,7 @@ const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
       offerText,
       availability,
       phoneNumber,
+      postTitle,
     },
   });
 
@@ -107,6 +109,14 @@ const EditWorkerOfferFormUI = ({ data }: { data: WorkerOffer }) => {
         </p>
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <h1 className={headingStyles}>Nazwa stanowiska</h1>
+          <input
+            {...register("postTitle")}
+            placeholder="Nazwa stanowiska"
+            className={inputStyles}
+          />
+        </div>
         <div>
           <h1 className={headingStyles}>Twój email</h1>
           <input

@@ -30,9 +30,7 @@ const WorkerSearchOffer = ({
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     try {
       setFilterCriteria({ ...data });
-    } catch (error) {
-      console.log("*** error", error);
-    }
+    } catch (error) {}
   };
 
   return (
