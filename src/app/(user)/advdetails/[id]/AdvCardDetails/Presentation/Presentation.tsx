@@ -9,8 +9,8 @@ const Presentation = ({ requirements, tasks, post }: PresentationProps) => {
   return (
     <div className="text-sm">
       <Job post={post} />
-      <List data={requirements} title="Zakres obowiązków" />
-      <List data={tasks} title="Wymagania" />
+      <List data={requirements} title="Wymagania" />
+      <List data={tasks} title="Zakres obowiązków" />
     </div>
   );
 };
