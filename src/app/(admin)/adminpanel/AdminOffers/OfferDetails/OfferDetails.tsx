@@ -44,7 +44,7 @@ const EditForm = ({ offerID }: { offerID: string }) => {
   });
 
   const { isLoading, data } = useQuery({
-    queryKey: ["offerDetails"],
+    queryKey: ["offerDetails", offerID],
     queryFn: () => fetchSingleOffer(offerID || ""),
   });
 
