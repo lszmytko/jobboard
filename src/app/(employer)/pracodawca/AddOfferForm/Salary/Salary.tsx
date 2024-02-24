@@ -24,7 +24,7 @@ const Salary = ({
       <h1 className="mb-1 font-semibold capitalize text-primary text-center">
         Wynagrodzenie
       </h1>
-      <div className="flex justify-center gap-2 mb-1">
+      <div className="flex justify-center gap-2 mb-3">
         <input
           type="radio"
           id="hourly"
@@ -39,6 +39,22 @@ const Salary = ({
           {...register("salaryOption")}
         />
         <label htmlFor="monthly">Miesięczne</label>
+      </div>
+      <div className="flex justify-center gap-2 mb-1">
+        <input
+          type="radio"
+          id="hourly"
+          value="gross"
+          {...register("salaryGrossNet")}
+        />
+        <label htmlFor="perHour">Brutto</label>
+        <input
+          type="radio"
+          id="net"
+          value="net"
+          {...register("salaryGrossNet")}
+        />
+        <label htmlFor="monthly">Netto</label>
       </div>
       <div className="flex gap-2 mb-2 justify-between">
         <input

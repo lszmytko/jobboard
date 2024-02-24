@@ -31,7 +31,7 @@ const WorkerAdvCard = ({
   const shortenedOfferText = shortenString(offerText);
 
   return (
-    <div className="max-w-2xl w-full border-orange-300 border-2 rounded-lg bg-orange-100 shadow-xl overflow-hidden">
+    <div className="max-w-2xl w-full border-orange-300 border-2 rounded-lg bg-orange-50 shadow-xl overflow-hidden">
       <Link href={`${paths.workeradvdetails}/${_id}`}>
         <div className="p-4">
           <div className="flex flex-wrap text-sm gap-2 mb-2">

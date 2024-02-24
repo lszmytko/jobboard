@@ -24,11 +24,21 @@ export const Detail = ({
   );
 };
 
-type Props = Pick<Offer, "minSalary" | "maxSalary" | "salaryOption">;
+type Props = Pick<
+  Offer,
+  "minSalary" | "maxSalary" | "salaryOption" | "salaryGrossNet"
+>;
 
-export const SalaryDetail = ({ minSalary, maxSalary, salaryOption }: Props) => {
+export const SalaryDetail = ({
+  minSalary,
+  maxSalary,
+  salaryOption,
+  salaryGrossNet,
+}: Props) => {
   const parsedSalaryOption =
     salaryOption === "hourly" ? "za godzinę" : "miesięcznie";
+
+  const parsedGrossNet = salaryGrossNet === "net" ? "netto" : "brutto";
 
   return (
     <div className="px-3 py-1 grow">
@@ -36,7 +46,7 @@ export const SalaryDetail = ({ minSalary, maxSalary, salaryOption }: Props) => {
         <GiMoneyStack />
       </div>
       <p className="text-center">
-        {minSalary}zł - {maxSalary}zł {parsedSalaryOption}
+        {minSalary}zł - {maxSalary}zł {parsedGrossNet} {parsedSalaryOption}
       </p>
     </div>
   );

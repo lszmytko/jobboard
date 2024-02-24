@@ -88,6 +88,7 @@ const EditFormUI = ({
     maxSalary,
     phoneNumber,
     salaryOption,
+    salaryGrossNet,
   } = data || {};
 
   const formattedTasks = tasks?.map((task) => ({ name: task })) || [];
@@ -117,6 +118,7 @@ const EditFormUI = ({
       maxSalary,
       phoneNumber,
       salaryOption,
+      salaryGrossNet,
     },
   });
 

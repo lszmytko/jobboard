@@ -2,7 +2,6 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { GrUserWorker } from "react-icons/gr";
 import { PiSuitcaseSimpleFill } from "react-icons/pi";
 import { FaRegHandshake, FaBuilding } from "react-icons/fa";
-import { GiMoneyStack } from "react-icons/gi";
 
 import { Detail, SalaryDetail } from "./Details";
 import { Offer } from "@/common/types";
@@ -19,6 +18,7 @@ type SummaryProps = Pick<
   | "minSalary"
   | "maxSalary"
   | "salaryOption"
+  | "salaryGrossNet"
 >;
 
 const Summary = ({
@@ -32,6 +32,7 @@ const Summary = ({
   minSalary,
   maxSalary,
   salaryOption,
+  salaryGrossNet,
 }: SummaryProps) => {
   return (
     <div className="text-sky-900 shadow-xl overflow-hidden">
@@ -66,6 +67,7 @@ const Summary = ({
           minSalary={minSalary}
           maxSalary={maxSalary}
           salaryOption={salaryOption}
+          salaryGrossNet={salaryGrossNet}
         />
       </div>
     </div>

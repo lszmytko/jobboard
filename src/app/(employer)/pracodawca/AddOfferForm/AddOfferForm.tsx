@@ -43,6 +43,7 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
       tasks: [{ name: "" }],
       requirements: [{ name: "" }],
       salaryOption: "monthly",
+      salaryGrossNet: "gross",
     },
   });
 

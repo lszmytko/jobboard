@@ -18,12 +18,12 @@ const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
     agreementType,
     tasks,
     requirements,
-    _id,
     email,
     minSalary,
     maxSalary,
     salaryOption,
     offerText,
+    salaryGrossNet,
   } = data;
 
   return (
@@ -40,6 +40,7 @@ const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
           minSalary={minSalary}
           maxSalary={maxSalary}
           salaryOption={salaryOption}
+          salaryGrossNet={salaryGrossNet}
         />
         <div className="p-2 bg-gray-100">
           <Presentation tasks={tasks} requirements={requirements} post={post} />

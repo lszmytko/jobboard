@@ -21,11 +21,13 @@ const schema = z.object({
   maxSalary: z.string(),
   phoneNumber: z.string(),
   salaryOption: z.string(),
+  salaryGrossNet: z.string(),
 });
 
 export async function POST(req: NextRequest) {
   await connectToDatabase();
   const request = await req.json();
+  console.log("*** request", request);
   const validation = schema.safeParse(request);
 
   if (!validation.success) {

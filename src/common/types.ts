@@ -34,6 +34,7 @@ export type Offer = {
   maxSalary: string;
   phoneNumber: string;
   salaryOption: "hourly" | "monthly";
+  salaryGrossNet: "gross" | "net";
 };
 
 export type WorkingTime = (typeof workingTimeOptions)[number];
