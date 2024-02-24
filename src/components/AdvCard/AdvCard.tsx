@@ -3,7 +3,7 @@ import { MdEmail } from "react-icons/md";
 
 import { Offer } from "@/common/types";
 import { paths } from "@/common/paths";
-import { GrUserWorker } from "react-icons/gr";
+import { IoPerson } from "react-icons/io5";
 import { FaBuilding, FaRegHandshake } from "react-icons/fa";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { PiSuitcaseSimpleFill } from "react-icons/pi";
@@ -67,7 +67,7 @@ const AdvCard = ({
             <MdEmail className={iconStyles} /> <span>{email}</span>
           </p>
           <p className={flexStyles}>
-            <GrUserWorker className={iconStyles} />
+            <IoPerson className={iconStyles} />
             <span>{experience}</span>
           </p>
           <p className={flexStyles}>

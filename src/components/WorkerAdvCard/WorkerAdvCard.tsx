@@ -6,7 +6,7 @@ import { shortenString } from "@/utils/utils";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { IoMdInformationCircle } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
-import { FaBuilding } from "react-icons/fa";
+import { IoPerson } from "react-icons/io5";
 
 type WorkerCardProps = Pick<
   WorkerOffer,
@@ -43,7 +43,7 @@ const WorkerAdvCard = ({
         <div className="p-4">
           <div className="flex flex-wrap text-sm gap-2 mb-2">
             <div>
-              <FaBuilding className={iconStyles} />
+              <IoPerson className={iconStyles} />
             </div>
             <span>{postTitle}</span>
           </div>
