@@ -58,6 +58,7 @@ const WorkerAdvSection = () => {
                   timeOfPosting,
                   email,
                   workingTime,
+                  postTitle,
                 } = offer;
                 return (
                   <div
@@ -71,6 +72,7 @@ const WorkerAdvSection = () => {
                       city={city}
                       timeOfPosting={timeOfPosting}
                       _id={_id}
+                      postTitle={postTitle}
                     />
                   </div>
                 );

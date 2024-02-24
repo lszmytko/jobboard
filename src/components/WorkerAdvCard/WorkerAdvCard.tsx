@@ -6,10 +6,17 @@ import { shortenString } from "@/utils/utils";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { IoMdInformationCircle } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
+import { FaBuilding } from "react-icons/fa";
 
 type WorkerCardProps = Pick<
   WorkerOffer,
-  "city" | "offerText" | "_id" | "timeOfPosting" | "email" | "workingTime"
+  | "city"
+  | "offerText"
+  | "_id"
+  | "timeOfPosting"
+  | "email"
+  | "workingTime"
+  | "postTitle"
 >;
 
 const iconStyles = "w-5 h-5 shrink-0";
@@ -20,7 +27,7 @@ const WorkerAdvCard = ({
   timeOfPosting,
   _id,
   email,
-  workingTime,
+  postTitle,
 }: WorkerCardProps) => {
   const parsedTime = new Date(timeOfPosting).toLocaleDateString("pl-PL", {
     day: "numeric",
@@ -31,9 +38,15 @@ const WorkerAdvCard = ({
   const shortenedOfferText = shortenString(offerText);
 
   return (
-    <div className="max-w-2xl w-full border-orange-300 border-2 rounded-lg bg-orange-50 shadow-xl overflow-hidden">
+    <div className="max-w-2xl w-full rounded-lg bg-orange-50 shadow-xl overflow-hidden">
       <Link href={`${paths.workeradvdetails}/${_id}`}>
         <div className="p-4">
+          <div className="flex flex-wrap text-sm gap-2 mb-2">
+            <div>
+              <FaBuilding className={iconStyles} />
+            </div>
+            <span>{postTitle}</span>
+          </div>
           <div className="flex flex-wrap text-sm gap-2 mb-2">
             <div>
               <MdEmail className={iconStyles} />

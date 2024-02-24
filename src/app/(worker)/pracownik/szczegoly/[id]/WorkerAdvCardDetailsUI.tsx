@@ -16,13 +16,18 @@ const WorkerAdvCardDetailsUI = ({ data }: { data: WorkerOffer }) => {
     timeOfPosting,
     offerText,
     availability,
+    postTitle,
   } = data;
 
   const parsedWorkingTime = workingTime.join(" / ");
 
   return (
-    <div className="sm:w-1/2 max-w-5xl  border-2 shadow-lg p-2 rounded  text-sm  border-primary-light bg-orange-50">
+    <div className="sm:w-1/2 max-w-5xl shadow-lg p-2 rounded  text-sm  border-primary-light bg-orange-50">
       <h1 className="text-xl font-bold text-center mb-4">Oferta kandydata</h1>
+      <p className={paragraphStyles}>
+        <span className={spanStyles}>Nazwa stanowiska: </span>
+        {postTitle}
+      </p>
       <p className={paragraphStyles}>
         <span className={spanStyles}>Opis oferty: </span>
         {offerText}
