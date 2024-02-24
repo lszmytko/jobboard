@@ -6,6 +6,7 @@ import ApplyButton from "./ApplyButton";
 import EmailData from "./EmailData";
 import { Offer } from "@/common/types";
 import { MdOutlineTextSnippet } from "react-icons/md";
+import PhoneButton from "./PhoneButton/PhoneButton";
 
 const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
   const {
@@ -24,6 +25,7 @@ const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
     salaryOption,
     offerText,
     salaryGrossNet,
+    phoneNumber,
   } = data;
 
   return (
@@ -48,6 +50,9 @@ const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
             <h4 className="font-semibold mb-1">Opis oferty:</h4>
             <span>{offerText}</span>
           </p>
+          <div className="mb-2 mt-4 flex justify-center">
+            <PhoneButton phoneNumber={phoneNumber} />
+          </div>
           <div className="mb-2 mt-4 flex justify-center">
             <ApplyButton post={post} mail={email} />
           </div>
