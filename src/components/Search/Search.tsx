@@ -9,7 +9,7 @@ type SearchInputs = {
   city: string;
 };
 
-const Search = ({ remove }: { remove: any }) => {
+const Search = () => {
   const {
     register,
     handleSubmit,
@@ -26,13 +26,11 @@ const Search = ({ remove }: { remove: any }) => {
       params = params + `&postOrCompany=${data.postOrCompany}`;
     if (data.city) params = params + `&city=${data.city}`;
 
-    remove();
     router.push(params);
   };
 
   const resetCriteria = () => {
     router.push("/");
-    remove();
     reset();
   };
 

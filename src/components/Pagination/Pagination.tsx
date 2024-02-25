@@ -1,21 +1,11 @@
 "use client";
 
-import { paths } from "@/common/paths";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 import ReactPaginate from "react-paginate";
 
 const activeStyle = "text-lg font-bold";
 
-const Pagination = ({
-  pages,
-  remove,
-  path,
-}: {
-  pages: number;
-  remove: any;
-  path: string;
-}) => {
+const Pagination = ({ pages }: { pages: number }) => {
   const router = useRouter();
   const params = useSearchParams();
 
@@ -33,8 +23,9 @@ const Pagination = ({
     }${cityString}${postOrCompanyString}`;
 
     router.push(paramsString);
-    remove();
   };
+
+  console.log("**pages", pages);
 
   if (pages === 1) return null;
 

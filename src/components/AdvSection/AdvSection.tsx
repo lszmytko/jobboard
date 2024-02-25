@@ -1,29 +1,26 @@
-"use client";
+import { MutableRefObject } from "react";
 
-import { ThreeDots } from "react-loader-spinner";
 import AdvCard from "../AdvCard";
-import { Offer } from "@/common/types";
+import { fetchAllOffers } from "./fetchAllOffers";
 
-const AdvSection = ({
-  offers,
-  isLoading,
+export default async function AdvSection({
+  params,
+  pages,
 }: {
-  offers: Offer[] | undefined;
-  isLoading: boolean;
-}) => {
-  if (isLoading)
-    return (
-      <div className="flex justify-center">
-        <ThreeDots />
-      </div>
-    );
-  if (offers?.length === 0)
+  params: any;
+  pages: MutableRefObject<number>;
+}) {
+  const data = await fetchAllOffers({ isActive: true, params });
+  const offers = data.data?.offers;
+
+  pages.current = data.data?.pages ?? 1;
+
+  if (!offers || offers.length === 0)
     return (
       <section className="flex justify-center p-2 mt-8">
         <p>Brak ogłoszeń.</p>
       </section>
     );
-
   return (
     <section className="flex justify-center p-2">
       <div className="w-full">
@@ -63,6 +60,4 @@ const AdvSection = ({
       </div>
     </section>
   );
-};
-
-export default AdvSection;
+}
