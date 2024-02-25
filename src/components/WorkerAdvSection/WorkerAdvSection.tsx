@@ -46,7 +46,7 @@ const WorkerAdvSection = () => {
   return (
     <>
       <div className="flex justify-center mt-4">
-        <section className="max-w-2xl w-4/5">
+        <section className="max-w-2xl w-full sm:w-4/5">
           <Search setFilterCriteria={setFilterCriteria} />
           <div className="flex justify-center p-2">
             <div className="w-full">
