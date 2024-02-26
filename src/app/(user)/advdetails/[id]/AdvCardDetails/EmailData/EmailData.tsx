@@ -2,7 +2,7 @@ const detailStyle = "mb-2 font-light";
 
 const EmailData = ({ mail, post }: { mail: string; post: string }) => {
   return (
-    <div className="text-sm bg-blue text-center">
+    <div className="text-xs bg-blue text-center">
       <p className={detailStyle}>
         Samodzielnie wyślij swoje CV umieszczając ponisze dane w wiadomości:
       </p>

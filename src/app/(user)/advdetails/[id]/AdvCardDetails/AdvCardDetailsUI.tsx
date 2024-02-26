@@ -29,7 +29,7 @@ const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
   } = data;
 
   return (
-    <div className="flex justify-center max-w-5xl border-orange-300 border-2 shadow-lg rounded mt-4 ">
+    <div className="flex justify-center max-w-5xl shadow-lg rounded mt-4">
       <div>
         <Summary
           post={post}
