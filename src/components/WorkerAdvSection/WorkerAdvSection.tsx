@@ -1,12 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+
 import WorkerAdvCard from "../WorkerAdvCard/WorkerAdvCard";
 import { fetchAllWorkerOffers } from "./fetchAllWorkerOffers";
 import Search from "./Search";
-import { useState } from "react";
-import { ThreeDots } from "react-loader-spinner";
 import Pagination from "./Pagination";
+import SmallLoader from "../loaders/SmallLoader";
 
 const WorkerAdvSection = () => {
   const [filterCriteria, setFilterCriteria] = useState("");
@@ -21,7 +22,7 @@ const WorkerAdvSection = () => {
   if (isLoading)
     return (
       <div className="flex justify-center">
-        <ThreeDots />
+        <SmallLoader />
       </div>
     );
   if (isError)

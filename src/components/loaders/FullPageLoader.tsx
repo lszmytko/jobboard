@@ -1,6 +1,5 @@
 import React from "react";
 import { ThreeDots } from "react-loader-spinner";
-import config from "../../../tailwind.config";
 
 const FullPageLoader = () => {
   return (

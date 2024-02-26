@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter } from "next/navigation";
+
 import { paths } from "@/common/paths";
 import WorkerAdvSection from "@/components/WorkerAdvSection/WorkerAdvSection";
 import Pagination from "@/components/Pagination";
+import SmallLoader from "@/components/loaders/SmallLoader";
 
 import Search from "../components/Search";
 
@@ -59,7 +61,15 @@ export default function HomeTemplate({
         <>
           <Search />
           <>
-            {children}
+            <Suspense
+              fallback={
+                <div className="flex justify-center mt-4">
+                  <SmallLoader />
+                </div>
+              }
+            >
+              {children}
+            </Suspense>
             <Pagination pages={pages} />
           </>
         </>
