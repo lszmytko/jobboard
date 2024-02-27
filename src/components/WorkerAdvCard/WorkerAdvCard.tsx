@@ -1,12 +1,11 @@
 import Link from "next/link";
+import { IoIosTime, IoMdInformationCircle } from "react-icons/io";
+import { IoPerson } from "react-icons/io5";
 
 import { WorkerOffer } from "@/common/types";
 import { paths } from "@/common/paths";
 import { shortenString } from "@/utils/utils";
-import { HiOutlineLocationMarker } from "react-icons/hi";
-import { IoMdInformationCircle } from "react-icons/io";
-import { MdEmail } from "react-icons/md";
-import { IoPerson } from "react-icons/io5";
+import { MdPlace } from "react-icons/md";
 
 type WorkerCardProps = Pick<
   WorkerOffer,
@@ -14,9 +13,9 @@ type WorkerCardProps = Pick<
   | "offerText"
   | "_id"
   | "timeOfPosting"
-  | "email"
   | "workingTime"
   | "postTitle"
+  | "availability"
 >;
 
 const iconStyles = "w-5 h-5 shrink-0";
@@ -26,8 +25,8 @@ const WorkerAdvCard = ({
   city,
   timeOfPosting,
   _id,
-  email,
   postTitle,
+  availability,
 }: WorkerCardProps) => {
   const parsedTime = new Date(timeOfPosting).toLocaleDateString("pl-PL", {
     day: "numeric",
@@ -48,18 +47,16 @@ const WorkerAdvCard = ({
             <span>{postTitle}</span>
           </div>
           <div className="flex text-sm gap-2 mb-2">
-            <div>
-              <MdEmail className={iconStyles} />
-            </div>
-            <span>{email}</span>
-          </div>
-          <div className="flex text-sm gap-2 mb-2">
             <IoMdInformationCircle className={iconStyles} />
             <div>{shortenedOfferText}</div>
           </div>
           <div className="text-sm flex gap-2 mb-2">
-            <HiOutlineLocationMarker className={iconStyles} />
+            <MdPlace className={iconStyles} />
             <span>{city}</span>
+          </div>
+          <div className="flex text-sm gap-2 mb-2">
+            <IoIosTime className={iconStyles} />
+            <div>Dostępność: {availability}</div>
           </div>
         </div>
         <div className="h-px bg-primary-light"></div>

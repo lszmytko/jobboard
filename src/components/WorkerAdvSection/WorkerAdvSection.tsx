@@ -57,9 +57,9 @@ const WorkerAdvSection = () => {
                   city,
                   offerText,
                   timeOfPosting,
-                  email,
                   workingTime,
                   postTitle,
+                  availability,
                 } = offer;
                 return (
                   <div
@@ -67,13 +67,13 @@ const WorkerAdvSection = () => {
                     className="card-wrapper mb-4 md:flex md:justify-center"
                   >
                     <WorkerAdvCard
-                      email={email}
                       workingTime={workingTime}
                       offerText={offerText}
                       city={city}
                       timeOfPosting={timeOfPosting}
                       _id={_id}
                       postTitle={postTitle}
+                      availability={availability}
                     />
                   </div>
                 );
