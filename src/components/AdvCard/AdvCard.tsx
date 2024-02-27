@@ -17,7 +17,6 @@ type AdvCardProps = Pick<
   | "company"
   | "city"
   | "address"
-  | "email"
   | "experience"
   | "agreementType"
   | "workingTime"
@@ -30,7 +29,6 @@ const AdvCard = ({
   company,
   city,
   address,
-  email,
   experience,
   agreementType,
   workingTime,
@@ -62,9 +60,6 @@ const AdvCard = ({
             <span>
               {city}, {address}
             </span>
-          </p>
-          <p className={flexStyles}>
-            <MdEmail className={iconStyles} /> <span>{email}</span>
           </p>
           <p className={flexStyles}>
             <IoPerson className={iconStyles} />

@@ -31,7 +31,6 @@ export default async function AdvSection({
             company,
             city,
             address,
-            email,
             experience,
             agreementType,
             workingTime,
@@ -47,7 +46,6 @@ export default async function AdvSection({
                 company={company}
                 city={city}
                 address={address}
-                email={email}
                 experience={experience}
                 agreementType={agreementType}
                 workingTime={workingTime}
