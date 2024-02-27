@@ -5,7 +5,6 @@ import Presentation from "./Presentation";
 import ApplyButton from "./ApplyButton";
 import EmailData from "./EmailData";
 import { Offer } from "@/common/types";
-import { MdOutlineTextSnippet } from "react-icons/md";
 import PhoneButton from "./PhoneButton/PhoneButton";
 
 const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
@@ -29,7 +28,7 @@ const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
   } = data;
 
   return (
-    <div className="flex justify-center max-w-5xl shadow-lg rounded mt-4">
+    <div className="w-full max-w-5xl shadow-xl rounded mt-4">
       <div>
         <Summary
           post={post}

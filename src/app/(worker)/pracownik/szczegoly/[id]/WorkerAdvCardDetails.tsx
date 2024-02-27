@@ -13,7 +13,7 @@ const WorkerAdvCardDetails = () => {
   const id = pathname.split("/").slice(-1)[0];
 
   const { isLoading, isError, data } = useQuery({
-    queryKey: ["getSingleWorkerOffer"],
+    queryKey: ["getSingleWorkerOffer", id],
     queryFn: () => fetchSingleWorkerOffer(id),
   });
 

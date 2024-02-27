@@ -13,7 +13,7 @@ const AdvCardDetails = () => {
   const id = pathname.split("/").slice(-1)[0];
 
   const { isLoading, isError, data } = useQuery({
-    queryKey: ["getSingleOffer"],
+    queryKey: ["getSingleOffer", id],
     queryFn: () => fetchSingleOffer(id),
   });
 

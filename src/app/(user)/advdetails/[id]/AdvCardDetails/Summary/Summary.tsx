@@ -35,7 +35,7 @@ const Summary = ({
   salaryGrossNet,
 }: SummaryProps) => {
   return (
-    <div className="text-sky-900 shadow-xl overflow-hidden">
+    <div className="text-sky-900 overflow-hidden">
       <div className="p-2">
         <p className="font-semibold mb-4">{post}</p>
         <div className="flex gap-2 text-sm mb-4">
