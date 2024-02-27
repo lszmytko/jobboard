@@ -55,7 +55,9 @@ const HamburgerMenu = () => {
           <div className={workerLinkStyles}>Szukam pracy</div>
         </Link>
         <a href="https://www.vettech.pl" className="trainings">
-          <div className={linkStyles}>Szkolenia</div>
+          <div className={`${linkStyles} font-extrabold text-orange-200`}>
+            Szkolenia
+          </div>
         </a>
       </aside>
     </div>

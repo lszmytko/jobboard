@@ -31,7 +31,7 @@ const Header = () => {
         <div>
           <Logo />
         </div>
-        <div className="max-sm:hidden flex gap-2">
+        <div className="max-sm:hidden flex gap-4">
           <Link href="/" className={styles.allOffers}>
             Oferty pracy
           </Link>
@@ -43,7 +43,7 @@ const Header = () => {
           </Link>
           <a
             href="https://www.vettech.pl"
-            className="trainings hidden sm:block"
+            className="trainings hidden sm:block font-extrabold text-orange-200 text-xl leading-10"
           >
             Szkolenia
           </a>
