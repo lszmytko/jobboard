@@ -39,7 +39,7 @@ const Search = () => {
       <div className="mt-6 flex justify-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="p-3 pt-0 mb-2 md:flex w-4/5 max-w-4xl"
+          className="px-3 mb-6 md:flex w-4/5 max-w-4xl"
         >
           <div className="md:grow">
             <input
@@ -52,7 +52,7 @@ const Search = () => {
             <input
               placeholder="Miasto"
               {...register("city")}
-              className="w-full text-center max-sm:border-b-2 p-2 border-primary-extra-light mb-2 focus:outline-none"
+              className="w-full text-center max-sm:border-b-2 p-2 border-primary-extra-light mb-2 sm:mb-0 focus:outline-none"
             />
           </div>
           <div>
@@ -68,7 +68,7 @@ const Search = () => {
       <div className="flex justify-center">
         <button
           onClick={resetCriteria}
-          className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
+          className="text-white bg-primary-light hover:bg-primary focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
         >
           Resetuj kryteria
         </button>
