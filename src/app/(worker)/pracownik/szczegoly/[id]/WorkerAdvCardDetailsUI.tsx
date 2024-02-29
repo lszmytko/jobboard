@@ -30,7 +30,7 @@ const WorkerAdvCardDetailsUI = ({ data }: { data: WorkerOffer }) => {
       </p>
       <p className={paragraphStyles}>
         <span className={spanStyles}>Opis oferty: </span>
-        {offerText}
+        <span>{offerText}</span>
       </p>
       <p className={paragraphStyles}>
         <span className={spanStyles}>Email:</span> {email}

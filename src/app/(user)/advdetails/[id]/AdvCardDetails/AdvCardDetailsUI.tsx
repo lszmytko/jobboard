@@ -47,7 +47,7 @@ const AdvCardDetailsUI = ({ data }: { data: Offer }) => {
           <Presentation tasks={tasks} requirements={requirements} post={post} />
           <div className="text-sm mb-2">
             <h4 className="font-semibold mb-1">Opis oferty:</h4>
-            <span>{offerText}</span>
+            <span className="whitespace-pre-line">{offerText}</span>
           </div>
           <div className="mb-2 mt-4 flex justify-center">
             <PhoneButton phoneNumber={phoneNumber} />
