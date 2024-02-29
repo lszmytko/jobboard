@@ -1,9 +1,11 @@
-import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 import { inter } from "@/app/ui/fonts";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
+import "./globals.css";
 
 import Providers from "./providers";
 
@@ -37,6 +39,7 @@ export default function RootLayout({
           richColors={true}
         />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
