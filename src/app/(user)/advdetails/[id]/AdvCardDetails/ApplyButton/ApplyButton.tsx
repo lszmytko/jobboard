@@ -1,3 +1,5 @@
+"use client";
+
 import { buttonStyles } from "../consts";
 
 const ApplyButton = ({ mail, post }: { mail: string; post: string }) => {

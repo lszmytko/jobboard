@@ -1,9 +1,9 @@
 import AdvCardDetails from "./AdvCardDetails";
 
-const Page = () => {
+const Page = ({ params }: { params: { id: string } }) => {
   return (
     <div className="w-screen flex justify-center p-2">
-      <AdvCardDetails />
+      <AdvCardDetails id={params.id} />
     </div>
   );
 };
