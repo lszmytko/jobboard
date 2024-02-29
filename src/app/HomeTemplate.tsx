@@ -24,8 +24,6 @@ export default function HomeTemplate({
 
   const [option, setOption] = useState<"workers" | "employers">("employers");
 
-  console.log("*** rerender");
-
   const handleOptionChange = (option: "workers" | "employers") => {
     router.push(paths.home);
     if (option === "workers") {

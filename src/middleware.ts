@@ -40,12 +40,6 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 
   const response = NextResponse.next();
 
-  // response.headers.set(
-  //   "Access-Control-Allow-Origin",
-  //   process.env.NODE_ENV === "production"
-  //     ? "https://vetpraca.vettech.pl"
-  //     : "http://localhost:3000"
-  // );
   response.headers.set("Access-Control-Allow-Origin", "*");
   response.headers.set("Access-Control-Allow-Credentials", "true");
   response.headers.set(

@@ -1,7 +1,3 @@
-export const getAdminToken = () => {
-  return localStorage.getItem("adminToken");
-};
-
 export const parseRequirements = (
   requirements: {
     name: string;

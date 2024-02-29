@@ -9,7 +9,6 @@ export const loginAdmin = async (data: { name: string; password: string }) => {
   });
 
   if (response.data.token) {
-    localStorage.setItem("adminToken", response.data.token);
     Cookies.set("jwtToken", response.data.token);
   }
 

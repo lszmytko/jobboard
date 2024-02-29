@@ -20,7 +20,6 @@ const schema = z.object({
 export async function POST(req: NextRequest) {
   await connectToDatabase();
   const request = await req.json();
-  console.log("** request", request);
   const validation = schema.safeParse(request);
 
   if (!validation.success) {

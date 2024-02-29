@@ -11,7 +11,6 @@ const Pagination = ({ pages }: { pages: number }) => {
 
   const handlePageClick = (data: { selected: number }) => {
     const city = params.get("city") ?? "";
-    const page = params.get("page") ?? "1";
     const postOrCompany = params.get("postOrCompany") ?? "";
     const cityString = city ? `&city=${city}` : "";
     const postOrCompanyString = postOrCompany
@@ -24,8 +23,6 @@ const Pagination = ({ pages }: { pages: number }) => {
 
     router.push(paramsString);
   };
-
-  console.log("**pages", pages);
 
   if (pages === 1) return null;
 

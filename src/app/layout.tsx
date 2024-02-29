@@ -28,7 +28,7 @@ export default function RootLayout({
         className={`${inter.className} antialiased bg-slate-100 text-dark-blue`}
       >
         <Providers>
-          <div className="">{children}</div>
+          <div>{children}</div>
         </Providers>
         <Toaster
           position="top-right"
