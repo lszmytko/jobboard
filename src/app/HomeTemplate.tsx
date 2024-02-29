@@ -1,25 +1,27 @@
 "use client";
 
-import { Suspense, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { paths } from "@/common/paths";
 import WorkerAdvSection from "@/components/WorkerAdvSection/WorkerAdvSection";
 import Pagination from "@/components/Pagination";
-import SmallLoader from "@/components/loaders/SmallLoader";
+import AdvSection from "@/components/AdvSection";
 
 import Search from "../components/Search";
 
 const baseButtonStyles = "font-extrabold sm:text-xl";
 const selectedButtonStyles = "p-2 bg-primary-light rounded-full text-white";
 
-export default function HomeTemplate({
-  children,
-  pages,
-}: {
-  children: React.ReactNode;
-  pages: number;
-}) {
+export default function HomeTemplate() {
+  const pages = useRef(1);
+  const searchParams = useSearchParams();
+
+  const page = searchParams.get("page") ?? "1";
+  const city = searchParams.get("city") ?? "";
+  const postOrCompany = searchParams.get("postOrCompany") ?? "";
+
+  const params = { page, city, postOrCompany };
   const router = useRouter();
 
   const [option, setOption] = useState<"workers" | "employers">("employers");
@@ -59,16 +61,8 @@ export default function HomeTemplate({
         <>
           <Search />
           <>
-            <Suspense
-              fallback={
-                <div className="flex justify-center mt-4">
-                  <SmallLoader />
-                </div>
-              }
-            >
-              {children}
-            </Suspense>
-            <Pagination pages={pages} />
+            <AdvSection params={params} pages={pages} page={page} />
+            <Pagination pages={pages.current} />
           </>
         </>
       )}

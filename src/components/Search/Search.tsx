@@ -36,10 +36,10 @@ const Search = () => {
 
   return (
     <>
-      <div className="mt-4 flex justify-center">
+      <div className="mt-6 flex justify-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="p-3 mb-2 md:flex w-4/5 max-w-4xl"
+          className="p-3 pt-0 mb-2 md:flex w-4/5 max-w-4xl"
         >
           <div className="md:grow">
             <input

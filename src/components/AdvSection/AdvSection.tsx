@@ -2,18 +2,34 @@ import { MutableRefObject } from "react";
 
 import AdvCard from "../AdvCard";
 import { fetchAllOffers } from "./fetchAllOffers";
+import { useQuery } from "@tanstack/react-query";
+import SmallLoader from "../loaders/SmallLoader";
 
-export default async function AdvSection({
+export default function AdvSection({
   params,
   pages,
+  page,
 }: {
   params: any;
   pages: MutableRefObject<number>;
+  page: string;
 }) {
-  const data = await fetchAllOffers({ isActive: true, params });
-  const offers = data.data?.offers;
+  const { data, isLoading } = useQuery({
+    queryKey: ["fetchAllOffers", params],
+    queryFn: () => fetchAllOffers({ isActive: true, params }),
+    retryOnMount: false,
+  });
 
-  pages.current = data.data?.pages ?? 1;
+  if (isLoading)
+    return (
+      <div className="flex justify-center mt-4">
+        <SmallLoader />
+      </div>
+    );
+
+  const offers = data?.data?.offers;
+
+  pages.current = data?.data?.pages ?? 1;
 
   if (!offers || offers.length === 0)
     return (
@@ -21,6 +37,7 @@ export default async function AdvSection({
         <p>Brak ogłoszeń.</p>
       </section>
     );
+
   return (
     <section className="flex justify-center p-2">
       <div className="w-full">

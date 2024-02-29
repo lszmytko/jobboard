@@ -20,20 +20,20 @@ const Search = ({
   };
   return (
     <div className="flex justify-center">
-      <div className="mb-4 w-4/5 sm:w-full">
+      <div className="w-4/5 sm:w-full">
         <form
-          className="mb-6 mt-4 md:flex justify-center "
+          className="mb-6 md:flex justify-center"
           onSubmit={handleSubmit(onSubmit)}
         >
           <input
             type="text"
             placeholder="Wpisz miasto"
-            className="w-full text-center max-sm:border-b-2 p-2 border-primary-extra-light focus:outline-none md:border-r-2"
+            className="w-full text-center max-sm:border-b-2 p-2 border-primary-extra-light focus:outline-none md:border-r-2 mb-2 md:mb-0"
             {...register("criterium")}
           />
           <input
             type="submit"
-            value="Wyszukaj"
+            value="Szukaj"
             className="w-full text-center rounded py-2 px-4 bg-primary-light cursor-pointer"
           />
         </form>
