@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 import { inter } from "@/app/ui/fonts";
@@ -41,6 +42,7 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
       </body>
+      <GoogleTagManager gtmId="GTM-NKP74DZ2" />
     </html>
   );
 }
