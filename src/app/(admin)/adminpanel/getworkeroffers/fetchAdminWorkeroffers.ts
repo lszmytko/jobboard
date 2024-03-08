@@ -10,10 +10,9 @@ type ResponseStructure = { offers: WorkerOffer[]; pages: number };
 export const fetchAdminWorkerOffers = async (data: {
   email: string;
   city: string;
-  offerID: string;
   minDate: Date | string;
   maxDate: Date | string;
-  page: number;
+  page: string;
 }) => {
   const parsedParams = {
     params: {

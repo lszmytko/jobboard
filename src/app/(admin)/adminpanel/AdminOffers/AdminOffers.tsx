@@ -85,6 +85,9 @@ const AdminOffers = ({
     setIsDetailsModalOpen(false);
   };
 
+  if (data.length === 0)
+    return <div className="mt-2 text-center">Brak ofert...</div>;
+
   return (
     <>
       <div className="mt-4 flex justify-center">

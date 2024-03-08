@@ -1,18 +1,25 @@
 "use client";
 
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ReactPaginate from "react-paginate";
 
 const activeStyle = "text-lg font-bold";
 
-const Pagination = ({
-  setPage,
-  pagesCount,
-}: {
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  pagesCount: React.MutableRefObject<number>;
-}) => {
-  const handlePageClick = (data: { selected: number }) => {
-    setPage(data.selected + 1);
+const Pagination = ({ pagesCount }: { pagesCount: number }) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  if (pagesCount === 1) return;
+
+  const params = new URLSearchParams(searchParams);
+
+  console.log({ params });
+
+  const handlePageClick = ({ selected }: { selected: number }) => {
+    params.delete("page");
+    params.append("page", (selected + 1).toString());
+    router.push(`${pathname}?${params}`);
   };
 
   return (
@@ -23,11 +30,12 @@ const Pagination = ({
         nextLabel=">"
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
-        pageCount={pagesCount.current}
+        pageCount={pagesCount}
         previousLabel="<"
         renderOnZeroPageCount={null}
         activeClassName={activeStyle}
-        initialPage={1}
+        initialPage={0}
+        disableInitialCallback={true}
       />
     </div>
   );

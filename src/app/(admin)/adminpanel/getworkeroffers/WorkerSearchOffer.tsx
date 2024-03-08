@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { usePathname, useRouter } from "next/navigation";
 
 import DatePicker from "react-datepicker";
 
@@ -10,16 +11,11 @@ import { DevTool } from "@hookform/devtools";
 type FormInputs = {
   email: string;
   city: string;
-  offerID: string;
   minDate: Date;
   maxDate: Date;
 };
 
-const WorkerSearchOffer = ({
-  setFilterCriteria,
-}: {
-  setFilterCriteria: React.Dispatch<React.SetStateAction<any>>;
-}) => {
+const WorkerSearchOffer = () => {
   const {
     register,
     handleSubmit,
@@ -27,9 +23,18 @@ const WorkerSearchOffer = ({
     formState: { errors },
   } = useForm<FormInputs>();
 
+  const router = useRouter();
+  const pathname = usePathname();
+
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     try {
-      setFilterCriteria({ ...data });
+      const params = new URLSearchParams();
+      Object.keys(data).forEach((key) => {
+        if (data[key as keyof FormInputs])
+          params.append(key, data[key as keyof FormInputs].toString());
+      });
+      console.log({ params });
+      router.push(`${pathname}?${params}`);
     } catch (error) {}
   };
 
@@ -42,17 +47,13 @@ const WorkerSearchOffer = ({
             <input
               placeholder="Email"
               {...register("email")}
-              className="w-1/3 p-1"
+              className="w-1/2   p-1"
             />
-            <input
-              placeholder="ID oferty"
-              {...register("offerID")}
-              className="w-1/3 p-1"
-            />
+
             <input
               placeholder="Miasto"
               {...register("city")}
-              className="w-1/3 p-1"
+              className="w-1/2 p-1"
             />
           </div>
           <div className="flex justify-center gap-1 mb-2">

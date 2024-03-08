@@ -1,30 +1,34 @@
-"use client";
-
-import React, { useRef, useState } from "react";
-import WorkerOffers from "./WorkerOffers";
+import React from "react";
 import WorkerSearchOffer from "./WorkerSearchOffer";
+import { fetchAdminWorkerOffers } from "./fetchAdminWorkeroffers";
+import AdminOffers from "../AdminOffers";
 import Pagination from "./Pagination";
 
-const WorkerOffersPage = () => {
-  const [filterCriteria, setFilterCriteria] = useState("");
-  const [page, setPage] = useState(1);
-  const pagesCount = useRef(1);
+const WorkerOffersPage = async ({
+  searchParams,
+}: {
+  searchParams: Record<
+    "minDate" | "maxDate" | "page" | "offerID" | "city" | "email",
+    string
+  >;
+}) => {
+  const response = await fetchAdminWorkerOffers({
+    ...searchParams,
+    page: searchParams.page,
+  });
+
+  const pagesCount = response?.data?.pages ?? 1;
+  const offers = response?.data?.offers;
 
   return (
     <div>
       <div className="w-screen flex justify-center">
         <div className="md:w-1/2">
-          <WorkerSearchOffer setFilterCriteria={setFilterCriteria} />
-          <WorkerOffers
-            filterCriteria={filterCriteria}
-            page={page}
-            pagesCount={pagesCount}
-          />
+          <WorkerSearchOffer />
+          <AdminOffers data={offers} type="worker" />
         </div>
       </div>
-      {pagesCount.current > 1 ? (
-        <Pagination setPage={setPage} pagesCount={pagesCount} />
-      ) : null}
+      <Pagination pagesCount={pagesCount} />
     </div>
   );
 };

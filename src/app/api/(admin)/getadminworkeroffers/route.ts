@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
   const city = req.nextUrl.searchParams.get("city");
   const minDate = req.nextUrl.searchParams.get("minDate");
   const maxDate = req.nextUrl.searchParams.get("maxDate");
-  const page = Number(req.nextUrl.searchParams.get("page")) ?? 1;
+  const page = Number(req.nextUrl.searchParams.get("page") ?? "1");
 
   const response = schema.safeParse({
     offerID,
