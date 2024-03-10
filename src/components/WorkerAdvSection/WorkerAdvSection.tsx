@@ -14,7 +14,7 @@ const WorkerAdvSection = () => {
   const [filterCriteria, setFilterCriteria] = useState("");
   const [page, setPage] = useState(1);
 
-  const { isLoading, data, isError, remove } = useQuery({
+  const { isLoading, data, isError } = useQuery({
     queryKey: ["fetchAllWorkerOffers", filterCriteria, page],
     queryFn: () => fetchAllWorkerOffers(filterCriteria, page, true),
     retryOnMount: false,
