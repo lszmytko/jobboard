@@ -1,4 +1,4 @@
-import { MutableRefObject } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
 import AdvCard from "../AdvCard";
 import { fetchAllOffers } from "./fetchAllOffers";
@@ -8,18 +8,23 @@ import CurrentCourse from "../CurrentCourse";
 
 export default function AdvSection({
   params,
-  pages,
-  page,
+  setPages,
 }: {
   params: any;
-  pages: MutableRefObject<number>;
   page: string;
+  setPages: Dispatch<SetStateAction<number>>;
 }) {
   const { data, isLoading } = useQuery({
     queryKey: ["fetchAllOffers", params],
     queryFn: () => fetchAllOffers({ isActive: true, params }),
     retryOnMount: false,
   });
+
+  const pagesCount = data?.data?.pages ?? 1;
+
+  useEffect(() => {
+    setPages(pagesCount);
+  }, [pagesCount]);
 
   if (isLoading)
     return (
@@ -29,8 +34,6 @@ export default function AdvSection({
     );
 
   const offers = data?.data?.offers;
-
-  pages.current = data?.data?.pages ?? 1;
 
   if (!offers || offers.length === 0)
     return (

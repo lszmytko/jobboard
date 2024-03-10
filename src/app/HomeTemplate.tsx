@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { paths } from "@/common/paths";
@@ -14,7 +14,7 @@ const baseButtonStyles = "font-extrabold sm:text-xl";
 const selectedButtonStyles = "p-2 bg-primary-light rounded-full text-white";
 
 export default function HomeTemplate() {
-  const pages = useRef(1);
+  const [pages, setPages] = useState(1);
   const searchParams = useSearchParams();
 
   const page = searchParams.get("page") ?? "1";
@@ -61,8 +61,8 @@ export default function HomeTemplate() {
         <>
           <Search />
           <>
-            <AdvSection params={params} pages={pages} page={page} />
-            <Pagination pages={pages.current} />
+            <AdvSection params={params} setPages={setPages} page={page} />
+            <Pagination pages={pages} />
           </>
         </>
       )}
