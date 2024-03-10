@@ -8,6 +8,7 @@ import { fetchAllWorkerOffers } from "./fetchAllWorkerOffers";
 import Search from "./Search";
 import Pagination from "./Pagination";
 import SmallLoader from "../loaders/SmallLoader";
+import CurrentCourse from "../CurrentCourse";
 
 const WorkerAdvSection = () => {
   const [filterCriteria, setFilterCriteria] = useState("");
@@ -51,7 +52,7 @@ const WorkerAdvSection = () => {
           <Search setFilterCriteria={setFilterCriteria} />
           <div className="flex justify-center p-2">
             <div className="w-full">
-              {offers?.map((offer) => {
+              {offers?.map((offer, index) => {
                 const {
                   _id,
                   city,
@@ -62,20 +63,23 @@ const WorkerAdvSection = () => {
                   availability,
                 } = offer;
                 return (
-                  <div
-                    key={_id}
-                    className="card-wrapper mb-4 md:flex md:justify-center"
-                  >
-                    <WorkerAdvCard
-                      workingTime={workingTime}
-                      offerText={offerText}
-                      city={city}
-                      timeOfPosting={timeOfPosting}
-                      _id={_id}
-                      postTitle={postTitle}
-                      availability={availability}
-                    />
-                  </div>
+                  <>
+                    {index === 4 && <CurrentCourse />}
+                    <div
+                      key={_id}
+                      className="card-wrapper mb-4 md:flex md:justify-center"
+                    >
+                      <WorkerAdvCard
+                        workingTime={workingTime}
+                        offerText={offerText}
+                        city={city}
+                        timeOfPosting={timeOfPosting}
+                        _id={_id}
+                        postTitle={postTitle}
+                        availability={availability}
+                      />
+                    </div>
+                  </>
                 );
               })}
             </div>

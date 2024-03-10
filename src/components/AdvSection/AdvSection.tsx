@@ -4,6 +4,7 @@ import AdvCard from "../AdvCard";
 import { fetchAllOffers } from "./fetchAllOffers";
 import { useQuery } from "@tanstack/react-query";
 import SmallLoader from "../loaders/SmallLoader";
+import CurrentCourse from "../CurrentCourse";
 
 export default function AdvSection({
   params,
@@ -41,7 +42,7 @@ export default function AdvSection({
   return (
     <section className="flex justify-center p-2">
       <div className="w-full">
-        {offers?.map((ad) => {
+        {offers?.map((ad, index) => {
           const {
             _id,
             post,
@@ -53,23 +54,27 @@ export default function AdvSection({
             workingTime,
             timeOfPosting,
           } = ad;
+
           return (
-            <div
-              key={_id}
-              className="card-wrapper mb-4 md:flex md:justify-center"
-            >
-              <AdvCard
-                post={post}
-                company={company}
-                city={city}
-                address={address}
-                experience={experience}
-                agreementType={agreementType}
-                workingTime={workingTime}
-                timeOfPosting={timeOfPosting}
-                _id={_id}
-              />
-            </div>
+            <>
+              {index === 4 && <CurrentCourse />}
+              <div
+                key={_id}
+                className="card-wrapper mb-4 md:flex md:justify-center"
+              >
+                <AdvCard
+                  post={post}
+                  company={company}
+                  city={city}
+                  address={address}
+                  experience={experience}
+                  agreementType={agreementType}
+                  workingTime={workingTime}
+                  timeOfPosting={timeOfPosting}
+                  _id={_id}
+                />
+              </div>
+            </>
           );
         })}
       </div>
