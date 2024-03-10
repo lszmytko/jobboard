@@ -10,7 +10,7 @@ const CurrentCourse = () => {
 
   return (
     <div className="mb-4 w-full cursor-pointer relative flex justify-center">
-      <a href="https://www.vettech.pl">
+      <a href="https://www.vettech.pl/anestezjologia-modul-3">
         <Image
           src="/currentCourse.png"
           alt="Kurs anastezjologia"
