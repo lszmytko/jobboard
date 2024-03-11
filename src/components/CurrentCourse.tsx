@@ -17,8 +17,8 @@ const CurrentCourse = () => {
         <Image
           src="/currentCourse.png"
           alt="Kurs anastezjologia"
-          width={450}
-          height={360}
+          width={672}
+          height={300}
         />
       </a>
     </div>
