@@ -30,7 +30,7 @@ const WorkerAdvCardDetailsUI = ({ data }: { data: WorkerOffer }) => {
       </p>
       <p className={paragraphStyles}>
         <span className={spanStyles}>Opis oferty: </span>
-        <span>{offerText}</span>
+        <span className="leading-relaxed">{offerText}</span>
       </p>
       <p className={paragraphStyles}>
         <span className={spanStyles}>Email:</span> {email}
@@ -54,7 +54,7 @@ const WorkerAdvCardDetailsUI = ({ data }: { data: WorkerOffer }) => {
         Jeżeli jesteście Państwo zainteresowani ofertą kandydata, prośba o
         kontakt uzywając podanego numeru telefonu lub maila
       </p>
-      <p className="text-end text-sm">
+      <p className="text-end text-xs">
         Data dodania oferty: {dayjs(timeOfPosting).format("YYYY-MM-DD")}
       </p>
     </div>
