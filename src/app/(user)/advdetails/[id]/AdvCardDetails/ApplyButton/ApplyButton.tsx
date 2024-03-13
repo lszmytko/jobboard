@@ -16,6 +16,7 @@ const ApplyButton = ({ mail, post }: { mail: string; post: string }) => {
           )}&body=${encodeURIComponent(emailBody)}`
         );
       }}
+      id="gtm-email-button"
     >
       Aplikuj wysyłając maila
     </button>

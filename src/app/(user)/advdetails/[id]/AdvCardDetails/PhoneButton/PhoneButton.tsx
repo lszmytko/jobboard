@@ -15,6 +15,7 @@ export default function PhoneButton({ phoneNumber }: { phoneNumber: string }) {
     <button
       className={`${buttonStyles} bg-light-blue hover:bg-dark-blue`}
       onClick={handleClick}
+      id="gtm-phone-button"
     >
       {info}
     </button>
