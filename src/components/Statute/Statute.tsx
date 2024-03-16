@@ -4,7 +4,7 @@ const Statute = () => {
   return (
     <div className="text-justify">
       <p className="text-sm mb-1">
-        Ogłoszenie dodwane jest na okres 90 dni. W sprawie edycji ogłoszenia,
+        Ogłoszenie dodawane jest na okres 90 dni. W sprawie edycji ogłoszenia,
         prosimy o kontakt na vettech.kontakt@gmail.com
       </p>
       <p className="text-xs text-opacity-20 mb-2">

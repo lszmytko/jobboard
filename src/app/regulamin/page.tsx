@@ -46,7 +46,7 @@ const Page = () => {
           przepisy prawa polskiego.
           <p className="font-bold mt-3">
             Regulamin ten wchodzi w życie z dniem jego opublikowania na stronie
-            internetowej www.vettech.pl.
+            internetowej www.vetpraca.vettech.pl.
           </p>
         </p>
       </div>
