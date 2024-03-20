@@ -7,7 +7,7 @@ const InputLoader = () => {
         height="40"
         width="40"
         radius="9"
-        color={"#4fa94d"}
+        color={"#fdba74"}
         ariaLabel="three-dots-loading"
         visible={true}
       />

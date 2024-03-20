@@ -7,7 +7,7 @@ export default function SmallLoader() {
       height="80"
       width="80"
       radius="9"
-      color={"#f97316"}
+      color={"#fdba74"}
       ariaLabel="three-dots-loading"
       visible={true}
     />

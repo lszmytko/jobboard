@@ -8,7 +8,7 @@ const FullPageLoader = () => {
         height="120"
         width="120"
         radius="9"
-        color={"#f97316"}
+        color={"#fdba74"}
         ariaLabel="three-dots-loading"
         visible={true}
       />
