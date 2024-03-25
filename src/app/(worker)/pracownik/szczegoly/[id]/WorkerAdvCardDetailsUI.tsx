@@ -52,7 +52,7 @@ const WorkerAdvCardDetailsUI = ({ data }: { data: WorkerOffer }) => {
       </p>
       <p className="mb-2">
         Jeżeli jesteście Państwo zainteresowani ofertą kandydata, prośba o
-        kontakt uzywając podanego numeru telefonu lub maila
+        kontakt używając podanego numeru telefonu lub maila
       </p>
       <p className="text-end text-xs">
         Data dodania oferty: {dayjs(timeOfPosting).format("YYYY-MM-DD")}
