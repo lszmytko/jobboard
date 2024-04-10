@@ -14,3 +14,9 @@ export const workingTimeOptions = [
   "weekendy",
   "praca w nocy",
 ] as const;
+
+export const socialLinks = {
+  facebook: "https://www.facebook.com/VetTech-107788255408463",
+  instagram: "https://instagram.com/vettech.official",
+  email: "mailto:vettech.kontakt@gmail.com",
+};

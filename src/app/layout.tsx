@@ -4,13 +4,14 @@ import { Toaster } from "sonner";
 import { inter } from "@/app/ui/fonts";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Footer from "@/components/Footer";
 
 import "./globals.css";
 
 import Providers from "./providers";
 
 export const metadata: Metadata = {
-  title: "Vetpraca by Vettech",
+  title: "Praca w Weterynarii - Vetpraca by Vettech",
   description: "Portal pracy dla Techników Weterynarii",
 };
 
@@ -25,7 +26,10 @@ export default function RootLayout({
         className={`${inter.className} antialiased bg-slate-100 text-dark-blue`}
       >
         <Providers>
-          <div>{children}</div>
+          <div>
+            {children}
+            <Footer />
+          </div>
         </Providers>
         <Toaster
           position="top-right"

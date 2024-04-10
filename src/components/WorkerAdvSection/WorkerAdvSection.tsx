@@ -22,7 +22,7 @@ const WorkerAdvSection = () => {
 
   if (isLoading)
     return (
-      <div className="flex justify-center">
+      <div className="flex justify-center min-h-screen">
         <SmallLoader />
       </div>
     );

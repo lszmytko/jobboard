@@ -28,7 +28,7 @@ export default function AdvSection({
 
   if (isLoading)
     return (
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center mt-4 min-h-screen">
         <SmallLoader />
       </div>
     );
@@ -37,8 +37,8 @@ export default function AdvSection({
 
   if (!offers || offers.length === 0)
     return (
-      <section className="flex justify-center p-2 mt-8">
-        <p>Brak ogłoszeń.</p>
+      <section className="flex justify-center p-2 mt-8 min-h-screen">
+        <p>Brak ofert.</p>
       </section>
     );
 
