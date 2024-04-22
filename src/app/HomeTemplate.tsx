@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { paths } from "@/common/paths";
@@ -14,7 +13,6 @@ const baseButtonStyles = "font-extrabold sm:text-xl";
 const selectedButtonStyles = "p-2 bg-primary-light rounded-full text-white";
 
 export default function HomeTemplate() {
-  const [pages, setPages] = useState(1);
   const searchParams = useSearchParams();
 
   const page = searchParams.get("page") ?? "1";
@@ -24,16 +22,13 @@ export default function HomeTemplate() {
   const params = { page, city, postOrCompany };
   const router = useRouter();
 
-  const [option, setOption] = useState<"workers" | "employers">("employers");
-
   const handleOptionChange = (option: "workers" | "employers") => {
-    router.push(paths.home);
-    if (option === "workers") {
-      setOption("workers");
-    } else {
-      setOption("employers");
-    }
+    const queryParam =
+      option === "workers" ? "?option=pracownicy" : "?option=pracodawcy";
+    router.push(paths.job + queryParam);
   };
+
+  const option = searchParams.get("option") ?? "pracodawcy";
 
   return (
     <>
@@ -41,7 +36,7 @@ export default function HomeTemplate() {
         <button
           onClick={() => handleOptionChange("employers")}
           className={`${
-            option === "employers" ? selectedButtonStyles : ""
+            option === "pracodawcy" ? selectedButtonStyles : ""
           } ${baseButtonStyles}
           `}
         >
@@ -50,23 +45,23 @@ export default function HomeTemplate() {
         <button
           onClick={() => handleOptionChange("workers")}
           className={`${
-            option === "workers" ? selectedButtonStyles : ""
+            option === "pracownicy" ? selectedButtonStyles : ""
           } ${baseButtonStyles}
           `}
         >
           Oferty kandydatów
         </button>
       </div>
-      {option === "employers" && (
+      {option === "pracodawcy" && (
         <>
           <Search />
           <>
-            <AdvSection params={params} setPages={setPages} page={page} />
-            <Pagination pages={pages} />
+            <AdvSection params={params} page={page} />
+            <Pagination />
           </>
         </>
       )}
-      {option === "workers" && <WorkerAdvSection />}
+      {option === "pracownicy" && <WorkerAdvSection />}
     </>
   );
 }

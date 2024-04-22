@@ -1,25 +1,11 @@
-import AdvCard from "../AdvCard";
-import { fetchAllOffers } from "./fetchAllOffers";
-import { useQuery } from "@tanstack/react-query";
-import SmallLoader from "../loaders/SmallLoader";
-import CurrentCourse from "../CurrentCourse";
+import AdvCard from "@/components/AdvCard";
+import { fetchAllOffers } from "@/components/AdvSection/fetchAllOffers";
+import CurrentCourse from "@/components/CurrentCourse";
 import React from "react";
 
-export default function AdvSection({ params }: { params: any; page: string }) {
-  const { data, isLoading } = useQuery({
-    queryKey: ["fetchAllOffers", params],
-    queryFn: () => fetchAllOffers({ isActive: true, params }),
-    retryOnMount: false,
-  });
-
-  if (isLoading)
-    return (
-      <div className="flex justify-center mt-4 min-h-screen">
-        <SmallLoader />
-      </div>
-    );
-
-  const offers = data?.data?.offers;
+export default async function HomeAds() {
+  const response = await fetchAllOffers({ isActive: true });
+  const offers = response?.data?.offers;
 
   if (!offers || offers.length === 0)
     return (

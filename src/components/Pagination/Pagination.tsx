@@ -1,17 +1,33 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import ReactPaginate from "react-paginate";
+import { fetchAllOffers } from "../AdvSection/fetchAllOffers";
 
 const activeStyle = "text-lg font-bold";
 
-const Pagination = ({ pages }: { pages: number }) => {
+const Pagination = () => {
   const router = useRouter();
-  const params = useSearchParams();
+  const searchParams = useSearchParams();
+
+  const page = searchParams.get("page") ?? "1";
+  const city = searchParams.get("city") ?? "";
+  const postOrCompany = searchParams.get("postOrCompany") ?? "";
+
+  const params = { page, city, postOrCompany };
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["fetchAllOffers", params],
+    queryFn: () => fetchAllOffers({ isActive: true, params }),
+    retryOnMount: false,
+  });
+
+  const pagesCount = data?.data?.pages ?? 1;
 
   const handlePageClick = (data: { selected: number }) => {
-    const city = params.get("city") ?? "";
-    const postOrCompany = params.get("postOrCompany") ?? "";
+    const city = searchParams.get("city") ?? "";
+    const postOrCompany = searchParams.get("postOrCompany") ?? "";
     const cityString = city ? `&city=${city}` : "";
     const postOrCompanyString = postOrCompany
       ? `&postOrCompany=${postOrCompany}`
@@ -24,19 +40,19 @@ const Pagination = ({ pages }: { pages: number }) => {
     router.push(paramsString);
   };
 
-  if (pages === 1) return null;
+  if (pagesCount === 1) return null;
 
   return (
     <div className="flex justify-center mb-8">
       <ReactPaginate
         containerClassName="flex flex-row justify-center items-center gap-2 "
         pageLinkClassName="px-2 cursor-pointer"
-        forcePage={parseInt(params.get("page") ?? "1") - 1}
+        forcePage={parseInt(searchParams.get("page") ?? "1") - 1}
         breakLabel="..."
         nextLabel=">"
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
-        pageCount={pages}
+        pageCount={pagesCount}
         previousLabel="<"
         renderOnZeroPageCount={null}
         activeLinkClassName={activeStyle}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import WorkerAdvCard from "../WorkerAdvCard/WorkerAdvCard";
@@ -26,9 +26,12 @@ const WorkerAdvSection = () => {
         <SmallLoader />
       </div>
     );
+
   if (isError)
     return (
-      <div className="text-center text-red-700 mt-6">Coś poszło nie tak...</div>
+      <div className="text-center text-red-700 mt-6 min-h-screen">
+        Coś poszło nie tak...
+      </div>
     );
   const offers = data.data.offers;
   const pages = data.data.pages;
@@ -63,12 +66,9 @@ const WorkerAdvSection = () => {
                   availability,
                 } = offer;
                 return (
-                  <>
+                  <React.Fragment key={_id}>
                     {index === 4 && <CurrentCourse />}
-                    <div
-                      key={_id}
-                      className="card-wrapper mb-4 md:flex md:justify-center"
-                    >
+                    <div className="card-wrapper mb-4 md:flex md:justify-center">
                       <WorkerAdvCard
                         workingTime={workingTime}
                         offerText={offerText}
@@ -79,7 +79,7 @@ const WorkerAdvSection = () => {
                         availability={availability}
                       />
                     </div>
-                  </>
+                  </React.Fragment>
                 );
               })}
             </div>

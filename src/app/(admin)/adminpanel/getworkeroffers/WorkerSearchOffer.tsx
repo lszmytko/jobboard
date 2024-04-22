@@ -33,7 +33,6 @@ const WorkerSearchOffer = () => {
         if (data[key as keyof FormInputs])
           params.append(key, data[key as keyof FormInputs].toString());
       });
-      console.log({ params });
       router.push(`${pathname}?${params}`);
     } catch (error) {}
   };

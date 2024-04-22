@@ -14,8 +14,6 @@ const Pagination = ({ pagesCount }: { pagesCount: number }) => {
 
   const params = new URLSearchParams(searchParams);
 
-  console.log({ params });
-
   const handlePageClick = ({ selected }: { selected: number }) => {
     params.delete("page");
     params.append("page", (selected + 1).toString());

@@ -1,5 +1,6 @@
 "use client";
 
+import { paths } from "@/common/paths";
 import { DevTool } from "@hookform/devtools";
 import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -26,11 +27,12 @@ const Search = () => {
       params = params + `&postOrCompany=${data.postOrCompany}`;
     if (data.city) params = params + `&city=${data.city}`;
 
-    router.push(params);
+    const url = paths.job + params;
+    router.push(url);
   };
 
   const resetCriteria = () => {
-    router.push("/");
+    router.push(paths.job);
     reset();
   };
 
