@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import ReactPaginate from "react-paginate";
 import { fetchAllOffers } from "../AdvSection/fetchAllOffers";
+import { Suspense } from "react";
+import SmallLoader from "../loaders/SmallLoader";
 
 const activeStyle = "text-lg font-bold";
 
@@ -62,3 +64,13 @@ const Pagination = () => {
 };
 
 export default Pagination;
+
+export const PaginationWithSuspense = () => {
+  return (
+    <>
+      <Suspense fallback={<SmallLoader />}>
+        <Pagination />
+      </Suspense>
+    </>
+  );
+};
