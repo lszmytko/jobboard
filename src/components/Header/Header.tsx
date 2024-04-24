@@ -12,7 +12,7 @@ import { createStyles } from "@/utils/utils";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
-const activeClassName = "bg-primary rounded px-2";
+const activeClassName = "font-extrabold text-orange-200 text-xl leading-10";
 
 const Header = () => {
   const pathname = usePathname();
@@ -43,7 +43,7 @@ const Header = () => {
           </Link>
           <a
             href="https://www.vettech.pl"
-            className="trainings hidden sm:block font-extrabold text-orange-200 text-xl leading-10"
+            className="trainings hidden sm:block bg-primary rounded px-2"
           >
             Szkolenia
           </a>

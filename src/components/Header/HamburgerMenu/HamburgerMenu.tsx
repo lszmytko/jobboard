@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 import { paths } from "@/common/paths";
 import { createStyles } from "@/utils/utils";
 
-const activePageStyles = "bg-primary-light";
+const activePageStyles = "font-extrabold text-orange-200";
 const linkStyles = `border-t-2 border-light-blue p-1 text-white`;
 
 const HamburgerMenu = () => {
@@ -55,7 +55,7 @@ const HamburgerMenu = () => {
           <div className={workerLinkStyles}>Szukam pracy</div>
         </Link>
         <a href="https://www.vettech.pl" className="trainings">
-          <div className={`${linkStyles} font-extrabold text-orange-200`}>
+          <div className={`${linkStyles} bg-primary-light font-extrabold`}>
             Szkolenia
           </div>
         </a>
