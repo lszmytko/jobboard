@@ -11,3 +11,5 @@ const Page = ({ params }: { params: { id: string } }) => {
 };
 
 export default Page;
+
+export const revalidate = 600;

@@ -16,3 +16,5 @@ export default function HomeTemplate() {
     </>
   );
 }
+
+export const revalidate = 600;
