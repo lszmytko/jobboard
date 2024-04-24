@@ -1,8 +1,10 @@
 import Link from "next/link";
 
+import { paths } from "@/common/paths";
+
 export const Success = () => {
   return (
-    <div className="w-screen flex justify-center items-center">
+    <div className="w-screen flex justify-center min-h-screen">
       <div className="p-2 text-center mt-8">
         <h1 className="text-3xl font-bold text-primary-dark mb-4">
           Gratulacje!
@@ -13,7 +15,7 @@ export const Success = () => {
         </p>
         <div className="mt-6">
           <Link
-            href="/"
+            href={paths.job}
             className="text-center rounded py-2 px-4 mt-6 bg-primary-light cursor-pointer text-white"
           >
             Przejdź do ogłoszeń
