@@ -3,6 +3,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import ReactPaginate from "react-paginate";
+
+import { paths } from "@/common/paths";
+
 import { fetchAllOffers } from "../AdvSection/fetchAllOffers";
 import { Suspense } from "react";
 import SmallLoader from "../loaders/SmallLoader";
@@ -39,7 +42,7 @@ const Pagination = () => {
       data.selected + 1
     }${cityString}${postOrCompanyString}`;
 
-    router.push(paramsString);
+    router.push(`${paths.job}${paramsString}`);
   };
 
   if (pagesCount === 1) return null;
