@@ -75,3 +75,5 @@ export type WorkerOfferCreator = "worker" | "admin";
 export type Availability = (typeof availability)[number];
 
 export type SalaryOptions = (typeof salaryOptions)[number];
+
+export type SearchOption = "pracodawcy" | "pracownicy";
