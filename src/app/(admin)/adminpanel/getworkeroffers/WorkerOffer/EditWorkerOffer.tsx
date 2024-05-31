@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { editWorkerOffer } from "./editWorkerOfferFn";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { fetchSingleWorkerOffer } from "@/app/(worker)/pracownik/szczegoly/[id]/fetchSingleWorkerOffer";
+import { fetchSingleWorkerOffer } from "@/app/(worker)/pracownik/szczegoly/[jobTitle]/[id]/fetchSingleWorkerOffer";
 import {
   Controller,
   SubmitHandler,
