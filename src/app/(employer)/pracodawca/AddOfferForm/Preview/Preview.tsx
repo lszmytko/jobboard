@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
-import AdvCardDetailsUI from "@/app/(user)/advdetails/[id]/AdvCardDetails/AdvCardDetailsUI";
+import AdvCardDetailsUI from "@/app/(user)/advdetails/[jobTitle]/[id]/AdvCardDetails/AdvCardDetailsUI";
 import InputLoader from "@/components/loaders/InputLoader";
 
 import { accceptButtonStyles, customDeleteModalStyles } from "./styles";

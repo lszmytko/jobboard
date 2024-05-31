@@ -44,9 +44,11 @@ const AdvCard = ({
   const agreement = agreementType.join(" / ");
   const parsedWorkingTime = workingTime.join(" / ");
 
+  const jobTitle = post.split(" ").join("-").toLowerCase();
+
   return (
     <div className="max-w-2xl w-full border-orange-300 border-2 rounded-lg bg-gray-100 shadow-xl overflow-hidden">
-      <Link href={`${paths.advdetails}/${_id}`}>
+      <Link href={`${paths.advdetails}/${jobTitle}/${_id}`}>
         <div className="p-4 text-xs sm:text-sm">
           <p className="text-sm font-bold mb-2 text-center sm:text-lg capitalize">
             {post}
