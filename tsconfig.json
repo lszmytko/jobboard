@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/(user)/advdetails/[jobTitle]/[id]/AdvCardDetails",
-    "src/components/FullPageLoader"
+    "src/components/FullPageLoader",
+    "next.config.js"
   ],
   "exclude": ["node_modules"]
 }
