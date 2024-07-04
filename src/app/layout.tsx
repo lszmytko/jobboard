@@ -11,9 +11,10 @@ import "./globals.css";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
-  title: "Praca w Weterynarii - Vetpraca by Vettech",
+  title:
+    "Oferty pracy :: Praca w Weterynarii :: Weterynarz :: Technik - Vettech",
   description:
-    "Portal pracy dla Techników Weterynarii oraz Lekarzy Weterynarii. Najnowsze oferty, tylko z widełkami wynagrodzeń",
+    "Portal pracy dla Techników Weterynarii oraz Lekarzy Weterynarii. Najnowsze oferty pracy dla weterynarza z gabinetów weterynaryjnych, tylko z widełkami wynagrodzeń.",
   keywords: [
     "weterynaria",
     "technik weterynarii",
