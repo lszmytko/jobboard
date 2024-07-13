@@ -20,9 +20,9 @@ const Salary = ({
 }) => {
   return (
     <div className="mb-4">
-      <h1 className="mb-1 font-semibold capitalize text-primary text-center">
+      <h2 className="mb-1 font-semibold capitalize text-primary text-center">
         Wynagrodzenie
-      </h1>
+      </h2>
       <div className="flex justify-center gap-2 mb-3">
         <input
           type="radio"

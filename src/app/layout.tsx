@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title:
     "Oferty pracy :: Praca w Weterynarii :: Weterynarz :: Technik - Vettech",
   description:
-    "Portal pracy dla Techników Weterynarii oraz Lekarzy Weterynarii. Najnowsze oferty pracy dla weterynarza z gabinetów weterynaryjnych, tylko z widełkami wynagrodzeń.",
+    "Portal pracy dla Techników Weterynarii oraz Lekarzy Weterynarii. Najnowsze oferty pracy dla weterynarzy, tylko z widełkami wynagrodzeń.",
   keywords: [
     "weterynaria",
     "technik weterynarii",

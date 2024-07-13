@@ -102,7 +102,7 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
           inputName="address"
         />
         <div>
-          <h1 className={headingStyles}>Numer telefonu</h1>
+          <h2 className={headingStyles}>Numer telefonu</h2>
           <Controller
             name="phoneNumber"
             control={control}
@@ -136,9 +136,9 @@ const AddOfferFormUI = ({ creator }: { creator: "employer" | "admin" }) => {
           title="Wymagania"
         />
         <div>
-          <h1 className="text-primary text-center font-semibold mb-2">
+          <h2 className="text-primary text-center font-semibold mb-2">
             Dodatkowa treść ogłoszenia
-          </h1>
+          </h2>
           <textarea
             {...register("offerText", { required: true, maxLength: 1000 })}
             className="block w-full p-2 rounded mb-2"

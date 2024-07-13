@@ -11,9 +11,9 @@ const Input = ({
 }) => {
   return (
     <div>
-      <h1 className="mb-1 font-semibold capitalize text-primary text-center">
+      <h2 className="mb-1 font-semibold capitalize text-primary text-center">
         {placeholder}
-      </h1>
+      </h2>
       <input
         {...register(inputName, { required: true })}
         placeholder={placeholder}
