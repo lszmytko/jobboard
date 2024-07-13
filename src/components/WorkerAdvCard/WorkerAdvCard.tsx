@@ -46,7 +46,7 @@ const WorkerAdvCard = ({
             <div>
               <IoPerson className={iconStyles} />
             </div>
-            <span className="font-bold capitalize">{postTitle}</span>
+            <h3 className="font-bold capitalize">{postTitle}</h3>
           </div>
           <div className="flex text-sm gap-2 mb-2">
             <IoMdInformationCircle className={iconStyles} />

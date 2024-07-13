@@ -50,9 +50,9 @@ const AdvCard = ({
     <div className="max-w-2xl w-full border-orange-300 border-2 rounded-lg bg-gray-100 shadow-xl overflow-hidden">
       <Link href={`${paths.advdetails}/${jobTitle}/${_id}`}>
         <div className="p-4 text-xs sm:text-sm">
-          <p className="text-sm font-bold mb-2 text-center sm:text-lg capitalize">
+          <h3 className="text-sm font-bold mb-2 text-center sm:text-lg capitalize">
             {post}
-          </p>
+          </h3>
           <p className={flexStyles}>
             <FaBuilding className={iconStyles} />
             {company}
