@@ -20,3 +20,15 @@ export const socialLinks = {
   instagram: "https://instagram.com/vettech.official",
   email: "mailto:vettech.kontakt@gmail.com",
 };
+
+export const cities = [
+  "warszawa",
+  "kraków",
+  "łódź",
+  "wrocław",
+  "poznań",
+  "gdańsk",
+  "bydgoszcz",
+  "lublin",
+  "katowice",
+];

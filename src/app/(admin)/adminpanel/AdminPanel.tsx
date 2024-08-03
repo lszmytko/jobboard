@@ -19,8 +19,6 @@ const AdminPanel = () => {
   const minDate = searchParams.get("minDate") ?? "";
   const maxDate = searchParams.get("minDate") ?? "";
 
-  console.log("redeploy");
-
   const { isLoading, isError, data } = useQuery({
     queryKey: ["adminUserOffers"],
     queryFn: () =>

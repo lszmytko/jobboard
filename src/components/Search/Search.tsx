@@ -11,13 +11,7 @@ type SearchInputs = {
 };
 
 const Search = () => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    reset,
-    formState: { errors },
-  } = useForm<SearchInputs>();
+  const { register, handleSubmit, control, reset } = useForm<SearchInputs>();
 
   const router = useRouter();
 

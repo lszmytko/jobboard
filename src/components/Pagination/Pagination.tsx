@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ReactPaginate from "react-paginate";
 
 import { paths } from "@/common/paths";
@@ -9,20 +9,30 @@ import { paths } from "@/common/paths";
 import { fetchAllOffers } from "../AdvSection/fetchAllOffers";
 import { Suspense } from "react";
 import SmallLoader from "../loaders/SmallLoader";
+import { cities } from "@/common/consts";
 
 const activeStyle = "text-lg font-bold";
 
 const Pagination = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+
+  const slug = decodeURIComponent(
+    pathname.split("/").slice(-1)[0] as unknown as string
+  );
+  const isCityPathname = cities.includes(slug);
 
   const page = searchParams.get("page") ?? "1";
-  const city = searchParams.get("city") ?? "";
+  let city = searchParams.get("city") ?? "";
+  city = isCityPathname ? slug : city;
   const postOrCompany = searchParams.get("postOrCompany") ?? "";
 
   const params = { page, city, postOrCompany };
 
-  const { data, isLoading } = useQuery({
+  console.log({ params });
+
+  const { data } = useQuery({
     queryKey: ["fetchAllOffers", params],
     queryFn: () => fetchAllOffers({ isActive: true, params }),
     retryOnMount: false,
@@ -31,7 +41,6 @@ const Pagination = () => {
   const pagesCount = data?.data?.pages ?? 1;
 
   const handlePageClick = (data: { selected: number }) => {
-    const city = searchParams.get("city") ?? "";
     const postOrCompany = searchParams.get("postOrCompany") ?? "";
     const cityString = city ? `&city=${city}` : "";
     const postOrCompanyString = postOrCompany
