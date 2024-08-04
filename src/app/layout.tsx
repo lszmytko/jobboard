@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Toaster } from "sonner";
-import { inter } from "@/app/ui/fonts";
+import { montserrat } from "@/app/ui/fonts";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/components/Footer";
@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased bg-slate-100 text-dark-blue`}
+        className={`${montserrat.className} antialiased bg-slate-100 text-dark-blue`}
       >
         <Providers>
           <div>

@@ -1,6 +1,5 @@
 "use client";
 
-import { Montserrat } from "next/font/google";
 import Link from "next/link";
 
 import { paths } from "@/common/paths";
@@ -9,8 +8,6 @@ import Logo from "./Logo";
 import HamburgerMenu from "./HamburgerMenu";
 import { usePathname } from "next/navigation";
 import { createStyles } from "@/utils/utils";
-
-const montserrat = Montserrat({ subsets: ["latin"] });
 
 const activeClassName = "font-extrabold text-primary text-xl leading-10";
 
@@ -26,7 +23,7 @@ const Header = () => {
       <HamburgerMenu />
 
       <div
-        className={`flex max-sm:justify-center gap-2 w-screen justify-between bg-dark-blue text-white font-semibold leading-10 ${montserrat.className} mb-4 p-4 lg:px-44 xl:px-64 2xl:px-96`}
+        className={`flex max-sm:justify-center gap-2 w-screen justify-between bg-dark-blue text-white font-semibold leading-10 mb-4 p-4 lg:px-44 xl:px-64 2xl:px-96`}
       >
         <div>
           <Logo />
