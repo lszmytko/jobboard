@@ -10,8 +10,7 @@ const Logo = () => {
         <Image
           src={LogoImage}
           alt="logo - oferty pracy w weterynarii"
-          width="120"
-          height="40"
+          className="w-32 md:w-44"
         />
       </div>
     </Link>
