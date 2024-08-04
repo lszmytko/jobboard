@@ -26,7 +26,7 @@ const Header = () => {
       <HamburgerMenu />
 
       <div
-        className={`flex max-sm:justify-center gap-2 w-screen justify-between bg-dark-blue text-white font-semibold leading-10 ${montserrat.className} mb-4 p-4`}
+        className={`flex max-sm:justify-center gap-2 w-screen justify-between bg-dark-blue text-white font-semibold leading-10 ${montserrat.className} mb-4 p-4 lg:px-44 xl:px-64 2xl:px-96`}
       >
         <div>
           <Logo />
