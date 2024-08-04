@@ -12,7 +12,7 @@ import { createStyles } from "@/utils/utils";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
-const activeClassName = "font-extrabold text-orange-200 text-xl leading-10";
+const activeClassName = "font-extrabold text-primary text-xl leading-10";
 
 const Header = () => {
   const pathname = usePathname();
@@ -22,11 +22,11 @@ const Header = () => {
   const styles = createStyles(pathname, activeClassName);
 
   return (
-    <div className="w-screen flex justify-center sm:mt-4">
+    <div className="w-screen flex justify-center">
       <HamburgerMenu />
 
       <div
-        className={`flex max-sm:justify-center gap-2 max-w-3xl w-screen justify-between bg-dark-blue text-white font-semibold leading-10 ${montserrat.className} mb-4 p-4 sm:rounded-lg`}
+        className={`flex max-sm:justify-center gap-2 w-screen justify-between bg-dark-blue text-white font-semibold leading-10 ${montserrat.className} mb-4 p-4`}
       >
         <div>
           <Logo />

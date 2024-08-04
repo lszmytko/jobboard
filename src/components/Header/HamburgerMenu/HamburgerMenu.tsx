@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 import { paths } from "@/common/paths";
 import { createStyles } from "@/utils/utils";
 
-const activePageStyles = "font-extrabold text-orange-200";
+const activePageStyles = "font-extrabold text-primary";
 const linkStyles = `border-t-2 border-light-blue p-1 text-white`;
 
 const HamburgerMenu = () => {

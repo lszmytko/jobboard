@@ -39,7 +39,7 @@ const WorkerAdvCard = ({
   const postTitleAsSlug = postTitle.trim().split(" ").join("-").toLowerCase();
 
   return (
-    <div className="max-w-2xl w-full rounded-lg bg-orange-50 shadow-xl overflow-hidden">
+    <div className="max-w-2xl w-full rounded-lg bg-white shadow-xl overflow-hidden">
       <Link href={`${paths.workeradvdetails}/${postTitleAsSlug}/${_id}`}>
         <div className="p-4">
           <div className="flex text-sm gap-2 mb-2">

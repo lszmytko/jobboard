@@ -8,10 +8,10 @@ import { CityButtons } from "@/components/homepage/CityButtons";
 export default function HomeTemplate() {
   return (
     <>
+      <HomeButtons />
       <div className="mb-4">
         <CityButtons />
       </div>
-      <HomeButtons />
       <Search />
       <>
         <HomeAds />

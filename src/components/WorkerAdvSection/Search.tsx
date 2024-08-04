@@ -34,13 +34,13 @@ const Search = ({
           <input
             type="submit"
             value="Szukaj"
-            className="w-full text-center rounded py-2 px-4 bg-primary-light cursor-pointer"
+            className="w-full text-center text-white rounded py-2 px-4 bg-primary-light cursor-pointer"
           />
         </form>
         <div className="flex justify-center">
           <button
             onClick={resetCriteria}
-            className="text-white bg-primary-light hover:bg-primary focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
+            className="text-white bg-primary-light hover:bg-primary focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
           >
             Resetuj kryteria
           </button>

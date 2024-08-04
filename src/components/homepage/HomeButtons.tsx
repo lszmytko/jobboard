@@ -4,7 +4,7 @@ import { paths } from "@/common/paths";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const baseButtonStyles = "font-extrabold sm:text-xl";
-const selectedButtonStyles = `${baseButtonStyles} p-2 bg-primary-light rounded-full text-white`;
+const selectedButtonStyles = `${baseButtonStyles} p-2 bg-primary rounded-lg text-white`;
 
 export default function HomeButtons({
   option,
