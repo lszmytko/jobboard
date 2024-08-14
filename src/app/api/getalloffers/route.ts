@@ -1,10 +1,12 @@
 import { z } from "zod";
 import { StatusCodes } from "http-status-codes";
+import mongoose from "mongoose";
+import { NextRequest, NextResponse } from "next/server";
 
 import connectToDatabase from "../db/connectToDatabase";
 import { Offer } from "../models/Offer";
-import { NextRequest, NextResponse } from "next/server";
-import mongoose from "mongoose";
+
+import { citiesWithoutOthersPattern } from "@/common/consts";
 
 const ITEMS_PER_PAGE = 15;
 
@@ -67,6 +69,11 @@ export async function GET(req: NextRequest) {
     };
   if (isActive === "true") filter = { ...filter, status: "active" };
   if (city) filter = { ...filter, city: { $regex: city, $options: "i" } };
+  if (city === "inne")
+    filter = {
+      ...filter,
+      city: { $regex: citiesWithoutOthersPattern, $options: "i" },
+    };
 
   const filterWithCompany = postOrCompany
     ? { ...filter, company: { $regex: postOrCompany, $options: "i" } }
