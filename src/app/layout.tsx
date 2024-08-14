@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Toaster } from "sonner";
+
 import { montserrat } from "@/app/ui/fonts";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "@/components/Footer";
 
 import "./globals.css";
-
 import Providers from "./providers";
+import HotjarTemplate from "./HotjarTemplate";
 
 export const metadata: Metadata = {
   title:
@@ -35,6 +36,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.className} antialiased bg-slate-100 text-dark-blue`}
       >
+        <HotjarTemplate />
         <Providers>
           <div>
             <div className="min-h-[calc(100vh-px)]">{children}</div>
