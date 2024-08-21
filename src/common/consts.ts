@@ -34,4 +34,4 @@ export const cities = [
   "inne",
 ];
 
-export const citiesWithoutOthersPattern = `^(?!.*\\b(?:warszawa|kraków|łódź|wrocław|poznań|gdańsk|bydgoszcz|lublin|katowice)\\b).*$`;
+export const citiesWithoutOthersPattern = `^(?!.*(?<!\\w)(warszawa|kraków|łódź|wrocław|poznań|gdańsk|bydgoszcz|lublin|katowice)(?!\\w)).*$`;
