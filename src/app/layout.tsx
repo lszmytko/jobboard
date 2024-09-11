@@ -13,7 +13,7 @@ import HotjarTemplate from "./HotjarTemplate";
 
 export const metadata: Metadata = {
   title:
-    "Oferty pracy :: Praca w Weterynarii :: Weterynarz :: Technik - Vettech",
+    "Oferty pracy :: Technik weterynarii praca :: Weterynarz Praca - Vettech",
   description:
     "Portal pracy dla Techników Weterynarii oraz Lekarzy Weterynarii. Najnowsze oferty pracy dla weterynarzy, tylko z widełkami wynagrodzeń.",
   keywords: [
