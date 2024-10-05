@@ -14,7 +14,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center">
+    <div className="w-full h-screen flex items-center justify-center">
       <div>
         <p className="text-xl font-bold mb-4">Coś poszło nie tak...</p>
         <button

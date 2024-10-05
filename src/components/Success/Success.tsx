@@ -4,7 +4,7 @@ import { paths } from "@/common/paths";
 
 export const Success = () => {
   return (
-    <div className="w-screen flex justify-center min-h-screen">
+    <div className="w-full flex justify-center min-h-screen">
       <div className="p-2 text-center mt-8">
         <h1 className="text-3xl font-bold text-primary-dark mb-4">
           Gratulacje!

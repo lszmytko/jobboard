@@ -19,11 +19,11 @@ const Header = () => {
   const styles = createStyles(pathname, activeClassName);
 
   return (
-    <div className="w-screen flex justify-center">
+    <div className="flex justify-center">
       <HamburgerMenu />
 
       <div
-        className={`flex max-sm:justify-center gap-2 w-screen justify-between bg-dark-blue text-white font-semibold leading-10 mb-4 px-4 py-4 md:py-2 lg:px-44 xl:px-64 2xl:px-96`}
+        className={`flex max-sm:justify-center gap-2 w-full justify-between bg-dark-blue text-white font-semibold leading-10 mb-4 px-4 py-4 md:py-2 lg:px-44 xl:px-64 2xl:px-96`}
       >
         <div className="self-center">
           <Logo />

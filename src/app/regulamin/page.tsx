@@ -1,6 +1,6 @@
 const Page = () => {
   return (
-    <div className="w-screen flex justify-center my-4">
+    <div className="w-full flex justify-center my-4">
       <div className="max-w-screen-md p-2">
         <h1 className="text-center text-xl font-bold mb-4">
           Regulamin dodawania ogłoszeń o pracę

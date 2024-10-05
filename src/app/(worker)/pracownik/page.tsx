@@ -2,7 +2,7 @@ import AddWorkerOfferForm from "./AddWorkerOfferForm/AddWorkerOfferForm";
 
 const Page = () => {
   return (
-    <div className="w-screen flex justify-center">
+    <div className="w-svw flex justify-center">
       <AddWorkerOfferForm creator="worker" />
     </div>
   );
