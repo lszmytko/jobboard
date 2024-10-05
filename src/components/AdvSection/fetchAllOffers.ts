@@ -1,6 +1,7 @@
+import axios from "axios";
+
 import { paths } from "@/common/paths";
 import { Offer } from "@/common/types";
-import axios from "axios";
 
 const offersEndpoint = `${process.env.NEXT_PUBLIC_API_ENDPOINT}${paths.getAllOffers}`;
 
@@ -26,10 +27,10 @@ export const fetchAllOffers = async ({
     ? { params: { isActive, ...params } }
     : { params: { ...params } };
 
-  const response = await axios.get<ResponseStructure>(
-    offersEndpoint,
-    finalParams
-  );
+    const response = await axios.get<ResponseStructure>(
+      offersEndpoint,
+      finalParams
+    );
 
-  return response;
+    return response;
 };

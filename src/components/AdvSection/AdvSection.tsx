@@ -1,7 +1,8 @@
-import AdvCard from "../AdvCard";
-import { fetchAllOffers } from "./fetchAllOffers";
-import CurrentCourse from "../CurrentCourse";
 import React from "react";
+
+import AdvCard from "../AdvCard";
+import CurrentCourse from "../CurrentCourse";
+import { fetchAllOffers } from "./fetchAllOffers";
 
 export default async function AdvSection({
   params,
@@ -23,32 +24,20 @@ export default async function AdvSection({
     <section className="flex justify-center p-2">
       <div className="w-full">
         {offers?.map((ad, index) => {
-          const {
-            _id,
-            post,
-            company,
-            city,
-            address,
-            experience,
-            agreementType,
-            workingTime,
-            timeOfPosting,
-          } = ad;
-
           return (
-            <React.Fragment key={_id}>
+            <React.Fragment key={ad._id}>
               {index === 4 && <CurrentCourse />}
               <div className="card-wrapper mb-4 md:flex md:justify-center">
                 <AdvCard
-                  post={post}
-                  company={company}
-                  city={city}
-                  address={address}
-                  experience={experience}
-                  agreementType={agreementType}
-                  workingTime={workingTime}
-                  timeOfPosting={timeOfPosting}
-                  _id={_id}
+                  post={ad.post}
+                  company={ad.company}
+                  city={ad.city}
+                  address={ad.address}
+                  experience={ad.experience}
+                  agreementType={ad.agreementType}
+                  workingTime={ad.workingTime}
+                  timeOfPosting={ad.timeOfPosting}
+                  _id={ad._id}
                 />
               </div>
             </React.Fragment>

@@ -30,8 +30,6 @@ const Pagination = () => {
 
   const params = { page, city, postOrCompany };
 
-  console.log({ params });
-
   const { data } = useQuery({
     queryKey: ["fetchAllOffers", params],
     queryFn: () => fetchAllOffers({ isActive: true, params }),

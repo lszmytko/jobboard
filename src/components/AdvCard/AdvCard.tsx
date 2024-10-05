@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { MdEmail } from "react-icons/md";
 
 import { Offer } from "@/common/types";
 import { paths } from "@/common/paths";
@@ -40,15 +39,14 @@ const AdvCard = ({
     month: "long",
     year: "numeric",
   });
-
-  const agreement = agreementType.join(" / ");
+  const parsedAgreement = agreementType.join(" / ");
   const parsedWorkingTime = workingTime.join(" / ");
-
-  const jobTitle = post.split(" ").join("-").toLowerCase();
+  const parsedJobTitle = post.split(" ").join("-").toLowerCase();
+  const linkToOfferDetails = `${paths.advdetails}/${parsedJobTitle}/${_id}`;
 
   return (
     <div className="max-w-2xl w-full border-primary border-2 rounded-lg bg-white shadow-xl overflow-hidden">
-      <Link href={`${paths.advdetails}/${jobTitle}/${_id}`}>
+      <Link href={linkToOfferDetails}>
         <div className="p-4 text-xs sm:text-sm">
           <h3 className="text-sm font-bold mb-2 text-center sm:text-lg capitalize">
             {post}
@@ -69,7 +67,7 @@ const AdvCard = ({
           </p>
           <p className={flexStyles}>
             <FaRegHandshake className={iconStyles} />
-            <span>{agreement}</span>
+            <span>{parsedAgreement}</span>
           </p>
           <p className={flexStyles}>
             <PiSuitcaseSimpleFill className={iconStyles} />
